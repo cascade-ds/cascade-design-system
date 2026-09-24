@@ -38,6 +38,57 @@ const emitThemeNames: Plugin = {
   },
 };
 
+// JS animation libraries (Motion) can't read `var(--…)`, they need numbers.
+// Emits the resolved `semantic.motion.*` tokens as `motion.js`/`.d.ts`:
+// durations in seconds (Motion's unit), easings as cubic-bezier arrays.
+const MOTION_PREFIX = 'semantic.motion.';
+
+type MotionTree = { [key: string]: MotionTree | number | readonly number[] };
+
+function toMotionValue(value: unknown): number | readonly number[] {
+  if (Array.isArray(value)) {
+    return value as number[];
+  }
+  const { value: amount, unit } = value as { value: number; unit: 'ms' | 's' };
+  return unit === 'ms' ? amount / 1000 : amount;
+}
+
+function toMotionType(tree: MotionTree, indent = '  '): string {
+  const lines = Object.entries(tree).map(([key, value]) => {
+    const type =
+      typeof value === 'number'
+        ? 'number'
+        : Array.isArray(value)
+          ? 'readonly [number, number, number, number]'
+          : toMotionType(value as MotionTree, `${indent}  `);
+    return `${indent}readonly ${JSON.stringify(key)}: ${type};`;
+  });
+  return `{\n${lines.join('\n')}\n${indent.slice(2)}}`;
+}
+
+const emitMotion: Plugin = {
+  name: 'emit-motion',
+  build({ tokens, outputFile }) {
+    const motion: MotionTree = {};
+
+    for (const [id, token] of Object.entries(tokens)) {
+      if (!id.startsWith(MOTION_PREFIX)) {
+        continue;
+      }
+      const path = id.slice(MOTION_PREFIX.length).split('.');
+      const leaf = path.pop()!;
+      let node = motion;
+      for (const key of path) {
+        node = (node[key] ??= {}) as MotionTree;
+      }
+      node[leaf] = toMotionValue(token.$value);
+    }
+
+    outputFile('motion.js', `export const motion = ${JSON.stringify(motion, null, 2)};\n`);
+    outputFile('motion.d.ts', `export declare const motion: ${toMotionType(motion)};\n`);
+  },
+};
+
 const customConfig: Config = {
   tokens: ['../tokens/design-system.resolver.json'],
   plugins: [
@@ -46,6 +97,7 @@ const customConfig: Config = {
       filename: 'theme.js',
     }),
     emitThemeNames,
+    emitMotion,
   ],
   outDir: '../styles/',
   lint: {

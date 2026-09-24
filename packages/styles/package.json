@@ -1,6 +1,25 @@
 {
   "name": "@cascade-ds/styles",
   "version": "0.1.0",
+  "description": "Design tokens for Cascade DS as CSS custom properties, a typed theme object and motion values.",
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "css-variables",
+    "theme",
+    "dark-mode"
+  ],
+  "license": "MIT",
+  "author": "Sergio Segaty",
+  "homepage": "https://github.com/SergioSegaty/cascade-design-system#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergioSegaty/cascade-design-system.git",
+    "directory": "packages/styles"
+  },
+  "bugs": {
+    "url": "https://github.com/SergioSegaty/cascade-design-system/issues"
+  },
   "private": false,
   "type": "module",
   "main": "./theme.js",
@@ -10,7 +29,9 @@
     "theme.js",
     "theme.d.ts",
     "theme-names.js",
-    "theme-names.d.ts"
+    "theme-names.d.ts",
+    "motion.js",
+    "motion.d.ts"
   ],
   "exports": {
     ".": {
@@ -20,6 +41,10 @@
     "./theme-names": {
       "types": "./theme-names.d.ts",
       "import": "./theme-names.js"
+    },
+    "./motion": {
+      "types": "./motion.d.ts",
+      "import": "./motion.js"
     },
     "./index.css": "./index.css"
   }
