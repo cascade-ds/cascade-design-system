@@ -46,8 +46,9 @@ Reasons:
   releases automatically.
 - Contributors add a changeset (`pnpm changeset`) alongside PRs that touch a
   publishable package, instead of relying on Lerna's commit-based bumping.
-- **Follow-up needed:** `.changeset/config.json` currently lists
-  `@cascade-ds/storybook` under `ignore`, which excludes it from version
-  bumps. That conflicts with the intent of having CI auto-bump Storybook's
-  version via Changesets — it should be removed from `ignore` before CI is
-  wired to rely on Changesets for that.
+- **Follow-up (resolved 2026-09-24):** `.changeset/config.json` lists
+  `@cascade-ds/storybook` under `ignore`, which seemed to conflict with the
+  plan to auto-bump Storybook's version. It stays ignored: Storybook is
+  private, never published, and imports component source through the `@/`
+  alias, so it always shows the code being released and its version carries
+  no information. The README's pipeline no longer has a Storybook bump step.
