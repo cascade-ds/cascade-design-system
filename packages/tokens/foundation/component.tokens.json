@@ -285,6 +285,10 @@
         "offset": {
           "$value": "{semantic.focus.ring.offset}",
           "$type": "dimension"
+        },
+        "shadow": {
+          "$value": "{semantic.focus.shadow}",
+          "$type": "shadow"
         }
       },
       "radius": {
@@ -680,8 +684,23 @@
           "$type": "dimension"
         }
       },
+      "icon": {
+        "size": {
+          "$value": "{semantic.size.icon.xs}",
+          "$type": "dimension",
+          "$description": "Switch.IconOn / Switch.IconOff, drawn inside the thumb."
+        }
+      },
       "color": {
         "$type": "color",
+        "icon": {
+          "default": {
+            "$value": "{semantic.color.icon.secondary}"
+          },
+          "disabled": {
+            "$value": "{semantic.color.icon.disabled}"
+          }
+        },
         "track": {
           "off": {
             "$value": "{semantic.color.border.input}"
@@ -1657,6 +1676,61 @@
           "text-danger": {
             "$value": "{semantic.color.feedback.danger-text}"
           }
+        }
+      }
+    },
+    "popover": {
+      "$description": "Molecule - Popover: non-modal floating panel anchored to a trigger.",
+      "min-width": {
+        "$value": "{semantic.layout.grid.card-min-width}",
+        "$type": "dimension"
+      },
+      "padding": {
+        "$value": "{semantic.padding.md}",
+        "$type": "dimension"
+      },
+      "gap": {
+        "$value": "{semantic.stack.sm}",
+        "$type": "dimension"
+      },
+      "offset": {
+        "$value": "{semantic.spacing.xs}",
+        "$type": "dimension",
+        "$description": "Distance between the trigger and the popup."
+      },
+      "radius": {
+        "$value": "{semantic.round.lg}",
+        "$type": "dimension"
+      },
+      "shadow": {
+        "$value": "{semantic.elevation.lg}",
+        "$type": "shadow"
+      },
+      "z-index": {
+        "$value": "{semantic.z-index.dropdown}",
+        "$type": "number"
+      },
+      "title": {
+        "$value": "{semantic.typography.label-md}",
+        "$type": "typography"
+      },
+      "body": {
+        "$value": "{semantic.typography.body-sm}",
+        "$type": "typography"
+      },
+      "color": {
+        "$type": "color",
+        "background": {
+          "$value": "{semantic.color.background.raised}"
+        },
+        "border": {
+          "$value": "{semantic.color.border.default}"
+        },
+        "title": {
+          "$value": "{semantic.color.text.primary}"
+        },
+        "description": {
+          "$value": "{semantic.color.text.secondary}"
         }
       }
     },

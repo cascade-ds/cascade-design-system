@@ -153,7 +153,11 @@
         },
         "focus": {
           "$value": "{primitive.color.purple.400}",
-          "$description": "Focus ring; >= 3:1 on every dark surface. Keep focus.ring.offset around filled buttons."
+          "$description": "Focus ring; >= 3:1 on every dark surface. The ring hugs the element (focus.shadow), so on purple fills the glow is what separates it."
+        },
+        "focus-glow": {
+          "$value": "{primitive.color.alpha.purple-400.35}",
+          "$description": "Soft halo around the focus ring. Decorative: border.focus carries the contrast."
         },
         "brand": {
           "$value": "{primitive.color.orange.700}"

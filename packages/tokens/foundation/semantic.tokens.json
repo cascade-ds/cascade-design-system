@@ -277,16 +277,58 @@
         "$type": "dimension",
         "width": {
           "$value": {
-            "value": 2,
+            "value": 1,
             "unit": "px"
           }
         },
         "offset": {
           "$value": {
-            "value": 2,
+            "value": 0,
             "unit": "px"
-          }
+          },
+          "$description": "Gap for the transparent forced-colors outline; the visible ring (focus.shadow) hugs the edge."
         }
+      },
+      "shadow": {
+        "$type": "shadow",
+        "$description": "The visible focus indicator: a thin ring on the element's edge plus a soft glow. Pair with a transparent outline of focus.ring.width so forced-colors mode (which drops shadows) still shows focus.",
+        "$value": [
+          {
+            "color": "{semantic.color.border.focus}",
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 0,
+              "unit": "px"
+            },
+            "spread": "{semantic.focus.ring.width}"
+          },
+          {
+            "color": "{semantic.color.border.focus-glow}",
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 6,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 2,
+              "unit": "px"
+            }
+          }
+        ]
       }
     },
     "spacing": {
@@ -641,6 +683,10 @@
         "slow": {
           "$value": "{primitive.duration.300}"
         },
+        "moderate": {
+          "$value": "{primitive.duration.400}",
+          "$description": "Larger entrances: text reveals, panels, content blocks."
+        },
         "chart": {
           "$value": "{primitive.duration.500}"
         },
@@ -662,6 +708,26 @@
         },
         "linear": {
           "$value": "{primitive.easing.linear}"
+        },
+        "emphasized": {
+          "$value": "{primitive.easing.emphasized}",
+          "$description": "Slower start, long settle. Hero and text entrances."
+        },
+        "overshoot": {
+          "$value": "{primitive.easing.overshoot}",
+          "$description": "Passes the target slightly, then settles. Playful pops, use sparingly."
+        }
+      },
+      "stagger": {
+        "$type": "duration",
+        "$description": "Delay between siblings animating in sequence (characters, words, list items).",
+        "fast": {
+          "$value": "{primitive.duration.25}",
+          "$description": "Per character."
+        },
+        "normal": {
+          "$value": "{primitive.duration.50}",
+          "$description": "Per word or list item."
         }
       }
     }
