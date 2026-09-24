@@ -1,7 +1,7 @@
 import Box from '@/Layout/Box';
 import { skeletonVariant } from './Skeleton.style';
 import type { VariantProps } from 'class-variance-authority';
-import { cx } from 'linaria';
+import { cx } from '@linaria/core';
 
 export type SkeletonProps = VariantProps<typeof skeletonVariant> &
   Omit<React.ComponentPropsWithRef<'span'>, 'color' | 'children'> & {

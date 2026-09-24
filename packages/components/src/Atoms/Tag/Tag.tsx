@@ -3,7 +3,7 @@ import { Cross2Icon } from '@radix-ui/react-icons';
 import Box from '@/Layout/Box';
 import { tagRemoveButtonCss, tagVariant } from './Tag.style';
 import type { VariantProps } from 'class-variance-authority';
-import { cx } from 'linaria';
+import { cx } from '@linaria/core';
 
 export type TagProps = VariantProps<typeof tagVariant> &
   React.ComponentPropsWithRef<'span'> & {

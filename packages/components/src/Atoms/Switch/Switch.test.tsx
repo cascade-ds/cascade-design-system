@@ -1,10 +1,11 @@
 import '@testing-library/jest-dom/vitest';
 import { createRef, useState } from 'react';
+import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import Switch from './Switch';
-import { switchVariant } from './Switch.style';
+import { switchIconCss, switchIconOffCss, switchIconOnCss, switchVariant } from './Switch.style';
 
 afterEach(() => {
   cleanup();
@@ -153,6 +154,66 @@ describe('Switch', () => {
 
     await user.keyboard(' ');
     expect(toggle).toBeChecked();
+  });
+
+  it('renders no icon by default', () => {
+    render(<Switch>Dark mode</Switch>);
+
+    const thumb = screen.getByRole('switch', { name: 'Dark mode' }).nextElementSibling!;
+    expect(thumb).toBeEmptyDOMElement();
+  });
+
+  it('renders Switch.IconOn and Switch.IconOff inside the thumb, not in the label', () => {
+    render(
+      <Switch>
+        <Switch.IconOn>
+          <MoonIcon />
+        </Switch.IconOn>
+        <Switch.IconOff>
+          <SunIcon />
+        </Switch.IconOff>
+        Dark mode
+      </Switch>,
+    );
+
+    const thumb = screen.getByRole('switch', { name: 'Dark mode' }).nextElementSibling!;
+    const [iconOn, iconOff] = Array.from(thumb.children);
+    expect(iconOn).toHaveClass(switchIconCss, switchIconOnCss);
+    expect(iconOff).toHaveClass(switchIconCss, switchIconOffCss);
+    expect(iconOn).toHaveAttribute('aria-hidden', 'true');
+    expect(iconOff).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('finds icons passed inside a fragment', () => {
+    const { container } = render(
+      <Switch aria-label="Dark mode">
+        <>
+          <Switch.IconOn>
+            <MoonIcon />
+          </Switch.IconOn>
+          <Switch.IconOff>
+            <SunIcon />
+          </Switch.IconOff>
+        </>
+      </Switch>,
+    );
+
+    const thumb = screen.getByRole('switch', { name: 'Dark mode' }).nextElementSibling!;
+    expect(thumb.children).toHaveLength(2);
+    expect(container.firstElementChild?.tagName).toBe('SPAN');
+  });
+
+  it('does not wrap itself in a label when its only children are icons', () => {
+    const { container } = render(
+      <Switch aria-label="Dark mode">
+        <Switch.IconOn>
+          <MoonIcon />
+        </Switch.IconOn>
+      </Switch>,
+    );
+
+    expect(container.firstElementChild?.tagName).toBe('SPAN');
+    expect(screen.getByRole('switch', { name: 'Dark mode' })).toBeInTheDocument();
   });
 
   it('forwards its ref to the input element', () => {

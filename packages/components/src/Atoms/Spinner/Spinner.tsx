@@ -1,7 +1,7 @@
 import Box from '@/Layout/Box';
 import { spinnerVariant } from './Spinner.style';
 import type { VariantProps } from 'class-variance-authority';
-import { cx } from 'linaria';
+import { cx } from '@linaria/core';
 
 export type SpinnerProps = VariantProps<typeof spinnerVariant> &
   Omit<React.ComponentPropsWithRef<'span'>, 'children'> & {

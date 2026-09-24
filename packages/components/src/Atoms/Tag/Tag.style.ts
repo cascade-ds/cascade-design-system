@@ -1,4 +1,4 @@
-import { css } from 'linaria';
+import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 import { badgeBaseCss, badgeSizes, badgeTones } from '../Badge/Badge.style';
@@ -58,8 +58,9 @@ export const tagRemoveButtonCss = css`
   }
 
   &:focus-visible {
-    outline: ${semantic.focus.ring.width} solid ${semantic.color.border.focus};
+    outline: ${semantic.focus.ring.width} solid transparent;
     outline-offset: ${semantic.focus.ring.offset};
+    box-shadow: ${semantic.focus.shadow};
   }
 
   & > svg {

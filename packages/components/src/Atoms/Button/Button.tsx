@@ -3,7 +3,7 @@ import Icon from '@/Atoms/Icon/Icon';
 import type { IconProps } from '@/Atoms/Icon/Icon';
 import { buttonIconCss, buttonVariant } from './Button.style';
 import type { VariantProps } from 'class-variance-authority';
-import { cx } from 'linaria';
+import { cx } from '@linaria/core';
 
 export type ButtonProps = VariantProps<typeof buttonVariant> &
   React.ComponentPropsWithRef<'button'>;

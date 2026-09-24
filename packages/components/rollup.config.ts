@@ -44,16 +44,25 @@ const prependTokensCss = (): Plugin => ({
 });
 
 const config: RollupOptions = {
-  input: 'src/index.ts',
+  // `motion` is a separate entry so the main one never imports the optional
+  // `motion` peer.
+  input: {
+    index: 'src/index.ts',
+    motion: 'src/motion.ts',
+  },
   external: isExternal,
   output: [
     {
-      file: 'dist/index.js',
+      dir: 'dist',
+      entryFileNames: '[name].js',
+      chunkFileNames: 'chunks/[name]-[hash].js',
       format: 'esm',
       sourcemap: true,
     },
     {
-      file: 'dist/index.cjs',
+      dir: 'dist',
+      entryFileNames: '[name].cjs',
+      chunkFileNames: 'chunks/[name]-[hash].cjs',
       format: 'cjs',
       exports: 'named',
       sourcemap: true,
@@ -69,10 +78,11 @@ const config: RollupOptions = {
     wyw({
       include: ['**/*.{ts,tsx}'],
       sourceMap: process.env.NODE_ENV !== 'production',
-      // Tokens are plain var() strings, safe to evaluate at build time; cva is
+      // Tokens are plain var() strings and numbers, safe to evaluate at build time; cva is
       // mocked because its result is never needed to extract CSS.
       importOverrides: {
         '@cascade-ds/styles': { unknown: 'allow' },
+        '@cascade-ds/styles/motion': { unknown: 'allow' },
         'class-variance-authority': {
           mock: path.resolve(__dirname, 'eval-mocks/class-variance-authority.js'),
         },

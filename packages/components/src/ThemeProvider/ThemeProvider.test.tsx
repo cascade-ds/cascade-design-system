@@ -175,4 +175,33 @@ describe('ThemeProvider', () => {
 
     expect(screen.getByText('Theme: light')).toBeInTheDocument();
   });
+
+  it("reports the parent's theme when nested without a theme of its own", () => {
+    systemPrefersDark = false;
+
+    render(
+      <ThemeProvider initialMode="dark">
+        <ThemeProvider>
+          <ThemeConsumer />
+        </ThemeProvider>
+      </ThemeProvider>,
+    );
+
+    expect(screen.getByText('Theme: dark')).toBeInTheDocument();
+  });
+
+  it('reports its own theme once a nested provider chooses one', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <ThemeProvider initialMode="dark">
+        <ThemeProvider>
+          <ThemeConsumer />
+        </ThemeProvider>
+      </ThemeProvider>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Use light' }));
+    expect(screen.getByText('Theme: light')).toBeInTheDocument();
+  });
 });

@@ -1,4 +1,4 @@
-import { css } from 'linaria';
+import { css } from '@linaria/core';
 import { cva } from 'class-variance-authority';
 
 // The standard "sr-only" mechanics. These literals are structural (they

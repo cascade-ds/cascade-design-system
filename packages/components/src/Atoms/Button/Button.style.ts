@@ -1,4 +1,4 @@
-import { css } from 'linaria';
+import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
@@ -20,10 +20,18 @@ const baseButtonCss = css`
   transition-property: background-color, border-color, color, box-shadow;
   transition-duration: ${component.button.transition.duration};
   transition-timing-function: ${component.button.transition.easing};
+  /* Focus ring and elevation are separate layers of one box-shadow, so
+     focusing a raised button keeps its lift instead of replacing it. */
+  box-shadow:
+    var(--cascade-button-focus-shadow, 0 0 transparent),
+    var(--cascade-button-elevation, 0 0 transparent);
 
   &:focus-visible {
-    outline: ${component.button.focusRing.width} solid ${component.button.focusRing.color};
+    /* Invisible normally; forced-colors mode drops box-shadow and paints
+       this outline instead, so focus still shows there. */
+    outline: ${component.button.focusRing.width} solid transparent;
     outline-offset: ${component.button.focusRing.offset};
+    --cascade-button-focus-shadow: ${component.button.focusRing.shadow};
   }
 
   &:disabled {
@@ -38,14 +46,14 @@ const baseButtonCss = css`
 
 // Filled and outline variants sit raised, lift on hover and flatten when pressed.
 const raisedCss = css`
-  box-shadow: ${component.button.shadow.default};
+  --cascade-button-elevation: ${component.button.shadow.default};
 
   &:hover:not(:disabled) {
-    box-shadow: ${component.button.shadow.hover};
+    --cascade-button-elevation: ${component.button.shadow.hover};
   }
 
   &:active:not(:disabled) {
-    box-shadow: ${component.button.shadow.active};
+    --cascade-button-elevation: ${component.button.shadow.active};
   }
 `;
 

@@ -1,4 +1,4 @@
-import { css } from 'linaria';
+import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
@@ -26,6 +26,18 @@ export const switchVariant = cva(baseSwitchCss, {
     disabled: disabledStates,
   },
 });
+
+// Switch.IconOn / Switch.IconOff sit inside the thumb. Only the one matching
+// the input's checked state is shown; the rules live in switchControlCss.
+export const switchIconCss = css`
+  width: ${component.switch.icon.size};
+  height: ${component.switch.icon.size};
+  color: ${component.switch.color.icon.default};
+`;
+
+export const switchIconOnCss = css``;
+
+export const switchIconOffCss = css``;
 
 // The native input is restyled (appearance: none) to become the visible track,
 // so it keeps focus, hover, checked and disabled states natively. The thumb is
@@ -64,8 +76,9 @@ export const switchControlCss = css`
   }
 
   & > input:focus-visible {
-    outline: ${semantic.focus.ring.width} solid ${semantic.color.border.focus};
+    outline: ${semantic.focus.ring.width} solid transparent;
     outline-offset: ${semantic.focus.ring.offset};
+    box-shadow: ${semantic.focus.shadow};
   }
 
   & > input:disabled {
@@ -74,6 +87,9 @@ export const switchControlCss = css`
 
   & > span {
     position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     top: calc((${component.switch.track.height} - ${component.switch.thumb.size}) / 2);
     left: calc((${component.switch.track.height} - ${component.switch.thumb.size}) / 2);
     width: ${component.switch.thumb.size};
@@ -92,6 +108,18 @@ export const switchControlCss = css`
   & > input:disabled ~ span {
     background-color: ${component.switch.color.thumb.disabled};
     box-shadow: none;
+  }
+
+  & > input:checked ~ span > .${switchIconOffCss} {
+    display: none;
+  }
+
+  & > input:not(:checked) ~ span > .${switchIconOnCss} {
+    display: none;
+  }
+
+  & > input:disabled ~ span > .${switchIconCss} {
+    color: ${component.switch.color.icon.disabled};
   }
 
   @media (prefers-reduced-motion: reduce) {

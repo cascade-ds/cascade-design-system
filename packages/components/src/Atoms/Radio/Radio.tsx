@@ -1,7 +1,7 @@
 import Box from '@/Layout/Box';
 import { radioControlCss, radioVariant } from './Radio.style';
 import type { VariantProps } from 'class-variance-authority';
-import { cx } from 'linaria';
+import { cx } from '@linaria/core';
 
 export type RadioProps = VariantProps<typeof radioVariant> &
   Omit<React.ComponentPropsWithRef<'input'>, 'type' | 'children'> & {

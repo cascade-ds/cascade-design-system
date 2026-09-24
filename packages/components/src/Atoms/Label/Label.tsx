@@ -1,7 +1,7 @@
 import Box from '@/Layout/Box';
 import { labelVariant, requiredIndicatorVariant } from './Label.style';
 import type { VariantProps } from 'class-variance-authority';
-import { cx } from 'linaria';
+import { cx } from '@linaria/core';
 
 export type LabelProps = VariantProps<typeof labelVariant> &
   React.ComponentPropsWithRef<'label'> & {

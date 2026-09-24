@@ -23,7 +23,7 @@ export { Radio } from './Atoms/Radio';
 export type { RadioProps } from './Atoms/Radio/Radio';
 
 export { Switch } from './Atoms/Switch';
-export type { SwitchProps } from './Atoms/Switch/Switch';
+export type { SwitchProps, SwitchIconProps } from './Atoms/Switch/Switch';
 
 export { VisuallyHidden } from './Atoms/VisuallyHidden';
 export type { VisuallyHiddenProps } from './Atoms/VisuallyHidden';
@@ -42,6 +42,16 @@ export type { BadgeProps } from './Atoms/Badge';
 
 export { Tag } from './Atoms/Tag';
 export type { TagProps } from './Atoms/Tag';
+
+export { Popover } from './Molecules/Popover';
+export type {
+  PopoverProps,
+  PopoverTriggerProps,
+  PopoverContentProps,
+  PopoverTitleProps,
+  PopoverDescriptionProps,
+  PopoverCloseProps,
+} from './Molecules/Popover';
 
 export { Stack } from './Layout/Stack';
 export type { StackProps } from './Layout/Stack';

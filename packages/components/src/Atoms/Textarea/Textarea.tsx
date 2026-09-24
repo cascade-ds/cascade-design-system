@@ -1,7 +1,7 @@
 import Box from '@/Layout/Box';
 import { textareaVariant } from './Textarea.style';
 import type { VariantProps } from 'class-variance-authority';
-import { cx } from 'linaria';
+import { cx } from '@linaria/core';
 
 export type TextareaProps = VariantProps<typeof textareaVariant> &
   Omit<React.ComponentPropsWithRef<'textarea'>, 'children'>;

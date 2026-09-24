@@ -2,7 +2,7 @@ import Box from '@/Layout/Box';
 import type { BoxProps } from '@/Layout/Box/Box';
 import { textVariant } from './Text.style';
 import type { VariantProps } from 'class-variance-authority';
-import { cx } from 'linaria';
+import { cx } from '@linaria/core';
 
 export type TextElement =
   | 'p'

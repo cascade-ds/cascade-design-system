@@ -1,7 +1,7 @@
 import Box from '@/Layout/Box';
 import { iconVariant } from './Icon.style';
 import type { VariantProps } from 'class-variance-authority';
-import { cx } from 'linaria';
+import { cx } from '@linaria/core';
 
 export type IconProps = VariantProps<typeof iconVariant> &
   Omit<React.ComponentPropsWithRef<'span'>, 'color' | 'children'> & {

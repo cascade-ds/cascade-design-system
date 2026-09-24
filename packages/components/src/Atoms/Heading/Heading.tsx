@@ -1,7 +1,7 @@
 import Box from '@/Layout/Box';
 import { headingVariant } from './Heading.style';
 import type { VariantProps } from 'class-variance-authority';
-import { cx } from 'linaria';
+import { cx } from '@linaria/core';
 
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 

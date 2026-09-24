@@ -1,7 +1,7 @@
 import Box from '@/Layout/Box';
 import { badgeVariant } from './Badge.style';
 import type { VariantProps } from 'class-variance-authority';
-import { cx } from 'linaria';
+import { cx } from '@linaria/core';
 
 export type BadgeProps = VariantProps<typeof badgeVariant> & React.ComponentPropsWithRef<'span'>;
 

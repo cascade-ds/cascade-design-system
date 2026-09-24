@@ -1,5 +1,5 @@
-import { useMemo, useState, useSyncExternalStore, type ReactNode } from 'react';
-import { css } from 'linaria';
+import { useContext, useMemo, useState, useSyncExternalStore, type ReactNode } from 'react';
+import { css } from '@linaria/core';
 import { semantic } from '@cascade-ds/styles';
 import { ThemeContext, type ThemeMode } from '../context/Theme/themeContext';
 
@@ -50,6 +50,7 @@ function getServerSystemTheme(): ThemeMode {
 }
 
 export function ThemeProvider({ children, initialMode }: ThemeProviderProps) {
+  const parentContext = useContext(ThemeContext);
   // An explicit choice (initialMode or setTheme) always wins over the system
   // preference, so an OS change never overrides what the user picked.
   const [explicitTheme, setExplicitTheme] = useState<ThemeMode | undefined>(initialMode);
@@ -59,7 +60,10 @@ export function ThemeProvider({ children, initialMode }: ThemeProviderProps) {
     getServerSystemTheme,
   );
 
-  const theme = explicitTheme ?? systemTheme;
+  // Without an explicit theme, a nested provider leaves `data-theme` unset and
+  // so inherits its parent's tokens; report the parent's theme to match what
+  // renders (portals read it to theme themselves).
+  const theme = explicitTheme ?? parentContext?.theme ?? systemTheme;
   const contextValue = useMemo(() => ({ theme, setTheme: setExplicitTheme }), [theme]);
 
   // While following the system, leave `data-theme` unset so the

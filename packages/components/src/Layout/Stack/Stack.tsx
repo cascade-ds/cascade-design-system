@@ -3,7 +3,7 @@ import type { BoxProps } from '@/Layout/Box/Box';
 import type { LayoutElement } from '@/types/LayoutConstants';
 import { stackVariant } from './Stack.style';
 import type { VariantProps } from 'class-variance-authority';
-import { cx } from 'linaria';
+import { cx } from '@linaria/core';
 
 export type StackProps<TElement extends LayoutElement = 'div'> = VariantProps<
   typeof stackVariant
