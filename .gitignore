@@ -1,8 +1,13 @@
 node_modules/
 packages/styles/*
+!packages/styles/package.json
+!packages/styles/README.md
+!packages/styles/LICENSE
 packages/components/dist/
 packages/storybook/storybook-static/
 *.tsbuildinfo
 coverage/
 .claude
 AGENTS.md
+packages/storybook/visual/test-results/
+packages/storybook/visual/report/

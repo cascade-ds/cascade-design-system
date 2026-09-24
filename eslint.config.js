@@ -7,7 +7,15 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import prettierConfig from 'eslint-config-prettier';
 
 export default defineConfig([
-  globalIgnores(['dist', 'build', 'node_modules', '**/*.d.ts']),
+  globalIgnores([
+    '**/dist',
+    '**/build',
+    '**/node_modules',
+    '**/*.d.ts',
+    '**/storybook-static',
+    'packages/storybook/visual/report',
+    'packages/storybook/visual/test-results',
+  ]),
 
   {
     files: ['**/*.{ts,tsx,js}'],

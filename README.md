@@ -17,7 +17,8 @@ tokens  →  generator  →  styles  →  components  →  storybook
   [Terrazzo](https://terrazzo.app/) against the token resolver to produce
   CSS custom properties and a typed theme object.
 - **[`packages/styles`](./packages/styles)** — the generated output
-  (`index.css`, `theme.js`, `theme.d.ts`). Nothing here is hand-written.
+  (`index.css`, `theme.js`, `theme.d.ts`, `motion.js`). Nothing here is
+  hand-written.
 - **[`packages/components`](./packages/components)** — React components,
   styled with [Linaria](https://linaria.dev/) +
   [`class-variance-authority`](https://cva.style/), consuming
@@ -208,6 +209,50 @@ page between light and dark:
 
 ![Switching a Storybook docs page between light and dark themes](./images/theme-switch-teaser-short.gif)
 
+### Animation with Motion
+
+CSS transitions read the `semantic.motion.*` tokens through `theme.js`, like
+any other token. For JavaScript animation, [Motion](https://motion.dev/) is
+an **optional** peer dependency, and the same tokens are generated as plain
+numbers in `@cascade-ds/styles/motion`: durations in seconds, easings as
+cubic-bezier arrays.
+
+Everything that needs Motion lives in the `@cascade-ds/components/motion`
+entry point, which the main entry never imports. Apps that don't animate
+don't install `motion`. Apps that do, opt in:
+
+```sh
+pnpm add motion
+```
+
+```tsx
+import { ThemeProvider } from '@cascade-ds/components';
+import { MotionProvider } from '@cascade-ds/components/motion';
+
+<ThemeProvider>
+  <MotionProvider>{/* app */}</MotionProvider>
+</ThemeProvider>;
+```
+
+`MotionProvider` makes every Motion animation inside it default to
+`motion.duration.normal` and `motion.easing.standard`, and respect the OS
+reduced-motion setting. Override per animation with the tokens:
+
+```tsx
+import { motion as m } from 'motion/react';
+import { motion } from '@cascade-ds/styles/motion';
+
+<m.span
+  initial={{ opacity: 0, y: 8 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{
+    duration: motion.duration.moderate,
+    ease: motion.easing.emphasized,
+    delay: index * motion.stagger.fast,
+  }}
+/>;
+```
+
 ## Getting started
 
 ```sh
@@ -227,6 +272,15 @@ pnpm test:fitness
 
 # run Storybook's tests (accessibility checks via addon-a11y)
 pnpm test:storybook
+
+# visual regression: screenshot every story in light + dark with Playwright
+# and compare against the baselines in packages/storybook/visual/__screenshots__.
+# Runs in Playwright's Linux image (needs Docker running), so screenshots
+# match on every machine and in CI.
+pnpm test:visual
+
+# accept intended visual changes by rewriting the baselines
+pnpm test:visual:update
 
 # run Storybook
 pnpm storybook
@@ -274,28 +328,29 @@ That's why it's called Cascade DS.
    `@cascade-ds/styles`, so the published bundle always embeds the token
    output from step 1 rather than a stale local build.
 
-3. **Publish the DS package — version bump via Changesets**
-   Use [Changesets](https://github.com/changesets/changesets) to consume
-   accumulated changeset files, bump `@cascade-ds/components` (and
-   `@cascade-ds/styles` when it changed) to a new semver version, generate
-   the changelog, and publish to the registry. The version bump and the
-   published artifact come from the same CI run, so the published version
-   number always matches what was actually built in step 2.
-
-4. **Bump Storybook's dependency on the new DS version**
-   After publish, update `packages/storybook/package.json`'s
-   `@cascade-ds/components` (and `@cascade-ds/styles`) entries to the
-   version just published, `pnpm install` to refresh the lockfile, and
-   commit that change — so Storybook always previews the version of the
-   design system that consumers can actually install, not an in-repo
-   workspace reference.
+3. **Version and publish via Changesets**
+   [Changesets](https://github.com/changesets/changesets) runs in two
+   passes (`.github/workflows/release.yml`):
+   - While changeset files are pending on `main`, it opens (and keeps
+     updating) a **Version Packages** pull request that bumps
+     `@cascade-ds/components` and `@cascade-ds/styles` and writes their
+     changelogs.
+   - Merging that pull request runs `pnpm release`: steps 1–2 run again
+     and the new versions are published to npm. The published artifact is
+     always built in the same run that publishes it.
 
 ```mermaid
 flowchart LR
     A[Generate theme\nTerrazzo] --> B[Build DS package\ncomponents + styles]
-    B --> C[Publish DS package\nversion via Changesets]
-    C --> D[Bump storybook's\npackage.json to new version]
+    B --> C[Version Packages PR\nChangesets]
+    C -->|merge| D[Publish to npm]
 ```
 
-Steps 1–2 also run on every pull request (build + test + lint only, no
-publish) so token or component changes are validated before merge.
+Steps 1–2 also run on every pull request (`.github/workflows/ci.yml`),
+together with type checks, lint, unit and fitness tests, the Storybook
+accessibility tests, and a check that the pull request includes a
+changeset (`pnpm changeset` to add one).
+
+Storybook needs no version bump after a release: it imports component
+source through the `@/` alias, so it always shows exactly the code being
+released.

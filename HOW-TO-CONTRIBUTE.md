@@ -36,7 +36,7 @@ that case style the component inline or via a plain `css` tag in
 
 ```ts
 // Button.style.ts
-import { css } from 'linaria';
+import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
@@ -77,7 +77,7 @@ export const buttonVariant = cva(baseButtonCss, {
 import Box from '@/Box';
 import { buttonVariant } from './Button.style';
 import type { VariantProps } from 'class-variance-authority';
-import { cx } from 'linaria';
+import { cx } from '@linaria/core';
 
 type ButtonProps = VariantProps<typeof buttonVariant> &
   React.ButtonHTMLAttributes<HTMLButtonElement>;

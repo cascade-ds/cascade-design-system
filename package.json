@@ -2,6 +2,7 @@
   "name": "cascade-ds",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@11.22.0",
   "workspaces": [
     "packages/*"
   ],
@@ -13,6 +14,8 @@
     "test": "vitest",
     "test:fitness": "vitest run --project fitness",
     "test:storybook": "pnpm --filter storybook test",
+    "test:visual": "pnpm --filter storybook test:visual",
+    "test:visual:update": "pnpm --filter storybook test:visual:update",
     "test:coverage": "vitest --coverage",
     "storybook": "pnpm --filter storybook run storybook",
     "changeset": "changeset",
