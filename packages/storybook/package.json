@@ -8,7 +8,9 @@
     "build": "storybook build",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:visual": "node visual/docker.ts",
+    "test:visual:update": "node visual/docker.ts --update-snapshots"
   },
   "dependencies": {
     "react": "^19.2.7",
@@ -17,6 +19,7 @@
   "devDependencies": {
     "@cascade-ds/components": "workspace:*",
     "@cascade-ds/styles": "workspace:*",
+    "@playwright/test": "1.63.0",
     "@storybook/addon-a11y": "^10.6.0",
     "@storybook/addon-docs": "^10.6.0",
     "@storybook/addon-vitest": "^10.6.0",
@@ -27,6 +30,7 @@
     "@vitest/browser-playwright": "^4.1.11",
     "@vueless/storybook-dark-mode": "^10.0.8",
     "@wyw-in-js/vite": "^2.5.1",
+    "motion": "13.4.1",
     "storybook": "^10.6.0",
     "typescript": "^5.7.0",
     "vite": "^8.3.0"

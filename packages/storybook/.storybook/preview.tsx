@@ -3,10 +3,20 @@ import { DocsContainer } from '@storybook/addon-docs/blocks';
 import type { Preview } from '@storybook/react-vite';
 import { themes } from 'storybook/theming';
 import { useDarkMode } from '@vueless/storybook-dark-mode';
+import { MotionGlobalConfig } from 'motion/react';
 import type { Theme } from '@cascade-ds/styles/theme-names';
+import { MotionProvider } from '@/MotionProvider';
 import { ThemeProvider } from '@/ThemeProvider';
 import { useTheme } from '@/hooks';
 import '@cascade-ds/styles/index.css';
+
+// Automated browsers (the Playwright visual and a11y tests) set
+// `navigator.webdriver`. Jump Motion animations straight to their end state
+// there, so screenshots never catch a frame mid-animation. People browsing
+// Storybook still see the animations.
+if (navigator.webdriver) {
+  MotionGlobalConfig.skipAnimations = true;
+}
 
 function ThemeSync({ theme, children }: { theme: Theme; children: ReactNode }) {
   const { setTheme } = useTheme();
@@ -24,7 +34,9 @@ function DarkModeThemeProvider({ children }: { children: ReactNode }) {
 
   return (
     <ThemeProvider initialMode={theme}>
-      <ThemeSync theme={theme}>{children}</ThemeSync>
+      <MotionProvider>
+        <ThemeSync theme={theme}>{children}</ThemeSync>
+      </MotionProvider>
     </ThemeProvider>
   );
 }

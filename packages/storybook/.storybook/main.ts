@@ -29,10 +29,11 @@ const config: StorybookConfig = {
       wyw({
         include: ['**/*.{ts,tsx}'],
         sourceMap: process.env.NODE_ENV !== 'production',
-        // Tokens are plain var() strings, safe to evaluate at build time; cva is
+        // Tokens are plain var() strings and numbers, safe to evaluate at build time; cva is
         // mocked because its result is never needed to extract CSS.
         importOverrides: {
           '@cascade-ds/styles': { unknown: 'allow' },
+          '@cascade-ds/styles/motion': { unknown: 'allow' },
           'class-variance-authority': {
             mock: join(currentDir, '../../components/eval-mocks/class-variance-authority.js'),
           },

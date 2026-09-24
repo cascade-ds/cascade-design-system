@@ -4,11 +4,17 @@
     "allowArbitraryExtensions": true,
     "jsx": "react-jsx",
     "noEmit": true,
-    "types": ["react", "react-dom", "vite/client"],
+    "types": ["react", "react-dom", "vite/client", "node"],
     "paths": {
       "@/*": ["../components/src/*"]
     }
   },
-  "include": [".storybook/**/*.ts", ".storybook/**/*.tsx", "../components/src/**/*.stories.tsx"],
+  "include": [
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx",
+    "../components/src/**/*.stories.tsx",
+    "playwright.config.ts",
+    "visual/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }
