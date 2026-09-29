@@ -72,12 +72,12 @@ export const buttonVariant = cva(baseButtonCss, {
   `VariantProps<typeof xVariant>`, intersected with the relevant native
   HTML attributes.
 - Apply the computed class name with `cx` from `linaria`.
-- Compose on top of `Box` (`@/Box`) rather than raw DOM elements where
+- Compose on top of `Box` (`#/Box`) rather than raw DOM elements where
   possible, so layout/polymorphism stays consistent across components.
 
 ```tsx
 // Button.tsx
-import Box from '@/Box';
+import Box from '#/Box';
 import { buttonVariant } from './Button.style';
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';
@@ -114,7 +114,7 @@ export default Button;
 ### `<ComponentName>.stories.tsx`
 
 - Lives in `packages/storybook/stories/`, named after the component. Import
-  the component through the `@/` alias (`import Button from '@/Atoms/Button/Button'`),
+  the component through the `#/` alias (`import Button from '#/Atoms/Button/Button'`),
   which points at `packages/components/src`.
 - One `Meta` per component, `title: 'CascadeDS/Components/<Category>/<ComponentName>'`
   (e.g. `Atom`, `Molecule`), `tags: ['autodocs']`.

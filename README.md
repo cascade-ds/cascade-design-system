@@ -337,4 +337,4 @@ checks, lint, unit and fitness tests, the Storybook accessibility tests, and a
 check that the PR includes a changeset (`pnpm changeset` to add one).
 
 Storybook needs no version bump after a release: it imports component source
-through the `@/` alias, so it always shows exactly the code being released.
+through the `#/` alias, so it always shows exactly the code being released.
