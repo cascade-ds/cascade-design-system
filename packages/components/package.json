@@ -84,6 +84,7 @@
     "rollup-plugin-css-only": "^4.5.5",
     "storybook": "^10.6.0",
     "typescript": "^5.7.0",
+    "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.1.10"
   },
   "dependencies": {

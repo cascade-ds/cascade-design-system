@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, userEvent, within } from 'storybook/test';
-import Button from '@/Atoms/Button/Button';
-import Select from '@/Molecules/Select/Select';
-import Stack from '@/Layout/Stack/Stack';
-import FormField from '@/Molecules/FormField/FormField';
+import Button from '#/Atoms/Button/Button';
+import Select from '#/Molecules/Select/Select';
+import Stack from '#/Layout/Stack/Stack';
+import FormField from '#/Molecules/FormField/FormField';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/FormField',

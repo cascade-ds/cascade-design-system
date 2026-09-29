@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import VisuallyHidden from '@/Atoms/VisuallyHidden/VisuallyHidden';
+import VisuallyHidden from '#/Atoms/VisuallyHidden/VisuallyHidden';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/VisuallyHidden',

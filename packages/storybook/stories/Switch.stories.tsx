@@ -1,6 +1,6 @@
 import { CheckIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Switch from '@/Atoms/Switch/Switch';
+import Switch from '#/Atoms/Switch/Switch';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Switch',

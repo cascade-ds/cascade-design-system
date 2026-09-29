@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Text from '@/Atoms/Text/Text';
-import Stack from '@/Layout/Stack/Stack';
-import { ThemeProvider } from '@/ThemeProvider';
-import Popover from '@/Molecules/Popover/Popover';
-import type { PopoverContentProps } from '@/Molecules/Popover/Popover';
+import Text from '#/Atoms/Text/Text';
+import Stack from '#/Layout/Stack/Stack';
+import { ThemeProvider } from '#/ThemeProvider';
+import Popover from '#/Molecules/Popover/Popover';
+import type { PopoverContentProps } from '#/Molecules/Popover/Popover';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Popover',

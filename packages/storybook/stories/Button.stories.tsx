@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ArrowRightIcon, PlusIcon, TrashIcon } from '@radix-ui/react-icons';
-import Button from '@/Atoms/Button/Button';
+import Button from '#/Atoms/Button/Button';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Button',

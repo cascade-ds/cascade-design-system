@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Stack } from '@/Layout/Stack';
-import Tag from '@/Atoms/Tag/Tag';
+import { Stack } from '#/Layout/Stack';
+import Tag from '#/Atoms/Tag/Tag';
 
 const tones = ['neutral', 'primary', 'secondary', 'success', 'warning', 'danger', 'info'] as const;
 

@@ -3,11 +3,11 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { css } from '@linaria/core';
 import { motion as m } from 'motion/react';
 import { motion } from '@cascade-ds/styles/motion';
-import Button from '@/Atoms/Button/Button';
-import VisuallyHidden from '@/Atoms/VisuallyHidden/VisuallyHidden';
-import Stack from '@/Layout/Stack/Stack';
-import Text from '@/Atoms/Text/Text';
-import type { TextProps } from '@/Atoms/Text/Text';
+import Button from '#/Atoms/Button/Button';
+import VisuallyHidden from '#/Atoms/VisuallyHidden/VisuallyHidden';
+import Stack from '#/Layout/Stack/Stack';
+import Text from '#/Atoms/Text/Text';
+import type { TextProps } from '#/Atoms/Text/Text';
 
 // Transforms need a box, and `pre` keeps a lone space from collapsing.
 const segmentCss = css`

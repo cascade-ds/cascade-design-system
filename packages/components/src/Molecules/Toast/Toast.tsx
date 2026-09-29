@@ -8,9 +8,9 @@ import {
   InfoCircledIcon,
 } from '@radix-ui/react-icons';
 import type { VariantProps } from 'class-variance-authority';
-import Button from '@/Atoms/Button/Button';
-import Icon from '@/Atoms/Icon/Icon';
-import { useThemedPortalProps } from '@/ThemeProvider/ThemedPortal';
+import Button from '#/Atoms/Button/Button';
+import Icon from '#/Atoms/Icon/Icon';
+import { useThemedPortalProps } from '#/ThemeProvider/ThemedPortal';
 import {
   toastActionsCss,
   toastContentCss,

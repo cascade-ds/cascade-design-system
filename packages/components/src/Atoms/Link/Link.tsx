@@ -1,6 +1,6 @@
-import Box from '@/Layout/Box';
-import type { BoxProps } from '@/Layout/Box/Box';
-import VisuallyHidden from '@/Atoms/VisuallyHidden/VisuallyHidden';
+import Box from '#/Layout/Box';
+import type { BoxProps } from '#/Layout/Box/Box';
+import VisuallyHidden from '#/Atoms/VisuallyHidden/VisuallyHidden';
 import { linkExternalIconCss, linkVariant } from './Link.style';
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';

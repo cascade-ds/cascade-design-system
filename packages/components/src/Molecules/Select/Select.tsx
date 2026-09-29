@@ -1,8 +1,8 @@
 import { Select as BaseSelect } from '@base-ui/react/select';
 import { cx } from '@linaria/core';
 import type { VariantProps } from 'class-variance-authority';
-import { useFormField, useFormFieldControl } from '@/Molecules/FormField/FormField';
-import { useThemedPortalProps } from '@/ThemeProvider/ThemedPortal';
+import { useFormField, useFormFieldControl } from '#/Molecules/FormField/FormField';
+import { useThemedPortalProps } from '#/ThemeProvider/ThemedPortal';
 import {
   selectGroupLabelCss,
   selectIconCss,

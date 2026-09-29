@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Slider from '@/Atoms/Slider/Slider';
+import Slider from '#/Atoms/Slider/Slider';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Slider',

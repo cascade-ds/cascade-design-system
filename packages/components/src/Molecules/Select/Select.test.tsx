@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { ThemeProvider } from '@/ThemeProvider';
-import FormField from '@/Molecules/FormField/FormField';
+import { ThemeProvider } from '#/ThemeProvider';
+import FormField from '#/Molecules/FormField/FormField';
 import Select from './Select';
 import type { SelectProps } from './Select';
 import {

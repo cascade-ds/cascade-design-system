@@ -1,15 +1,13 @@
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vitest/config';
 import wyw from '@wyw-in-js/vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      // Mirrors the "@/*" path alias declared in tsconfig.json.
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-  },
   plugins: [
+    // Resolves the "#/*" paths from tsconfig.json. tsconfig.test.json is used because the
+    // main tsconfig excludes test files, and the plugin skips files a project doesn't include.
+    tsconfigPaths({ projects: ['./tsconfig.test.json'] }),
     wyw({
       include: ['**/*.{ts,tsx}'],
       sourceMap: false,

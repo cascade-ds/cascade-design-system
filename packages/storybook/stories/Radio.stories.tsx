@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Stack from '@/Layout/Stack/Stack';
-import Radio from '@/Atoms/Radio/Radio';
+import Stack from '#/Layout/Stack/Stack';
+import Radio from '#/Atoms/Radio/Radio';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Radio',

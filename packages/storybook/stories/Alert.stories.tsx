@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Stack } from '@/Layout/Stack';
-import Alert from '@/Molecules/Alert/Alert';
+import { Stack } from '#/Layout/Stack';
+import Alert from '#/Molecules/Alert/Alert';
 
 const tones = ['info', 'success', 'warning', 'danger'] as const;
 

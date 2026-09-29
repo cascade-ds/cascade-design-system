@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Button from '@/Atoms/Button/Button';
-import Text from '@/Atoms/Text/Text';
-import Grid from '@/Layout/Grid/Grid';
-import Card from '@/Molecules/Card/Card';
+import Button from '#/Atoms/Button/Button';
+import Text from '#/Atoms/Text/Text';
+import Grid from '#/Layout/Grid/Grid';
+import Card from '#/Molecules/Card/Card';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Card',

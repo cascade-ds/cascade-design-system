@@ -63,9 +63,9 @@ const config: RollupOptions = {
     sourcemap: true,
   },
   plugins: [
-    // Mirrors the "@/*" path alias declared in tsconfig.json.
+    // Mirrors the "#/*" path alias declared in tsconfig.json.
     alias({
-      entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
+      entries: [{ find: '#', replacement: path.resolve(__dirname, 'src') }],
     }),
     resolve({ extensions: ['.ts', '.tsx', '.js', '.jsx'] }),
     commonjs(),

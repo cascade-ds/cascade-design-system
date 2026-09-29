@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Text from '@/Atoms/Text/Text';
-import Stack from '@/Layout/Stack/Stack';
-import { ThemeProvider } from '@/ThemeProvider';
-import Dialog from '@/Molecules/Dialog/Dialog';
-import Toast from '@/Molecules/Toast/Toast';
-import type { DialogContentProps } from '@/Molecules/Dialog/Dialog';
+import Text from '#/Atoms/Text/Text';
+import Stack from '#/Layout/Stack/Stack';
+import { ThemeProvider } from '#/ThemeProvider';
+import Dialog from '#/Molecules/Dialog/Dialog';
+import Toast from '#/Molecules/Toast/Toast';
+import type { DialogContentProps } from '#/Molecules/Dialog/Dialog';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Dialog',

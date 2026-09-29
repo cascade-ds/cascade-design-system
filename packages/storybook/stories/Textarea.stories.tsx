@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Label } from '@/Atoms/Label';
-import { Stack } from '@/Layout/Stack';
-import Textarea from '@/Atoms/Textarea/Textarea';
+import { Label } from '#/Atoms/Label';
+import { Stack } from '#/Layout/Stack';
+import Textarea from '#/Atoms/Textarea/Textarea';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Textarea',

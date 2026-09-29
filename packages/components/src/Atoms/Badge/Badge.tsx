@@ -1,4 +1,4 @@
-import Box from '@/Layout/Box';
+import Box from '#/Layout/Box';
 import { badgeVariant } from './Badge.style';
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';

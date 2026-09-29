@@ -26,8 +26,8 @@ const config: StorybookConfig = {
     config.resolve ??= {};
     config.resolve.alias = {
       ...config.resolve.alias,
-      // Mirrors the "@/*" path alias declared in packages/components/tsconfig.json
-      '@': join(currentDir, '../../components/src'),
+      // Mirrors the "#/*" path alias declared in packages/components/tsconfig.json
+      '#': join(currentDir, '../../components/src'),
     };
     config.plugins ??= [];
     config.plugins.push(

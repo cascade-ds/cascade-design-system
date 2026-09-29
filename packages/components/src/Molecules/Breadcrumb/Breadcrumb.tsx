@@ -1,5 +1,5 @@
-import Box from '@/Layout/Box';
-import type { BoxProps } from '@/Layout/Box/Box';
+import Box from '#/Layout/Box';
+import type { BoxProps } from '#/Layout/Box/Box';
 import { cx } from '@linaria/core';
 import {
   breadcrumbCurrentCss,

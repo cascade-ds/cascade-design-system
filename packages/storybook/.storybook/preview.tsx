@@ -5,9 +5,9 @@ import { themes } from 'storybook/theming';
 import { useDarkMode } from '@vueless/storybook-dark-mode';
 import { MotionGlobalConfig } from 'motion/react';
 import type { Theme } from '@cascade-ds/styles/theme-names';
-import { MotionProvider } from '@/MotionProvider';
-import { ThemeProvider } from '@/ThemeProvider';
-import { useTheme } from '@/hooks';
+import { MotionProvider } from '#/MotionProvider';
+import { ThemeProvider } from '#/ThemeProvider';
+import { useTheme } from '#/hooks';
 import '@cascade-ds/styles/index.css';
 // Inter, in the weights `semantic.font.weight.*` uses (regular, medium,
 // semibold, bold). The design system doesn't bundle fonts; apps load them.

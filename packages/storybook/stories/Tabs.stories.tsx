@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Text from '@/Atoms/Text/Text';
-import Stack from '@/Layout/Stack/Stack';
-import Tabs from '@/Molecules/Tabs/Tabs';
+import Text from '#/Atoms/Text/Text';
+import Stack from '#/Layout/Stack/Stack';
+import Tabs from '#/Molecules/Tabs/Tabs';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Tabs',

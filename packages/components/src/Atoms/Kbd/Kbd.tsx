@@ -1,4 +1,4 @@
-import Box from '@/Layout/Box';
+import Box from '#/Layout/Box';
 import { kbdVariant } from './Kbd.style';
 import { cx } from '@linaria/core';
 

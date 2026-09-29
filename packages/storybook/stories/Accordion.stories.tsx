@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Accordion from '@/Molecules/Accordion/Accordion';
+import Accordion from '#/Molecules/Accordion/Accordion';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Accordion',

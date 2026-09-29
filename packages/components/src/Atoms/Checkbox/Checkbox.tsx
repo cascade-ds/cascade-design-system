@@ -1,5 +1,5 @@
 import { useEffect, useImperativeHandle, useRef } from 'react';
-import Box from '@/Layout/Box';
+import Box from '#/Layout/Box';
 import { checkboxControlCss, checkboxVariant } from './Checkbox.style';
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';

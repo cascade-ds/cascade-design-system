@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Stack } from '@/Layout/Stack';
-import Badge from '@/Atoms/Badge/Badge';
+import { Stack } from '#/Layout/Stack';
+import Badge from '#/Atoms/Badge/Badge';
 
 const tones = ['neutral', 'primary', 'secondary', 'success', 'warning', 'danger', 'info'] as const;
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Grid from '@/Layout/Grid/Grid';
-import { layoutElements } from '@/types/LayoutConstants';
+import Grid from '#/Layout/Grid/Grid';
+import { layoutElements } from '#/types/LayoutConstants';
 
 const cells = (count: number) =>
   Array.from({ length: count }, (_, index) => <span key={index}>Cell {index + 1}</span>);

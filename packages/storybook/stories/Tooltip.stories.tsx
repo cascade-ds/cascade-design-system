@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Text from '@/Atoms/Text/Text';
-import Stack from '@/Layout/Stack/Stack';
-import { ThemeProvider } from '@/ThemeProvider';
-import Tooltip from '@/Molecules/Tooltip/Tooltip';
-import type { TooltipContentProps } from '@/Molecules/Tooltip/Tooltip';
+import Text from '#/Atoms/Text/Text';
+import Stack from '#/Layout/Stack/Stack';
+import { ThemeProvider } from '#/ThemeProvider';
+import Tooltip from '#/Molecules/Tooltip/Tooltip';
+import type { TooltipContentProps } from '#/Molecules/Tooltip/Tooltip';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Tooltip',

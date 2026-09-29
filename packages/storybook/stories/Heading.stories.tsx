@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Heading from '@/Atoms/Heading/Heading';
+import Heading from '#/Atoms/Heading/Heading';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Heading',

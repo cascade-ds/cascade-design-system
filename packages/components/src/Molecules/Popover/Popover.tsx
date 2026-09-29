@@ -1,8 +1,8 @@
 import { Popover as BasePopover } from '@base-ui/react/popover';
 import { cx } from '@linaria/core';
-import Button from '@/Atoms/Button/Button';
-import type { ButtonProps } from '@/Atoms/Button/Button';
-import { useThemedPortalProps } from '@/ThemeProvider/ThemedPortal';
+import Button from '#/Atoms/Button/Button';
+import type { ButtonProps } from '#/Atoms/Button/Button';
+import { useThemedPortalProps } from '#/ThemeProvider/ThemedPortal';
 import {
   popoverDescriptionCss,
   popoverPopupCss,

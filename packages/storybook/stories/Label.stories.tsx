@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Stack } from '@/Layout/Stack';
-import Label from '@/Atoms/Label/Label';
+import { Stack } from '#/Layout/Stack';
+import Label from '#/Atoms/Label/Label';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Label',

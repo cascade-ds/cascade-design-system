@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Divider from '@/Layout/Divider/Divider';
-import Stack from '@/Layout/Stack/Stack';
+import Divider from '#/Layout/Divider/Divider';
+import Stack from '#/Layout/Stack/Stack';
 
 const meta = {
   title: 'CascadeDS/Components/Layout/Divider',

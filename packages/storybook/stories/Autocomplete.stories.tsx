@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
-import FormField from '@/Molecules/FormField/FormField';
-import Autocomplete from '@/Molecules/Autocomplete/Autocomplete';
-import type { AutocompleteProps } from '@/Molecules/Autocomplete/Autocomplete';
+import FormField from '#/Molecules/FormField/FormField';
+import Autocomplete from '#/Molecules/Autocomplete/Autocomplete';
+import type { AutocompleteProps } from '#/Molecules/Autocomplete/Autocomplete';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Autocomplete',

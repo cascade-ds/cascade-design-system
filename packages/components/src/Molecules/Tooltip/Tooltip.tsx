@@ -1,8 +1,8 @@
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip';
 import { cx } from '@linaria/core';
-import Button from '@/Atoms/Button/Button';
-import type { ButtonProps } from '@/Atoms/Button/Button';
-import { useThemedPortalProps } from '@/ThemeProvider/ThemedPortal';
+import Button from '#/Atoms/Button/Button';
+import type { ButtonProps } from '#/Atoms/Button/Button';
+import { useThemedPortalProps } from '#/ThemeProvider/ThemedPortal';
 import { tooltipPopupCss, tooltipPositionerCss } from './Tooltip.style';
 
 export type TooltipProps = {

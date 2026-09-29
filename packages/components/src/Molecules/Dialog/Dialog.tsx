@@ -1,9 +1,9 @@
 import { Dialog as BaseDialog } from '@base-ui/react/dialog';
 import { cx } from '@linaria/core';
 import type { VariantProps } from 'class-variance-authority';
-import Button from '@/Atoms/Button/Button';
-import type { ButtonProps } from '@/Atoms/Button/Button';
-import { useThemedPortalProps } from '@/ThemeProvider/ThemedPortal';
+import Button from '#/Atoms/Button/Button';
+import type { ButtonProps } from '#/Atoms/Button/Button';
+import { useThemedPortalProps } from '#/ThemeProvider/ThemedPortal';
 import {
   dialogActionsCss,
   dialogBackdropCss,
