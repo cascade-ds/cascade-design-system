@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "test:visual": "node visual/docker.ts",
     "test:visual:update": "node visual/docker.ts --update-snapshots"
   },
@@ -19,7 +20,9 @@
   "devDependencies": {
     "@cascade-ds/components": "workspace:*",
     "@cascade-ds/styles": "workspace:*",
+    "@linaria/core": "^8.2.0",
     "@playwright/test": "1.63.0",
+    "@radix-ui/react-icons": "^1.3.2",
     "@storybook/addon-a11y": "^10.6.0",
     "@storybook/addon-docs": "^10.6.0",
     "@storybook/addon-vitest": "^10.6.0",
@@ -28,9 +31,11 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitest/browser-playwright": "^4.1.11",
+    "@vitest/coverage-istanbul": "4.1.11",
     "@vueless/storybook-dark-mode": "^10.0.8",
     "@wyw-in-js/vite": "^2.5.1",
     "motion": "13.4.1",
+    "react-hook-form": "^7.88.0",
     "storybook": "^10.6.0",
     "typescript": "^5.7.0",
     "vite": "^8.3.0"
