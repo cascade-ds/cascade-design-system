@@ -1,5 +1,13 @@
 # @cascade-ds/components
 
+## 0.2.2
+
+### Patch Changes
+
+- 771c15a: Publish to npm under the MIT license. Previous versions were private, on GitHub Packages, under a proprietary license.
+- Updated dependencies [771c15a]
+  - @cascade-ds/styles@0.2.1
+
 ## 0.2.1
 
 ### Patch Changes
