@@ -21,8 +21,7 @@ function expectClasses(element: HTMLElement, className: string) {
     });
 }
 
-// Base UI's tooltip is visual-only (no role or aria-describedby), so the popup
-// is found by its text and the trigger keeps its own accessible name.
+// Base UI's tooltip is visual-only (no role or aria-describedby), so the popup is found by its text.
 function renderTooltip(props: Partial<React.ComponentProps<typeof Tooltip>> = {}) {
   return render(
     <Tooltip {...props}>

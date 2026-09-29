@@ -1,5 +1,4 @@
-// Mirrors the `as` options the layout components accept. Not exported from the
-// package, so Storybook keeps its own copy for the `as` controls.
+// Not exported from the package, so Storybook keeps its own copy for the `as` controls.
 export const layoutElements = [
   'div',
   'section',

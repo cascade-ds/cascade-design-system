@@ -8,7 +8,6 @@ import { useBreakpoint, type BreakpointName, type UseBreakpointOptions } from '.
 
 type ChangeListener = (event: MediaQueryListEvent) => void;
 
-// Queries that currently match; every other query doesn't.
 let matchingQueries = new Set<string>();
 let listeners = new Map<string, ChangeListener[]>();
 
@@ -176,7 +175,7 @@ describe('useBreakpoint', () => {
       );
 
       const hydrationRenders = renders.slice(renders.indexOf('hydration-start') + 1);
-      expect(renders[0]).toBeUndefined(); // server render
+      expect(renders[0]).toBeUndefined();
       expect(hydrationRenders[0]).toBeUndefined();
       expect(hydrationRenders.at(-1)).toBe(true);
       expect(container).toHaveTextContent('Matches: true');
@@ -195,7 +194,7 @@ describe('useBreakpoint', () => {
       );
 
       const hydrationRenders = renders.slice(renders.indexOf('hydration-start') + 1);
-      expect(renders[0]).toBe(true); // server render
+      expect(renders[0]).toBe(true);
       expect(hydrationRenders[0]).toBe(true);
       expect(hydrationRenders.at(-1)).toBe(false);
       expect(container).toHaveTextContent('Matches: false');

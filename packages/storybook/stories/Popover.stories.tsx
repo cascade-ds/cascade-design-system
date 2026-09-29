@@ -7,8 +7,6 @@ const meta = {
   component: Popover,
   tags: ['autodocs'],
   parameters: {
-    // Popups are portaled to <body>, outside the story root: check the whole
-    // page so open popups are covered by the a11y tests too.
     a11y: { context: 'body' },
   },
   argTypes: {
@@ -59,7 +57,6 @@ export const Open: Story = {
   render: () => <FiltersPopover defaultOpen />,
 };
 
-/** `side` picks where the popup goes; it flips when there isn't room. */
 export const Sides: Story = {
   render: () => (
     <Stack direction="row" gap="md" wrap>
@@ -71,10 +68,6 @@ export const Sides: Story = {
   ),
 };
 
-/**
- * The popup is portaled to `<body>`, yet keeps the theme of the subtree it was
- * opened from: a dark section on a light page opens a dark popover (ADR-006).
- */
 export const InsideDarkSection: Story = {
   render: () => (
     <ThemeProvider initialMode="light">

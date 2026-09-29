@@ -7,8 +7,6 @@ export default defineConfig({
     wyw({
       include: ['**/*.{ts,tsx}'],
       sourceMap: false,
-      // Tokens are plain var() strings and numbers, safe to evaluate at build time; cva is
-      // mocked because its result is never needed to extract CSS.
       importOverrides: {
         '@cascade-ds/styles': { unknown: 'allow' },
         '@cascade-ds/styles/motion': { unknown: 'allow' },

@@ -39,8 +39,6 @@ const sizes = {
   `,
 };
 
-// `current` adds no class, so the icon inherits the surrounding text color
-// (SVGs drawn with `currentColor` follow it).
 const colors = {
   current: '',
   primary: css`

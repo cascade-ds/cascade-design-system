@@ -186,7 +186,6 @@ describe('Select', () => {
     await screen.findByRole('listbox');
     expect(screen.getByRole('group', { name: 'Fruit' })).toBeInTheDocument();
     expect(screen.getByRole('group', { name: 'Vegetables' })).toBeInTheDocument();
-    // Base UI renders it presentational: the groups already split the list.
     expect(document.querySelector(`.${selectSeparatorCss}`)).toHaveAttribute(
       'role',
       'presentation',

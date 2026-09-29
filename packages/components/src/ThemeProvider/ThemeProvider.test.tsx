@@ -57,7 +57,6 @@ function ThemeConsumer() {
 }
 
 function themeRoot() {
-  // The provider's wrapper is the consumer's parent element.
   return screen.getByTestId('consumer').parentElement as HTMLElement;
 }
 

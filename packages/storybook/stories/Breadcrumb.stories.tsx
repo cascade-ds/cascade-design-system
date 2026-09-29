@@ -24,7 +24,6 @@ export const Default: Story = {
   ),
 };
 
-/** A long trail wraps onto the next line. */
 export const Long: Story = {
   render: (args) => (
     <div style={{ maxWidth: '20rem' }}>

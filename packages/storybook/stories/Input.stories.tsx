@@ -71,7 +71,6 @@ export const WithLabel: Story = {
   ),
 };
 
-/** A search field: an icon in the start slot. Clicking the icon focuses the input. */
 export const WithStartIcon: Story = {
   args: {
     type: 'search',
@@ -106,7 +105,6 @@ function ClearableInput(props: React.ComponentProps<typeof Input>) {
   );
 }
 
-/** A button in the end slot stays clickable. */
 export const WithClearButton: Story = {
   args: {
     type: 'search',

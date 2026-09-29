@@ -1,8 +1,3 @@
-/**
- * Shared chrome for the Foundations docs pages (colors, typography): a themed
- * card that follows the Storybook toolbar, and the text styles used inside it.
- * Everything reads semantic tokens, so the docs work in light and dark.
- */
 import type { ReactNode } from 'react';
 import { css, cx } from '@linaria/core';
 import { semantic } from '@cds/styles';
@@ -31,10 +26,6 @@ const scopeCss = css`
   }
 `;
 
-/**
- * Themes a docs block to match the Storybook toolbar. MDX pages render outside
- * the story decorators, so each block sets `data-theme` itself.
- */
 export function DocsScope({ children }: { children: ReactNode }) {
   const theme: ThemeName = useDarkMode() ? 'dark' : 'light';
   return (

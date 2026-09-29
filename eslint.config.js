@@ -44,8 +44,6 @@ export default defineConfig([
       ],
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/consistent-type-imports': 'error',
-      // Published .d.ts files keep import specifiers as written, so an alias
-      // like `#/` would break consumers' types. Use relative paths.
       'no-restricted-imports': [
         'error',
         {

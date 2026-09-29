@@ -6,10 +6,7 @@ const baseTextCss = css`
   margin: ${semantic.spacing.none};
 `;
 
-// `variant` sets the full typographic role (family, size, weight, line
-// height, letter spacing) plus the role's default text color. The `size`,
-// `weight` and `color` axes below are declared *after* it so that, at equal
-// specificity, they override the role's defaults when passed explicitly.
+// `size`, `weight` and `color` are declared after `variant` so that, at equal specificity, they override its defaults.
 const variants = {
   body: css`
     font-family: ${semantic.typography.bodyMd.fontFamily};
@@ -92,8 +89,7 @@ const colors = {
   `,
 };
 
-// `size`, `weight` and `color` intentionally have no default: when omitted,
-// the values baked into `variant` apply.
+// `size`, `weight` and `color` have no default: when omitted, the values baked into `variant` apply.
 export const textVariant = cva(baseTextCss, {
   variants: {
     variant: variants,

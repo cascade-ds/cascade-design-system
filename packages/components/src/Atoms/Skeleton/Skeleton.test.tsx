@@ -18,8 +18,7 @@ function expectClasses(element: Element | null, className: string) {
     });
 }
 
-// The skeleton is aria-hidden, so it has no role or accessible name to query
-// by; read it straight from the render container.
+// The skeleton is aria-hidden, so read it from the render container instead of by role.
 function renderSkeleton(ui: React.ReactElement) {
   const { container } = render(ui);
   return container.firstElementChild as HTMLElement;

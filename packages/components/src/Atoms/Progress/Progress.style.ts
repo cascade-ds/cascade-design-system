@@ -2,7 +2,6 @@ import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
-// Label and value share the first row; the track spans the second.
 const baseProgressCss = css`
   display: grid;
   grid-template-columns: 1fr auto;
@@ -17,7 +16,6 @@ const baseProgressCss = css`
   letter-spacing: ${semantic.typography.labelMd.letterSpacing};
 `;
 
-// Each size sets the track height; each tone sets the fill color.
 const sizes = {
   sm: css`
     --cascade-progress-height: ${component.progress.height.sm};

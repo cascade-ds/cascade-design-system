@@ -2,8 +2,7 @@ import type { ReactNode } from 'react';
 import { MotionConfig, type Transition } from 'motion/react';
 import { motion } from '@cascade-ds/styles/motion';
 
-// Durations are seconds and easings cubic-bezier arrays, generated from the
-// `semantic.motion.*` tokens, because Motion can't read CSS custom properties.
+// Durations are seconds and easings cubic-bezier arrays because Motion can't read CSS custom properties.
 const defaultTransition: Transition = {
   duration: motion.duration.normal,
   ease: motion.easing.standard,

@@ -14,8 +14,6 @@ const meta = {
   component: Select,
   tags: ['autodocs'],
   parameters: {
-    // Popups are portaled to <body>, outside the story root: check the whole
-    // page so open popups are covered by the a11y tests too.
     a11y: { context: 'body' },
   },
   argTypes: {
@@ -108,7 +106,6 @@ export const ReadOnly: Story = {
   ),
 };
 
-/** Groups add headings inside the popup; disabled options can't be chosen. */
 export const GroupsAndDisabledOptions: Story = {
   render: (args) => (
     <Stack gap="xs">
@@ -135,15 +132,9 @@ export const GroupsAndDisabledOptions: Story = {
   ),
 };
 
-/**
- * The popup is portaled to `<body>`, yet keeps the theme of the subtree it was
- * opened from (ADR-006).
- */
 export const InsideDarkSection: Story = {
   parameters: {
-    // Report, don't fail: axe flags Base UI's hidden focus guards
-    // (aria-hidden-focus) here, depending on popup width and on earlier open
-    // stories on the page. The story passes on its own. Root cause not found.
+    // Report, don't fail: axe flags Base UI's hidden focus guards (aria-hidden-focus) depending on popup width and earlier open stories. Passes on its own; root cause not found.
     a11y: { test: 'todo' },
   },
   render: (args) => (

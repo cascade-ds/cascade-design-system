@@ -18,9 +18,6 @@ const baseCardCss = css`
 `;
 
 const interactiveStates = {
-  // For cards that contain a single primary link or button: the card lifts
-  // while it is hovered or holds focus, hinting that the whole card leads
-  // somewhere.
   true: css`
     transition-property: box-shadow;
     transition-duration: ${semantic.motion.duration.fast};

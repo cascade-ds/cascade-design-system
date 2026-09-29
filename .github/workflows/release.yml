@@ -1,6 +1,3 @@
-# Pipeline step 3. While changesets are pending on main, keeps a
-# "Version Packages" pull request up to date; merging it publishes to GitHub Packages.
-# See "CI/CD pipeline" in the README.
 name: Release
 
 on:
@@ -10,13 +7,16 @@ on:
 concurrency: release-${{ github.ref }}
 
 permissions:
-  contents: write # push the version commit
-  pull-requests: write # open the Version Packages pull request
-  packages: write # publish to GitHub Packages
+  contents: write
+  pull-requests: write
+  packages: write
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      # Read by the .npmrc that setup-node writes for npm.pkg.github.com (install and publish).
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v5
 
@@ -27,19 +27,16 @@ jobs:
           node-version: 24
           cache: pnpm
           registry-url: https://npm.pkg.github.com
-          scope: "@cascade-ds"
+          scope: '@cascade-ds'
 
       - run: pnpm install --frozen-lockfile
 
       - uses: changesets/action@v1
         with:
           version: pnpm version-packages
-          # `release` regenerates the theme and rebuilds before publishing,
-          # so the published files are always built in this run.
+          # `release` rebuilds before publishing, so the published files are built in this run.
           publish: pnpm release
           title: 'chore(release): version packages'
           commit: 'chore(release): version packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # setup-node writes an .npmrc that reads this for npm.pkg.github.com.
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

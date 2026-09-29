@@ -1,5 +1,3 @@
-// Serves the static Storybook build for the visual tests. Run directly with
-// Node's built-in TypeScript support: `node visual/serve.ts <port>`.
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';

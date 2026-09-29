@@ -35,7 +35,6 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Pagination holds no state: keep the page in yours and update it in `onPageChange`. */
 function StatefulPagination(props: PaginationProps) {
   const [page, setPage] = useState(props.page);
 
@@ -68,7 +67,6 @@ export const Small: Story = {
   },
 };
 
-/** With `getHref`, every page is a link, for pages rendered by the router or server. */
 export const AsLinks: Story = {
   args: {
     page: 3,

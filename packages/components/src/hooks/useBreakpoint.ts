@@ -66,13 +66,9 @@ export function useBreakpoint(
     [query],
   );
 
-  // The server can't measure the viewport, so it renders the caller's guess
-  // or `undefined`; hydration reuses it so the markup matches, then React
-  // re-reads the client snapshot. A browser without `matchMedia` keeps the
-  // server value rather than inventing one.
+  // The server can't measure the viewport, so hydration reuses the caller's guess, then React re-reads the client snapshot.
   const getServerSnapshot = () => serverValue;
-  const getSnapshot = () =>
-    supportsMatchMedia() ? window.matchMedia(query).matches : serverValue;
+  const getSnapshot = () => (supportsMatchMedia() ? window.matchMedia(query).matches : serverValue);
 
   return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }

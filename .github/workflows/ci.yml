@@ -1,5 +1,3 @@
-# Pipeline steps 1–2 (generate theme, build the DS package) plus every check,
-# on each pull request and on main. See "CI/CD pipeline" in the README.
 name: CI
 
 on:
@@ -9,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  packages: read
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -17,6 +16,9 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    env:
+      # Read by the .npmrc that setup-node writes for npm.pkg.github.com.
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v5
         with:
@@ -29,6 +31,8 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
+          registry-url: https://npm.pkg.github.com
+          scope: '@cascade-ds'
 
       - run: pnpm install --frozen-lockfile
 
@@ -50,13 +54,9 @@ jobs:
       - name: Storybook accessibility tests
         run: pnpm test:storybook
 
-      # A pull request that changes a published package must say how it
-      # affects the next version. Add one with `pnpm changeset`.
+      # Fails when a pull request changes a published package without a changeset (`pnpm changeset`).
       - name: Require a changeset
         if: github.event_name == 'pull_request' && github.head_ref != 'changeset-release/main'
         run: pnpm changeset status --since=origin/main
 
-  # The visual regression job (`node packages/storybook/visual/docker.ts` in
-  # the Playwright Linux image, uploading `packages/storybook/visual/report`
-  # on failure) is off until the baselines are regenerated. Restore it from
-  # git history to re-enable it.
+  # Visual regression job removed until the baselines are regenerated; restore it from git history.

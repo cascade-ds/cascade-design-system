@@ -25,8 +25,6 @@ function Tag(props: TagProps) {
 
   const isTextLabel = typeof children === 'string' || typeof children === 'number';
   const buttonLabel = removeLabel ?? (isTextLabel ? `Remove ${children}` : 'Remove');
-  // For rich children, compose the name from the button's own label plus the
-  // tag content so it still reads e.g. "Remove <content>".
   const buttonLabelledBy = removeLabel || isTextLabel ? undefined : `${buttonId} ${labelId}`;
 
   return (

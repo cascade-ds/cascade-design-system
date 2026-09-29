@@ -6,8 +6,6 @@ const baseHeadingCss = css`
   margin: ${semantic.spacing.none};
 `;
 
-// Visual scale, decoupled from the semantic `level` so e.g. an `h2` can look
-// like an `h4`.
 const sizes = {
   display: css`
     font-family: ${semantic.typography.display.fontFamily};

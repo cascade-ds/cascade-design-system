@@ -2,8 +2,6 @@ import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
-// Base UI sets `data-starting-style` for one frame on open and
-// `data-ending-style` during close, so the fade runs in both directions.
 export const dialogBackdropCss = css`
   position: fixed;
   inset: 0;

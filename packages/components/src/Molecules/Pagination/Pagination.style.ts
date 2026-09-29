@@ -12,8 +12,6 @@ export const paginationListCss = css`
   list-style: none;
 `;
 
-// Page links and the previous/next controls: square at minimum, wider for
-// long page numbers. Each size publishes its height as a variable.
 const baseItemCss = css`
   display: inline-flex;
   align-items: center;

@@ -41,7 +41,6 @@ function renderToast(
   );
 }
 
-// Each toast is a non-modal dialog named by its title.
 function toastNamed(title: string) {
   return screen.getByRole('dialog', { name: title });
 }
@@ -66,8 +65,7 @@ describe('Toast', () => {
 
       await user.click(screen.getByRole('button', { name: 'Save' }));
 
-      // High-priority (danger) toasts are an aria-hidden alertdialog until
-      // focused: Base UI announces them through its own live region instead.
+      // High-priority (danger) toasts are an aria-hidden alertdialog until focused: Base UI announces them through its own live region.
       const toast = await screen.findByRole(tone === 'danger' ? 'alertdialog' : 'dialog', {
         hidden: true,
       });
@@ -81,8 +79,7 @@ describe('Toast', () => {
     renderToast({ title: 'Saved' }, { dismissLabel: 'Dismiss notification' });
 
     await user.click(screen.getByRole('button', { name: 'Save' }));
-    // Base UI hides the close button from assistive tech until the viewport
-    // is hovered or focused (the toast is still dismissible with Escape/swipe).
+    // Base UI hides the close button from assistive tech until the viewport is hovered or focused.
     await user.click(await screen.findByLabelText('Dismiss notification'));
 
     await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());

@@ -2,7 +2,6 @@ import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
-// Typography is inherited, so a link matches the text around it.
 const baseLinkCss = css`
   color: ${component.link.color.default};
   text-decoration-line: underline;
@@ -29,13 +28,10 @@ const baseLinkCss = css`
 `;
 
 const variants = {
-  // In running text the underline is always shown, so the link doesn't rely
-  // on color alone to stand out from the words around it.
+  // In running text the underline stays so the link doesn't rely on color alone.
   inline: css`
     text-decoration-color: currentColor;
   `,
-  // On its own (a "Forgot password?" line, a card footer) the position already
-  // marks it as a link, so the underline only appears on hover and focus.
   standalone: css`
     text-decoration-color: transparent;
 

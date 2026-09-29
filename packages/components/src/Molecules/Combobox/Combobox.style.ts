@@ -1,10 +1,6 @@
 import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 
-// The input itself uses Input's styles (the `input` tokens), so comboboxes
-// line up with text fields and selects. These styles cover the rest, and
-// Autocomplete shares them.
-
 /** The chevron button over the input's end, which opens the popup. */
 export const comboboxTriggerCss = css`
   display: inline-flex;

@@ -3,8 +3,6 @@ import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 import { badgeBaseCss, badgeSizes, badgeTones } from '../Badge/Badge.style';
 
-// Tag reuses the badge tokens (`component.badge` is "badge / status pill /
-// tag"), so its shape and tones stay in lockstep with Badge.
 export const tagVariant = cva(badgeBaseCss, {
   variants: {
     tone: badgeTones,

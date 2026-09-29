@@ -1,8 +1,3 @@
-/**
- * Blocks for the Foundations/Typography MDX pages. All data comes from
- * `typographyTokens.ts` (read from the token JSON). Specimens are painted with
- * the tokens' CSS variables, so they show exactly what components render.
- */
 import { useEffect, useState, type CSSProperties } from 'react';
 import { css, cx } from '@linaria/core';
 import { semantic } from '@cds/styles';
@@ -95,7 +90,6 @@ const okCss = css`
   color: ${c.feedback.successText};
 `;
 
-/** Paints text with every property of a composite typography token. */
 function styleVars(style: TypographyStyle): CSSProperties {
   const prefix = style.cssVarPrefix;
   return {
@@ -107,11 +101,6 @@ function styleVars(style: TypographyStyle): CSSProperties {
   };
 }
 
-/**
- * Whether a font is installed or loaded in this browser. Compares text width
- * with and without the font in front of two different fallbacks: if neither
- * changes, the browser is using the fallback.
- */
 function isFontAvailable(family: string): boolean {
   const context = document.createElement('canvas').getContext('2d');
   if (!context) return true;
@@ -159,9 +148,6 @@ function AliasLine({ alias, primitive }: { alias?: string; primitive?: string })
   );
 }
 
-// --- Font families -----------------------------------------------------------
-
-/** Each `semantic.font.family.*` with its stack, a specimen and whether it loads. */
 export function FontFamilies() {
   const families = scaleNamed('family')?.steps ?? [];
   return (
@@ -197,8 +183,6 @@ export function FontFamilies() {
     </DocsScope>
   );
 }
-
-// --- Composite styles --------------------------------------------------------
 
 function PropertyRow({ label, property }: { label: string; property: TypographyProperty }) {
   return (
@@ -252,7 +236,6 @@ function StyleRow({ style }: { style: TypographyStyle }) {
   );
 }
 
-/** Every `semantic.typography.*` style: a live specimen and its resolved values. */
 export function TypographyStyles() {
   return (
     <DocsScope>
@@ -264,8 +247,6 @@ export function TypographyStyles() {
     </DocsScope>
   );
 }
-
-// --- Scales ------------------------------------------------------------------
 
 function ScaleRows({
   steps,
@@ -299,7 +280,6 @@ const lineHeightBoxCss = css`
   background-size: 100% 1lh;
 `;
 
-/** One `semantic.font.*` scale with a specimen per step. */
 export function FontScale({
   scale,
 }: {

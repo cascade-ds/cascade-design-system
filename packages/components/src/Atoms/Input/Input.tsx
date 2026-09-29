@@ -37,7 +37,6 @@ function Input(props: InputProps) {
     return input;
   }
 
-  // With slots, `className` goes on the wrapper so it sizes the whole field.
   return (
     <Box as="span" className={cx(inputWrapperVariant({ size }), className)}>
       {input}

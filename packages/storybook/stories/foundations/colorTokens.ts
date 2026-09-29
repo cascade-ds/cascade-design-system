@@ -1,13 +1,3 @@
-/**
- * Reads the color tokens straight from the DTCG source files in
- * `packages/tokens` and resolves them per theme, so the color docs can never
- * drift from the tokens. Nothing here is copied from the generated output.
- *
- * Resolution mirrors the resolver (`design-system.resolver.json`): the
- * foundation tokens form the base tree and the theme file (light or dark) is
- * layered on top, keyed by token path. Aliases (`{primitive.color.gray.900}`)
- * are followed through that merged tree until a literal value is reached.
- */
 import primitiveJson from '../../../tokens/foundation/primitive.tokens.json';
 import semanticJson from '../../../tokens/foundation/semantic.tokens.json';
 import componentJson from '../../../tokens/foundation/component.tokens.json';
@@ -17,7 +7,6 @@ import darkJson from '../../../tokens/themes/color-dark.tokens.json';
 export type ThemeName = 'light' | 'dark';
 export const THEMES: readonly ThemeName[] = ['light', 'dark'];
 
-/** A DTCG color value, e.g. `{ colorSpace: 'srgb', components: [1, 1, 1], alpha: 0.5 }`. */
 type DtcgColor = {
   colorSpace: string;
   components: number[];
@@ -41,37 +30,25 @@ type FlatToken = {
 
 export type Rgba = { r: number; g: number; b: number; a: number };
 
-/** One theme's view of a token: its raw `$value`, the alias chain and the final color. */
 export type ResolvedValue = {
-  /** Raw `$value` as authored, e.g. `{primitive.color.gray.900}` or a literal. */
   raw: string;
-  /** Every alias followed, in order (empty when the value is a literal). */
   chain: string[];
-  /** The primitive the chain ends at, when it ends at one. */
   primitive?: string;
-  /** The resolved color, when the chain ends at a parseable color. */
   color?: Rgba;
-  /** Human-readable resolved value (`#18181B`, `#000000 / 50%`). */
   display: string;
   description?: string;
 };
 
 export type ColorToken = {
-  /** Dotted token path, e.g. `semantic.color.text.primary`. */
   path: string;
-  /** Path relative to its group, e.g. `primary` or `categorical.1`. */
   name: string;
-  /** CSS custom property name, e.g. `--semantic-color-text-primary`. */
   cssVar: string;
-  /** Description, preferring the light file's and falling back to the dark one's. */
   description?: string;
   values: Partial<Record<ThemeName, ResolvedValue>>;
 };
 
 export type ColorGroup = {
-  /** Dotted path of the group, e.g. `semantic.color.feedback`. */
   path: string;
-  /** Path relative to the parent group, e.g. `feedback`. */
   name: string;
   description?: string;
   tokens: ColorToken[];
@@ -99,7 +76,6 @@ function isToken(node: TokenNode): boolean {
   return '$value' in node;
 }
 
-/** Flattens a token tree into `path -> token`, inheriting `$type` from groups. */
 function flatten(
   node: TokenNode,
   prefix: string[] = [],
@@ -139,7 +115,6 @@ const foundationTokens = new Map([
   ...flatten(componentRoot),
 ]);
 
-/** foundation + theme, merged by path (theme wins), as the resolver composes them. */
 const mergedByTheme: Record<ThemeName, Map<string, FlatToken>> = {
   light: new Map([...foundationTokens, ...flatten(themeRoots.light)]),
   dark: new Map([...foundationTokens, ...flatten(themeRoots.dark)]),
@@ -172,7 +147,6 @@ function parseHex(hex: string): Rgba | undefined {
   };
 }
 
-/** Converts a literal color `$value` to sRGB. Only `srgb` (or a hex) is supported. */
 function toRgba(value: unknown): Rgba | undefined {
   if (typeof value === 'string') {
     return parseHex(value);
@@ -210,7 +184,6 @@ function formatRaw(value: unknown): string {
   return color ? formatColor(color) : JSON.stringify(value);
 }
 
-/** Follows aliases for one token in one theme. */
 function resolve(path: string, theme: ThemeName): ResolvedValue | undefined {
   const tokens = mergedByTheme[theme];
   const start = tokens.get(path);
@@ -264,11 +237,6 @@ function mergeKeys(nodes: (TokenNode | undefined)[]): string[] {
   return keys;
 }
 
-/**
- * Builds the semantic color tree from the union of the light and dark theme
- * files, keeping the authored group order, so a token that exists in only one
- * theme still shows up (with its missing value flagged).
- */
 function buildGroup(path: string[], name: string): ColorGroup {
   const nodes = THEMES.map((theme) => getNode(themeRoots[theme], path));
   const group: ColorGroup = {
@@ -305,15 +273,12 @@ function buildGroup(path: string[], name: string): ColorGroup {
 
 const SEMANTIC_COLOR_PATH = ['semantic', 'color'];
 
-/** `semantic.color.*`, grouped by purpose exactly as the theme files group it. */
 export const semanticColors: ColorGroup = buildGroup(SEMANTIC_COLOR_PATH, 'color');
 
-/** Top-level description of each theme file's `semantic.color` group. */
 export const themeDescriptions: Partial<Record<ThemeName, string>> = Object.fromEntries(
   THEMES.map((theme) => [theme, getNode(themeRoots[theme], SEMANTIC_COLOR_PATH)?.$description]),
 );
 
-/** Finds a semantic color token by path. */
 export function findSemanticToken(path: string, group = semanticColors): ColorToken | undefined {
   return (
     group.tokens.find((token) => token.path === path) ??
@@ -321,13 +286,6 @@ export function findSemanticToken(path: string, group = semanticColors): ColorTo
   );
 }
 
-// --- Component colors --------------------------------------------------------
-
-/**
- * The color-typed tokens of one subtree of `component.tokens.json`, keeping
- * the authored nesting. Returns `undefined` when the subtree has no colors, so
- * spacing- or typography-only groups drop out.
- */
 function buildColorSubtree(
   node: TokenNode,
   path: string[],
@@ -368,23 +326,15 @@ function buildColorSubtree(
   return group.tokens.length > 0 || group.groups.length > 0 ? group : undefined;
 }
 
-/**
- * One group per component (`component.button`, `component.alert`, …) holding
- * its color tokens. Components alias semantic colors, so each token resolves
- * per theme through the semantic layer.
- */
 export const componentColors: ColorGroup[] = childEntries(
   getNode(componentRoot, ['component']) ?? {},
 )
   .map(([key, node]) => buildColorSubtree(node, ['component', key]))
   .filter((group): group is ColorGroup => group !== undefined);
 
-/** Whether a component token aliases a semantic color directly, as components must. */
 export function aliasesSemantic(token: ColorToken): boolean {
   return THEMES.every((theme) => token.values[theme]?.chain[0]?.startsWith('semantic.') ?? false);
 }
-
-// --- Primitive palette -------------------------------------------------------
 
 export type PrimitiveStep = {
   path: string;
@@ -420,11 +370,6 @@ function toStep(path: string, name: string): PrimitiveStep {
   };
 }
 
-/**
- * Every `primitive.color.*` ramp. A group whose children are tokens is one
- * ramp (`gray`, `alpha.black`); loose tokens directly under `primitive.color`
- * (`white`, `black`) are collected into a single "base" ramp.
- */
 function buildRamps(node: TokenNode, path: string[], out: PrimitiveRamp[] = []): PrimitiveRamp[] {
   const loose: PrimitiveStep[] = [];
   const steps: PrimitiveStep[] = [];
@@ -456,12 +401,10 @@ export const primitiveRamps: PrimitiveRamp[] = primitiveColorRoot
   ? buildRamps(primitiveColorRoot, PRIMITIVE_COLOR_PATH)
   : [];
 
-/** Descriptions of intermediate primitive groups such as `alpha`. */
 export function primitiveGroupDescription(path: string): string | undefined {
   return getNode(primitiveRoot, path.split('.'))?.$description;
 }
 
-/** Semantic tokens that alias a given primitive, per theme (for "used by" hints). */
 export function semanticUsesOf(primitivePath: string): Record<ThemeName, string[]> {
   const uses: Record<ThemeName, string[]> = { light: [], dark: [] };
   const visit = (group: ColorGroup) => {
@@ -476,8 +419,6 @@ export function semanticUsesOf(primitivePath: string): Record<ThemeName, string[
   return uses;
 }
 
-// --- Contrast ----------------------------------------------------------------
-
 function linearize(channel: number): number {
   return channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
 }
@@ -486,16 +427,11 @@ function luminance({ r, g, b }: Rgba): number {
   return 0.2126 * linearize(r) + 0.7152 * linearize(g) + 0.0722 * linearize(b);
 }
 
-/** Paints `top` over an opaque `bottom` (for translucent foregrounds). */
 function composite(top: Rgba, bottom: Rgba): Rgba {
   const mix = (t: number, b: number) => t * top.a + b * (1 - top.a);
   return { r: mix(top.r, bottom.r), g: mix(top.g, bottom.g), b: mix(top.b, bottom.b), a: 1 };
 }
 
-/**
- * WCAG 2.x contrast ratio. Returns `undefined` when the background is
- * translucent, since its effective color depends on what sits beneath it.
- */
 export function contrastRatio(foreground: Rgba, background: Rgba): number | undefined {
   if (background.a < 1) {
     return undefined;
@@ -532,17 +468,11 @@ function isOpaqueInBothThemes(token: ColorToken): boolean {
   return THEMES.every((theme) => (token.values[theme]?.color?.a ?? 0) >= 1);
 }
 
-/** `semantic.color.text.*` and the opaque `semantic.color.background.*` tokens. */
 export const textTokens: ColorToken[] = groupAt('semantic.color.text')?.tokens ?? [];
 export const backgroundTokens: ColorToken[] = (
   groupAt('semantic.color.background')?.tokens ?? []
 ).filter(isOpaqueInBothThemes);
 
-/**
- * Role pairs derived from the naming conventions in the theme files:
- * - `text.on-<x>` sits on the fill `brand.<x>` or `feedback.<x>`;
- * - `<group>.<x>-text` sits on its siblings `<x>-subtle` and `<x>-muted`.
- */
 export const rolePairs: ContrastPair[] = (() => {
   const pairs: ContrastPair[] = [];
   for (const text of textTokens) {

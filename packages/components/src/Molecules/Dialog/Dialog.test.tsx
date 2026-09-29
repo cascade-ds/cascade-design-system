@@ -56,7 +56,6 @@ describe('Dialog', () => {
 
     const dialog = screen.getByRole('dialog', { name: 'Delete project?' });
     expect(dialog).toHaveAccessibleDescription('This removes the project for everyone.');
-    // Modal: the page behind is hidden from assistive technology.
     expect(screen.queryByRole('button', { name: 'Delete project' })).not.toBeInTheDocument();
     expectClasses(dialog, dialogPopupVariant());
     expect(screen.getByText('Delete project?')).toHaveClass(dialogTitleCss);

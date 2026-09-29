@@ -2,7 +2,6 @@ import { css } from '@linaria/core';
 import { component } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
-// Looks like a key cap: a thicker bottom edge sets it apart from inline code.
 const baseKbdCss = css`
   display: inline-flex;
   align-items: center;

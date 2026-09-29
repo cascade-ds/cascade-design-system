@@ -35,7 +35,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-/** Typography comes from the surrounding text, so the link matches it. */
 export const InText: Story = {
   render: (args) => (
     <Text>

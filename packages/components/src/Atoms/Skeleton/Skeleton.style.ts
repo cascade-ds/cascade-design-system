@@ -2,10 +2,6 @@ import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
-// Each `color` variant only sets these two custom properties; the base styles
-// and the shimmer read them, so there is a single animation for every color.
-// The base stays solid while a highlight band sweeps across it, so the
-// placeholder never fades into the page background.
 const baseSkeletonCss = css`
   @keyframes cascade-skeleton-shimmer {
     from {
@@ -62,19 +58,15 @@ const colors = {
   `,
 };
 
-// Each shape has a token-driven default size; `width` / `height` props
-// override it inline.
 const shapes = {
   rect: css`
     height: ${component.skeleton.height};
     border-radius: ${component.skeleton.radius};
   `,
-  // A single line of body text.
   text: css`
     height: ${component.skeleton.text.height};
     border-radius: ${component.skeleton.text.radius};
   `,
-  // Skeleton.tsx mirrors a lone `width` or `height` so it stays round.
   circle: css`
     width: ${component.skeleton.height};
     height: ${component.skeleton.height};

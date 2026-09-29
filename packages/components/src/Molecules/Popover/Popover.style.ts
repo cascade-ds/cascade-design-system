@@ -1,16 +1,10 @@
 import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 
-// Base UI positions this element next to the trigger; it only needs to sit
-// above the page.
 export const popoverPositionerCss = css`
   z-index: ${component.popover.zIndex};
 `;
 
-// State comes from Base UI's data attributes, so everything below is plain
-// CSS: `data-side` says where the popup sits, `data-starting-style` and
-// `data-ending-style` are set for one frame on open and during close, which
-// makes the transition run in both directions.
 export const popoverPopupCss = css`
   box-sizing: border-box;
   display: flex;

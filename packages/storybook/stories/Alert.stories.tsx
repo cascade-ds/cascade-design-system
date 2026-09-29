@@ -76,7 +76,6 @@ export const Dismissible: Story = {
   },
 };
 
-/** Full-width notice for the top of a page or section. */
 export const Banner: Story = {
   args: {
     layout: 'banner',

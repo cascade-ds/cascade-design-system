@@ -27,8 +27,7 @@ function isSwitchIcon(child: React.ReactNode) {
   return isValidElement(child) && (child.type === SwitchIconOn || child.type === SwitchIconOff);
 }
 
-// Children.toArray keeps fragments whole, so icons passed as
-// `<>…</>` would otherwise be mistaken for label content.
+// Children.toArray keeps fragments whole, so `<>…</>` icons would be mistaken for label content.
 function flattenChildren(children: React.ReactNode): React.ReactNode[] {
   return Children.toArray(children).flatMap((child) =>
     isValidElement<{ children?: React.ReactNode }>(child) && child.type === Fragment
@@ -41,7 +40,6 @@ function Switch(props: SwitchProps) {
   const { disabled, className, children, ...restProps } = props;
   const rootClassName = cx(switchVariant({ disabled: Boolean(disabled) }), className);
 
-  // Icons render inside the thumb; everything else is the label.
   const childArray = flattenChildren(children);
   const icons = childArray.filter(isSwitchIcon);
   const label = childArray.filter((child) => !isSwitchIcon(child));

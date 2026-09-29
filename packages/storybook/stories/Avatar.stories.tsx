@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PersonIcon } from '@radix-ui/react-icons';
 import { Text, Stack, Avatar } from '@cds/components';
 
-// A small inline SVG portrait, so the story doesn't depend on the network.
 const portrait =
   'data:image/svg+xml;utf8,' +
   encodeURIComponent(
@@ -61,7 +60,6 @@ export const Sizes: Story = {
   ),
 };
 
-/** A broken image falls back to the initials. */
 export const BrokenImage: Story = {
   args: {
     src: 'data:image/png;base64,broken',
@@ -75,7 +73,6 @@ export const IconFallback: Story = {
   },
 };
 
-/** Next to the name, the avatar is hidden so the name isn't announced twice. */
 export const WithName: Story = {
   render: (args) => (
     <Stack direction="row" gap="sm" align="center">

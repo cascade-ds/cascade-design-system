@@ -14,8 +14,6 @@ const meta = {
   component: Dialog,
   tags: ['autodocs'],
   parameters: {
-    // Dialogs are portaled to <body>, outside the story root: check the whole
-    // page so open dialogs are covered by the a11y tests too.
     a11y: { context: 'body' },
   },
   argTypes: {
@@ -39,7 +37,6 @@ type Story = StoryObj<typeof meta>;
 
 type DeleteDialogProps = { defaultOpen?: boolean; size?: DialogContentProps['size'] };
 
-/** Mounts its own Toast, so the toast takes the theme of the subtree it is in. */
 function DeleteDialog(props: DeleteDialogProps) {
   return (
     <Toast>
@@ -50,7 +47,7 @@ function DeleteDialog(props: DeleteDialogProps) {
 
 function DeleteDialogWindow(props: DeleteDialogProps) {
   const { defaultOpen, size } = props;
-  const TOAST_TTL = 1000 * 2; // 2s
+  const TOAST_TTL = 1000 * 2;
   const toast = Toast.useToast();
 
   return (
@@ -86,15 +83,10 @@ export const Default: Story = {
   render: () => <DeleteDialog />,
 };
 
-/** `size` sets the window's maximum width. */
 export const Medium: Story = {
   render: () => <DeleteDialog size="md" />,
 };
 
-/**
- * The dialog is portaled to `<body>`, yet keeps the theme of the subtree it
- * was opened from: a dark section on a light page opens a dark dialog (ADR-006).
- */
 export const InsideDarkSection: Story = {
   render: () => (
     <ThemeProvider initialMode="light">

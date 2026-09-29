@@ -2,8 +2,6 @@ import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
-// The trigger is a form field: it shares the `input` tokens with Textarea
-// and FormField.Input so selects line up with text fields.
 const baseTriggerCss = css`
   display: inline-flex;
   align-items: center;

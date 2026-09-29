@@ -86,7 +86,6 @@ function Autocomplete<ItemValue>(props: AutocompleteProps<ItemValue>) {
 /** The text input. Suggestions open as the user types. */
 function AutocompleteInput(props: AutocompleteInputProps) {
   const { size, start, className, ...restProps } = props;
-  // The root already takes the field's `disabled` and `required`.
   const {
     disabled: _disabled,
     required: _required,

@@ -45,8 +45,6 @@ const toneIcons: Record<AlertTone, React.ReactNode> = {
   danger: <CrossCircledIcon />,
 };
 
-// Warnings and errors interrupt (`alert`, assertive); info and success are
-// announced politely (`status`).
 const toneRoles: Record<AlertTone, 'alert' | 'status'> = {
   info: 'status',
   success: 'status',

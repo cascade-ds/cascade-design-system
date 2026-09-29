@@ -89,7 +89,6 @@ function Combobox<Value, Item = Value>(props: ComboboxProps<Value, Item>) {
 /** The text input that filters the options, with a chevron that opens them. */
 function ComboboxInput(props: ComboboxInputProps) {
   const { size, triggerLabel = 'Show options', className, ...restProps } = props;
-  // The root already takes the field's `disabled` and `required`.
   const {
     disabled: _disabled,
     required: _required,

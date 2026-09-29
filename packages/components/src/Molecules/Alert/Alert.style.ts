@@ -17,7 +17,6 @@ const baseAlertCss = css`
   letter-spacing: ${component.alert.typography.letterSpacing};
 `;
 
-// Each tone sets the surface and text, plus a custom property the icon reads.
 const tones = {
   info: css`
     background-color: ${component.alert.color.info.background};
@@ -45,8 +44,6 @@ const tones = {
   `,
 };
 
-// `inline` is a boxed message inside content; `banner` spans its container
-// edge to edge (page or section top), so only the bottom edge is drawn.
 const layouts = {
   inline: css`
     border-radius: ${component.alert.radius};

@@ -7,8 +7,6 @@ const meta = {
   component: Autocomplete,
   tags: ['autodocs'],
   parameters: {
-    // Popups are portaled to <body>, outside the story root: check the whole
-    // page so open popups are covered by the a11y tests too.
     a11y: { context: 'body' },
   },
   argTypes: {
@@ -35,7 +33,6 @@ const tags = ['accessibility', 'bug', 'design', 'docs', 'feature', 'fix', 'perfo
 
 type StoryArgs = Pick<AutocompleteProps<string>, 'disabled' | 'mode'>;
 
-/** The story controls, without the generic props Storybook types as `unknown`. */
 function controls(args: StoryArgs): StoryArgs {
   return { disabled: args.disabled, mode: args.mode };
 }
@@ -74,7 +71,6 @@ export const Open: Story = {
   render: (args) => <TagAutocomplete {...controls(args)} defaultValue="f" defaultOpen />,
 };
 
-/** A search icon in the start slot. */
 export const Search: Story = {
   render: (args) => <TagAutocomplete {...controls(args)} search />,
 };

@@ -1,9 +1,7 @@
 import { css } from '@linaria/core';
 import { cva } from 'class-variance-authority';
 
-// The standard "sr-only" mechanics. These literals are structural (they
-// remove the box from view while keeping it in the accessibility tree), not
-// design values, so they are intentionally not tokens.
+// These sr-only literals are structural, not design values, so they aren't tokens.
 const srOnly = `
   position: absolute;
   width: 1px;
@@ -21,8 +19,6 @@ const hiddenCss = css`
   ${srOnly}
 `;
 
-// Hidden only while nothing inside it has focus, so a skip link becomes
-// visible (with its own natural styles) when a keyboard user tabs to it.
 const focusableCss = css`
   &:not(:focus):not(:focus-within) {
     ${srOnly}

@@ -1,15 +1,10 @@
 import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 
-// Base UI positions this element next to the trigger; it only needs to sit
-// above the page.
 export const tooltipPositionerCss = css`
   z-index: ${component.tooltip.zIndex};
 `;
 
-// `data-starting-style` and `data-ending-style` are set for one frame on open
-// and during close, which makes the fade run in both directions. `data-instant`
-// is set when moving between tooltips inside a provider, so it skips the fade.
 export const tooltipPopupCss = css`
   box-sizing: border-box;
   max-width: min(${component.tooltip.maxWidth}, var(--available-width));

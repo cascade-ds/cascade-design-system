@@ -143,8 +143,6 @@ export function useFormFieldControl<Props extends FormFieldControlProps>(
   const describedBy = [props['aria-describedby'], ...field.parts.hint, ...field.parts.error]
     .filter(Boolean)
     .join(' ');
-  // Also names controls that `<label for>` can't reach (e.g. a
-  // `div role="combobox"`), unless the control is already named.
   const labelledBy =
     props['aria-labelledby'] ??
     (props['aria-label'] ? undefined : field.parts.label.join(' ') || undefined);

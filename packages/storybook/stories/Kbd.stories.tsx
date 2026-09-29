@@ -16,7 +16,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-/** One `Kbd` per key. Symbol keys get a `title` naming them. */
 export const Shortcut: Story = {
   render: () => (
     <Text>

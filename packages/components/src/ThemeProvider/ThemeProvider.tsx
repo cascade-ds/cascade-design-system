@@ -5,8 +5,6 @@ import { ThemeContext, type ThemeMode } from '../context/Theme/themeContext';
 
 const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 
-// Paints the theme's surface so a nested provider's subtree actually looks
-// like its theme, not just its tokens.
 const themeRootCss = css`
   background-color: ${semantic.color.background.default};
   color: ${semantic.color.text.primary};
@@ -43,16 +41,13 @@ function getSystemTheme(): ThemeMode {
   return window.matchMedia(DARK_MEDIA_QUERY).matches ? 'dark' : 'light';
 }
 
-// The server can't read the preference; React re-reads it on the client
-// after hydration.
+// The server can't read the preference; React re-reads it on the client after hydration.
 function getServerSystemTheme(): ThemeMode {
   return 'light';
 }
 
 export function ThemeProvider({ children, initialMode }: ThemeProviderProps) {
   const parentContext = useContext(ThemeContext);
-  // An explicit choice (initialMode or setTheme) always wins over the system
-  // preference, so an OS change never overrides what the user picked.
   const [explicitTheme, setExplicitTheme] = useState<ThemeMode | undefined>(initialMode);
   const systemTheme = useSyncExternalStore(
     subscribeToSystemTheme,
@@ -60,14 +55,11 @@ export function ThemeProvider({ children, initialMode }: ThemeProviderProps) {
     getServerSystemTheme,
   );
 
-  // Without an explicit theme, a nested provider leaves `data-theme` unset and
-  // so inherits its parent's tokens; report the parent's theme to match what
-  // renders (portals read it to theme themselves).
+  // Without an explicit theme, a nested provider leaves `data-theme` unset and inherits its parent's tokens, so report the parent's theme (portals read it).
   const theme = explicitTheme ?? parentContext?.theme ?? systemTheme;
   const contextValue = useMemo(() => ({ theme, setTheme: setExplicitTheme }), [theme]);
 
-  // While following the system, leave `data-theme` unset so the
-  // `prefers-color-scheme` media query styles the page with no flash.
+  // While following the system, leave `data-theme` unset so `prefers-color-scheme` styles the page with no flash.
   return (
     <ThemeContext.Provider value={contextValue}>
       <div data-theme={explicitTheme} className={themeRootCss}>

@@ -44,7 +44,6 @@ const baseButtonCss = css`
   }
 `;
 
-// Filled and outline variants sit raised, lift on hover and flatten when pressed.
 const raisedCss = css`
   --cascade-button-elevation: ${component.button.shadow.default};
 
@@ -214,7 +213,6 @@ const sizes = {
   `,
 };
 
-// Button.Icon reads the icon size its parent Button's size variant sets.
 export const buttonIconCss = css`
   width: var(--cascade-button-icon-size);
   height: var(--cascade-button-icon-size);

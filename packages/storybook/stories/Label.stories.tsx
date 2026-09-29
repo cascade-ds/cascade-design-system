@@ -52,11 +52,6 @@ export const Required: Story = {
   },
 };
 
-/**
- * A disabled label always sits with its disabled control. The dimmed text is
- * exempt from contrast requirements because the control is inactive, so the
- * story renders the control too.
- */
 export const Disabled: Story = {
   args: {
     disabled: true,

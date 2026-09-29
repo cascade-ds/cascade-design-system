@@ -88,9 +88,6 @@ function SelectLabel(props: SelectLabelProps) {
 /** The button showing the current value. Opens the options popup. */
 function SelectTrigger(props: SelectTriggerProps) {
   const { size, placeholder, className, ...restProps } = props;
-  // The root already takes the field's `disabled` and `required`; the
-  // trigger only needs the id, name, description and invalid state. Outside
-  // a FormField nothing is overridden, so `Select.Label` keeps naming it.
   const inField = useFormField() !== null;
   const {
     disabled: _disabled,
