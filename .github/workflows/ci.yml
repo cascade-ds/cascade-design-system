@@ -5,7 +5,6 @@ on:
 
 permissions:
   contents: read
-  packages: read
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -15,9 +14,6 @@ jobs:
   verify:
     if: github.head_ref != 'changeset-release/main'
     runs-on: ubuntu-latest
-    env:
-      # Read by the .npmrc that setup-node writes for npm.pkg.github.com.
-      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v5
         with:
@@ -30,8 +26,6 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-          registry-url: https://npm.pkg.github.com
-          scope: '@cascade-ds'
 
       - run: pnpm install --frozen-lockfile
 

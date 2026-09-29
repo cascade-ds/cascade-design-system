@@ -9,7 +9,7 @@
     "theme",
     "dark-mode"
   ],
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Sergio Segaty",
   "homepage": "https://github.com/cascade-ds/cascade-design-system#readme",
   "repository": {
@@ -22,8 +22,7 @@
   },
   "private": false,
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "restricted"
+    "access": "public"
   },
   "type": "module",
   "main": "./theme.js",

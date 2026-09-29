@@ -6,7 +6,6 @@ on:
 
 permissions:
   contents: read
-  packages: read
   pages: write
   id-token: write
 
@@ -17,9 +16,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      # Read by the .npmrc that setup-node writes for npm.pkg.github.com.
-      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v5
 
@@ -29,15 +25,14 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-          registry-url: https://npm.pkg.github.com
-          scope: '@cascade-ds'
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Generate theme
+        run: pnpm build:style
+
       - name: Build Storybook
         run: pnpm --filter @cascade-ds/storybook build
-        env:
-          CDS_SOURCE: package
 
       - uses: actions/upload-pages-artifact@v4
         with:
