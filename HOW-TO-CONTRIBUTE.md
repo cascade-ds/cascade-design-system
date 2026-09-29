@@ -6,15 +6,18 @@ All components live under `packages/components/src/<ComponentName>/`, one
 folder per component, `PascalCase` named to match the component itself
 (e.g. `Button`, `Stack`).
 
-Every component folder **must** contain these five files:
+Every component folder **must** contain these four files, plus a story in
+`packages/storybook/stories/`:
 
 ```
 packages/components/src/<ComponentName>/
 ├── <ComponentName>.style.ts     # base CSS + variants, exports a cva()
 ├── <ComponentName>.test.tsx     # RTL: variant + behaviour tests
-├── <ComponentName>.stories.tsx  # Storybook stories
 ├── <ComponentName>.tsx          # the component itself
 └── index.ts                     # exports the component + its Props type
+
+packages/storybook/stories/
+└── <ComponentName>.stories.tsx  # Storybook stories
 ```
 
 `<ComponentName>.style.ts` can be skipped if the component has no visual
@@ -110,6 +113,9 @@ export default Button;
 
 ### `<ComponentName>.stories.tsx`
 
+- Lives in `packages/storybook/stories/`, named after the component. Import
+  the component through the `@/` alias (`import Button from '@/Atoms/Button/Button'`),
+  which points at `packages/components/src`.
 - One `Meta` per component, `title: 'CascadeDS/Components/<Category>/<ComponentName>'`
   (e.g. `Atom`, `Molecule`), `tags: ['autodocs']`.
 - Set `args` to sensible defaults so the `Default` story renders
@@ -135,6 +141,9 @@ export type { ButtonProps } from './Button';
 
 - Add the same re-export to `packages/components/src/index.ts` so the
   component is part of the package's public surface.
+- Document it in [`packages/components/API.md`](./packages/components/API.md):
+  props, variant values with defaults, parts, and one example. Add a row to
+  its "Choosing a component" table when the component covers a new need.
 
 ### Before opening a PR
 

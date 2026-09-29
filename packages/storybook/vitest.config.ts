@@ -7,6 +7,16 @@ const configDir = fileURLToPath(new URL('.storybook', import.meta.url));
 
 export default defineConfig({
   test: {
+    coverage: {
+      provider: 'istanbul',
+      allowExternal: true,
+      include: ['**/components/src/**/*.{ts,tsx}'],
+      exclude: [
+        '**/components/src/**/*.test.{ts,tsx}',
+        '**/components/src/**/index.ts',
+        '**/components/src/ThemeProvider',
+      ],
+    },
     projects: [
       {
         extends: true,

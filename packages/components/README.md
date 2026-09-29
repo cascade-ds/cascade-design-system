@@ -2,6 +2,8 @@
 
 React components for the design system, styled with linaria + `class-variance-authority` and themed via [`@cascade-ds/styles`](../styles/README.md).
 
+Props, variants and usage for every component: [`API.md`](./API.md).
+
 ## Testing
 
 Tests run on [Vitest](https://vitest.dev/) with a `jsdom` environment and

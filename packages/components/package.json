@@ -23,24 +23,22 @@
   },
   "private": false,
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.js"
     },
     "./motion": {
       "types": "./dist/motion.d.ts",
-      "import": "./dist/motion.js",
-      "require": "./dist/motion.cjs"
+      "import": "./dist/motion.js"
     },
     "./styles.css": "./dist/styles.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "API.md"
   ],
   "sideEffects": [
     "*.css"
@@ -81,8 +79,10 @@
     "motion": "^13.4.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "react-hook-form": "^7.88.0",
     "rollup": "^4.63.2",
     "rollup-plugin-css-only": "^4.5.5",
+    "storybook": "^10.6.0",
     "typescript": "^5.7.0",
     "vitest": "^4.1.10"
   },

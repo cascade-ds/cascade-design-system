@@ -6,7 +6,7 @@ import wyw from '@wyw-in-js/vite';
 const currentDir = dirname(fileURLToPath(import.meta.url));
 
 const config: StorybookConfig = {
-  stories: ['../../components/src/**/*.stories.@(ts|tsx)'],
+  stories: ['../stories/**/*.mdx', '../stories/**/*.stories.tsx'],
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-a11y',

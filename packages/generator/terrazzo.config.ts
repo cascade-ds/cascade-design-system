@@ -11,15 +11,29 @@ import cssInJs from '@terrazzo/plugin-css-in-js';
 // Each theme is emitted twice: once driven by the OS preference on `:root`
 // (the default), and once under `[data-theme]` so a ThemeProvider with an
 // explicit mode overrides the OS for its subtree.
+//
+// Everything sits in the `cascade.tokens` cascade layer, and the first block
+// declares the layer order, so any unlayered consumer CSS overrides the
+// system regardless of load order. `@cascade-ds/components` puts its styles
+// in `cascade.components` (see its rollup.config.ts).
+const LAYER_ORDER = '@layer cascade.tokens, cascade.components;';
+
+function inTokensLayer(css: string) {
+  return `@layer cascade.tokens {\n${css}\n}`;
+}
+
 const permutations = [
   {
     input: { theme: 'light' },
-    prepare: (contents) => `:root,\n[data-theme='light'] {\n  ${contents}\n}`,
+    prepare: (contents) =>
+      `${LAYER_ORDER}\n\n${inTokensLayer(`:root,\n[data-theme='light'] {\n  ${contents}\n}`)}`,
   },
   {
     input: { theme: 'dark' },
     prepare: (contents) =>
-      `@media (prefers-color-scheme: dark) {\n  :root {\n    ${contents}\n  }\n}\n\n[data-theme='dark'] {\n  ${contents}\n}`,
+      inTokensLayer(
+        `@media (prefers-color-scheme: dark) {\n  :root {\n    ${contents}\n  }\n}\n\n[data-theme='dark'] {\n  ${contents}\n}`,
+      ),
   },
 ] satisfies Permutation[];
 
@@ -40,12 +54,17 @@ const emitThemeNames: Plugin = {
 
 // JS animation libraries (Motion) can't read `var(--…)`, they need numbers.
 // Emits the resolved `semantic.motion.*` tokens as `motion.js`/`.d.ts`:
-// durations in seconds (Motion's unit), easings as cubic-bezier arrays.
+// durations in seconds (Motion's unit), easings as cubic-bezier arrays,
+// unitless factors (scale) as plain numbers.
 const MOTION_PREFIX = 'semantic.motion.';
 
 type MotionTree = { [key: string]: MotionTree | number | readonly number[] };
 
 function toMotionValue(value: unknown): number | readonly number[] {
+  // Unitless factors (e.g. scale) are already numbers.
+  if (typeof value === 'number') {
+    return value;
+  }
   if (Array.isArray(value)) {
     return value as number[];
   }
@@ -89,6 +108,47 @@ const emitMotion: Plugin = {
   },
 };
 
+// `var()` is invalid inside `@media`, so consumers can't use the breakpoint
+// custom properties for page responsiveness. Emits the resolved
+// `semantic.layout.breakpoint.*` tokens as mobile-first media conditions:
+// `media.js`/`.d.ts` for JS and CSS-in-JS, `media.css` as `@custom-media`
+// for PostCSS. Conditions use `em` so they scale with the browser's font size
+// (1em = 16px in media queries, regardless of the root font size).
+const BREAKPOINT_PREFIX = 'semantic.layout.breakpoint.';
+const CUSTOM_MEDIA_PREFIX = '--cascade-';
+
+function toEm(value: unknown): number {
+  const { value: amount, unit } = value as { value: number; unit: 'px' | 'rem' | 'em' };
+  return unit === 'px' ? amount / 16 : amount;
+}
+
+const emitMedia: Plugin = {
+  name: 'emit-media',
+  build({ tokens, outputFile }) {
+    const breakpoints = Object.entries(tokens)
+      .filter(([id]) => id.startsWith(BREAKPOINT_PREFIX))
+      .map(([id, token]) => ({
+        name: id.slice(BREAKPOINT_PREFIX.length),
+        em: toEm(token.$value),
+      }))
+      .sort((a, b) => a.em - b.em);
+
+    const media = Object.fromEntries(
+      breakpoints.map(({ name, em }) => [name, `(min-width: ${em}em)`]),
+    );
+    const mediaType = breakpoints
+      .map(({ name }) => `  readonly ${JSON.stringify(name)}: ${JSON.stringify(media[name])};`)
+      .join('\n');
+    const customMedia = breakpoints
+      .map(({ name }) => `@custom-media ${CUSTOM_MEDIA_PREFIX}${name} ${media[name]};`)
+      .join('\n');
+
+    outputFile('media.js', `export const media = ${JSON.stringify(media, null, 2)};\n`);
+    outputFile('media.d.ts', `export declare const media: {\n${mediaType}\n};\n`);
+    outputFile('media.css', `${customMedia}\n`);
+  },
+};
+
 const customConfig: Config = {
   tokens: ['../tokens/design-system.resolver.json'],
   plugins: [
@@ -98,6 +158,7 @@ const customConfig: Config = {
     }),
     emitThemeNames,
     emitMotion,
+    emitMedia,
   ],
   outDir: '../styles/',
   lint: {

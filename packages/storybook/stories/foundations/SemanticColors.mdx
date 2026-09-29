@@ -1,0 +1,25 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { SemanticColorGroups } from './ColorDocs';
+
+<Meta title="Foundations/Colors/Semantic" />
+
+# Semantic colors
+
+`semantic.color.*` tokens name a color by what it is for. These are the colors
+components and product code use. Each one has a light and a dark value, set in
+`packages/tokens/themes/color-light.tokens.json` and
+`color-dark.tokens.json`; the groups below follow those files.
+
+Every row shows:
+
+- a **swatch** painted with the CSS variable, so it repaints when you switch
+  the toolbar theme (text and icon colors show as "Aa" on `background.default`,
+  translucent colors over a checkerboard);
+- the **token path** (as used from `@cascade-ds/styles`) and the **CSS
+  variable**;
+- the token's **description**, per theme when the two files differ;
+- the **light and dark** values: the resolved color, the token it aliases
+  (`→`), and the primitive at the end of the chain when it goes through
+  another semantic token.
+
+<SemanticColorGroups />

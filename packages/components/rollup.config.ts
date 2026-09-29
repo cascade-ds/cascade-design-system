@@ -25,7 +25,10 @@ const cssFileName = 'styles.css';
 const tokensCssPath = createRequire(import.meta.url).resolve('@cascade-ds/styles/index.css');
 
 // Prepends the design-token custom properties to the component stylesheet so
-// consumers import a single file, with tokens guaranteed to load first.
+// consumers import a single file, with tokens guaranteed to load first. The
+// tokens CSS already declares the layer order and sits in `cascade.tokens`;
+// component styles go in `cascade.components`, so a consumer's unlayered
+// `className` always overrides them, whatever order the bundler loads CSS in.
 const prependTokensCss = (): Plugin => ({
   name: 'prepend-tokens-css',
   buildStart() {
@@ -39,7 +42,7 @@ const prependTokensCss = (): Plugin => ({
     }
 
     const tokensCss = readFileSync(tokensCssPath, 'utf-8');
-    stylesheet.source = `${tokensCss}\n${String(stylesheet.source)}`;
+    stylesheet.source = `${tokensCss}\n@layer cascade.components {\n${String(stylesheet.source)}\n}\n`;
   },
 });
 
@@ -51,23 +54,14 @@ const config: RollupOptions = {
     motion: 'src/motion.ts',
   },
   external: isExternal,
-  output: [
-    {
-      dir: 'dist',
-      entryFileNames: '[name].js',
-      chunkFileNames: 'chunks/[name]-[hash].js',
-      format: 'esm',
-      sourcemap: true,
-    },
-    {
-      dir: 'dist',
-      entryFileNames: '[name].cjs',
-      chunkFileNames: 'chunks/[name]-[hash].cjs',
-      format: 'cjs',
-      exports: 'named',
-      sourcemap: true,
-    },
-  ],
+  // ESM only, like @cascade-ds/styles, whose entries it imports at runtime.
+  output: {
+    dir: 'dist',
+    entryFileNames: '[name].js',
+    chunkFileNames: 'chunks/[name]-[hash].js',
+    format: 'esm',
+    sourcemap: true,
+  },
   plugins: [
     // Mirrors the "@/*" path alias declared in tsconfig.json.
     alias({
@@ -92,7 +86,7 @@ const config: RollupOptions = {
     prependTokensCss(),
     typescript({
       tsconfig: './tsconfig.json',
-      exclude: ['**/*.stories.tsx', '**/*.test.tsx', 'node_modules/**'],
+      exclude: ['**/*.test.tsx', 'node_modules/**'],
       compilerOptions: {
         composite: false,
         incremental: false,

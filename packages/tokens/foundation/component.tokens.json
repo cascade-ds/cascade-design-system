@@ -956,6 +956,15 @@
       "z-index": {
         "$value": "{semantic.z-index.tooltip}",
         "$type": "number"
+      },
+      "offset": {
+        "$value": "{semantic.spacing.xs}",
+        "$type": "dimension",
+        "$description": "Distance between the trigger and the tooltip."
+      },
+      "max-width": {
+        "$value": "{semantic.size.floating.narrow}",
+        "$type": "dimension"
       }
     },
     "link": {
@@ -1317,6 +1326,16 @@
         "$value": "{semantic.stack.md}",
         "$type": "dimension"
       },
+      "header-gap": {
+        "$value": "{semantic.stack.xs}",
+        "$type": "dimension",
+        "$description": "Space between the title and subtitle."
+      },
+      "footer-gap": {
+        "$value": "{semantic.gap.sm}",
+        "$type": "dimension",
+        "$description": "Space between footer actions."
+      },
       "radius": {
         "$value": "{semantic.round.lg}",
         "$type": "dimension"
@@ -1634,6 +1653,11 @@
         "$value": "{semantic.z-index.dropdown}",
         "$type": "number"
       },
+      "offset": {
+        "$value": "{semantic.spacing.xs}",
+        "$type": "dimension",
+        "$description": "Distance between the trigger and the menu."
+      },
       "item": {
         "height": {
           "$value": "{semantic.size.control.sm}",
@@ -1650,6 +1674,26 @@
         "radius": {
           "$value": "{semantic.round.sm}",
           "$type": "dimension"
+        },
+        "gap": {
+          "$value": "{semantic.gap.sm}",
+          "$type": "dimension"
+        }
+      },
+      "separator": {
+        "margin-block": {
+          "$value": "{semantic.spacing.xs}",
+          "$type": "dimension"
+        }
+      },
+      "group-label": {
+        "padding-block": {
+          "$value": "{semantic.padding.xs}",
+          "$type": "dimension"
+        },
+        "typography": {
+          "$value": "{semantic.typography.label-sm}",
+          "$type": "typography"
         }
       },
       "color": {
@@ -1660,9 +1704,18 @@
         "border": {
           "$value": "{semantic.color.border.default}"
         },
+        "separator": {
+          "$value": "{semantic.color.border.default}"
+        },
+        "group-label": {
+          "$value": "{semantic.color.text.tertiary}"
+        },
         "item": {
           "text": {
             "$value": "{semantic.color.text.primary}"
+          },
+          "text-disabled": {
+            "$value": "{semantic.color.text.disabled}"
           },
           "background-hover": {
             "$value": "{semantic.color.background.subtle}"
@@ -1734,15 +1787,210 @@
         }
       }
     },
+    "select": {
+      "$description": "Molecule - Select popup and options. The trigger uses the input tokens.",
+      "offset": {
+        "$value": "{semantic.spacing.xs}",
+        "$type": "dimension",
+        "$description": "Distance between the trigger and the popup when placed below or above it."
+      },
+      "padding": {
+        "$value": "{semantic.padding.xs}",
+        "$type": "dimension"
+      },
+      "radius": {
+        "$value": "{semantic.round.md}",
+        "$type": "dimension"
+      },
+      "border-width": {
+        "$value": "{semantic.border.width.default}",
+        "$type": "dimension"
+      },
+      "shadow": {
+        "$value": "{semantic.elevation.md}",
+        "$type": "shadow"
+      },
+      "z-index": {
+        "$value": "{semantic.z-index.dropdown}",
+        "$type": "number"
+      },
+      "item": {
+        "height": {
+          "$value": "{semantic.size.control.sm}",
+          "$type": "dimension"
+        },
+        "padding-inline": {
+          "$value": "{semantic.padding.sm}",
+          "$type": "dimension"
+        },
+        "gap": {
+          "$value": "{semantic.gap.sm}",
+          "$type": "dimension"
+        },
+        "radius": {
+          "$value": "{semantic.round.sm}",
+          "$type": "dimension"
+        },
+        "typography": {
+          "$value": "{semantic.typography.body-md}",
+          "$type": "typography"
+        }
+      },
+      "group-label": {
+        "padding-inline": {
+          "$value": "{semantic.padding.sm}",
+          "$type": "dimension"
+        },
+        "padding-block": {
+          "$value": "{semantic.padding.xs}",
+          "$type": "dimension"
+        },
+        "typography": {
+          "$value": "{semantic.typography.caption}",
+          "$type": "typography"
+        }
+      },
+      "color": {
+        "$type": "color",
+        "background": {
+          "$value": "{semantic.color.background.raised}"
+        },
+        "border": {
+          "$value": "{semantic.color.border.default}"
+        },
+        "separator": {
+          "$value": "{semantic.color.border.subtle}"
+        },
+        "group-label": {
+          "$value": "{semantic.color.text.secondary}"
+        },
+        "item": {
+          "text": {
+            "$value": "{semantic.color.text.primary}"
+          },
+          "text-disabled": {
+            "$value": "{semantic.color.text.disabled}"
+          },
+          "background-highlighted": {
+            "$value": "{semantic.color.background.hover}"
+          },
+          "background-selected": {
+            "$value": "{semantic.color.background.selected}"
+          },
+          "indicator": {
+            "$value": "{semantic.color.icon.brand}"
+          }
+        }
+      }
+    },
+    "toast": {
+      "$description": "Molecule - Toast notification.",
+      "width": {
+        "$value": "{semantic.size.floating.wide}",
+        "$type": "dimension"
+      },
+      "offset": {
+        "$value": "{semantic.spacing.lg}",
+        "$type": "dimension",
+        "$description": "Distance from the viewport edges; also how far a toast slides in."
+      },
+      "stack-gap": {
+        "$value": "{semantic.gap.sm}",
+        "$type": "dimension",
+        "$description": "Space between stacked toasts."
+      },
+      "padding": {
+        "$value": "{semantic.padding.md}",
+        "$type": "dimension"
+      },
+      "gap": {
+        "$value": "{semantic.gap.sm}",
+        "$type": "dimension",
+        "$description": "Space between the icon, content and actions."
+      },
+      "content-gap": {
+        "$value": "{semantic.gap.xs}",
+        "$type": "dimension",
+        "$description": "Space between the title and description."
+      },
+      "actions-gap": {
+        "$value": "{semantic.gap.xs}",
+        "$type": "dimension"
+      },
+      "radius": {
+        "$value": "{semantic.round.md}",
+        "$type": "dimension"
+      },
+      "border-width": {
+        "$value": "{semantic.border.width.default}",
+        "$type": "dimension"
+      },
+      "accent-width": {
+        "$value": "{semantic.border.width.indicator}",
+        "$type": "dimension",
+        "$description": "Leading-edge stripe that marks the tone."
+      },
+      "shadow": {
+        "$value": "{semantic.elevation.lg}",
+        "$type": "shadow"
+      },
+      "z-index": {
+        "$value": "{semantic.z-index.toast}",
+        "$type": "number"
+      },
+      "typography": {
+        "$value": "{semantic.typography.body-sm}",
+        "$type": "typography"
+      },
+      "title-font-weight": {
+        "$value": "{semantic.font.weight.semibold}",
+        "$type": "fontWeight"
+      },
+      "color": {
+        "$type": "color",
+        "background": {
+          "$value": "{semantic.color.background.raised}"
+        },
+        "border": {
+          "$value": "{semantic.color.border.default}"
+        },
+        "text": {
+          "$value": "{semantic.color.text.primary}"
+        },
+        "description": {
+          "$value": "{semantic.color.text.secondary}"
+        },
+        "info": {
+          "accent": {
+            "$value": "{semantic.color.feedback.info}"
+          }
+        },
+        "success": {
+          "accent": {
+            "$value": "{semantic.color.feedback.success}"
+          }
+        },
+        "warning": {
+          "accent": {
+            "$value": "{semantic.color.feedback.warning}"
+          }
+        },
+        "danger": {
+          "accent": {
+            "$value": "{semantic.color.feedback.danger}"
+          }
+        }
+      }
+    },
     "modal": {
       "$description": "Layout - Modal / dialog.",
       "width": {
         "sm": {
-          "$value": "{semantic.layout.breakpoint.sm}",
+          "$value": "{semantic.layout.container.sm}",
           "$type": "dimension"
         },
         "md": {
-          "$value": "{semantic.layout.breakpoint.md}",
+          "$value": "{semantic.layout.container.md}",
           "$type": "dimension"
         }
       },
@@ -1766,8 +2014,26 @@
         "$value": "{semantic.z-index.modal}",
         "$type": "number"
       },
+      "viewport-inset": {
+        "$value": "{semantic.spacing.lg}",
+        "$type": "dimension",
+        "$description": "Minimum space kept between the dialog and the viewport edges."
+      },
+      "enter-scale": {
+        "$value": "{semantic.motion.scale.enter}",
+        "$type": "number",
+        "$description": "Scale the dialog grows from while it fades in."
+      },
+      "actions-gap": {
+        "$value": "{semantic.gap.sm}",
+        "$type": "dimension"
+      },
       "title": {
         "$value": "{semantic.typography.h3}",
+        "$type": "typography"
+      },
+      "body": {
+        "$value": "{semantic.typography.body-md}",
         "$type": "typography"
       },
       "color": {
@@ -1799,6 +2065,11 @@
         "$value": "{semantic.gap.sm}",
         "$type": "dimension"
       },
+      "content-gap": {
+        "$value": "{semantic.gap.xs}",
+        "$type": "dimension",
+        "$description": "Space between the title and description."
+      },
       "radius": {
         "$value": "{semantic.round.md}",
         "$type": "dimension"
@@ -1806,6 +2077,17 @@
       "typography": {
         "$value": "{semantic.typography.body-sm}",
         "$type": "typography"
+      },
+      "title-font-weight": {
+        "$value": "{semantic.font.weight.semibold}",
+        "$type": "fontWeight"
+      },
+      "banner": {
+        "padding-inline": {
+          "$value": "{semantic.layout.content.padding-inline}",
+          "$type": "dimension",
+          "$description": "Matches page content so banner text lines up with it."
+        }
       },
       "color": {
         "$type": "color",

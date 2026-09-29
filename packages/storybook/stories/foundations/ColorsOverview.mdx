@@ -1,0 +1,55 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ThemeNotes } from './ColorDocs';
+
+<Meta title="Foundations/Colors/Overview" />
+
+# Colors
+
+CascadeDS colors are design tokens in three layers. Every value on these pages
+is read from the token source files in `packages/tokens` when Storybook builds,
+so the docs change when the tokens do.
+
+| Layer         | Path                  | Who uses it                     | Changes with theme?                      |
+| ------------- | --------------------- | ------------------------------- | ---------------------------------------- |
+| **Primitive** | `primitive.color.*`   | Semantic tokens only            | No: one fixed palette                    |
+| **Semantic**  | `semantic.color.*`    | Components, product code        | Yes: light and dark values               |
+| **Component** | `component.<name>.*`  | That one component              | Through the semantic tokens it aliases   |
+
+## Which layer to use
+
+- **Building or styling a component:** use a `component.*` token when the
+  component has one, otherwise a `semantic.color.*` token chosen by purpose
+  (`text.secondary` for metadata, `border.input` for a form-control edge,
+  `feedback.danger` for a destructive fill). Import them from
+  `@cascade-ds/styles`: `semantic.color.text.primary` is
+  `var(--semantic-color-text-primary)`.
+- **Never** use a `primitive.*` token, a hex value or `rgb()` in component
+  code. Primitives do not change with the theme, so a component that uses one
+  breaks in dark mode.
+- **Pick by role, not by look.** Two tokens can share a value today
+  (`background.brand` and `background.selected`) and differ tomorrow.
+
+## Adding or changing a color
+
+1. Edit the token JSON in `packages/tokens`, never the generated
+   `packages/styles` output.
+2. A new semantic color needs a value in **both**
+   `themes/color-light.tokens.json` and `themes/color-dark.tokens.json`, added
+   in the same change. The Semantic page flags a token missing from either file.
+3. If no primitive fits, add one to `foundation/primitive.tokens.json`. That
+   file is append-only: never rename, move or delete a primitive.
+4. Regenerate with `pnpm build:style` and check the Contrast page in both
+   themes.
+
+## Theme notes
+
+Each theme file describes the intent behind its values:
+
+<ThemeNotes />
+
+## Pages
+
+- **Semantic:** every `semantic.color.*` token by purpose, with light and dark
+  values and the primitive each one aliases.
+- **Primitives:** the raw palette semantic tokens are built from.
+- **Contrast:** WCAG contrast ratios for text on backgrounds, per theme.

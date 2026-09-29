@@ -31,7 +31,10 @@
     "theme-names.js",
     "theme-names.d.ts",
     "motion.js",
-    "motion.d.ts"
+    "motion.d.ts",
+    "media.js",
+    "media.d.ts",
+    "media.css"
   ],
   "exports": {
     ".": {
@@ -46,6 +49,11 @@
       "types": "./motion.d.ts",
       "import": "./motion.js"
     },
-    "./index.css": "./index.css"
+    "./media": {
+      "types": "./media.d.ts",
+      "import": "./media.js"
+    },
+    "./index.css": "./index.css",
+    "./media.css": "./media.css"
   }
 }

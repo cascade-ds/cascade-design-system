@@ -518,59 +518,56 @@
           "$value": "{primitive.size.6}",
           "$description": "Minimum pointer target for small interactive elements (WCAG 2.5.8)."
         }
+      },
+      "floating": {
+        "$description": "Widths for floating surfaces anchored to a trigger or the viewport.",
+        "narrow": {
+          "$value": "{primitive.size.60}",
+          "$description": "240px - short hints (tooltips)."
+        },
+        "wide": {
+          "$value": "{primitive.size.90}",
+          "$description": "360px - notifications (toasts)."
+        }
       }
     },
     "layout": {
       "$description": "Page/container layout tokens: breakpoints, max-widths, grid and dashboard shell dimensions.",
       "breakpoint": {
         "$type": "dimension",
+        "$description": "Viewport widths where page layouts change. Use in media queries via @cascade-ds/styles/media (var() is invalid inside @media); size elements with layout.container instead.",
         "sm": {
-          "$value": {
-            "value": 640,
-            "unit": "px"
-          }
+          "$value": "{primitive.breakpoint.sm}"
         },
         "md": {
-          "$value": {
-            "value": 768,
-            "unit": "px"
-          }
+          "$value": "{primitive.breakpoint.md}"
         },
         "lg": {
-          "$value": {
-            "value": 1024,
-            "unit": "px"
-          }
+          "$value": "{primitive.breakpoint.lg}"
         },
         "xl": {
-          "$value": {
-            "value": 1280,
-            "unit": "px"
-          }
+          "$value": "{primitive.breakpoint.xl}"
         },
         "2xl": {
-          "$value": {
-            "value": 1536,
-            "unit": "px"
-          }
+          "$value": "{primitive.breakpoint.2xl}"
         }
       },
       "container": {
         "$type": "dimension",
         "sm": {
-          "$value": "{semantic.layout.breakpoint.sm}"
+          "$value": "{primitive.size.160}"
         },
         "md": {
-          "$value": "{semantic.layout.breakpoint.md}"
+          "$value": "{primitive.size.192}"
         },
         "lg": {
-          "$value": "{semantic.layout.breakpoint.lg}"
+          "$value": "{primitive.size.256}"
         },
         "xl": {
-          "$value": "{semantic.layout.breakpoint.xl}"
+          "$value": "{primitive.size.320}"
         },
         "2xl": {
-          "$value": "{semantic.layout.breakpoint.2xl}"
+          "$value": "{primitive.size.384}"
         }
       },
       "gutter": {
@@ -603,7 +600,7 @@
       "content": {
         "$type": "dimension",
         "max-width": {
-          "$value": "{semantic.layout.breakpoint.2xl}",
+          "$value": "{primitive.size.384}",
           "$description": "Main content never grows past 1536px on ultra-wide screens."
         },
         "padding-inline": {
@@ -728,6 +725,14 @@
         "normal": {
           "$value": "{primitive.duration.50}",
           "$description": "Per word or list item."
+        }
+      },
+      "scale": {
+        "$type": "number",
+        "$description": "Starting scale for surfaces that grow into place.",
+        "enter": {
+          "$value": "{primitive.scale.96}",
+          "$description": "Dialogs and other centered surfaces."
         }
       }
     }

@@ -54,6 +54,16 @@ const preview: Preview = {
     ),
   ],
   parameters: {
+    options: {
+      storySort: {
+        order: [
+          'Foundations',
+          ['Colors', ['Overview', 'Semantic', 'Component', 'Primitives', 'Contrast']],
+          'CascadeDS',
+          '*',
+        ],
+      },
+    },
     darkMode: {
       dark: themes.dark,
       light: themes.light,

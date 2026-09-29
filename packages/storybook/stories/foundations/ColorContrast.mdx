@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { RolePairContrast, TextOnBackgroundContrast } from './ColorDocs';
+
+<Meta title="Foundations/Colors/Contrast" />
+
+# Contrast
+
+WCAG 2 contrast ratios, computed from the resolved token values of each
+theme. Levels: **AAA** ≥ 7, **AA** ≥ 4.5 (body text), **AA large** ≥ 3 (large
+text and non-text UI such as icons and borders), **fail** below 3. Cells under
+4.5 have a dashed outline.
+
+Not every pair is meant to be used: a failing cell is a combination to avoid,
+not a bug. Check the token descriptions on the Semantic page for intended
+pairings (`text.tertiary` is AA only on `background.default` and `canvas`, for
+example). `text.disabled` is exempt from contrast requirements, and
+`text.inverse` belongs on `background.inverse`.
+
+## Text on backgrounds
+
+Every `semantic.color.text.*` token on every opaque
+`semantic.color.background.*` token. Translucent backgrounds (`overlay`,
+`hover`, …) are left out because their effective color depends on what is
+underneath.
+
+<TextOnBackgroundContrast />
+
+## Paired roles
+
+Pairs the token names define: `text.on-<role>` on the `<role>` fill, and
+`<role>-text` on its `<role>-subtle` and `<role>-muted` backgrounds.
+
+<RolePairContrast />

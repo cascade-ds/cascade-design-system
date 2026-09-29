@@ -109,6 +109,143 @@ Why this matters: primitives are the implementation detail, semantics are the co
 
 The only place primitive tokens should ever be referenced is inside semantic token definitions themselves (the `{spacing.4}` / `{color.gray.50}` references), which is the generator's job, not a component's.
 
+## Responsive layout
+
+Breakpoints are for **consuming apps** to control page layout. Components
+don't use them. They come from `semantic.layout.breakpoint.*` and are
+published as media conditions, mobile-first (`min-width`) and in `em`, so
+they scale with the browser's font-size setting. See
+[ADR-007](../../adr/ADR-007-responsive-breakpoints.md) for why:
+
+| Name  | Condition            | px   |
+| ----- | -------------------- | ---- |
+| `sm`  | `(min-width: 40em)`  | 640  |
+| `md`  | `(min-width: 48em)`  | 768  |
+| `lg`  | `(min-width: 64em)`  | 1024 |
+| `xl`  | `(min-width: 80em)`  | 1280 |
+| `2xl` | `(min-width: 96em)`  | 1536 |
+
+The `--semantic-layout-breakpoint-*` custom properties exist too, but
+`var()` is invalid inside `@media`, so never use them there. Use one of the
+two outputs below instead.
+
+### JS and CSS-in-JS: `@cascade-ds/styles/media`
+
+Each entry is a bare condition, so the same string works everywhere:
+
+```ts
+import { media } from '@cascade-ds/styles/media';
+
+css`@media ${media.md} { … }`;        // styled-components, emotion, Linaria, vanilla-extract
+css`@media not ${media.md} { … }`;    // below md
+<source media={media.lg} srcSet="…" />;
+```
+
+### Rendering a different subtree: `useBreakpoint`
+
+Layout belongs in CSS. When you need to pick between components or change
+behaviour at a breakpoint (a drawer instead of a sidebar, no heavy chart on
+small screens), use `useBreakpoint` from `@cascade-ds/components`, which
+reads the same conditions:
+
+```tsx
+const isDesktop = useBreakpoint('md'); // true | false | undefined
+```
+
+It returns `undefined` on the server and during hydration (or the
+`serverValue` you pass), because the server can't know the viewport. An SSR
+app paints the server HTML before hydration, so whatever the user sees
+immediately must come from CSS. See the `useBreakpoint` section of the
+components `API.md`.
+
+### Plain CSS: `@cascade-ds/styles/media.css`
+
+`@custom-media` definitions for [PostCSS](https://postcss.org/). Browsers
+don't support `@custom-media` natively yet, so this needs
+[`postcss-custom-media`](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media)
+(included in `postcss-preset-env`):
+
+```css
+@media (--cascade-md) {
+  .page { grid-template-columns: 16rem 1fr; }
+}
+```
+
+The definitions must be visible to every file that uses them. Load them
+globally with
+[`@csstools/postcss-global-data`](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-global-data),
+listed **before** `postcss-custom-media`:
+
+```js
+// postcss.config.js
+import globalData from '@csstools/postcss-global-data';
+import customMedia from 'postcss-custom-media';
+
+export default {
+  plugins: [
+    globalData({ files: ['node_modules/@cascade-ds/styles/media.css'] }),
+    customMedia(),
+  ],
+};
+```
+
+### Rearranging a section
+
+Pass a class with your query to the layout component. Component styles sit
+in a cascade layer, so your class always wins, whatever order your CSS loads
+in (see "Overriding styles" in the root README):
+
+```tsx
+import { css } from '@linaria/core'; // or styled-components, emotion, …
+import { media } from '@cascade-ds/styles/media';
+
+const heroCss = css`
+  @media ${media.md} {
+    flex-direction: row;
+  }
+`;
+
+const asideCss = css`
+  grid-column: 1 / -1;
+
+  @media ${media.lg} {
+    grid-column: span 4;
+  }
+`;
+
+<Stack gap="lg" className={heroCss}>…</Stack>
+
+<Grid columns={12}>
+  <aside className={asideCss}>…</aside>
+  …
+</Grid>
+```
+
+When a section should respond to **its own width** rather than the viewport
+(the same section on a full page and in a sidebar), use a container query.
+The same conditions work there:
+
+```ts
+const sectionCss = css`
+  container-type: inline-size;
+`;
+
+const sectionBodyCss = css`
+  @container ${media.md} {
+    flex-direction: row;
+  }
+`;
+```
+
+A container can't query itself, so put `container-type` on a wrapper and
+the query on its children. Inside `@container`, `em` is the container's font
+size rather than the browser default; the two match unless the section
+changes its font size.
+
+To size an element, use `semantic.layout.container.*` (e.g. a max-width),
+not the breakpoints. They have the same values today, but they're separate
+tokens, so changing a breakpoint never resizes a Container or a Dialog.
+
 ## Regenerating
 
 These files are produced by the `generator` package. To rebuild after a token source change:

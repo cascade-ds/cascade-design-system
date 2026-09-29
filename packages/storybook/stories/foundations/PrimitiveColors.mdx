@@ -1,0 +1,16 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { PrimitivePalette } from './ColorDocs';
+
+<Meta title="Foundations/Colors/Primitives" />
+
+# Primitive palette
+
+`primitive.color.*` is the raw palette, from
+`packages/tokens/foundation/primitive.tokens.json`. Semantic tokens alias these
+values; the same primitive is used in both themes.
+
+**Do not use primitives in components.** Component code uses `semantic.*` or
+`component.*` tokens only. If no semantic token fits, add one (with light and
+dark values) rather than reaching for a primitive.
+
+<PrimitivePalette />

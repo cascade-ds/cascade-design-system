@@ -1,0 +1,24 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ComponentColorGroups } from './ColorDocs';
+
+<Meta title="Foundations/Colors/Component" />
+
+# Component colors
+
+`component.*` tokens are the colors one component uses, e.g.
+`component.button.color.primary.background.default`. They live in
+`packages/tokens/foundation/component.tokens.json` and alias a
+**semantic** color, never a primitive or a literal, so every component
+follows light and dark through the semantic layer. That's why they have no
+theme files of their own.
+
+Use them only inside the component they belong to. Product code and other
+components use [semantic colors](?path=/docs/foundations-colors-semantic--docs)
+instead.
+
+Each row shows the same things as the semantic page: a swatch that follows
+the toolbar theme, the token path and CSS variable, and the light and dark
+values with the semantic token it aliases (`→`) and the primitive the chain
+ends at.
+
+<ComponentColorGroups />
