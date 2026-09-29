@@ -293,7 +293,8 @@ pnpm test:storybook       # Storybook tests, incl. accessibility (addon-a11y)
 pnpm test:visual          # screenshot every story in light + dark, compare to baselines
 pnpm test:visual:update   # accept intended visual changes (rewrite baselines)
 
-pnpm storybook            # run Storybook
+pnpm storybook            # run Storybook on the workspace source (port 6010)
+pnpm storybook:package    # run Storybook on the published packages in node_modules (port 6011)
 
 pnpm changeset            # record a version bump for your change (interactive)
 pnpm version-packages     # consume changesets and bump package versions
@@ -349,8 +350,11 @@ flowchart LR
 ```
 
 Every pull request (`.github/workflows/ci.yml`) runs steps 1–2 plus type
-checks, lint, unit and fitness tests, the Storybook accessibility tests, and a
-check that the PR includes a changeset (`pnpm changeset` to add one).
+checks, lint, unit and fitness tests, and a check that the PR includes a
+changeset (`pnpm changeset` to add one). CI does not rerun on `main`:
+branch protection blocks direct pushes and requires these checks to pass
+before a PR merges. The Storybook browser tests (`pnpm test:storybook`,
+Playwright/Chromium) run locally, not in CI.
 
 Storybook imports the design system as `@cds/components` and `@cds/styles`.
 By default (`CDS_SOURCE=workspace`) those resolve to the source in this repo, so

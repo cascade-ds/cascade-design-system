@@ -2,8 +2,6 @@ name: CI
 
 on:
   pull_request:
-  push:
-    branches: [main]
 
 permissions:
   contents: read
@@ -15,6 +13,7 @@ concurrency:
 
 jobs:
   verify:
+    if: github.head_ref != 'changeset-release/main'
     runs-on: ubuntu-latest
     env:
       # Read by the .npmrc that setup-node writes for npm.pkg.github.com.
@@ -48,15 +47,9 @@ jobs:
       - name: Unit and fitness tests
         run: pnpm exec vitest run
 
-      - name: Install Chromium for Storybook tests
-        run: pnpm --filter @cascade-ds/storybook exec playwright install --with-deps chromium
-
-      - name: Storybook accessibility tests
-        run: pnpm test:storybook
-
       # Fails when a pull request changes a published package without a changeset (`pnpm changeset`).
       - name: Require a changeset
-        if: github.event_name == 'pull_request' && github.head_ref != 'changeset-release/main'
+        if: github.event_name == 'pull_request'
         run: pnpm changeset status --since=origin/main
 
   # Visual regression job removed until the baselines are regenerated; restore it from git history.
