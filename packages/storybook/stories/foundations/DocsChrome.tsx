@@ -5,7 +5,7 @@
  */
 import type { ReactNode } from 'react';
 import { css, cx } from '@linaria/core';
-import { semantic } from '@cascade-ds/styles';
+import { semantic } from '@cds/styles';
 import { useDarkMode } from '@vueless/storybook-dark-mode';
 
 type ThemeName = 'light' | 'dark';

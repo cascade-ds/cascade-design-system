@@ -9,7 +9,7 @@
  * the same variable to that theme's value side by side.
  */
 import { css, cx } from '@linaria/core';
-import { semantic } from '@cascade-ds/styles';
+import { semantic } from '@cds/styles';
 import { useDarkMode } from '@vueless/storybook-dark-mode';
 import {
   THEMES,

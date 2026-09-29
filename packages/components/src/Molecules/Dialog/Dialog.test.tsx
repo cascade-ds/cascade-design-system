@@ -4,7 +4,7 @@ import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ThemeProvider } from '../../ThemeProvider';
-import { buttonVariant } from '#/Atoms/Button/Button.style';
+import { buttonVariant } from '../../Atoms/Button/Button.style';
 import Dialog from './Dialog';
 import { dialogPopupVariant, dialogTitleCss } from './Dialog.style';
 

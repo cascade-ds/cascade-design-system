@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Cross2Icon, MagnifyingGlassIcon } from '@radix-ui/react-icons';
-import { Label } from '#/Atoms/Label';
-import { Stack } from '#/Layout/Stack';
-import Input from '#/Atoms/Input/Input';
+import { Label, Stack, Input } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Input',

@@ -5,7 +5,7 @@
  */
 import { useEffect, useState, type CSSProperties } from 'react';
 import { css, cx } from '@linaria/core';
-import { semantic } from '@cascade-ds/styles';
+import { semantic } from '@cds/styles';
 import {
   DocsScope,
   codeCss,

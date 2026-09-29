@@ -1,6 +1,6 @@
-import Box from '#/Layout/Box';
-import type { BoxProps } from '#/Layout/Box/Box';
-import VisuallyHidden from '#/Atoms/VisuallyHidden/VisuallyHidden';
+import Box from '../../Layout/Box';
+import type { BoxProps } from '../../Layout/Box/Box';
+import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 import { linkExternalIconCss, linkVariant } from './Link.style';
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';
@@ -38,8 +38,7 @@ function Link<TElement extends React.ElementType = 'a'>(props: LinkProps<TElemen
       {children}
       {external && (
         <>
-          {/* A real space: it names the link "Docs (opens…)" and spaces the arrow. */}
-          {' '}
+          {/* A real space: it names the link "Docs (opens…)" and spaces the arrow. */}{' '}
           <VisuallyHidden>(opens in a new tab)</VisuallyHidden>
           <svg className={linkExternalIconCss} viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path

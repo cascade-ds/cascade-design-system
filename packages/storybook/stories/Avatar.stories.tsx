@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PersonIcon } from '@radix-ui/react-icons';
-import Text from '#/Atoms/Text/Text';
-import Stack from '#/Layout/Stack/Stack';
-import Avatar from '#/Atoms/Avatar/Avatar';
+import { Text, Stack, Avatar } from '@cds/components';
 
 // A small inline SVG portrait, so the story doesn't depend on the network.
 const portrait =

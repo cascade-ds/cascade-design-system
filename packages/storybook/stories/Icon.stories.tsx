@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Stack from '#/Layout/Stack/Stack';
+import { Stack, Icon } from '@cds/components';
 import { StarFilledIcon } from '@radix-ui/react-icons';
-import Icon from '#/Atoms/Icon/Icon';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Icon',

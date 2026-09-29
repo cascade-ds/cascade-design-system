@@ -11,3 +11,6 @@ coverage/
 AGENTS.md
 packages/storybook/visual/test-results/
 packages/storybook/visual/report/
+
+# Registry auth belongs in the user-level ~/.npmrc; the root .npmrc has no secrets.
+packages/*/.npmrc

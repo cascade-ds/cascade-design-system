@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/vitest';
 import { act, cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { ThemeProvider } from '#/ThemeProvider';
+import { ThemeProvider } from '../../ThemeProvider';
 import Toast from './Toast';
 import type { ToastOptions } from './Toast';
 import { toastVariant } from './Toast.style';

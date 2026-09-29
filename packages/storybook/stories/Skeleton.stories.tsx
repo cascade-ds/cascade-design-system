@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Stack from '#/Layout/Stack/Stack';
-import Skeleton from '#/Atoms/Skeleton/Skeleton';
+import { Stack, Skeleton } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Skeleton',

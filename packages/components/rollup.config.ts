@@ -2,7 +2,6 @@ import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import alias from '@rollup/plugin-alias';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
@@ -63,10 +62,6 @@ const config: RollupOptions = {
     sourcemap: true,
   },
   plugins: [
-    // Mirrors the "#/*" path alias declared in tsconfig.json.
-    alias({
-      entries: [{ find: '#', replacement: path.resolve(__dirname, 'src') }],
-    }),
     resolve({ extensions: ['.ts', '.tsx', '.js', '.jsx'] }),
     commonjs(),
     wyw({

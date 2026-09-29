@@ -352,5 +352,8 @@ Every pull request (`.github/workflows/ci.yml`) runs steps 1–2 plus type
 checks, lint, unit and fitness tests, the Storybook accessibility tests, and a
 check that the PR includes a changeset (`pnpm changeset` to add one).
 
-Storybook needs no version bump after a release: it imports component source
-through the `#/` alias, so it always shows exactly the code being released.
+Storybook imports the design system as `@cds/components` and `@cds/styles`.
+By default (`CDS_SOURCE=workspace`) those resolve to the source in this repo, so
+it shows unreleased code and needs no version bump. With `CDS_SOURCE=package`
+they resolve to the published packages in `node_modules`, so it shows exactly
+what shipped.

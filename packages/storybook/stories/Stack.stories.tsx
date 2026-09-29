@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Stack from '#/Layout/Stack/Stack';
-import { layoutElements } from '#/types/LayoutConstants';
+import { Stack } from '@cds/components';
+import { layoutElements } from './foundations/layoutElements';
 
 const items = ['One', 'Two', 'Three'].map((label) => <span key={label}>{label}</span>);
 

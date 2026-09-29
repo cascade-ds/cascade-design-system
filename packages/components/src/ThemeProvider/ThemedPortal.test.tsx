@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it } from 'vitest';
-import { useTheme } from '#/hooks';
+import { useTheme } from '../hooks';
 import { ThemeProvider } from './ThemeProvider';
 import { ThemedPortal } from './ThemedPortal';
 

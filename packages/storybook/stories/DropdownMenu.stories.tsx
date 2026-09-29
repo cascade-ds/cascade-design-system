@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Text from '#/Atoms/Text/Text';
-import Stack from '#/Layout/Stack/Stack';
-import { ThemeProvider } from '#/ThemeProvider';
-import DropdownMenu from '#/Molecules/DropdownMenu/DropdownMenu';
-import type { DropdownMenuContentProps } from '#/Molecules/DropdownMenu/DropdownMenu';
+import {
+  Text,
+  Stack,
+  ThemeProvider,
+  DropdownMenu,
+  type DropdownMenuContentProps,
+} from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/DropdownMenu',

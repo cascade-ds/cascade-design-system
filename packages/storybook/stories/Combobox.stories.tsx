@@ -1,8 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Stack from '#/Layout/Stack/Stack';
-import FormField from '#/Molecules/FormField/FormField';
-import Combobox from '#/Molecules/Combobox/Combobox';
-import type { ComboboxInputProps, ComboboxProps } from '#/Molecules/Combobox/Combobox';
+import {
+  Stack,
+  FormField,
+  Combobox,
+  type ComboboxInputProps,
+  type ComboboxProps,
+} from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Combobox',

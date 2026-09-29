@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Pagination from '#/Molecules/Pagination/Pagination';
-import type { PaginationProps } from '#/Molecules/Pagination/Pagination';
+import { Pagination, type PaginationProps } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Pagination',

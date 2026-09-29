@@ -72,12 +72,15 @@ export const buttonVariant = cva(baseButtonCss, {
   `VariantProps<typeof xVariant>`, intersected with the relevant native
   HTML attributes.
 - Apply the computed class name with `cx` from `linaria`.
-- Compose on top of `Box` (`#/Box`) rather than raw DOM elements where
+- Compose on top of `Box` (`../../Layout/Box`) rather than raw DOM elements where
   possible, so layout/polymorphism stays consistent across components.
+- Import with relative paths only. Path aliases such as `#/` are blocked by
+  ESLint: `tsc` copies them into the published `.d.ts` files, where consumers'
+  TypeScript can't resolve them.
 
 ```tsx
 // Button.tsx
-import Box from '#/Box';
+import Box from '../../Layout/Box';
 import { buttonVariant } from './Button.style';
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';
@@ -114,8 +117,10 @@ export default Button;
 ### `<ComponentName>.stories.tsx`
 
 - Lives in `packages/storybook/stories/`, named after the component. Import
-  the component through the `#/` alias (`import Button from '#/Atoms/Button/Button'`),
-  which points at `packages/components/src`.
+  the component from the public API (`import { Button } from '@cds/components'`),
+  never from a source path, so the story also works against the published package.
+  `@cds/components` resolves to `packages/components/src` locally (see `CDS_SOURCE`
+  in the README).
 - One `Meta` per component, `title: 'CascadeDS/Components/<Category>/<ComponentName>'`
   (e.g. `Atom`, `Molecule`), `tags: ['autodocs']`.
 - Set `args` to sensible defaults so the `Default` story renders

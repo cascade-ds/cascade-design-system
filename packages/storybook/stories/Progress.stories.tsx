@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Stack from '#/Layout/Stack/Stack';
-import Progress from '#/Atoms/Progress/Progress';
+import { Stack, Progress } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Progress',

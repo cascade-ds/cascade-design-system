@@ -5,10 +5,7 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "composite": true,
-    "types": ["node", "react", "react-dom"],
-    "paths": {
-      "#/*": ["./src/*"]
-    }
+    "types": ["node", "react", "react-dom"]
   },
   "include": ["src"],
   "exclude": ["dist", "node_modules", "**/*.test.tsx"]

@@ -1,7 +1,7 @@
 import { Children, Fragment, isValidElement } from 'react';
-import Box from '#/Layout/Box';
-import Icon from '#/Atoms/Icon/Icon';
-import type { IconProps } from '#/Atoms/Icon/Icon';
+import Box from '../../Layout/Box';
+import Icon from '../Icon/Icon';
+import type { IconProps } from '../Icon/Icon';
 import {
   switchControlCss,
   switchIconCss,

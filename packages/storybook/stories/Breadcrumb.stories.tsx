@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Breadcrumb from '#/Molecules/Breadcrumb/Breadcrumb';
+import { Breadcrumb } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Breadcrumb',

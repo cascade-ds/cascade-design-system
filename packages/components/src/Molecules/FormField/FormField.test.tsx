@@ -4,10 +4,10 @@ import { renderToString } from 'react-dom/server';
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { labelVariant } from '#/Atoms/Label/Label.style';
-import { textareaVariant } from '#/Atoms/Textarea/Textarea.style';
+import { labelVariant } from '../../Atoms/Label/Label.style';
+import { textareaVariant } from '../../Atoms/Textarea/Textarea.style';
 import FormField, { useFormFieldControl } from './FormField';
-import { inputVariant } from '#/Atoms/Input/Input.style';
+import { inputVariant } from '../../Atoms/Input/Input.style';
 import { formFieldErrorCss, formFieldHintCss } from './FormField.style';
 
 afterEach(() => {

@@ -1,0 +1,6 @@
+{
+  // Type checks the stories against the published packages in node_modules
+  // (CDS_SOURCE=package) instead of the workspace source.
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "paths": {} }
+}

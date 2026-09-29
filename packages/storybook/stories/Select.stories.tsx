@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Text from '#/Atoms/Text/Text';
-import Stack from '#/Layout/Stack/Stack';
-import { ThemeProvider } from '#/ThemeProvider';
-import Select from '#/Molecules/Select/Select';
-import type { SelectProps, SelectTriggerProps } from '#/Molecules/Select/Select';
+import {
+  Text,
+  Stack,
+  ThemeProvider,
+  Select,
+  type SelectProps,
+  type SelectTriggerProps,
+} from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Select',

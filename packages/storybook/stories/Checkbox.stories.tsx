@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Checkbox from '#/Atoms/Checkbox/Checkbox';
+import { Checkbox } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Checkbox',

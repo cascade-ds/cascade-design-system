@@ -1,10 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Button from '#/Atoms/Button/Button';
-import Text from '#/Atoms/Text/Text';
-import Stack from '#/Layout/Stack/Stack';
-import { ThemeProvider } from '#/ThemeProvider';
-import Toast from '#/Molecules/Toast/Toast';
-import type { ToastOptions } from '#/Molecules/Toast/Toast';
+import { Button, Text, Stack, ThemeProvider, Toast, type ToastOptions } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Toast',
