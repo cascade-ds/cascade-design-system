@@ -1,5 +1,13 @@
 # @cascade-ds/components
 
+## 0.2.3
+
+### Patch Changes
+
+- 3e7c5fb: Version both packages together: a release of one always releases the other at the same version.
+- Updated dependencies [3e7c5fb]
+  - @cascade-ds/styles@0.2.3
+
 ## 0.2.2
 
 ### Patch Changes
