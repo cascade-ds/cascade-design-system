@@ -4,6 +4,7 @@ import Text from '@/Atoms/Text/Text';
 import Stack from '@/Layout/Stack/Stack';
 import { ThemeProvider } from '@/ThemeProvider';
 import Dialog from '@/Molecules/Dialog/Dialog';
+import Toast from '@/Molecules/Toast/Toast';
 import type { DialogContentProps } from '@/Molecules/Dialog/Dialog';
 
 const meta = {
@@ -34,8 +35,21 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-function DeleteDialog(props: { defaultOpen?: boolean; size?: DialogContentProps['size'] }) {
+type DeleteDialogProps = { defaultOpen?: boolean; size?: DialogContentProps['size'] };
+
+/** Mounts its own Toast, so the toast takes the theme of the subtree it is in. */
+function DeleteDialog(props: DeleteDialogProps) {
+  return (
+    <Toast>
+      <DeleteDialogWindow {...props} />
+    </Toast>
+  );
+}
+
+function DeleteDialogWindow(props: DeleteDialogProps) {
   const { defaultOpen, size } = props;
+  const TOAST_TTL = 1000 * 2; // 2s
+  const toast = Toast.useToast();
 
   return (
     <Dialog defaultOpen={defaultOpen}>
@@ -47,7 +61,19 @@ function DeleteDialog(props: { defaultOpen?: boolean; size?: DialogContentProps[
         </Dialog.Description>
         <Dialog.Actions>
           <Dialog.Close variant="ghost">Cancel</Dialog.Close>
-          <Dialog.Close variant="danger">Delete</Dialog.Close>
+          <Dialog.Close
+            variant="danger"
+            onClick={() =>
+              toast.add({
+                title: 'Project deleted',
+                description: 'The project and its history were removed.',
+                tone: 'success',
+                timeout: TOAST_TTL,
+              })
+            }
+          >
+            Delete
+          </Dialog.Close>
         </Dialog.Actions>
       </Dialog.Content>
     </Dialog>
@@ -58,13 +84,9 @@ export const Default: Story = {
   render: () => <DeleteDialog />,
 };
 
-export const Open: Story = {
-  render: () => <DeleteDialog defaultOpen />,
-};
-
 /** `size` sets the window's maximum width. */
 export const Medium: Story = {
-  render: () => <DeleteDialog size="md" defaultOpen />,
+  render: () => <DeleteDialog size="md" />,
 };
 
 /**
@@ -79,7 +101,7 @@ export const InsideDarkSection: Story = {
         <ThemeProvider initialMode="dark">
           <Stack gap="md" align="start">
             <Text>Dark section</Text>
-            <DeleteDialog defaultOpen />
+            <DeleteDialog />
           </Stack>
         </ThemeProvider>
       </Stack>
