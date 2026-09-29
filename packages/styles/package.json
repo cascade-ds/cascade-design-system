@@ -9,18 +9,22 @@
     "theme",
     "dark-mode"
   ],
-  "license": "MIT",
+  "license": "UNLICENSED",
   "author": "Sergio Segaty",
-  "homepage": "https://github.com/SergioSegaty/cascade-design-system#readme",
+  "homepage": "https://github.com/cascade-ds/cascade-design-system#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SergioSegaty/cascade-design-system.git",
+    "url": "git+https://github.com/cascade-ds/cascade-design-system.git",
     "directory": "packages/styles"
   },
   "bugs": {
-    "url": "https://github.com/SergioSegaty/cascade-design-system/issues"
+    "url": "https://github.com/cascade-ds/cascade-design-system/issues"
   },
   "private": false,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
   "type": "module",
   "main": "./theme.js",
   "types": "./theme.d.ts",

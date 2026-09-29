@@ -1,0 +1,53 @@
+# Builds Storybook and hosts it on GitHub Pages. Runs only when triggered by
+# hand (Actions → Storybook → Run workflow) until the first release. To deploy
+# on every merge instead, add:
+#   push:
+#     branches: [main]
+name: Storybook
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write # deploy to Pages
+  id-token: write # prove the deployment comes from this workflow
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Generate theme
+        run: pnpm build:style
+
+      - name: Build Storybook
+        run: pnpm --filter @cascade-ds/storybook build
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: packages/storybook/storybook-static
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,79 @@
+# Pipeline steps 1–2 (generate theme, build the DS package) plus every check,
+# on each pull request and on main. See "CI/CD pipeline" in the README.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # `changeset status --since` compares against origin/main.
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Generate theme and build the DS package
+        run: pnpm build
+
+      - name: Type check
+        run: pnpm -r --if-present typecheck
+
+      - name: Lint
+        run: pnpm -r --if-present lint
+
+      - name: Unit and fitness tests
+        run: pnpm exec vitest run
+
+      - name: Install Chromium for Storybook tests
+        run: pnpm --filter @cascade-ds/storybook exec playwright install --with-deps chromium
+
+      - name: Storybook accessibility tests
+        run: pnpm test:storybook
+
+      # A pull request that changes a published package must say how it
+      # affects the next version. Add one with `pnpm changeset`.
+      - name: Require a changeset
+        if: github.event_name == 'pull_request' && github.head_ref != 'changeset-release/main'
+        run: pnpm changeset status --since=origin/main
+
+  # Screenshots every story in light and dark inside the Playwright Linux
+  # image, the same one used locally, so baselines match pixel for pixel.
+  visual:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Visual regression tests
+        run: node packages/storybook/visual/docker.ts
+
+      - name: Upload the report with diffs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-report
+          path: packages/storybook/visual/report
+          retention-days: 14

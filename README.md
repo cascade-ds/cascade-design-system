@@ -101,6 +101,22 @@ up in the browser become compile errors:
 
 ## Using the components
 
+### Install
+
+The packages are private, published to GitHub Packages. In the consuming
+project, point the scope at that registry and authenticate with a personal
+access token that has `read:packages` (and access to this repo):
+
+```ini
+# .npmrc
+@cascade-ds:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+Then `pnpm add @cascade-ds/components`. In CI, provide the token as the
+`GITHUB_TOKEN` environment variable (a PAT, since the built-in workflow token
+can't read packages from another repo).
+
 ### Setup
 
 Import the stylesheet **once**, in your app's entry file, before any
@@ -322,14 +338,14 @@ same run. That's why it's called Cascade DS.
      a **Version Packages** PR that bumps `@cascade-ds/components` and
      `@cascade-ds/styles` and writes their changelogs.
    - Merging that PR runs `pnpm release`: steps 1–2 run again and the new
-     versions are published to npm, so the published artifact is always
+     versions are published to GitHub Packages (private), so the published artifact is always
      built in the run that publishes it.
 
 ```mermaid
 flowchart LR
     A[Generate theme\nTerrazzo] --> B[Build DS package\ncomponents + styles]
     B --> C[Version Packages PR\nChangesets]
-    C -->|merge| D[Publish to npm]
+    C -->|merge| D[Publish to GitHub Packages]
 ```
 
 Every pull request (`.github/workflows/ci.yml`) runs steps 1–2 plus type
