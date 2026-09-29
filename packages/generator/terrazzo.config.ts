@@ -4,18 +4,6 @@ import css from '@terrazzo/plugin-css';
 import type { Permutation } from '@terrazzo/plugin-css';
 import cssInJs from '@terrazzo/plugin-css-in-js';
 
-// Single source of truth for theme names: both the CSS permutations below and
-// the `Theme` union type are derived from this array, plus a `theme-names.js`/
-// `.d.ts` pair emitted into @cascade-ds/styles for other packages to consume.
-//
-// Each theme is emitted twice: once driven by the OS preference on `:root`
-// (the default), and once under `[data-theme]` so a ThemeProvider with an
-// explicit mode overrides the OS for its subtree.
-//
-// Everything sits in the `cascade.tokens` cascade layer, and the first block
-// declares the layer order, so any unlayered consumer CSS overrides the
-// system regardless of load order. `@cascade-ds/components` puts its styles
-// in `cascade.components` (see its rollup.config.ts).
 const LAYER_ORDER = '@layer cascade.tokens, cascade.components;';
 
 function inTokensLayer(css: string) {
@@ -52,16 +40,12 @@ const emitThemeNames: Plugin = {
   },
 };
 
-// JS animation libraries (Motion) can't read `var(--…)`, they need numbers.
-// Emits the resolved `semantic.motion.*` tokens as `motion.js`/`.d.ts`:
-// durations in seconds (Motion's unit), easings as cubic-bezier arrays,
-// unitless factors (scale) as plain numbers.
+// Motion can't read `var(--…)`, so emit the resolved `semantic.motion.*` tokens as numbers: durations in seconds, easings as cubic-bezier arrays.
 const MOTION_PREFIX = 'semantic.motion.';
 
 type MotionTree = { [key: string]: MotionTree | number | readonly number[] };
 
 function toMotionValue(value: unknown): number | readonly number[] {
-  // Unitless factors (e.g. scale) are already numbers.
   if (typeof value === 'number') {
     return value;
   }
@@ -108,12 +92,7 @@ const emitMotion: Plugin = {
   },
 };
 
-// `var()` is invalid inside `@media`, so consumers can't use the breakpoint
-// custom properties for page responsiveness. Emits the resolved
-// `semantic.layout.breakpoint.*` tokens as mobile-first media conditions:
-// `media.js`/`.d.ts` for JS and CSS-in-JS, `media.css` as `@custom-media`
-// for PostCSS. Conditions use `em` so they scale with the browser's font size
-// (1em = 16px in media queries, regardless of the root font size).
+// `var()` is invalid inside `@media`, so emit the resolved `semantic.layout.breakpoint.*` tokens as mobile-first media conditions.
 const BREAKPOINT_PREFIX = 'semantic.layout.breakpoint.';
 const CUSTOM_MEDIA_PREFIX = '--cascade-';
 

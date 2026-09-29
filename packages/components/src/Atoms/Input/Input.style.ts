@@ -2,7 +2,6 @@ import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
-// Same look as Textarea: a single-line text field on the `input` tokens.
 const baseInputCss = css`
   display: block;
   box-sizing: border-box;
@@ -77,8 +76,6 @@ const baseInputCss = css`
   }
 `;
 
-// Each size publishes its inline padding as a variable, so the slots in
-// Input's wrapper line up with the text.
 const sizes = {
   sm: css`
     --cascade-input-padding-inline: ${component.input.size.sm.paddingInline};
@@ -149,8 +146,6 @@ export const inputWrapperVariant = cva(baseWrapperCss, {
   },
 });
 
-// A slot sits over the input's inline padding. Its content is sized as an
-// icon. Clicks on an icon fall through to the input; buttons stay clickable.
 const baseSlotCss = css`
   position: absolute;
   inset-block: 0;

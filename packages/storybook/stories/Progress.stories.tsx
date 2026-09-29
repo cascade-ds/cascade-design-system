@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Stack from '#/Layout/Stack/Stack';
-import Progress from '#/Atoms/Progress/Progress';
+import { Stack, Progress } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Progress',
@@ -60,7 +59,6 @@ export const Tones: Story = {
   ),
 };
 
-/** With `value={null}` a bar sweeps across the track. */
 export const Indeterminate: Story = {
   args: {
     value: null,
@@ -69,7 +67,6 @@ export const Indeterminate: Story = {
   },
 };
 
-/** Format the value and give screen readers words for it. */
 export const CustomValue: Story = {
   args: {
     value: 3,
@@ -80,7 +77,6 @@ export const CustomValue: Story = {
   },
 };
 
-/** Without a visible label, name the bar with `aria-label`. */
 export const WithoutLabel: Story = {
   args: {
     label: undefined,

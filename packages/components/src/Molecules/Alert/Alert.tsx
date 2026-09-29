@@ -7,9 +7,9 @@ import {
 } from '@radix-ui/react-icons';
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';
-import Box from '#/Layout/Box';
-import Button from '#/Atoms/Button/Button';
-import Icon from '#/Atoms/Icon/Icon';
+import Box from '../../Layout/Box';
+import Button from '../../Atoms/Button/Button';
+import Icon from '../../Atoms/Icon/Icon';
 import {
   alertBodyCss,
   alertDescriptionCss,
@@ -45,8 +45,6 @@ const toneIcons: Record<AlertTone, React.ReactNode> = {
   danger: <CrossCircledIcon />,
 };
 
-// Warnings and errors interrupt (`alert`, assertive); info and success are
-// announced politely (`status`).
 const toneRoles: Record<AlertTone, 'alert' | 'status'> = {
   info: 'status',
   success: 'status',

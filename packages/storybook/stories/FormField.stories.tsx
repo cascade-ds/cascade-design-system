@@ -2,10 +2,7 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, userEvent, within } from 'storybook/test';
-import Button from '#/Atoms/Button/Button';
-import Select from '#/Molecules/Select/Select';
-import Stack from '#/Layout/Stack/Stack';
-import FormField from '#/Molecules/FormField/FormField';
+import { Button, Select, Stack, FormField } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/FormField',
@@ -56,7 +53,6 @@ export const Required: Story = {
   },
 };
 
-/** The error adds to the hint: both describe the input. */
 export const Invalid: Story = {
   args: {
     invalid: true,
@@ -99,7 +95,6 @@ const countries = [
   { value: 'pt', label: 'Portugal' },
 ];
 
-/** Cascade's `Select` picks up the field's label, hint, error and state. */
 export const WithSelect: Story = {
   render: (args) => (
     <FormField {...args}>
@@ -120,11 +115,6 @@ export const WithSelect: Story = {
   ),
 };
 
-/**
- * Any control joins the field through `FormField.Control` (or the
- * `useFormFieldControl` hook): spread the props it passes onto the element
- * that takes input. Handy inside a form library's render prop.
- */
 export const WithCustomControl: Story = {
   render: (args) => (
     <FormField {...args}>
@@ -212,13 +202,6 @@ function SignUpForm() {
   );
 }
 
-/**
- * FormField holds no form state: React Hook Form owns the values, the
- * validation rules, when they run, and the messages. FormField only shows
- * what it is given. `register` spreads straight onto `FormField.Input`;
- * `Controller` wraps controls without a native input, like `Select`.
- * Any other library, or plain `useState`, slots in the same way.
- */
 export const WithReactHookForm: Story = {
   render: () => <SignUpForm />,
   play: async ({ canvasElement }) => {

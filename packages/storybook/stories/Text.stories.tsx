@@ -2,20 +2,14 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { css } from '@linaria/core';
 import { motion as m } from 'motion/react';
-import { motion } from '@cascade-ds/styles/motion';
-import Button from '#/Atoms/Button/Button';
-import VisuallyHidden from '#/Atoms/VisuallyHidden/VisuallyHidden';
-import Stack from '#/Layout/Stack/Stack';
-import Text from '#/Atoms/Text/Text';
-import type { TextProps } from '#/Atoms/Text/Text';
+import { motion } from '@cds/styles/motion';
+import { Button, VisuallyHidden, Stack, Text, type TextProps } from '@cds/components';
 
-// Transforms need a box, and `pre` keeps a lone space from collapsing.
 const segmentCss = css`
   display: inline-block;
   white-space: pre;
 `;
 
-// Clips each word so it rises into view from below its own line.
 const wordMaskCss = css`
   display: inline-block;
   overflow: hidden;
@@ -27,9 +21,6 @@ type TextRevealProps = Pick<TextProps, 'variant' | 'size' | 'weight' | 'color'> 
   by: 'character' | 'word';
 };
 
-// Splits the text into Motion spans that animate in one after another. The
-// spans are hidden from assistive tech, which reads the full sentence once
-// from VisuallyHidden instead of letter by letter.
 function TextReveal({ text, by, ...textProps }: TextRevealProps) {
   const [playCount, setPlayCount] = useState(0);
   const segments = by === 'character' ? Array.from(text) : text.split(' ');
@@ -181,10 +172,6 @@ export const AsStrong: Story = {
   },
 };
 
-/**
- * Letters rise in one by one with a slight overshoot, `motion.stagger.fast`
- * apart. Needs `MotionProvider` from `@cascade-ds/components/motion`.
- */
 export const MotionCharacterReveal: Story = {
   args: {
     size: 'lg',
@@ -195,10 +182,6 @@ export const MotionCharacterReveal: Story = {
   ),
 };
 
-/**
- * Words slide up from behind their own line, `motion.stagger.normal` apart.
- * Needs `MotionProvider` from `@cascade-ds/components/motion`.
- */
 export const MotionWordReveal: Story = {
   args: {
     size: 'lg',

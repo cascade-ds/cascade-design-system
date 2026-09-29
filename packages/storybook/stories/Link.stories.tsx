@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Text from '#/Atoms/Text/Text';
-import Link from '#/Atoms/Link/Link';
+import { Text, Link } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Link',
@@ -36,7 +35,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-/** Typography comes from the surrounding text, so the link matches it. */
 export const InText: Story = {
   render: (args) => (
     <Text>

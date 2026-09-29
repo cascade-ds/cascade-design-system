@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Cross2Icon, MagnifyingGlassIcon } from '@radix-ui/react-icons';
-import { Label } from '#/Atoms/Label';
-import { Stack } from '#/Layout/Stack';
-import Input from '#/Atoms/Input/Input';
+import { Label, Stack, Input } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Input',
@@ -73,7 +71,6 @@ export const WithLabel: Story = {
   ),
 };
 
-/** A search field: an icon in the start slot. Clicking the icon focuses the input. */
 export const WithStartIcon: Story = {
   args: {
     type: 'search',
@@ -108,7 +105,6 @@ function ClearableInput(props: React.ComponentProps<typeof Input>) {
   );
 }
 
-/** A button in the end slot stays clickable. */
 export const WithClearButton: Story = {
   args: {
     type: 'search',

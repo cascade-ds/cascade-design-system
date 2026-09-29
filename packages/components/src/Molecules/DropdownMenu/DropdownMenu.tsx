@@ -1,9 +1,9 @@
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { cx } from '@linaria/core';
 import type { VariantProps } from 'class-variance-authority';
-import Button from '#/Atoms/Button/Button';
-import type { ButtonProps } from '#/Atoms/Button/Button';
-import { useThemedPortalProps } from '#/ThemeProvider/ThemedPortal';
+import Button from '../../Atoms/Button/Button';
+import type { ButtonProps } from '../../Atoms/Button/Button';
+import { useThemedPortalProps } from '../../ThemeProvider/ThemedPortal';
 import {
   dropdownMenuGroupLabelCss,
   dropdownMenuItemVariant,

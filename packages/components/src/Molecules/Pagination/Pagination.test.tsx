@@ -19,7 +19,6 @@ function expectClasses(element: HTMLElement, className: string) {
     });
 }
 
-/** The visible page numbers and ellipses, in order. */
 function visibleItems() {
   return within(screen.getByRole('list'))
     .getAllByRole('listitem', { hidden: true })
@@ -127,7 +126,6 @@ describe('Pagination', () => {
     expect(screen.getByRole('link', { name: 'Page 2' })).toHaveAttribute('href', '?page=2');
     expect(screen.getByRole('link', { name: 'Next page' })).toHaveAttribute('href', '?page=2');
 
-    // A disabled link has no href, so it is neither a link nor focusable.
     const previous = screen.getByLabelText('Previous page');
     expect(previous).not.toHaveAttribute('href');
     expect(previous).toHaveAttribute('aria-disabled', 'true');

@@ -23,7 +23,6 @@ export const breadcrumbItemCss = css`
   min-width: 0;
 `;
 
-// Every item but the first starts with a chevron pointing from its parent.
 export const breadcrumbSeparatorCss = css`
   flex-shrink: 0;
   width: ${component.breadcrumb.separatorSize};

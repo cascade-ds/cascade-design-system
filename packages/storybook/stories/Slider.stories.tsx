@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Slider from '#/Atoms/Slider/Slider';
+import { Slider } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Slider',
@@ -35,7 +35,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-/** An array value gives one thumb per entry; name each with `thumbLabels`. */
 export const Range: Story = {
   render: (args) => (
     <Slider
@@ -58,7 +57,6 @@ export const Steps: Story = {
   },
 };
 
-/** Without a visible label, name the slider with `aria-label`. */
 export const WithoutLabel: Story = {
   args: {
     label: undefined,

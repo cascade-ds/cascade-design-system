@@ -1,5 +1,5 @@
 import { useEffect, useImperativeHandle, useRef } from 'react';
-import Box from '#/Layout/Box';
+import Box from '../../Layout/Box';
 import { checkboxControlCss, checkboxVariant } from './Checkbox.style';
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';
@@ -18,8 +18,7 @@ function Checkbox(props: CheckboxProps) {
 
   useImperativeHandle(ref, () => inputRef.current as HTMLInputElement, []);
 
-  // `indeterminate` is a DOM property with no HTML attribute, and the browser
-  // clears it on click, so re-sync it after every render.
+  // `indeterminate` has no HTML attribute and the browser clears it on click, so re-sync it after every render.
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.indeterminate = indeterminate;

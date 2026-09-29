@@ -4,7 +4,7 @@ import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ThemeProvider } from '../../ThemeProvider';
-import { buttonVariant } from '#/Atoms/Button/Button.style';
+import { buttonVariant } from '../../Atoms/Button/Button.style';
 import Dialog from './Dialog';
 import { dialogPopupVariant, dialogTitleCss } from './Dialog.style';
 
@@ -56,7 +56,6 @@ describe('Dialog', () => {
 
     const dialog = screen.getByRole('dialog', { name: 'Delete project?' });
     expect(dialog).toHaveAccessibleDescription('This removes the project for everyone.');
-    // Modal: the page behind is hidden from assistive technology.
     expect(screen.queryByRole('button', { name: 'Delete project' })).not.toBeInTheDocument();
     expectClasses(dialog, dialogPopupVariant());
     expect(screen.getByText('Delete project?')).toHaveClass(dialogTitleCss);

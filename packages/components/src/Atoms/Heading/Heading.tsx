@@ -1,4 +1,4 @@
-import Box from '#/Layout/Box';
+import Box from '../../Layout/Box';
 import { headingVariant } from './Heading.style';
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';
@@ -12,7 +12,6 @@ export type HeadingProps = VariantProps<typeof headingVariant> & {
   level?: HeadingLevel;
 } & Omit<React.ComponentPropsWithRef<'h2'>, 'color'>;
 
-// Visual size used when `size` is omitted.
 const defaultSizeByLevel: Record<HeadingLevel, HeadingSize> = {
   1: 'h1',
   2: 'h2',

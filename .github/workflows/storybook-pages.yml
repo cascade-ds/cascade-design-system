@@ -1,8 +1,4 @@
-# Builds Storybook and hosts it on GitHub Pages. Runs only when triggered by
-# hand (Actions → Storybook → Run workflow) until the first release. To deploy
-# on every merge instead, add:
-#   push:
-#     branches: [main]
+# Manual-only (workflow_dispatch) until the first release.
 name: Storybook
 
 on:
@@ -10,8 +6,9 @@ on:
 
 permissions:
   contents: read
-  pages: write # deploy to Pages
-  id-token: write # prove the deployment comes from this workflow
+  packages: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
@@ -20,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Read by the .npmrc that setup-node writes for npm.pkg.github.com.
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v5
 
@@ -29,14 +29,15 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
+          registry-url: https://npm.pkg.github.com
+          scope: '@cascade-ds'
 
       - run: pnpm install --frozen-lockfile
 
-      - name: Generate theme
-        run: pnpm build:style
-
       - name: Build Storybook
         run: pnpm --filter @cascade-ds/storybook build
+        env:
+          CDS_SOURCE: package
 
       - uses: actions/upload-pages-artifact@v4
         with:

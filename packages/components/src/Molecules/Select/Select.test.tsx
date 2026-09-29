@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { ThemeProvider } from '#/ThemeProvider';
-import FormField from '#/Molecules/FormField/FormField';
+import { ThemeProvider } from '../../ThemeProvider';
+import FormField from '../FormField/FormField';
 import Select from './Select';
 import type { SelectProps } from './Select';
 import {
@@ -186,7 +186,6 @@ describe('Select', () => {
     await screen.findByRole('listbox');
     expect(screen.getByRole('group', { name: 'Fruit' })).toBeInTheDocument();
     expect(screen.getByRole('group', { name: 'Vegetables' })).toBeInTheDocument();
-    // Base UI renders it presentational: the groups already split the list.
     expect(document.querySelector(`.${selectSeparatorCss}`)).toHaveAttribute(
       'role',
       'presentation',

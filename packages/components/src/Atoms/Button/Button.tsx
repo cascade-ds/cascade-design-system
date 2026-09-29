@@ -1,6 +1,6 @@
-import Box from '#/Layout/Box';
-import Icon from '#/Atoms/Icon/Icon';
-import type { IconProps } from '#/Atoms/Icon/Icon';
+import Box from '../../Layout/Box';
+import Icon from '../Icon/Icon';
+import type { IconProps } from '../Icon/Icon';
 import { buttonIconCss, buttonVariant } from './Button.style';
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';

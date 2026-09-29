@@ -1,6 +1,3 @@
-// Runs the visual tests inside the Playwright Linux image (see Dockerfile).
-// Usage: `node visual/docker.ts [playwright test args…]`, e.g.
-// `--update-snapshots`. Run directly with Node's built-in TypeScript support.
 import { spawnSync } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -25,23 +22,12 @@ if (spawnSync('docker', ['info'], { stdio: 'ignore' }).status !== 0) {
   process.exit(1);
 }
 
-run('docker', [
-  'build',
-  '--file',
-  join(visualDir, 'Dockerfile'),
-  '--tag',
-  IMAGE,
-  repoRoot,
-]);
+run('docker', ['build', '--file', join(visualDir, 'Dockerfile'), '--tag', IMAGE, repoRoot]);
 
-// Screenshots go in, the report and diffs come back out.
 const mounts = ['__screenshots__', 'report', 'test-results'].flatMap((folder) => {
   const source = join(visualDir, folder);
   mkdirSync(source, { recursive: true });
-  return [
-    '--mount',
-    `type=bind,source=${source},target=/repo/packages/storybook/visual/${folder}`,
-  ];
+  return ['--mount', `type=bind,source=${source},target=/repo/packages/storybook/visual/${folder}`];
 });
 
 run('docker', ['run', '--rm', '--ipc=host', ...mounts, IMAGE, ...process.argv.slice(2)]);

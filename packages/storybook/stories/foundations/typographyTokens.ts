@@ -1,13 +1,3 @@
-/**
- * Reads the typography tokens straight from the DTCG source files in
- * `packages/tokens` and resolves their aliases, so the typography docs can
- * never drift from the tokens. Typography isn't themed, so primitive +
- * semantic + component is the whole tree.
- *
- * "Used by" comes from two places: component tokens that alias a
- * `semantic.typography.*` style, and component style files that read one
- * directly (e.g. `semantic.typography.bodyMd.fontSize` in `Text.style.ts`).
- */
 import primitiveJson from '../../../tokens/foundation/primitive.tokens.json';
 import semanticJson from '../../../tokens/foundation/semantic.tokens.json';
 import componentJson from '../../../tokens/foundation/component.tokens.json';
@@ -65,7 +55,6 @@ const tokens = new Map([
   ...flatten(componentRoot),
 ]);
 
-/** A resolved token value plus every alias followed to reach it. */
 export type Resolved<T> = { value: T | undefined; chain: string[] };
 
 function resolveValue<T>(value: unknown): Resolved<T> {
@@ -89,13 +78,10 @@ export function cssVarFor(path: string): string {
   return `--${path.split('.').join('-')}`;
 }
 
-// --- Formatting --------------------------------------------------------------
-
 function isDimension(value: unknown): value is Dimension {
   return typeof value === 'object' && value !== null && 'value' in value && 'unit' in value;
 }
 
-/** `1.125rem · 18px`, `0.5px`. Rems are shown in px at the browser default 16px. */
 export function formatDimension(value: unknown): string {
   if (!isDimension(value)) return String(value ?? '—');
   const own = `${value.value}${value.unit}`;
@@ -106,14 +92,10 @@ export function formatFamily(value: unknown): string {
   return Array.isArray(value) ? value.join(', ') : String(value ?? '—');
 }
 
-/** The first family in a stack, e.g. `Inter`. */
 export function primaryFamily(value: unknown): string | undefined {
   return Array.isArray(value) ? (value[0] as string | undefined) : undefined;
 }
 
-// --- Usage -------------------------------------------------------------------
-
-/** kebab (`body-md`) to the camelCase key `theme.js` uses (`bodyMd`). */
 function camelCase(name: string): string {
   return name.replace(/-([a-z0-9])/g, (_, char: string) => char.toUpperCase());
 }
@@ -147,8 +129,6 @@ function usageFor(name: string): string[] {
   return [...users].sort((a, b) => a.localeCompare(b));
 }
 
-// --- Composite styles --------------------------------------------------------
-
 type CompositeValue = {
   fontFamily?: string;
   fontSize?: string;
@@ -158,24 +138,17 @@ type CompositeValue = {
 };
 
 export type TypographyProperty = {
-  /** Property name as the CSS variable suffix, e.g. `font-size`. */
   cssName: string;
-  /** The token the style points at, e.g. `semantic.font.size.3xl`. */
   alias?: string;
-  /** The primitive the chain ends at, e.g. `primitive.font.size.600`. */
   primitive?: string;
   display: string;
   raw: unknown;
 };
 
 export type TypographyStyle = {
-  /** Dotted path, e.g. `semantic.typography.h1`. */
   path: string;
-  /** Key under `semantic.typography`, e.g. `h1`, `body-md`. */
   name: string;
-  /** Key as `theme.js` exposes it, e.g. `bodyMd`. */
   jsName: string;
-  /** CSS variable prefix; each property adds `-font-size`, `-font-weight`, … */
   cssVarPrefix: string;
   description?: string;
   properties: {
@@ -216,7 +189,6 @@ function toProperty(key: keyof CompositeValue, value: string | undefined): Typog
 const typographyGroup = (semanticRoot.semantic as TokenNode | undefined)?.typography as
   TokenNode | undefined;
 
-/** Every `semantic.typography.*` style, in the order the token file defines them. */
 export const typographyStyles: TypographyStyle[] = childEntries(typographyGroup ?? {}).map(
   ([name, node]) => {
     const path = `semantic.typography.${name}`;
@@ -241,8 +213,6 @@ export const typographyStyles: TypographyStyle[] = childEntries(typographyGroup 
 
 export const typographyDescription = typographyGroup?.$description;
 
-// --- Scales (semantic.font.*) ------------------------------------------------
-
 export type ScaleStep = {
   path: string;
   name: string;
@@ -254,7 +224,6 @@ export type ScaleStep = {
 };
 
 export type Scale = {
-  /** `family`, `size`, `weight`, `line-height`, `letter-spacing`. */
   name: string;
   path: string;
   description?: string;
@@ -269,7 +238,6 @@ function formatStep(scale: string, raw: unknown): string {
   return String(raw ?? '—');
 }
 
-/** Every `semantic.font.*` scale (family, size, weight, line-height, letter-spacing). */
 export const fontScales: Scale[] = childEntries(fontGroup ?? {}).map(([scale, node]) => ({
   name: scale,
   path: `semantic.font.${scale}`,

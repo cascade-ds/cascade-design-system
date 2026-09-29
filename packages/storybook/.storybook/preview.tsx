@@ -4,24 +4,18 @@ import type { Preview } from '@storybook/react-vite';
 import { themes } from 'storybook/theming';
 import { useDarkMode } from '@vueless/storybook-dark-mode';
 import { MotionGlobalConfig } from 'motion/react';
-import type { Theme } from '@cascade-ds/styles/theme-names';
-import { MotionProvider } from '#/MotionProvider';
-import { ThemeProvider } from '#/ThemeProvider';
-import { useTheme } from '#/hooks';
-import '@cascade-ds/styles/index.css';
-// Inter, in the weights `semantic.font.weight.*` uses (regular, medium,
-// semibold, bold). The design system doesn't bundle fonts; apps load them.
+import type { Theme } from '@cds/styles/theme-names';
+import { MotionProvider } from '@cds/components/motion';
+import { ThemeProvider, useTheme } from '@cds/components';
+import '@cds/styles/index.css';
+import '@cds/components/styles.css';
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/600.css';
 import '@fontsource/inter/700.css';
-// JetBrains Mono for `semantic.typography.code`, which is regular weight only.
 import '@fontsource/jetbrains-mono/400.css';
 
-// Automated browsers (the Playwright visual and a11y tests) set
-// `navigator.webdriver`. Jump Motion animations straight to their end state
-// there, so screenshots never catch a frame mid-animation. People browsing
-// Storybook still see the animations.
+// Automated browsers set `navigator.webdriver`: jump Motion animations to their end state so screenshots never catch a mid-animation frame.
 if (navigator.webdriver) {
   MotionGlobalConfig.skipAnimations = true;
 }

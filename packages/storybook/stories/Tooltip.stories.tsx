@@ -1,17 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Text from '#/Atoms/Text/Text';
-import Stack from '#/Layout/Stack/Stack';
-import { ThemeProvider } from '#/ThemeProvider';
-import Tooltip from '#/Molecules/Tooltip/Tooltip';
-import type { TooltipContentProps } from '#/Molecules/Tooltip/Tooltip';
+import { Text, Stack, ThemeProvider, Tooltip, type TooltipContentProps } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Tooltip',
   component: Tooltip,
   tags: ['autodocs'],
   parameters: {
-    // Tooltips are portaled to <body>, outside the story root: check the
-    // whole page so open tooltips are covered by the a11y tests too.
     a11y: { context: 'body' },
   },
   argTypes: {
@@ -60,7 +54,6 @@ export const Open: Story = {
   render: () => <SaveTooltip defaultOpen />,
 };
 
-/** `side` picks where the tooltip goes; it flips when there isn't room. */
 export const Sides: Story = {
   render: () => (
     <Stack direction="row" gap="md" wrap>
@@ -72,10 +65,6 @@ export const Sides: Story = {
   ),
 };
 
-/**
- * Inside a `Tooltip.Provider`, once one tooltip is open, moving to a
- * neighbour opens its tooltip instantly.
- */
 export const Group: Story = {
   render: () => (
     <Tooltip.Provider>
@@ -91,11 +80,6 @@ export const Group: Story = {
   ),
 };
 
-/**
- * The tooltip is portaled to `<body>`, yet keeps the theme of the subtree it
- * was opened from: a dark section on a light page opens a dark tooltip
- * (ADR-006).
- */
 export const InsideDarkSection: Story = {
   render: () => (
     <ThemeProvider initialMode="light">

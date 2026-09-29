@@ -2,7 +2,6 @@ import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
-// Label and value share the first row; the control spans the second.
 const baseSliderCss = css`
   display: grid;
   grid-template-columns: 1fr auto;
@@ -19,8 +18,7 @@ const baseSliderCss = css`
 
 export const sliderVariant = cva(baseSliderCss);
 
-// Label and value keep full contrast when disabled: the dimmed track and
-// thumb show the state, and the text must stay readable.
+// Label and value keep full contrast when disabled: the dimmed track and thumb show the state.
 export const sliderLabelCss = css`
   grid-column: 1;
   color: ${component.slider.color.label};
@@ -32,7 +30,6 @@ export const sliderValueCss = css`
   font-variant-numeric: tabular-nums;
 `;
 
-// The control is taller than the track so it is an easy pointer target.
 export const sliderControlCss = css`
   grid-column: 1 / -1;
   display: flex;

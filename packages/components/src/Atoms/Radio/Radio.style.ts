@@ -27,9 +27,6 @@ export const radioVariant = cva(baseRadioCss, {
   },
 });
 
-// The native input is restyled (appearance: none) to become the visible circle,
-// so it keeps focus, hover, checked and disabled states natively. The dot is a
-// sibling shown via `:checked`.
 export const radioControlCss = css`
   position: relative;
   display: inline-flex;

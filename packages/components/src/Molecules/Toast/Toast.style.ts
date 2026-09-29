@@ -2,8 +2,7 @@ import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
-// Fixed to the bottom-right corner. Base UI lists the newest toast first, so
-// the column is reversed to stack new toasts at the bottom, nearest the edge.
+// Base UI lists the newest toast first, so the column is reversed to stack new toasts nearest the edge.
 export const toastViewportCss = css`
   position: fixed;
   inset-block-end: ${component.toast.offset};
@@ -17,8 +16,6 @@ export const toastViewportCss = css`
   outline: none;
 `;
 
-// Swipe-to-dismiss moves the toast by Base UI's --toast-swipe-movement-*
-// variables; `data-starting-style` / `data-ending-style` animate it in and out.
 const baseToastCss = css`
   box-sizing: border-box;
   display: flex;
@@ -82,8 +79,6 @@ const baseToastCss = css`
   }
 `;
 
-// Status tones mark the leading edge and the icon; the surface stays neutral
-// so stacked toasts read as one group.
 const tones = {
   neutral: '',
   info: css`

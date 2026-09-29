@@ -7,7 +7,6 @@ export const tabsCss = css`
   gap: ${semantic.stack.md};
 `;
 
-// The bottom border is the track the indicator slides along.
 export const tabsListCss = css`
   position: relative;
   display: flex;
@@ -58,8 +57,6 @@ export const tabsTabCss = css`
   }
 `;
 
-// Base UI measures the active tab and exposes its box as CSS variables; the
-// indicator sits over the list's bottom border under that tab.
 export const tabsIndicatorCss = css`
   position: absolute;
   bottom: calc(-1 * ${semantic.border.width.default});

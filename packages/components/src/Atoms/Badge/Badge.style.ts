@@ -2,7 +2,6 @@ import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
-// Shared by Badge and Tag: `component.badge` covers "badge / status pill / tag".
 export const badgeBaseCss = css`
   display: inline-flex;
   align-items: center;

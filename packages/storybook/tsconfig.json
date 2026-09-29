@@ -6,7 +6,10 @@
     "noEmit": true,
     "types": ["react", "react-dom", "vite/client", "node"],
     "paths": {
-      "#/*": ["../components/src/*"]
+      "@cds/components": ["../components/src/index.ts"],
+      "@cds/components/motion": ["../components/src/motion.ts"],
+      "@cds/styles": ["../styles/theme.d.ts"],
+      "@cds/styles/*": ["../styles/*"]
     }
   },
   "include": [

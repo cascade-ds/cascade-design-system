@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Breadcrumb from '#/Molecules/Breadcrumb/Breadcrumb';
+import { Breadcrumb } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Breadcrumb',
@@ -24,7 +24,6 @@ export const Default: Story = {
   ),
 };
 
-/** A long trail wraps onto the next line. */
 export const Long: Story = {
   render: (args) => (
     <div style={{ maxWidth: '20rem' }}>

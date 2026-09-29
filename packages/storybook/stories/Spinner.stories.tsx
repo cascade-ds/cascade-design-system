@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Spinner from '#/Atoms/Spinner/Spinner';
+import { Spinner } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Spinner',

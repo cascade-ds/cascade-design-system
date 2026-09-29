@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Stack } from '#/Layout/Stack';
-import Alert from '#/Molecules/Alert/Alert';
+import { Stack, Alert } from '@cds/components';
 
 const tones = ['info', 'success', 'warning', 'danger'] as const;
 
@@ -77,7 +76,6 @@ export const Dismissible: Story = {
   },
 };
 
-/** Full-width notice for the top of a page or section. */
 export const Banner: Story = {
   args: {
     layout: 'banner',

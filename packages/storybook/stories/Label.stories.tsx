@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Stack } from '#/Layout/Stack';
-import Label from '#/Atoms/Label/Label';
+import { Stack, Label } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Label',
@@ -53,11 +52,6 @@ export const Required: Story = {
   },
 };
 
-/**
- * A disabled label always sits with its disabled control. The dimmed text is
- * exempt from contrast requirements because the control is inactive, so the
- * story renders the control too.
- */
 export const Disabled: Story = {
   args: {
     disabled: true,

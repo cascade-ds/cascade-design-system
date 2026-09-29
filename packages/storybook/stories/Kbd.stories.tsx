@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Text from '#/Atoms/Text/Text';
-import Kbd from '#/Atoms/Kbd/Kbd';
+import { Text, Kbd } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Kbd',
@@ -17,7 +16,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-/** One `Kbd` per key. Symbol keys get a `title` naming them. */
 export const Shortcut: Story = {
   render: () => (
     <Text>

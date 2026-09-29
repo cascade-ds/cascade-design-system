@@ -1,16 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
-import FormField from '#/Molecules/FormField/FormField';
-import Autocomplete from '#/Molecules/Autocomplete/Autocomplete';
-import type { AutocompleteProps } from '#/Molecules/Autocomplete/Autocomplete';
+import { FormField, Autocomplete, type AutocompleteProps } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Autocomplete',
   component: Autocomplete,
   tags: ['autodocs'],
   parameters: {
-    // Popups are portaled to <body>, outside the story root: check the whole
-    // page so open popups are covered by the a11y tests too.
     a11y: { context: 'body' },
   },
   argTypes: {
@@ -37,7 +33,6 @@ const tags = ['accessibility', 'bug', 'design', 'docs', 'feature', 'fix', 'perfo
 
 type StoryArgs = Pick<AutocompleteProps<string>, 'disabled' | 'mode'>;
 
-/** The story controls, without the generic props Storybook types as `unknown`. */
 function controls(args: StoryArgs): StoryArgs {
   return { disabled: args.disabled, mode: args.mode };
 }
@@ -76,7 +71,6 @@ export const Open: Story = {
   render: (args) => <TagAutocomplete {...controls(args)} defaultValue="f" defaultOpen />,
 };
 
-/** A search icon in the start slot. */
 export const Search: Story = {
   render: (args) => <TagAutocomplete {...controls(args)} search />,
 };

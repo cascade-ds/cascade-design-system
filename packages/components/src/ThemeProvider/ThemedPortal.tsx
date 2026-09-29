@@ -4,8 +4,7 @@ import { css } from '@linaria/core';
 import { semantic } from '@cascade-ds/styles';
 import { ThemeContext } from '../context/Theme/themeContext';
 
-// Only the text color: overlays paint their own surfaces, and a background
-// here would show as a strip at the end of <body>.
+// Only the text color: overlays paint their own surfaces, and a background here would show as a strip at the end of <body>.
 const themedPortalCss = css`
   color: ${semantic.color.text.primary};
 `;
@@ -35,7 +34,6 @@ function subscribeToNothing() {
   return () => {};
 }
 
-// Portals need a DOM, so render nothing on the server and during hydration.
 function useIsClient() {
   return useSyncExternalStore(
     subscribeToNothing,

@@ -1,6 +1,6 @@
-import Box from '#/Layout/Box';
-import type { BoxProps } from '#/Layout/Box/Box';
-import type { LayoutElement } from '#/types/LayoutConstants';
+import Box from '../Box';
+import type { BoxProps } from '../Box/Box';
+import type { LayoutElement } from '../../types/LayoutConstants';
 import { stackVariant } from './Stack.style';
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';

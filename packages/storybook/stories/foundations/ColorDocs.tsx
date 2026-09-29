@@ -1,15 +1,5 @@
-/**
- * Blocks for the Foundations/Colors MDX pages. All data comes from
- * `colorTokens.ts` (read from the token JSON); all docs chrome is styled with
- * semantic tokens so it follows the toolbar theme like any component.
- *
- * Swatches paint with the token's CSS variable. The main swatch follows the
- * toolbar theme; the per-theme chips sit inside an element with an explicit
- * `data-theme`, so the generated `[data-theme='light'|'dark']` rules resolve
- * the same variable to that theme's value side by side.
- */
 import { css, cx } from '@linaria/core';
-import { semantic } from '@cascade-ds/styles';
+import { semantic } from '@cds/styles';
 import { useDarkMode } from '@vueless/storybook-dark-mode';
 import {
   THEMES,
@@ -44,7 +34,6 @@ import {
 
 const c = semantic.color;
 
-// Checkerboard under translucent swatches, drawn with two neutral surfaces.
 const checkerCss = css`
   background-color: ${c.background.default};
   background-image:
@@ -83,7 +72,6 @@ function isTextLike(token: ColorToken): boolean {
   return /\.(text|icon)\./.test(token.path) || /(^|-)text$/.test(token.name);
 }
 
-/** A swatch painted with `var(--token)`: a block for fills, "Aa" for text/icon colors. */
 function Swatch({ token, size }: { token: ColorToken; size: number }) {
   const cssVar = `var(${token.cssVar})`;
   const textLike = isTextLike(token);
@@ -158,7 +146,6 @@ const chipCss = css`
   flex-shrink: 0;
 `;
 
-/** One theme's value: a chip scoped to that theme, the alias and the resolved value. */
 function ThemeValue({ token, theme }: { token: ColorToken; theme: ThemeName }) {
   const value = token.values[theme];
   if (!value) {
@@ -254,7 +241,6 @@ function currentThemeNote(theme: ThemeName) {
   );
 }
 
-/** Every purpose group under `semantic.color`, in the order the theme files define them. */
 export function SemanticColorGroups() {
   const theme: ThemeName = useDarkMode() ? 'dark' : 'light';
   return (
@@ -294,11 +280,6 @@ const componentIndexLinkCss = css`
   color: ${c.text.link};
 `;
 
-/**
- * `component.*` color tokens, one card per component. Flags any token that
- * doesn't alias a semantic color directly, since components must go through
- * the semantic layer to get dark mode.
- */
 export function ComponentColorGroups() {
   const theme: ThemeName = useDarkMode() ? 'dark' : 'light';
   const offLayer = componentColors.flatMap(allTokens).filter((token) => !aliasesSemantic(token));
@@ -363,7 +344,6 @@ const themeNotesCss = css`
   gap: ${semantic.gap.md};
 `;
 
-/** The `$description` each theme file puts on `semantic.color`. */
 export function ThemeNotes() {
   return (
     <DocsScope>
@@ -381,8 +361,6 @@ export function ThemeNotes() {
     </DocsScope>
   );
 }
-
-// --- Primitive palette -------------------------------------------------------
 
 const rampCss = css`
   display: flex;
@@ -461,7 +439,6 @@ const noticeCss = css`
   color: ${c.text.primary};
 `;
 
-/** Every `primitive.color.*` ramp with its steps and resolved values. */
 export function PrimitivePalette() {
   return (
     <DocsScope>
@@ -489,8 +466,6 @@ export function PrimitivePalette() {
     </DocsScope>
   );
 }
-
-// --- Contrast ----------------------------------------------------------------
 
 const tableWrapCss = css`
   overflow-x: auto;
@@ -539,10 +514,6 @@ function ratioLabel(ratio: number | undefined): string {
   return ratio === undefined ? 'n/a' : `${ratio.toFixed(2)} ${contrastLevel(ratio)}`;
 }
 
-/**
- * A contrast sample. The cell carries its own `data-theme`, so both variables
- * resolve under that theme whatever theme surrounds it.
- */
 function ContrastCell({ pair, theme }: { pair: ContrastPair; theme: ThemeName }) {
   const ratio = pairContrast(pair, theme);
   const fails = ratio !== undefined && ratio < 4.5;
@@ -561,10 +532,6 @@ function ContrastCell({ pair, theme }: { pair: ContrastPair; theme: ThemeName })
   );
 }
 
-/**
- * Every `text.*` token against every opaque `background.*` token, per theme.
- * Each table sits inside `data-theme`, so its cells paint that theme's values.
- */
 export function TextOnBackgroundContrast() {
   return (
     <DocsScope>
@@ -611,7 +578,6 @@ export function TextOnBackgroundContrast() {
   );
 }
 
-/** Foreground/background pairs the token names say belong together. */
 export function RolePairContrast() {
   return (
     <DocsScope>

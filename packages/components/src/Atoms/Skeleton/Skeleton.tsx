@@ -1,4 +1,4 @@
-import Box from '#/Layout/Box';
+import Box from '../../Layout/Box';
 import { skeletonVariant } from './Skeleton.style';
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';
@@ -27,7 +27,6 @@ export type SkeletonProps = VariantProps<typeof skeletonVariant> &
 function Skeleton(props: SkeletonProps) {
   const { color, shape, width, height, className, style, ...restProps } = props;
   const skeletonClassName = cx(skeletonVariant({ color, shape }), className);
-  // A circle given only one dimension uses it for both, so it stays round.
   const size =
     shape === 'circle' ? { width: width ?? height, height: height ?? width } : { width, height };
 

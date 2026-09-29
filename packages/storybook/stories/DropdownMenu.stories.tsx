@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Text from '#/Atoms/Text/Text';
-import Stack from '#/Layout/Stack/Stack';
-import { ThemeProvider } from '#/ThemeProvider';
-import DropdownMenu from '#/Molecules/DropdownMenu/DropdownMenu';
-import type { DropdownMenuContentProps } from '#/Molecules/DropdownMenu/DropdownMenu';
+import {
+  Text,
+  Stack,
+  ThemeProvider,
+  DropdownMenu,
+  type DropdownMenuContentProps,
+} from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/DropdownMenu',
   component: DropdownMenu,
   tags: ['autodocs'],
   parameters: {
-    // Menus are portaled to <body>, outside the story root: check the whole
-    // page so open menus are covered by the a11y tests too.
     a11y: { context: 'body' },
   },
   argTypes: {
@@ -63,7 +63,6 @@ export const Open: Story = {
   render: () => <ProjectMenu defaultOpen />,
 };
 
-/** Groups name related items for assistive technology. */
 export const Groups: Story = {
   render: () => (
     <DropdownMenu defaultOpen>
@@ -85,7 +84,6 @@ export const Groups: Story = {
   ),
 };
 
-/** `side` picks where the menu goes; it flips when there isn't room. */
 export const Sides: Story = {
   render: () => (
     <Stack direction="row" gap="md" wrap>
@@ -97,10 +95,6 @@ export const Sides: Story = {
   ),
 };
 
-/**
- * The menu is portaled to `<body>`, yet keeps the theme of the subtree it was
- * opened from: a dark section on a light page opens a dark menu (ADR-006).
- */
 export const InsideDarkSection: Story = {
   render: () => (
     <ThemeProvider initialMode="light">

@@ -7,7 +7,6 @@ const storiesPath = 'packages/storybook/stories';
 const componentFolders = ['Atoms', 'Layout', 'Molecules'];
 const storySuffix = '.stories.tsx';
 
-// Anything that looks like a story file: `.stories.*`, `.story.*`, `_story.*`, …
 const storyLike = /[._-]stor(y|ies)\b/i;
 
 function walk(dir: string): string[] {

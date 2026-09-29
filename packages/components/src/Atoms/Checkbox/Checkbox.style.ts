@@ -27,9 +27,6 @@ export const checkboxVariant = cva(baseCheckboxCss, {
   },
 });
 
-// The native input is restyled (appearance: none) to become the visible box,
-// so it keeps focus, hover, checked and disabled states natively. The check /
-// dash glyphs are siblings shown via `:checked` / `:indeterminate`.
 export const checkboxControlCss = css`
   position: relative;
   display: inline-flex;

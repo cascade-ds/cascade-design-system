@@ -49,6 +49,6 @@ Reasons:
 - **Follow-up (resolved 2026-09-24):** `.changeset/config.json` lists
   `@cascade-ds/storybook` under `ignore`, which seemed to conflict with the
   plan to auto-bump Storybook's version. It stays ignored: Storybook is
-  private, never published, and imports component source through the `#/`
-  alias, so it always shows the code being released and its version carries
-  no information. The README's pipeline no longer has a Storybook bump step.
+  private, never published, and by default imports component source through
+  the `@cds/components` alias, so it shows the code being released and its
+  version carries no information. The README's pipeline no longer has a Storybook bump step.

@@ -11,12 +11,12 @@ import {
   useState,
 } from 'react';
 import { cx } from '@linaria/core';
-import Input from '#/Atoms/Input/Input';
-import type { InputProps } from '#/Atoms/Input/Input';
-import Label from '#/Atoms/Label/Label';
-import type { LabelProps } from '#/Atoms/Label/Label';
-import Textarea from '#/Atoms/Textarea/Textarea';
-import type { TextareaProps } from '#/Atoms/Textarea/Textarea';
+import Input from '../../Atoms/Input/Input';
+import type { InputProps } from '../../Atoms/Input/Input';
+import Label from '../../Atoms/Label/Label';
+import type { LabelProps } from '../../Atoms/Label/Label';
+import Textarea from '../../Atoms/Textarea/Textarea';
+import type { TextareaProps } from '../../Atoms/Textarea/Textarea';
 import {
   formFieldCss,
   formFieldErrorCss,
@@ -143,8 +143,6 @@ export function useFormFieldControl<Props extends FormFieldControlProps>(
   const describedBy = [props['aria-describedby'], ...field.parts.hint, ...field.parts.error]
     .filter(Boolean)
     .join(' ');
-  // Also names controls that `<label for>` can't reach (e.g. a
-  // `div role="combobox"`), unless the control is already named.
   const labelledBy =
     props['aria-labelledby'] ??
     (props['aria-label'] ? undefined : field.parts.label.join(' ') || undefined);

@@ -1,8 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Button from '#/Atoms/Button/Button';
-import Text from '#/Atoms/Text/Text';
-import Grid from '#/Layout/Grid/Grid';
-import Card from '#/Molecules/Card/Card';
+import { Button, Text, Grid, Card } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Card',
@@ -51,7 +48,6 @@ export const Default: Story = {
   ),
 };
 
-/** Only a body: the card is a plain surface. */
 export const BodyOnly: Story = {
   render: (args) => (
     <Card {...args}>
@@ -60,10 +56,6 @@ export const BodyOnly: Story = {
   ),
 };
 
-/**
- * `interactive` lifts the card on hover and while its link has focus. The
- * link stays the one interactive element; the card only hints at it.
- */
 export const Interactive: Story = {
   args: {
     as: 'article',
@@ -84,7 +76,6 @@ export const Interactive: Story = {
   ),
 };
 
-/** Cards in a list: render each as `li` inside a `ul`. */
 export const InAGrid: Story = {
   render: () => (
     <Grid as="ul" columns={3} gap="md" style={{ listStyle: 'none', margin: 0, padding: 0 }}>

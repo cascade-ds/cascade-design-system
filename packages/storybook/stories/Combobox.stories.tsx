@@ -1,16 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Stack from '#/Layout/Stack/Stack';
-import FormField from '#/Molecules/FormField/FormField';
-import Combobox from '#/Molecules/Combobox/Combobox';
-import type { ComboboxInputProps, ComboboxProps } from '#/Molecules/Combobox/Combobox';
+import {
+  Stack,
+  FormField,
+  Combobox,
+  type ComboboxInputProps,
+  type ComboboxProps,
+} from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Combobox',
   component: Combobox,
   tags: ['autodocs'],
   parameters: {
-    // Popups are portaled to <body>, outside the story root: check the whole
-    // page so open popups are covered by the a11y tests too.
     a11y: { context: 'body' },
   },
   argTypes: {
@@ -51,7 +52,6 @@ const timezones = [
 
 type StoryArgs = Pick<ComboboxProps<string>, 'disabled' | 'readOnly' | 'autoHighlight'>;
 
-/** The story controls, without the generic props Storybook types as `unknown`. */
 function controls(args: StoryArgs): StoryArgs {
   return { disabled: args.disabled, readOnly: args.readOnly, autoHighlight: args.autoHighlight };
 }
@@ -114,10 +114,6 @@ const regions = [
   { value: 'Europe', items: ['Berlin', 'Lisbon', 'London'] },
 ];
 
-/**
- * Grouped `items` render a `Combobox.Group` per group. `Combobox.Collection`
- * renders the group's options that match what was typed.
- */
 export const Groups: Story = {
   render: (args) => (
     <FormField>

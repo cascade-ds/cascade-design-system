@@ -1,7 +1,6 @@
 import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 
-// Items are separated by rules, with one above the first and below the last.
 export const accordionCss = css`
   display: flex;
   flex-direction: column;
@@ -62,7 +61,6 @@ export const accordionTriggerCss = css`
   }
 `;
 
-// The chevron turns to point up while the panel is open.
 export const accordionIconCss = css`
   flex-shrink: 0;
   width: ${component.accordion.iconSize};
@@ -85,8 +83,6 @@ export const accordionIconCss = css`
   }
 `;
 
-// Base UI measures the content and exposes its height, so the panel can
-// animate open and closed.
 export const accordionPanelCss = css`
   box-sizing: border-box;
   height: var(--accordion-panel-height);

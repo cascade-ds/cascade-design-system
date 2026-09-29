@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Container from '#/Layout/Container/Container';
-import { layoutElements } from '#/types/LayoutConstants';
+import { Container } from '@cds/components';
+import { layoutElements } from './foundations/layoutElements';
 
 const meta = {
   title: 'CascadeDS/Components/Layout/Container',

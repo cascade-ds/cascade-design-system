@@ -1,18 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Button from '#/Atoms/Button/Button';
-import Text from '#/Atoms/Text/Text';
-import Stack from '#/Layout/Stack/Stack';
-import { ThemeProvider } from '#/ThemeProvider';
-import Toast from '#/Molecules/Toast/Toast';
-import type { ToastOptions } from '#/Molecules/Toast/Toast';
+import { Button, Text, Stack, ThemeProvider, Toast, type ToastOptions } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Toast',
   component: Toast,
   tags: ['autodocs'],
   parameters: {
-    // Toasts are portaled to <body>, outside the story root: check the whole
-    // page so open toasts are covered by the a11y tests too.
     a11y: { context: 'body' },
   },
   argTypes: {
@@ -62,7 +55,6 @@ export const Default: Story = {
   ),
 };
 
-/** Opens toasts on load, so the a11y checks also cover the open state. */
 export const Open: Story = {
   args: { timeout: 0 },
   render: (args) => (
@@ -94,7 +86,6 @@ export const Open: Story = {
   },
 };
 
-/** `danger` toasts are announced immediately; the others politely. */
 export const Tones: Story = {
   render: (args) => (
     <Toast {...args}>
@@ -140,7 +131,6 @@ export const WithAction: Story = {
   ),
 };
 
-/** `timeout: 0` keeps a toast until the user dismisses it. */
 export const Persistent: Story = {
   render: (args) => (
     <Toast {...args}>
@@ -154,7 +144,6 @@ export const Persistent: Story = {
 
 const manager = Toast.createManager();
 
-/** A manager lets code outside React (e.g. a fetch wrapper) show toasts. */
 export const WithManager: Story = {
   render: (args) => (
     <Toast {...args} manager={manager}>
@@ -168,7 +157,6 @@ export const WithManager: Story = {
   ),
 };
 
-/** Toasts keep the theme of the provider they were rendered under (ADR-006). */
 export const InsideDarkSection: Story = {
   render: (args) => (
     <ThemeProvider initialMode="light">

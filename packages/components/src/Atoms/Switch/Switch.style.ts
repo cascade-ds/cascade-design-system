@@ -27,8 +27,6 @@ export const switchVariant = cva(baseSwitchCss, {
   },
 });
 
-// Switch.IconOn / Switch.IconOff sit inside the thumb. Only the one matching
-// the input's checked state is shown; the rules live in switchControlCss.
 export const switchIconCss = css`
   width: ${component.switch.icon.size};
   height: ${component.switch.icon.size};
@@ -39,10 +37,6 @@ export const switchIconOnCss = css``;
 
 export const switchIconOffCss = css``;
 
-// The native input is restyled (appearance: none) to become the visible track,
-// so it keeps focus, hover, checked and disabled states natively. The thumb is
-// a sibling that slides across when the input is `:checked`. Its inset is
-// derived from the track and thumb sizes so it stays centred vertically.
 export const switchControlCss = css`
   position: relative;
   display: inline-flex;

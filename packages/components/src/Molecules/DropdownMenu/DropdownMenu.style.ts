@@ -2,14 +2,10 @@ import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
-// Base UI positions this element next to the trigger; it only needs to sit
-// above the page.
 export const dropdownMenuPositionerCss = css`
   z-index: ${component.dropdown.zIndex};
 `;
 
-// `data-starting-style` and `data-ending-style` are set for one frame on open
-// and during close, which makes the fade run in both directions.
 export const dropdownMenuPopupCss = css`
   box-sizing: border-box;
   display: flex;
@@ -82,8 +78,6 @@ export const dropdownMenuPopupCss = css`
   }
 `;
 
-// Keyboard and pointer both move Base UI's highlight (`data-highlighted`), and
-// the highlighted item holds focus, so the highlight is the focus indicator.
 const baseDropdownMenuItemCss = css`
   box-sizing: border-box;
   display: flex;
