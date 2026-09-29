@@ -103,19 +103,11 @@ up in the browser become compile errors:
 
 ### Install
 
-The packages are private, published to GitHub Packages. In the consuming
-project, point the scope at that registry and authenticate with a personal
-access token that has `read:packages` (and access to this repo):
-
-```ini
-# .npmrc
-@cascade-ds:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```sh
+pnpm add @cascade-ds/components
 ```
 
-Then `pnpm add @cascade-ds/components`. In CI, provide the token as the
-`GITHUB_TOKEN` environment variable (a PAT, since the built-in workflow token
-can't read packages from another repo).
+The packages are published on npm and licensed under MIT.
 
 ### Setup
 
@@ -339,14 +331,14 @@ same run. That's why it's called Cascade DS.
      a **Version Packages** PR that bumps `@cascade-ds/components` and
      `@cascade-ds/styles` and writes their changelogs.
    - Merging that PR runs `pnpm release`: steps 1–2 run again and the new
-     versions are published to GitHub Packages (private), so the published artifact is always
-     built in the run that publishes it.
+     versions are published to npm, so the published artifact is always built
+     in the run that publishes it.
 
 ```mermaid
 flowchart LR
     A[Generate theme\nTerrazzo] --> B[Build DS package\ncomponents + styles]
     B --> C[Version Packages PR\nChangesets]
-    C -->|merge| D[Publish to GitHub Packages]
+    C -->|merge| D[Publish to npm]
 ```
 
 Every pull request (`.github/workflows/ci.yml`) runs steps 1–2 plus type
@@ -359,5 +351,5 @@ Playwright/Chromium) run locally, not in CI.
 Storybook imports the design system as `@cds/components` and `@cds/styles`.
 By default (`CDS_SOURCE=workspace`) those resolve to the source in this repo, so
 it shows unreleased code and needs no version bump. With `CDS_SOURCE=package`
-they resolve to the published packages in `node_modules`, so it shows exactly
-what shipped.
+they resolve from `node_modules`, so it shows exactly what shipped; that mode
+needs the published packages installed under those two names.
