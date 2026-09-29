@@ -9,6 +9,11 @@ if the two ever disagree.
 ```tsx
 // App entry, once, before anything renders.
 import '@cascade-ds/components/styles.css';
+import '@fontsource/inter/400.css'; // fonts aren't bundled: load Inter
+import '@fontsource/inter/500.css'; // in the four weights the tokens use
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/jetbrains-mono/400.css'; // code font
 import { ThemeProvider, Toast } from '@cascade-ds/components';
 
 <ThemeProvider>
@@ -45,7 +50,7 @@ import { ThemeProvider, Toast } from '@cascade-ds/components';
   [Button](#button)'s props (`variant`, `size`, `Button.Icon` children, …).
   Don't nest another `Button` inside them.
 - **Overlays** (`Dialog`, `Popover`, `DropdownMenu`, `Tooltip`, `Select`,
-  `Toast`) portal to `<body>` but keep the theme of the nearest
+  `Combobox`, `Autocomplete`, `Toast`) portal to `<body>` but keep the theme of the nearest
   `ThemeProvider`. Their `open` / `defaultOpen` / `onOpenChange` props work the
   React way: pass `open` + `onOpenChange` for a controlled overlay, or nothing
   or `defaultOpen` for an uncontrolled one.
@@ -57,13 +62,13 @@ import { ThemeProvider, Toast } from '@cascade-ds/components';
 - Theme: [ThemeProvider / useTheme](#themeprovider--usetheme), [MotionProvider](#motionprovider)
 - Viewport: [useBreakpoint](#usebreakpoint)
 - Layout: [Box](#box), [Stack](#stack), [Grid](#grid), [Container](#container), [Divider](#divider)
-- Typography: [Heading](#heading), [Text](#text), [Label](#label), [VisuallyHidden](#visuallyhidden)
+- Typography: [Heading](#heading), [Text](#text), [Label](#label), [Link](#link), [Kbd](#kbd), [VisuallyHidden](#visuallyhidden)
 - Actions: [Button](#button)
-- Form controls: [FormField](#formfield), [Select](#select), [Checkbox](#checkbox), [Radio](#radio), [Switch](#switch), [Textarea](#textarea)
-- Display: [Icon](#icon), [Badge](#badge), [Tag](#tag), [Card](#card), [Spinner](#spinner), [Skeleton](#skeleton)
+- Form controls: [FormField](#formfield), [Input](#input), [Select](#select), [Combobox](#combobox), [Autocomplete](#autocomplete), [Checkbox](#checkbox), [Radio](#radio), [Switch](#switch), [Slider](#slider), [Textarea](#textarea)
+- Display: [Icon](#icon), [Avatar](#avatar), [Badge](#badge), [Tag](#tag), [Card](#card), [Accordion](#accordion), [Progress](#progress), [Spinner](#spinner), [Skeleton](#skeleton)
 - Feedback: [Alert](#alert), [Toast](#toast)
 - Overlays: [Dialog](#dialog), [Popover](#popover), [DropdownMenu](#dropdownmenu), [Tooltip](#tooltip)
-- Navigation: [Tabs](#tabs)
+- Navigation: [Tabs](#tabs), [Breadcrumb](#breadcrumb), [Pagination](#pagination)
 - [Choosing a component](#choosing-a-component)
 
 ---
@@ -254,6 +259,27 @@ A styled `<label>`. Pass `htmlFor` yourself. Inside a `FormField`, use
 | `disabled` | `boolean`     | `false` | dims the label                                                                    |
 | `required` | `boolean`     | `false` | shows a visual `*` only, so the control still needs `required`                    |
 
+### Link
+
+An `<a>` that inherits the surrounding typography. For an action that doesn't
+navigate, use a `Button` (`variant="link"` if it should look like a link).
+
+| Prop       | Values / type                 | Default  | Notes                                                                 |
+| ---------- | ----------------------------- | -------- | --------------------------------------------------------------------- |
+| `variant`  | `inline` `standalone`         | `inline` | `inline` is always underlined (links in running text); `standalone` underlines on hover and focus |
+| `external` | `boolean`                     | `false`  | sets `target="_blank"` + `rel="noopener noreferrer"`, shows an arrow and adds "(opens in a new tab)" for screen readers |
+| `as`       | element or component          | `a`      | e.g. your router's link; it receives `href`/`to`, `className` and the rest |
+
+```tsx
+<Text>Read the <Link href="/docs">docs</Link> first.</Text>
+<Link as={RouterLink} to="/settings" variant="standalone">Settings</Link>
+```
+
+### Kbd
+
+A keyboard key (`<kbd>`). Render one per key: `<Kbd>⌘</Kbd> <Kbd>K</Kbd>`.
+Give a symbol key a `title` / `aria-label` with its name (e.g. "Command").
+
 ### VisuallyHidden
 
 Hides content visually but keeps it readable by screen readers. `as` accepts
@@ -309,7 +335,7 @@ outside one):
 | Part                  | Renders                                   | Notes                                                                 |
 | --------------------- | ----------------------------------------- | --------------------------------------------------------------------- |
 | `FormField.Label`     | `Label`                                   | `htmlFor`, `required`, `disabled` come from the field                 |
-| `FormField.Input`     | `<input>`                                 | `size`: `sm` `md` `lg` (default `md`); other native input props       |
+| `FormField.Input`     | `Input`                                   | takes `Input` props                                                   |
 | `FormField.Textarea`  | `Textarea`                                | takes `Textarea` props                                                |
 | `FormField.Control`   | render function                           | `{(props) => <MyInput {...props} />}`: wires any custom control       |
 | `FormField.Hint`      | `<p>`                                     | becomes part of the control's description                             |
@@ -317,7 +343,8 @@ outside one):
 
 `useFormFieldControl(props)` is the hook version of `FormField.Control`. It
 merges the field's wiring into props; props you set on the control win, and
-outside a field the props come back unchanged. Cascade's `Select` wires itself.
+outside a field the props come back unchanged. Cascade's `Select`, `Combobox`
+and `Autocomplete` wire themselves.
 
 Render the parts as direct children of `FormField` (fragments and
 conditionals are fine) so they are wired on the first render.
@@ -329,6 +356,26 @@ conditionals are fine) so they are wired on the first render.
   <FormField.Hint>We never share it.</FormField.Hint>
   {errors.email && <FormField.Error>{errors.email.message}</FormField.Error>}
 </FormField>
+```
+
+### Input
+
+A single-line text `<input>`. Props other than `start`, `end` and `className`
+go to the input, and `ref` points to it. Inside a `FormField`, use
+`FormField.Input`, which takes the same props. Without a label, name it with
+`aria-label`.
+
+| Prop    | Values / type | Default | Notes                                                                 |
+| ------- | ------------- | ------- | --------------------------------------------------------------------- |
+| `size`  | `sm` `md` `lg` | `md`   |                                                                       |
+| `start` | `ReactNode`   | none    | before the text, sized as an icon (e.g. a search icon); clicks on it focus the input |
+| `end`   | `ReactNode`   | none    | after the text, sized as an icon; a `button` or `a` here stays clickable (give it an `aria-label`) |
+
+With `start` or `end`, the input is wrapped in a `<span>` that takes
+`className`; without them `className` goes on the input.
+
+```tsx
+<Input type="search" aria-label="Search" start={<MagnifyingGlassIcon />} />
 ```
 
 ### Select
@@ -367,13 +414,76 @@ const fruits = [{ value: 'apple', label: 'Apple' }, { value: 'pear', label: 'Pea
 </FormField>
 ```
 
+### Combobox
+
+A Select whose options the user filters by typing, for long lists. The value
+must be one of the options; for free text with suggestions, use
+[Autocomplete](#autocomplete). Built on Base UI `Combobox.Root` (single
+selection), so it takes all of its props: `items`, `value`, `defaultValue`,
+`onValueChange`, `inputValue`, `filter`, `autoHighlight`, `name`, `disabled`,
+`required`, `readOnly`, `open`, `onOpenChange`, …. Pass `items` and render
+them from `Combobox.Content`'s function child, so filtering works out of the
+box. For object items, set `itemToStringLabel`. The root renders no element.
+
+| Part                  | Props                                                                                           |
+| --------------------- | ----------------------------------------------------------------------------------------------- |
+| `Combobox.Input`      | `size`: `sm` `md` `lg` (default `md`); `triggerLabel` names the chevron (default `"Show options"`); other input props; `className` goes on the wrapper |
+| `Combobox.Content`    | `children`: items, or `(item) => <Combobox.Item …/>`; `emptyMessage` when nothing matches; `side`: `top` `bottom` (default `bottom`) |
+| `Combobox.Item`       | `value` (required), `disabled`; `children` is the option label; shows a check mark while selected |
+| `Combobox.Group`      | groups items; with grouped `items`, pass the group's `items`                                    |
+| `Combobox.GroupLabel` | names a group                                                                                   |
+| `Combobox.Collection` | inside a group, `(item) => …` renders the group's matching items                                |
+| `Combobox.Separator`  | a line between items or groups                                                                  |
+
+Name the input with a `FormField` (its label, hint, error, `disabled` and
+`required` apply automatically), a `<label htmlFor>`, or `aria-label`.
+
+```tsx
+<FormField>
+  <FormField.Label>Time zone</FormField.Label>
+  <Combobox items={timezones} value={timezone} onValueChange={setTimezone}>
+    <Combobox.Input placeholder="Search time zones" />
+    <Combobox.Content emptyMessage="No time zones found.">
+      {(tz: string) => <Combobox.Item key={tz} value={tz}>{tz}</Combobox.Item>}
+    </Combobox.Content>
+  </Combobox>
+</FormField>
+```
+
+### Autocomplete
+
+A text input that suggests values while the user types. The value is the
+text itself (`value` / `defaultValue` / `onValueChange` are strings): picking
+a suggestion fills the input, and any other text is allowed too. Built on
+Base UI `Autocomplete.Root`, so it takes all of its props (`items`, `mode`,
+`filter`, `name`, `disabled`, `required`, `open`, `onOpenChange`, …).
+
+Parts match [Combobox](#combobox)'s: `Autocomplete.Content`,
+`Autocomplete.Item` (no check mark), `Autocomplete.Group`,
+`Autocomplete.GroupLabel`, `Autocomplete.Collection` and
+`Autocomplete.Separator`. `Autocomplete.Input` takes `size` and `start` (an
+icon before the text, as on [Input](#input)) instead of a chevron.
+
+```tsx
+<FormField>
+  <FormField.Label>Label</FormField.Label>
+  <Autocomplete items={tags}>
+    <Autocomplete.Input start={<MagnifyingGlassIcon />} />
+    <Autocomplete.Content emptyMessage="No matching labels.">
+      {(tag: string) => <Autocomplete.Item key={tag} value={tag}>{tag}</Autocomplete.Item>}
+    </Autocomplete.Content>
+  </Autocomplete>
+</FormField>
+```
+
 ### Checkbox
 
 A native `<input type="checkbox">`. Props other than `className` go to the
 input, and `ref` points to the input. `children` is the inline label; when
 `children` is set, the checkbox is wrapped in a `<label>`. Set
 `indeterminate` to show the mixed state. Without `children`, name it with
-`aria-label`.
+`aria-label`. Group related checkboxes like radios: a shared `name`, inside a
+`fieldset` with a `legend`.
 
 ### Radio
 
@@ -397,6 +507,27 @@ label automatically.
 </Switch>
 ```
 
+### Slider
+
+Picks a number by dragging or with the arrow keys (Page Up/Down move by
+`largeStep`, Home/End jump to `min`/`max`). Pass an array as `value` /
+`defaultValue` for a range: one thumb per entry. Built on Base UI
+`Slider.Root`, so it takes `value`, `defaultValue`, `onValueChange`,
+`onValueCommitted`, `min` (`0`), `max` (`100`), `step` (`1`), `largeStep`,
+`format`, `name`, `disabled`, ….
+
+| Prop               | Type                                      | Notes                                                    |
+| ------------------ | ----------------------------------------- | -------------------------------------------------------- |
+| `label`            | `ReactNode`                               | visible label, which names the slider                    |
+| `aria-label`       | `string`                                  | names a single-thumb slider without `label`              |
+| `thumbLabels`      | `string[]`                                | names each thumb of a range, e.g. `['Minimum price', 'Maximum price']` |
+| `showValue`        | `boolean`, default `false`                | shows the formatted value (`20 – 80` for a range)        |
+| `getAriaValueText` | `(formatted, value, index) => string`     | spoken value when the number isn't enough, e.g. `"$40"`  |
+
+```tsx
+<Slider label="Price" defaultValue={[20, 80]} thumbLabels={['Minimum price', 'Maximum price']} showValue />
+```
+
 ### Textarea
 
 A styled `<textarea>`. `size`: `sm` `md` `lg` (default `md`); `rows` defaults
@@ -418,6 +549,22 @@ A box that sizes and colors an SVG, which you pass as `children`.
 
 With `label`, the icon is announced (`role="img"`). Without it, the icon is
 decorative (`aria-hidden`). Inside a Button, use `Button.Icon` instead.
+
+### Avatar
+
+A person's picture, with their initials (or `fallback`) while the image
+loads, when it fails, or without `src`. It is one image (`role="img"`) named
+`name`.
+
+| Prop       | Values / type               | Default                    |
+| ---------- | --------------------------- | -------------------------- |
+| `name`     | `string` (required)         | names it and gives the initials ("Ada Lovelace" → "AL") |
+| `src`      | `string`                    | none                       |
+| `fallback` | `ReactNode`                 | the initials of `name`     |
+| `size`     | `xs` `sm` `md` `lg` `xl`    | `md`                       |
+
+When the name is already shown next to it, pass `aria-hidden` so it isn't
+announced twice.
 
 ### Badge
 
@@ -461,6 +608,42 @@ A bordered surface. All parts are optional.
   <Card.Footer><Button variant="secondary">Details</Button></Card.Footer>
 </Card>
 ```
+
+### Accordion
+
+A stack of sections that expand and collapse. Each trigger is a button inside
+a heading, and Enter/Space toggle it.
+
+| Part / prop         | Notes                                                                                   |
+| ------------------- | --------------------------------------------------------------------------------------- |
+| `Accordion`         | `value` + `onValueChange(values)` (controlled) or `defaultValue` (the open items' values); `multiple` lets several stay open (default `false`); `disabled`; `hiddenUntilFound` lets find-in-page open matching panels |
+| `Accordion.Item`    | `value` (`string \| number`, generated when unset), `disabled`                           |
+| `Accordion.Trigger` | the section title; `headingLevel`: `2`–`6` (default `3`), to fit the page outline       |
+| `Accordion.Panel`   | the section content                                                                     |
+
+```tsx
+<Accordion defaultValue={['billing']}>
+  <Accordion.Item value="billing">
+    <Accordion.Trigger>Billing</Accordion.Trigger>
+    <Accordion.Panel>…</Accordion.Panel>
+  </Accordion.Item>
+</Accordion>
+```
+
+### Progress
+
+A progress bar (`role="progressbar"`). Name it with `label` or `aria-label`.
+
+| Prop               | Values / type                      | Default   | Notes                                                 |
+| ------------------ | ---------------------------------- | --------- | ----------------------------------------------------- |
+| `value`            | `number \| null` (required)        |           | `null` is indeterminate: a bar sweeps across the track |
+| `min` / `max`      | `number`                           | `0` / `100` |                                                     |
+| `label`            | `ReactNode`                        | none      | visible label above the bar                           |
+| `showValue`        | `boolean`                          | `false`   | shows the formatted value (a percentage by default)   |
+| `format`           | `Intl.NumberFormatOptions`         | percent   |                                                       |
+| `getAriaValueText` | `(formatted, value) => string`     | none      | e.g. `"3 of 8 files"`                                 |
+| `size`             | `sm` `md`                          | `md`      | track height                                          |
+| `tone`             | `default` `success` `danger`       | `default` | fill color                                            |
 
 ### Spinner
 
@@ -653,6 +836,46 @@ the first/last tab.
 </Tabs>
 ```
 
+### Breadcrumb
+
+The path from the site root to the current page: a `nav` named "Breadcrumb"
+(override with `aria-label`) around an ordered list, with a chevron between
+items.
+
+`Breadcrumb.Item` is a link (`href`, and `as` for your router's link, like
+[Link](#link)). Mark the last item `current`: it renders as text with
+`aria-current="page"`.
+
+```tsx
+<Breadcrumb>
+  <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+  <Breadcrumb.Item href="/projects">Projects</Breadcrumb.Item>
+  <Breadcrumb.Item current>Cascade</Breadcrumb.Item>
+</Breadcrumb>
+```
+
+### Pagination
+
+Previous/next controls and page numbers in a `nav` named "Pagination"
+(override with `aria-label`). Distant pages collapse into an ellipsis, and
+the number of controls stays the same as the page changes. It holds no
+state: pass `page` and update it in `onPageChange`.
+
+| Prop            | Type                          | Default                 | Notes                                            |
+| --------------- | ----------------------------- | ----------------------- | ------------------------------------------------ |
+| `page`          | `number` (required)           |                         | the current page, starting at 1                  |
+| `pageCount`     | `number` (required)           |                         |                                                  |
+| `onPageChange`  | `(page) => void`              |                         | not called for the current page                  |
+| `getHref`       | `(page) => string`            | none                    | makes the pages links instead of buttons         |
+| `siblingCount`  | `number`                      | `1`                     | pages on each side of the current one            |
+| `size`          | `sm` `md`                     | `md`                    |                                                  |
+| `previousLabel` / `nextLabel` | `string`        | `"Previous page"` / `"Next page"` |                                        |
+| `getPageLabel`  | `(page) => string`            | `` (page) => `Page ${page}` `` | each page control's name                  |
+
+```tsx
+<Pagination page={page} pageCount={20} onPageChange={setPage} />
+```
+
 ---
 
 ## Choosing a component
@@ -665,10 +888,21 @@ the first/last tab.
 | Extra content or a small form next to a control   | `Popover`                                 |
 | A list of actions                                 | `DropdownMenu`                            |
 | Choose one value from a list                      | `Select` (in a `FormField`)               |
+| Choose one value from a long list, by typing      | `Combobox`                                |
+| Free text with suggestions (search, labels)       | `Autocomplete`                            |
+| Pick a number or range on a scale                 | `Slider`                                  |
 | Choose one of 2–5 visible options                 | `Radio` group                             |
 | On/off setting that applies immediately           | `Switch`                                  |
 | On/off inside a form that's submitted later       | `Checkbox`                                |
 | Text input with a label and validation            | `FormField` + `FormField.Input`           |
+| Text input without a field (search bar, filter)   | `Input` with `aria-label`                 |
+| Navigate to another page                          | `Link` (an action that doesn't navigate: `Button`) |
+| Sections that expand and collapse                 | `Accordion`                               |
+| Progress of a task with a known length            | `Progress`                                |
+| A person                                          | `Avatar`                                  |
+| Where the current page sits in the hierarchy      | `Breadcrumb`                              |
+| Move between pages of a list or table             | `Pagination`                              |
+| Show a keyboard shortcut                          | `Kbd`                                     |
 | Static status label                               | `Badge`                                   |
 | Removable filter or selection chip                | `Tag` with `onRemove`                     |
 | Hint for an icon-only button                      | `Tooltip` (plus `aria-label` on the trigger) |

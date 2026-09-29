@@ -7,7 +7,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { labelVariant } from '@/Atoms/Label/Label.style';
 import { textareaVariant } from '@/Atoms/Textarea/Textarea.style';
 import FormField, { useFormFieldControl } from './FormField';
-import { formFieldErrorCss, formFieldHintCss, formFieldInputVariant } from './FormField.style';
+import { inputVariant } from '@/Atoms/Input/Input.style';
+import { formFieldErrorCss, formFieldHintCss } from './FormField.style';
 
 afterEach(() => {
   cleanup();
@@ -124,7 +125,7 @@ describe('FormField', () => {
       </FormField>,
     );
 
-    expectClasses(screen.getByRole('textbox', { name: 'Name' }), formFieldInputVariant({ size }));
+    expectClasses(screen.getByRole('textbox', { name: 'Name' }), inputVariant({ size }));
   });
 
   it('throws when a part is rendered outside a FormField', () => {

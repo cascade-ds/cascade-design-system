@@ -71,7 +71,9 @@ const config: RollupOptions = {
     commonjs(),
     wyw({
       include: ['**/*.{ts,tsx}'],
-      sourceMap: process.env.NODE_ENV !== 'production',
+      // Inline CSS source maps only while watching (`pnpm dev`); the published
+      // styles.css ships without them.
+      sourceMap: process.env.ROLLUP_WATCH === 'true',
       // Tokens are plain var() strings and numbers, safe to evaluate at build time; cva is
       // mocked because its result is never needed to extract CSS.
       importOverrides: {

@@ -11,7 +11,8 @@ import {
   useState,
 } from 'react';
 import { cx } from '@linaria/core';
-import type { VariantProps } from 'class-variance-authority';
+import Input from '@/Atoms/Input/Input';
+import type { InputProps } from '@/Atoms/Input/Input';
 import Label from '@/Atoms/Label/Label';
 import type { LabelProps } from '@/Atoms/Label/Label';
 import Textarea from '@/Atoms/Textarea/Textarea';
@@ -21,7 +22,6 @@ import {
   formFieldErrorCss,
   formFieldHelperCss,
   formFieldHintCss,
-  formFieldInputVariant,
 } from './FormField.style';
 
 export type FormFieldProps = React.ComponentPropsWithRef<'div'> & {
@@ -40,8 +40,7 @@ export type FormFieldProps = React.ComponentPropsWithRef<'div'> & {
 
 export type FormFieldLabelProps = Omit<LabelProps, 'required' | 'disabled' | 'htmlFor'>;
 
-export type FormFieldInputProps = VariantProps<typeof formFieldInputVariant> &
-  Omit<React.ComponentPropsWithRef<'input'>, 'size' | 'children'>;
+export type FormFieldInputProps = InputProps;
 
 export type FormFieldTextareaProps = TextareaProps;
 
@@ -262,12 +261,9 @@ function FormFieldLabel(props: FormFieldLabelProps) {
   );
 }
 
-/** Single-line text input on the `input` tokens. */
+/** Single-line text control: a Cascade `Input` wired to the field. */
 function FormFieldInput(props: FormFieldInputProps) {
-  const { size, className, ...restProps } = props;
-  const controlProps = useFormFieldControl(restProps);
-
-  return <input className={cx(formFieldInputVariant({ size }), className)} {...controlProps} />;
+  return <Input {...useFormFieldControl(props)} />;
 }
 
 /** Multi-line text control: a Cascade `Textarea` wired to the field. */
