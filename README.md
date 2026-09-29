@@ -302,7 +302,7 @@ pnpm release              # build and publish the DS (CI only, see below)
 
 Visual tests compare against `packages/storybook/visual/__screenshots__` and
 run in Playwright's Linux image (Docker must be running), so screenshots match
-on every machine and in CI.
+on every machine. They don't run in CI for now; run them locally.
 
 ## Repo layout
 

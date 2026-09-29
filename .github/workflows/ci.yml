@@ -56,24 +56,7 @@ jobs:
         if: github.event_name == 'pull_request' && github.head_ref != 'changeset-release/main'
         run: pnpm changeset status --since=origin/main
 
-  # Screenshots every story in light and dark inside the Playwright Linux
-  # image, the same one used locally, so baselines match pixel for pixel.
-  visual:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 24
-
-      - name: Visual regression tests
-        run: node packages/storybook/visual/docker.ts
-
-      - name: Upload the report with diffs
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: visual-report
-          path: packages/storybook/visual/report
-          retention-days: 14
+  # The visual regression job (`node packages/storybook/visual/docker.ts` in
+  # the Playwright Linux image, uploading `packages/storybook/visual/report`
+  # on failure) is off until the baselines are regenerated. Restore it from
+  # git history to re-enable it.
