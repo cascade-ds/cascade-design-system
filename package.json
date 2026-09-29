@@ -19,6 +19,7 @@
     "test:visual:update": "pnpm --filter storybook test:visual:update",
     "test:coverage": "vitest --coverage",
     "storybook": "pnpm --filter storybook run storybook",
+    "storybook:package": "pnpm --filter storybook run storybook:package",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "pnpm build && changeset publish"

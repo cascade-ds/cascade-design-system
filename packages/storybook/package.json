@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "storybook": "storybook dev -p 6010",
+    "storybook:package": "cross-env CDS_SOURCE=package storybook dev -p 6011",
     "build": "storybook build",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
@@ -38,6 +39,7 @@
     "@vitest/coverage-istanbul": "4.1.11",
     "@vueless/storybook-dark-mode": "^10.0.8",
     "@wyw-in-js/vite": "^2.5.1",
+    "cross-env": "^10.1.0",
     "motion": "13.4.1",
     "react-hook-form": "^7.88.0",
     "remark-gfm": "^4.0.1",
