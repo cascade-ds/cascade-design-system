@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { FontFamilies } from './TypographyDocs';
+
+<Meta title="Foundations/Typography/Overview" />
+
+# Typography
+
+Type is defined in three layers, like color:
+
+| Layer                                       | Where                              | Use it for                                                                                                                                              |
+| ------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Primitive** `primitive.font.*`            | `foundation/primitive.tokens.json` | Raw values: the font stacks, the size scale (12–48px), weights, line heights, tracking. Never in components.                                            |
+| **Semantic** `semantic.font.*`              | `foundation/semantic.tokens.json`  | Named scales: `size.md`, `weight.semibold`, `line-height.body`. Build blocks for the styles below.                                                      |
+| **Semantic styles** `semantic.typography.*` | `foundation/semantic.tokens.json`  | Complete text styles (`h1`, `body-md`, `caption`, …) that set family, size, weight, line height and tracking together. **This is what components use.** |
+
+Component tokens (`component.*.typography`) alias a semantic style, e.g. inputs
+use `body-md`.
+
+## How to use it
+
+- **In product code, use the components.** `Heading` maps `size="h1"` …
+  `"h6"` and `"display"` to the matching style, and `Text` maps
+  `variant="body"` to `body-md` and `variant="caption"` to `caption`. See the
+  [styles page](?path=/docs/foundations-typography-styles--docs) for which
+  component uses which style.
+- **In component styles, use a whole style.** Set all five properties from
+  one `semantic.typography.*` token
+  (`semantic.typography.bodyMd.fontSize`, `.fontWeight`, `.lineHeight`,
+  `.letterSpacing`, `.fontFamily`), so text never mixes the size of one
+  style with the line height of another.
+- **Reach for `semantic.font.*` only when no style fits**, and consider
+  adding a style instead.
+- **Sizes are in `rem`**, so text follows the user's browser font size. The px
+  values shown assume the default 16px.
+- **Typography isn't themed.** The same values apply in light and dark; only
+  color changes.
+
+## Font families
+
+<FontFamilies />

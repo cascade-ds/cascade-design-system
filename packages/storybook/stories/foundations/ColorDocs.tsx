@@ -8,7 +8,6 @@
  * `data-theme`, so the generated `[data-theme='light'|'dark']` rules resolve
  * the same variable to that theme's value side by side.
  */
-import type { ReactNode } from 'react';
 import { css, cx } from '@linaria/core';
 import { semantic } from '@cascade-ds/styles';
 import { useDarkMode } from '@vueless/storybook-dark-mode';
@@ -33,80 +32,17 @@ import {
   type PrimitiveRamp,
   type ThemeName,
 } from './colorTokens';
+import {
+  DocsScope,
+  codeCss,
+  groupHeadingCss,
+  mutedCss,
+  stackCss,
+  subgroupHeadingCss,
+  tightStackCss,
+} from './DocsChrome';
 
 const c = semantic.color;
-
-const scopeCss = css`
-  background-color: ${c.background.default};
-  color: ${c.text.primary};
-  font-family: ${semantic.font.family.body};
-  font-size: ${semantic.typography.bodyMd.fontSize};
-  line-height: ${semantic.typography.bodyMd.lineHeight};
-  border: ${semantic.border.width.default} solid ${c.border.default};
-  border-radius: ${semantic.round.lg};
-  padding: ${semantic.padding.lg};
-  margin-block: ${semantic.stack.md};
-  box-sizing: border-box;
-
-  & *,
-  & *::before,
-  & *::after {
-    box-sizing: inherit;
-  }
-`;
-
-/**
- * Themes a docs block to match the Storybook toolbar. MDX pages render outside
- * the story decorators, so each block sets `data-theme` itself.
- */
-function DocsScope({ children }: { children: ReactNode }) {
-  const theme: ThemeName = useDarkMode() ? 'dark' : 'light';
-  return (
-    <div data-theme={theme} className={cx('sb-unstyled', scopeCss)}>
-      {children}
-    </div>
-  );
-}
-
-const codeCss = css`
-  font-family: ${semantic.font.family.code};
-  font-size: ${semantic.typography.code.fontSize};
-  overflow-wrap: anywhere;
-`;
-
-const mutedCss = css`
-  color: ${c.text.secondary};
-  font-size: ${semantic.typography.bodySm.fontSize};
-  line-height: ${semantic.typography.bodySm.lineHeight};
-`;
-
-const groupHeadingCss = css`
-  font-family: ${semantic.font.family.heading};
-  font-size: ${semantic.typography.h4.fontSize};
-  font-weight: ${semantic.typography.h4.fontWeight};
-  line-height: ${semantic.typography.h4.lineHeight};
-  margin: 0;
-`;
-
-const subgroupHeadingCss = css`
-  font-family: ${semantic.font.family.heading};
-  font-size: ${semantic.typography.h6.fontSize};
-  font-weight: ${semantic.typography.h6.fontWeight};
-  line-height: ${semantic.typography.h6.lineHeight};
-  margin: 0;
-`;
-
-const stackCss = css`
-  display: flex;
-  flex-direction: column;
-  gap: ${semantic.gap.md};
-`;
-
-const tightStackCss = css`
-  display: flex;
-  flex-direction: column;
-  gap: ${semantic.gap.xs};
-`;
 
 // Checkerboard under translucent swatches, drawn with two neutral surfaces.
 const checkerCss = css`
@@ -312,8 +248,8 @@ function countTokens(group: ColorGroup): number {
 function currentThemeNote(theme: ThemeName) {
   return (
     <span className={mutedCss}>
-      Large swatches follow the toolbar theme (now <strong>{theme}</strong>); the small chips
-      always show light and dark.
+      Large swatches follow the toolbar theme (now <strong>{theme}</strong>); the small chips always
+      show light and dark.
     </span>
   );
 }
@@ -495,7 +431,7 @@ function Ramp({ ramp }: { ramp: PrimitiveRamp }) {
         <span className={cx(codeCss, mutedCss)}>
           {ramp.name === 'base' ? `${ramp.path}.{white,black}` : `${ramp.path}.*`}
         </span>
-        {ramp.description ?? parentDescription ? (
+        {(ramp.description ?? parentDescription) ? (
           <span className={mutedCss}>{ramp.description ?? parentDescription}</span>
         ) : null}
       </div>
@@ -534,8 +470,8 @@ export function PrimitivePalette() {
           <strong>Primitives are not for components.</strong>
           <span>
             Components reference <code className={codeCss}>semantic.*</code> or{' '}
-            <code className={codeCss}>component.*</code> tokens only. Primitives are the raw
-            palette semantic tokens alias; they do not change between light and dark.
+            <code className={codeCss}>component.*</code> tokens only. Primitives are the raw palette
+            semantic tokens alias; they do not change between light and dark.
           </span>
         </div>
         {primitivePaletteDescription ? (
@@ -698,9 +634,7 @@ export function RolePairContrast() {
                 <th scope="row" className={codeCss}>
                   {pair.foreground.path.replace('semantic.color.', '')}
                 </th>
-                <td className={codeCss}>
-                  {pair.background.path.replace('semantic.color.', '')}
-                </td>
+                <td className={codeCss}>{pair.background.path.replace('semantic.color.', '')}</td>
                 {THEMES.map((theme) => (
                   <ContrastCell key={theme} pair={pair} theme={theme} />
                 ))}

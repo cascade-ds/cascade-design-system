@@ -373,7 +373,9 @@ function buildColorSubtree(
  * its color tokens. Components alias semantic colors, so each token resolves
  * per theme through the semantic layer.
  */
-export const componentColors: ColorGroup[] = childEntries(getNode(componentRoot, ['component']) ?? {})
+export const componentColors: ColorGroup[] = childEntries(
+  getNode(componentRoot, ['component']) ?? {},
+)
   .map(([key, node]) => buildColorSubtree(node, ['component', key]))
   .filter((group): group is ColorGroup => group !== undefined);
 

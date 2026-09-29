@@ -9,6 +9,14 @@ import { MotionProvider } from '@/MotionProvider';
 import { ThemeProvider } from '@/ThemeProvider';
 import { useTheme } from '@/hooks';
 import '@cascade-ds/styles/index.css';
+// Inter, in the weights `semantic.font.weight.*` uses (regular, medium,
+// semibold, bold). The design system doesn't bundle fonts; apps load them.
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+// JetBrains Mono for `semantic.typography.code`, which is regular weight only.
+import '@fontsource/jetbrains-mono/400.css';
 
 // Automated browsers (the Playwright visual and a11y tests) set
 // `navigator.webdriver`. Jump Motion animations straight to their end state
@@ -58,7 +66,12 @@ const preview: Preview = {
       storySort: {
         order: [
           'Foundations',
-          ['Colors', ['Overview', 'Semantic', 'Component', 'Primitives', 'Contrast']],
+          [
+            'Colors',
+            ['Overview', 'Semantic', 'Component', 'Primitives', 'Contrast'],
+            'Typography',
+            ['Overview', 'Styles', 'Scale'],
+          ],
           'CascadeDS',
           '*',
         ],

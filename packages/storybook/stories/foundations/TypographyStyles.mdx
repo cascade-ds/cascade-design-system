@@ -1,0 +1,18 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { TypographyStyles } from './TypographyDocs';
+
+<Meta title="Foundations/Typography/Styles" />
+
+# Text styles
+
+`semantic.typography.*` tokens are complete text styles. Each one sets five
+properties together, available as CSS variables
+(`--semantic-typography-<name>-font-size`, `-font-weight`, `-line-height`,
+`-letter-spacing`, `-font-family`) and in `theme.js`
+(`semantic.typography.bodyMd.fontSize`).
+
+Every row shows a specimen painted with the style's variables, the value of
+each property with the token it aliases (`→`), and the components that use the
+style, found in the component tokens and the component style files.
+
+<TypographyStyles />

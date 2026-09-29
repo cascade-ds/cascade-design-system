@@ -9,11 +9,11 @@ CascadeDS colors are design tokens in three layers. Every value on these pages
 is read from the token source files in `packages/tokens` when Storybook builds,
 so the docs change when the tokens do.
 
-| Layer         | Path                  | Who uses it                     | Changes with theme?                      |
-| ------------- | --------------------- | ------------------------------- | ---------------------------------------- |
-| **Primitive** | `primitive.color.*`   | Semantic tokens only            | No: one fixed palette                    |
-| **Semantic**  | `semantic.color.*`    | Components, product code        | Yes: light and dark values               |
-| **Component** | `component.<name>.*`  | That one component              | Through the semantic tokens it aliases   |
+| Layer         | Path                 | Who uses it              | Changes with theme?                    |
+| ------------- | -------------------- | ------------------------ | -------------------------------------- |
+| **Primitive** | `primitive.color.*`  | Semantic tokens only     | No: one fixed palette                  |
+| **Semantic**  | `semantic.color.*`   | Components, product code | Yes: light and dark values             |
+| **Component** | `component.<name>.*` | That one component       | Through the semantic tokens it aliases |
 
 ## Which layer to use
 

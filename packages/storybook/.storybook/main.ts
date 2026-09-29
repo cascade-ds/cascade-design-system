@@ -2,13 +2,18 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { StorybookConfig } from '@storybook/react-vite';
 import wyw from '@wyw-in-js/vite';
+import remarkGfm from 'remark-gfm';
 
 const currentDir = dirname(fileURLToPath(import.meta.url));
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*.mdx', '../stories/**/*.stories.tsx'],
   addons: [
-    '@storybook/addon-docs',
+    {
+      // GitHub-flavored Markdown (tables, strikethrough) in the MDX docs pages.
+      name: '@storybook/addon-docs',
+      options: { mdxPluginOptions: { mdxCompileOptions: { remarkPlugins: [remarkGfm] } } },
+    },
     '@storybook/addon-a11y',
     '@storybook/addon-vitest',
     '@vueless/storybook-dark-mode',
