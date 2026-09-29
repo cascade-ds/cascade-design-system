@@ -46,6 +46,12 @@ const config: StorybookConfig = {
         { find: /^@cds\/styles(\/.*)?$/, replacement: `${styles}$1` },
       ];
     }
+    config.build ??= {};
+    config.build.rolldownOptions = {
+      ...config.build.rolldownOptions,
+      // The docs "Show code" panel prints component names read at runtime, which minifying would mangle.
+      output: { ...config.build.rolldownOptions?.output, keepNames: true },
+    };
     config.plugins ??= [];
     config.plugins.push(
       wyw({
