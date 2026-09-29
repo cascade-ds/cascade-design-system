@@ -10,7 +10,9 @@
       "@cds/components/motion": ["../components/src/motion.ts"],
       "@cds/styles": ["../styles/theme.d.ts"],
       "@cds/styles/*": ["../styles/*"]
-    }
+    },
+    "declaration": false,
+    "declarationMap": false
   },
   "include": [
     ".storybook/**/*.ts",

@@ -1,4 +1,4 @@
-# Manual-only (workflow_dispatch) until the first release.
+# Manual-only (workflow_dispatch). Builds Storybook from the published packages.
 name: Storybook
 
 on:
@@ -28,11 +28,10 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: Generate theme
-        run: pnpm build:style
-
       - name: Build Storybook
         run: pnpm --filter @cascade-ds/storybook build
+        env:
+          CDS_SOURCE: package
 
       - uses: actions/upload-pages-artifact@v4
         with:
