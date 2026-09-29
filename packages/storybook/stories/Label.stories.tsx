@@ -53,17 +53,27 @@ export const Required: Story = {
   },
 };
 
+/**
+ * A disabled label always sits with its disabled control. The dimmed text is
+ * exempt from contrast requirements because the control is inactive, so the
+ * story renders the control too.
+ */
 export const Disabled: Story = {
   args: {
     disabled: true,
   },
+  render: (args) => <LabelWithControl {...args} />,
 };
 
 export const WithControl: Story = {
   args: {
     required: true,
   },
-  render: (args) => (
+  render: (args) => <LabelWithControl {...args} />,
+};
+
+function LabelWithControl(args: React.ComponentProps<typeof Label>) {
+  return (
     <Stack gap="xs">
       <Label {...args} />
       <input
@@ -73,5 +83,5 @@ export const WithControl: Story = {
         disabled={args.disabled ?? false}
       />
     </Stack>
-  ),
-};
+  );
+}
