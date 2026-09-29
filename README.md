@@ -126,6 +126,21 @@ import { ThemeProvider, Button } from '@cascade-ds/components';
   with its ESM support or by transforming `@cascade-ds/*` (add it to
   `transformIgnorePatterns`' exceptions).
 - `useTheme()` reads or changes the theme anywhere below the provider.
+- **Fonts aren't bundled.** The tokens use Inter for text and JetBrains Mono
+  for code, each falling back to system fonts. Load them in your app, in the
+  weights the tokens use:
+
+  ```sh
+  pnpm add @fontsource/inter @fontsource/jetbrains-mono
+  ```
+
+  ```ts
+  import '@fontsource/inter/400.css';
+  import '@fontsource/inter/500.css';
+  import '@fontsource/inter/600.css';
+  import '@fontsource/inter/700.css';
+  import '@fontsource/jetbrains-mono/400.css';
+  ```
 
 ### Overriding styles: cascade layers
 

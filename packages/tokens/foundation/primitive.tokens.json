@@ -216,6 +216,17 @@
             ]
           }
         },
+        "350": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7414,
+              0.7414,
+              0.7659
+            ]
+          },
+          "$description": "Between 300 and 400: dark-theme tertiary text, 7:1-8.5:1 on the dark surfaces."
+        },
         "400": {
           "$value": {
             "colorSpace": "srgb",
@@ -255,6 +266,17 @@
               0.2745
             ]
           }
+        },
+        "750": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2,
+              0.2,
+              0.2196
+            ]
+          },
+          "$description": "Between 700 and 800: dark-theme muted surface, dark enough for 7:1+ text."
         },
         "800": {
           "$value": {

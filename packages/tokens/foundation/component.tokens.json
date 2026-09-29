@@ -986,6 +986,46 @@
         "$type": "dimension"
       }
     },
+    "kbd": {
+      "$description": "Atom - Keyboard key (shortcuts in menus, tooltips, help text).",
+      "min-width": {
+        "$value": "{semantic.size.icon.md}",
+        "$type": "dimension"
+      },
+      "padding-inline": {
+        "$value": "{semantic.padding.xs}",
+        "$type": "dimension"
+      },
+      "radius": {
+        "$value": "{semantic.round.sm}",
+        "$type": "dimension"
+      },
+      "border-width": {
+        "$value": "{semantic.border.width.default}",
+        "$type": "dimension"
+      },
+      "border-width-bottom": {
+        "$value": "{semantic.border.width.strong}",
+        "$type": "dimension",
+        "$description": "Thicker bottom edge that makes the key read as a key."
+      },
+      "typography": {
+        "$value": "{semantic.typography.code}",
+        "$type": "typography"
+      },
+      "color": {
+        "$type": "color",
+        "background": {
+          "$value": "{semantic.color.background.subtle}"
+        },
+        "border": {
+          "$value": "{semantic.color.border.strong}"
+        },
+        "text": {
+          "$value": "{semantic.color.text.primary}"
+        }
+      }
+    },
     "divider": {
       "$description": "Atom - Divider. Line thickness and color per emphasis.",
       "thickness": {
@@ -1034,6 +1074,65 @@
         },
         "fill-danger": {
           "$value": "{semantic.color.feedback.danger}"
+        }
+      }
+    },
+    "slider": {
+      "$description": "Atom - Slider (range settings, filters).",
+      "control-height": {
+        "$value": "{semantic.size.control.sm}",
+        "$type": "dimension",
+        "$description": "Height of the pointer target around the track."
+      },
+      "track-height": {
+        "$value": "{semantic.spacing.xs}",
+        "$type": "dimension"
+      },
+      "track-radius": {
+        "$value": "{semantic.round.full}",
+        "$type": "dimension"
+      },
+      "thumb-size": {
+        "$value": "{semantic.size.icon.md}",
+        "$type": "dimension"
+      },
+      "thumb-border-width": {
+        "$value": "{semantic.border.width.strong}",
+        "$type": "dimension"
+      },
+      "gap": {
+        "$value": "{semantic.gap.xs}",
+        "$type": "dimension"
+      },
+      "typography": {
+        "$value": "{semantic.typography.label-md}",
+        "$type": "typography"
+      },
+      "color": {
+        "$type": "color",
+        "track": {
+          "$value": "{semantic.color.background.muted}"
+        },
+        "fill": {
+          "$value": "{semantic.color.brand.primary-strong}"
+        },
+        "fill-disabled": {
+          "$value": "{semantic.color.border.strong}"
+        },
+        "thumb": {
+          "$value": "{semantic.color.background.default}"
+        },
+        "thumb-border": {
+          "$value": "{semantic.color.brand.primary-strong}"
+        },
+        "thumb-border-disabled": {
+          "$value": "{semantic.color.border.strong}"
+        },
+        "label": {
+          "$value": "{semantic.color.text.primary}"
+        },
+        "value": {
+          "$value": "{semantic.color.text.secondary}"
         }
       }
     },
@@ -1588,6 +1687,162 @@
         }
       }
     },
+    "accordion": {
+      "$description": "Molecule - Accordion (FAQs, settings sections, filter panels).",
+      "border-width": {
+        "$value": "{semantic.border.width.default}",
+        "$type": "dimension"
+      },
+      "icon-size": {
+        "$value": "{semantic.size.icon.sm}",
+        "$type": "dimension"
+      },
+      "trigger": {
+        "padding-block": {
+          "$value": "{semantic.padding.md}",
+          "$type": "dimension"
+        },
+        "padding-inline": {
+          "$value": "{semantic.padding.sm}",
+          "$type": "dimension"
+        },
+        "gap": {
+          "$value": "{semantic.gap.md}",
+          "$type": "dimension"
+        },
+        "typography": {
+          "$value": "{semantic.typography.label-md}",
+          "$type": "typography"
+        }
+      },
+      "panel": {
+        "padding-inline": {
+          "$value": "{semantic.padding.sm}",
+          "$type": "dimension"
+        },
+        "padding-bottom": {
+          "$value": "{semantic.padding.md}",
+          "$type": "dimension"
+        },
+        "typography": {
+          "$value": "{semantic.typography.body-sm}",
+          "$type": "typography"
+        }
+      },
+      "color": {
+        "$type": "color",
+        "border": {
+          "$value": "{semantic.color.border.default}"
+        },
+        "trigger": {
+          "text": {
+            "$value": "{semantic.color.text.primary}"
+          },
+          "text-disabled": {
+            "$value": "{semantic.color.text.disabled}"
+          },
+          "background-hover": {
+            "$value": "{semantic.color.background.hover}"
+          }
+        },
+        "icon": {
+          "$value": "{semantic.color.icon.secondary}"
+        },
+        "panel-text": {
+          "$value": "{semantic.color.text.secondary}"
+        }
+      }
+    },
+    "breadcrumb": {
+      "$description": "Molecule - Breadcrumb trail (page hierarchy).",
+      "gap": {
+        "$value": "{semantic.gap.xs}",
+        "$type": "dimension"
+      },
+      "separator-size": {
+        "$value": "{semantic.size.icon.sm}",
+        "$type": "dimension"
+      },
+      "typography": {
+        "$value": "{semantic.typography.body-sm}",
+        "$type": "typography"
+      },
+      "color": {
+        "$type": "color",
+        "link": {
+          "$value": "{semantic.color.text.secondary}"
+        },
+        "link-hover": {
+          "$value": "{semantic.color.text.primary}"
+        },
+        "current": {
+          "$value": "{semantic.color.text.primary}"
+        },
+        "separator": {
+          "$value": "{semantic.color.icon.secondary}"
+        }
+      }
+    },
+    "pagination": {
+      "$description": "Molecule - Pagination (tables, lists, search results).",
+      "gap": {
+        "$value": "{semantic.gap.xs}",
+        "$type": "dimension"
+      },
+      "radius": {
+        "$value": "{semantic.round.md}",
+        "$type": "dimension"
+      },
+      "padding-inline": {
+        "$value": "{semantic.padding.sm}",
+        "$type": "dimension"
+      },
+      "icon-size": {
+        "$value": "{semantic.size.icon.sm}",
+        "$type": "dimension"
+      },
+      "typography": {
+        "$value": "{semantic.typography.label-md}",
+        "$type": "typography"
+      },
+      "size": {
+        "sm": {
+          "$value": "{semantic.size.control.sm}",
+          "$type": "dimension"
+        },
+        "md": {
+          "$value": "{semantic.size.control.md}",
+          "$type": "dimension"
+        }
+      },
+      "color": {
+        "$type": "color",
+        "text": {
+          "$value": "{semantic.color.text.secondary}"
+        },
+        "text-hover": {
+          "$value": "{semantic.color.text.primary}"
+        },
+        "text-disabled": {
+          "$value": "{semantic.color.text.disabled}"
+        },
+        "background-hover": {
+          "$value": "{semantic.color.background.hover}"
+        },
+        "background-pressed": {
+          "$value": "{semantic.color.background.pressed}"
+        },
+        "background-current": {
+          "$value": "{semantic.color.brand.primary}"
+        },
+        "text-current": {
+          "$value": "{semantic.color.text.on-primary}"
+        },
+        "ellipsis": {
+          "$value": "{semantic.color.text.tertiary}"
+        }
+      }
+    },
     "segmented-control": {
       "$description": "Layout - Segmented control (e.g. 7d / 30d / 90d range picker).",
       "height": {
@@ -1863,6 +2118,126 @@
         },
         "group-label": {
           "$value": "{semantic.color.text.secondary}"
+        },
+        "item": {
+          "text": {
+            "$value": "{semantic.color.text.primary}"
+          },
+          "text-disabled": {
+            "$value": "{semantic.color.text.disabled}"
+          },
+          "background-highlighted": {
+            "$value": "{semantic.color.background.hover}"
+          },
+          "background-selected": {
+            "$value": "{semantic.color.background.selected}"
+          },
+          "indicator": {
+            "$value": "{semantic.color.icon.brand}"
+          }
+        }
+      }
+    },
+    "combobox": {
+      "$description": "Molecule - Combobox and Autocomplete popup and options. The input uses the input tokens.",
+      "offset": {
+        "$value": "{semantic.spacing.xs}",
+        "$type": "dimension",
+        "$description": "Distance between the input and the popup."
+      },
+      "padding": {
+        "$value": "{semantic.padding.xs}",
+        "$type": "dimension"
+      },
+      "radius": {
+        "$value": "{semantic.round.md}",
+        "$type": "dimension"
+      },
+      "border-width": {
+        "$value": "{semantic.border.width.default}",
+        "$type": "dimension"
+      },
+      "shadow": {
+        "$value": "{semantic.elevation.md}",
+        "$type": "shadow"
+      },
+      "z-index": {
+        "$value": "{semantic.z-index.dropdown}",
+        "$type": "number"
+      },
+      "max-height": {
+        "$value": "{semantic.size.floating.wide}",
+        "$type": "dimension"
+      },
+      "icon-size": {
+        "$value": "{semantic.size.icon.sm}",
+        "$type": "dimension"
+      },
+      "item": {
+        "height": {
+          "$value": "{semantic.size.control.sm}",
+          "$type": "dimension"
+        },
+        "padding-inline": {
+          "$value": "{semantic.padding.sm}",
+          "$type": "dimension"
+        },
+        "gap": {
+          "$value": "{semantic.gap.sm}",
+          "$type": "dimension"
+        },
+        "radius": {
+          "$value": "{semantic.round.sm}",
+          "$type": "dimension"
+        },
+        "typography": {
+          "$value": "{semantic.typography.body-md}",
+          "$type": "typography"
+        }
+      },
+      "empty": {
+        "padding": {
+          "$value": "{semantic.padding.sm}",
+          "$type": "dimension"
+        },
+        "typography": {
+          "$value": "{semantic.typography.body-sm}",
+          "$type": "typography"
+        }
+      },
+      "group-label": {
+        "padding-inline": {
+          "$value": "{semantic.padding.sm}",
+          "$type": "dimension"
+        },
+        "padding-block": {
+          "$value": "{semantic.padding.xs}",
+          "$type": "dimension"
+        },
+        "typography": {
+          "$value": "{semantic.typography.caption}",
+          "$type": "typography"
+        }
+      },
+      "color": {
+        "$type": "color",
+        "background": {
+          "$value": "{semantic.color.background.raised}"
+        },
+        "border": {
+          "$value": "{semantic.color.border.default}"
+        },
+        "separator": {
+          "$value": "{semantic.color.border.subtle}"
+        },
+        "group-label": {
+          "$value": "{semantic.color.text.secondary}"
+        },
+        "empty": {
+          "$value": "{semantic.color.text.secondary}"
+        },
+        "icon": {
+          "$value": "{semantic.color.icon.secondary}"
         },
         "item": {
           "text": {

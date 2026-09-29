@@ -22,7 +22,7 @@
           "$description": "Table headers, hover rows, inset areas."
         },
         "muted": {
-          "$value": "{primitive.color.gray.700}",
+          "$value": "{primitive.color.gray.750}",
           "$description": "Skeletons, pressed neutral controls."
         },
         "inverse": {
@@ -75,12 +75,12 @@
           "$description": "Labels, metadata. AA on every background incl. muted."
         },
         "tertiary": {
-          "$value": "{primitive.color.gray.400}",
-          "$description": "Placeholders, captions. AA on canvas/default/raised/subtle - never on muted."
+          "$value": "{primitive.color.gray.350}",
+          "$description": "Placeholders, captions. 7:1+ on canvas/default/raised/subtle - avoid on muted (6.7:1)."
         },
         "disabled": {
-          "$value": "{primitive.color.gray.600}",
-          "$description": "Disabled text (exempt from WCAG contrast)."
+          "$value": "{primitive.color.gray.500}",
+          "$description": "Disabled text: ~3:1 on the dark surfaces, faded on purpose (exempt from WCAG contrast)."
         },
         "inverse": {
           "$value": "{primitive.color.gray.900}"
@@ -169,8 +169,8 @@
       "brand": {
         "$type": "color",
         "primary": {
-          "$value": "{primitive.color.orange.800}",
-          "$description": "Dark orange. Fills only - pair with text.on-primary."
+          "$value": "{primitive.color.orange.500}",
+          "$description": "Mid orange. Fills only - pair with text.on-primary (7:1)."
         },
         "primary-hover": {
           "$value": "{primitive.color.orange.200}",
@@ -190,7 +190,7 @@
           "$value": "{primitive.color.orange.900}"
         },
         "primary-text": {
-          "$value": "{primitive.color.orange.200}",
+          "$value": "{primitive.color.orange.100}",
           "$description": "Text on primary-subtle / primary-muted."
         },
         "secondary": {
