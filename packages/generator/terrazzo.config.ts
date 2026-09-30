@@ -3,6 +3,7 @@ import type { Config, Plugin } from '@terrazzo/parser';
 import css from '@terrazzo/plugin-css';
 import type { Permutation } from '@terrazzo/plugin-css';
 import cssInJs from '@terrazzo/plugin-css-in-js';
+import { keepThemeOverrides } from './theme-overrides';
 
 const LAYER_ORDER = '@layer cascade.tokens, cascade.components;';
 
@@ -10,18 +11,38 @@ function inTokensLayer(css: string) {
   return `@layer cascade.tokens {\n${css}\n}`;
 }
 
+// Terrazzo prepares the permutations in order, so `light` is captured before `dark` is pruned against it.
+let lightContents = '';
+
 const permutations = [
   {
     input: { theme: 'light' },
-    prepare: (contents) =>
-      `${LAYER_ORDER}\n\n${inTokensLayer(`:root,\n[data-theme='light'] {\n  ${contents}\n}`)}`,
+    prepare: (contents) => {
+      lightContents = contents;
+      return `${LAYER_ORDER}
+
+${inTokensLayer(`:root,
+[data-theme='light'] {
+  ${contents}
+}`)}`;
+    },
   },
   {
     input: { theme: 'dark' },
-    prepare: (contents) =>
-      inTokensLayer(
-        `@media (prefers-color-scheme: dark) {\n  :root {\n    ${contents}\n  }\n}\n\n[data-theme='dark'] {\n  ${contents}\n}`,
-      ),
+    prepare: (allContents) => {
+      const contents = keepThemeOverrides(lightContents, allContents);
+      return inTokensLayer(
+        `@media (prefers-color-scheme: dark) {
+  :root {
+    ${contents}
+  }
+}
+
+[data-theme='dark'] {
+  ${contents}
+}`,
+      );
+    },
   },
 ] satisfies Permutation[];
 

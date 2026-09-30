@@ -42,7 +42,9 @@ plugins, both writing into `packages/styles`:
 
 - `@terrazzo/plugin-css` — emits CSS custom properties, once for each theme
   permutation: `light` under `:root`, `dark` under
-  `@media (prefers-color-scheme: dark)`.
+  `@media (prefers-color-scheme: dark)`. The dark blocks redeclare only the
+  tokens whose value depends on the theme (`theme-overrides.ts`); the rest
+  inherit from `:root`.
 - `@terrazzo/plugin-css-in-js` — emits a typed `theme.js` / `theme.d.ts` pair
   for referencing tokens from component styles (e.g.
   `semantic.font.family.body`).
