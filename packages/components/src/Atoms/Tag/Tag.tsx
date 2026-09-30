@@ -1,6 +1,6 @@
 import { useId } from 'react';
-import { Cross2Icon } from '@radix-ui/react-icons';
 import Box from '../../Layout/Box';
+import CloseIcon from '../../internal/CloseIcon';
 import { tagRemoveButtonCss, tagVariant } from './Tag.style';
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';
@@ -39,7 +39,7 @@ function Tag(props: TagProps) {
           aria-labelledby={buttonLabelledBy}
           onClick={onRemove}
         >
-          <Cross2Icon aria-hidden="true" />
+          <CloseIcon />
         </button>
       )}
     </Box>

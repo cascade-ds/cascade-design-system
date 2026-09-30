@@ -54,8 +54,9 @@ import { ThemeProvider, Toast } from '@cascade-ds/components';
   `ThemeProvider`. Their `open` / `defaultOpen` / `onOpenChange` props work the
   React way: pass `open` + `onOpenChange` for a controlled overlay, or nothing
   or `defaultOpen` for an uncontrolled one.
-- **Icons** are any SVG React element. The package itself uses
-  `@radix-ui/react-icons`, e.g. `<Cross2Icon />`.
+- **Icons** are any SVG React element, supplied by the consumer from the icon
+  library of their choice. The package ships only the icons a component needs
+  to work (checkmark, chevron, dismiss ×) and depends on no icon library.
 
 ## Contents
 
@@ -675,7 +676,7 @@ An inline message that stays on the page. For a temporary notification, use
 | -------------- | -------------------------------------- | ----------------------------- |
 | `tone`         | `info` `success` `warning` `danger`    | `info`                        |
 | `layout`       | `inline` `banner` (edge-to-edge)        | `inline`                      |
-| `icon`         | `ReactNode`, or `null` for no icon     | the tone's icon               |
+| `icon`         | `ReactNode`                            | none                          |
 | `onDismiss`    | `(event) => void`                      | when set, shows an × button   |
 | `dismissLabel` | `string`                               | `"Dismiss"`                   |
 
@@ -700,7 +701,7 @@ Show toasts from a component with `Toast.useToast()`, or from outside React
 with `Toast.createManager()` (pass the manager to `<Toast manager>`). Both
 return `{ add(options) => id, close(id?) }`.
 
-`ToastOptions`: `title`, `description`, `tone` (`neutral` (default) `info`
+`ToastOptions`: `title`, `description`, `icon`, `tone` (`neutral` (default) `info`
 `success` `warning` `danger`), `timeout`, `priority` (`high` for `danger`,
 `low` otherwise), `action: { label, onClick }` (renders one button, e.g.
 Undo), `onClose`, and `id`. Adding a toast with the `id` of an open toast

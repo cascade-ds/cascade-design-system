@@ -1,7 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import {
+  CheckCircledIcon,
+  CrossCircledIcon,
+  ExclamationTriangleIcon,
+  InfoCircledIcon,
+} from '@radix-ui/react-icons';
 import { Stack, Alert } from '@cds/components';
 
 const tones = ['info', 'success', 'warning', 'danger'] as const;
+
+const toneIcons = {
+  info: <InfoCircledIcon />,
+  success: <CheckCircledIcon />,
+  warning: <ExclamationTriangleIcon />,
+  danger: <CrossCircledIcon />,
+};
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Alert',
@@ -12,7 +25,7 @@ const meta = {
       control: 'radio',
       options: tones,
       description:
-        'Colour and default icon. `warning` and `danger` default to `role="alert"` (announced immediately); `info` and `success` to `role="status"` (announced politely).',
+        'Colour. `warning` and `danger` default to `role="alert"` (announced immediately); `info` and `success` to `role="status"` (announced politely).',
     },
     layout: {
       control: 'radio',
@@ -22,7 +35,8 @@ const meta = {
     },
     icon: {
       control: false,
-      description: "Leading icon. Defaults to the tone's icon; `null` hides it.",
+      description:
+        'Leading icon, supplied by the consumer. The stories pass a Radix icon matching the tone; `null` shows none.',
     },
   },
   args: {
@@ -35,6 +49,9 @@ const meta = {
       </>
     ),
   },
+  render: (args) => (
+    <Alert {...args} icon={args.icon === undefined ? toneIcons[args.tone ?? 'info'] : args.icon} />
+  ),
 } satisfies Meta<typeof Alert>;
 
 export default meta;
@@ -47,7 +64,7 @@ export const Tones: Story = {
   render: (args) => (
     <Stack gap="md">
       {tones.map((tone) => (
-        <Alert key={tone} {...args} tone={tone}>
+        <Alert key={tone} {...args} tone={tone} icon={toneIcons[tone]}>
           <Alert.Title>{tone.charAt(0).toUpperCase() + tone.slice(1)}</Alert.Title>
           <Alert.Description>This is a {tone} message.</Alert.Description>
         </Alert>

@@ -1,15 +1,9 @@
 import { useMemo } from 'react';
 import { Toast as BaseToast } from '@base-ui/react/toast';
-import {
-  CheckCircledIcon,
-  Cross2Icon,
-  CrossCircledIcon,
-  ExclamationTriangleIcon,
-  InfoCircledIcon,
-} from '@radix-ui/react-icons';
 import type { VariantProps } from 'class-variance-authority';
 import Button from '../../Atoms/Button/Button';
 import Icon from '../../Atoms/Icon/Icon';
+import CloseIcon from '../../internal/CloseIcon';
 import { useThemedPortalProps } from '../../ThemeProvider/ThemedPortal';
 import {
   toastActionsCss,
@@ -28,8 +22,10 @@ export type ToastOptions = {
   id?: string;
   title?: React.ReactNode;
   description?: React.ReactNode;
-  /** Colour and icon. Defaults to `neutral`. */
+  /** Colour. Defaults to `neutral`. */
   tone?: ToastTone;
+  /** Leading icon, e.g. an SVG. Always decorative. None by default. */
+  icon?: React.ReactNode;
   /** Milliseconds before auto-dismiss; `0` keeps it open. Defaults to the `Toast` `timeout`. */
   timeout?: number;
   /**
@@ -67,27 +63,22 @@ export type ToastProps = {
   dismissLabel?: string;
 };
 
-const toneIcons: Record<ToastTone, React.ReactNode> = {
-  neutral: null,
-  info: <InfoCircledIcon />,
-  success: <CheckCircledIcon />,
-  warning: <ExclamationTriangleIcon />,
-  danger: <CrossCircledIcon />,
-};
+const tones = ['neutral', 'info', 'success', 'warning', 'danger'] as const;
 
 function toBaseOptions(options: ToastOptions) {
-  const { tone = 'neutral', priority, action, ...restOptions } = options;
+  const { tone = 'neutral', icon, priority, action, ...restOptions } = options;
 
   return {
     ...restOptions,
     type: tone,
+    data: { icon },
     priority: priority ?? (tone === 'danger' ? 'high' : 'low'),
     actionProps: action ? { children: action.label, onClick: action.onClick } : undefined,
   } as const;
 }
 
 function isTone(type: string | undefined): type is ToastTone {
-  return type !== undefined && type in toneIcons;
+  return type !== undefined && (tones as readonly string[]).includes(type);
 }
 
 /**
@@ -118,7 +109,7 @@ function ToastList(props: { dismissLabel: string }) {
 
   return toasts.map((toast) => {
     const tone = isTone(toast.type) ? toast.type : 'neutral';
-    const icon = toneIcons[tone];
+    const icon = (toast.data as { icon?: React.ReactNode } | undefined)?.icon;
 
     return (
       <BaseToast.Root
@@ -127,7 +118,7 @@ function ToastList(props: { dismissLabel: string }) {
         swipeDirection={['right', 'down']}
         className={toastVariant({ tone })}
       >
-        {icon && (
+        {icon != null && (
           <Icon size="md" className={toastIconCss}>
             {icon}
           </Icon>
@@ -142,7 +133,7 @@ function ToastList(props: { dismissLabel: string }) {
           )}
           <BaseToast.Close render={<Button variant="ghost" size="sm" />} aria-label={dismissLabel}>
             <Button.Icon>
-              <Cross2Icon />
+              <CloseIcon />
             </Button.Icon>
           </BaseToast.Close>
         </div>
