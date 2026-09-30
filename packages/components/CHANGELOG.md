@@ -1,5 +1,12 @@
 # @cascade-ds/components
 
+## 0.3.2
+
+### Patch Changes
+
+- Updated dependencies [2c2fcdd]
+  - @cascade-ds/styles@0.3.2
+
 ## 0.3.1
 
 ### Patch Changes

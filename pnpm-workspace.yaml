@@ -4,8 +4,8 @@ allowBuilds:
   esbuild: false
   nx: false
 minimumReleaseAgeExclude:
-  - '@cascade-ds/components@0.2.3'
-  - '@cascade-ds/styles@0.2.3'
+  - '@cascade-ds/components@0.2.3 || 0.3.1 || 0.3.2'
+  - '@cascade-ds/styles@0.2.3 || 0.3.1 || 0.3.2'
 overrides:
   vite: '8.3.0'
   vitest: '4.1.11'
