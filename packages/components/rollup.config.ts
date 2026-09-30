@@ -50,7 +50,8 @@ const config: RollupOptions = {
   output: {
     dir: 'dist',
     entryFileNames: '[name].js',
-    chunkFileNames: 'chunks/[name]-[hash].js',
+    preserveModules: true,
+    preserveModulesRoot: 'src',
     format: 'esm',
     sourcemap: true,
   },
