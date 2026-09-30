@@ -39,6 +39,9 @@
     "media.d.ts",
     "media.css"
   ],
+  "sideEffects": [
+    "*.css"
+  ],
   "exports": {
     ".": {
       "types": "./theme.d.ts",
