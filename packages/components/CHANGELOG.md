@@ -1,5 +1,15 @@
 # @cascade-ds/components
 
+## 0.3.0
+
+### Minor Changes
+
+- 0e46e74: Drop the `@radix-ui/react-icons` dependency. Components now ship only the icons they need to work (checkmark, chevrons, dismiss and remove ×). `Alert` and `Toast` no longer add a default tone icon: pass `icon` to `Alert`, or `icon` in the `Toast` options, to show one.
+
+### Patch Changes
+
+- @cascade-ds/styles@0.3.0
+
 ## 0.2.3
 
 ### Patch Changes
