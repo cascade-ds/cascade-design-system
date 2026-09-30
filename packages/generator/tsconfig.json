@@ -4,6 +4,6 @@
     "noEmit": true,
     "types": ["node"]
   },
-  "include": ["./terrazzo.config.ts"],
+  "include": ["./terrazzo.config.ts", "./theme-overrides.ts"],
   "exclude": ["node_modules"]
 }
