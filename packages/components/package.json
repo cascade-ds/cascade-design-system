@@ -1,6 +1,6 @@
 {
   "name": "@cascade-ds/components",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "React components for Cascade DS: token-driven, themeable with pure CSS, styled with Linaria.",
   "keywords": [
     "design-system",
