@@ -1,5 +1,12 @@
 # @cascade-ds/components
 
+## 0.3.1
+
+### Patch Changes
+
+- cd15ff4: Emit one module per source file so bundlers can tree-shake. Importing a single export, such as `useTheme`, no longer pulls in Base UI for every component.
+- @cascade-ds/styles@0.3.1
+
 ## 0.3.0
 
 ### Minor Changes
