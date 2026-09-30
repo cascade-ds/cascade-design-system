@@ -1,6 +1,6 @@
 {
   "name": "@cascade-ds/styles",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Design tokens for Cascade DS as CSS custom properties, a typed theme object and motion values.",
   "keywords": [
     "design-system",
