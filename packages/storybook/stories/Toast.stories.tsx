@@ -1,5 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import {
+  CheckCircledIcon,
+  CrossCircledIcon,
+  ExclamationTriangleIcon,
+  InfoCircledIcon,
+} from '@radix-ui/react-icons';
 import { Button, Text, Stack, ThemeProvider, Toast, type ToastOptions } from '@cds/components';
+
+const toneIcons = {
+  neutral: undefined,
+  info: <InfoCircledIcon />,
+  success: <CheckCircledIcon />,
+  warning: <ExclamationTriangleIcon />,
+  danger: <CrossCircledIcon />,
+};
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Toast',
@@ -38,7 +52,10 @@ function ShowToastButton(props: { label: string; options: ToastOptions }) {
   const toast = Toast.useToast();
 
   return (
-    <Button variant="secondary" onClick={() => toast.add(options)}>
+    <Button
+      variant="secondary"
+      onClick={() => toast.add({ icon: toneIcons[options.tone ?? 'neutral'], ...options })}
+    >
       {label}
     </Button>
   );
@@ -149,7 +166,9 @@ export const WithManager: Story = {
     <Toast {...args} manager={manager}>
       <Button
         variant="secondary"
-        onClick={() => manager.add({ tone: 'success', title: 'Shown by a manager' })}
+        onClick={() =>
+          manager.add({ tone: 'success', icon: toneIcons.success, title: 'Shown by a manager' })
+        }
       >
         Show from manager
       </Button>

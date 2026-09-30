@@ -1,15 +1,9 @@
-import {
-  CheckCircledIcon,
-  Cross2Icon,
-  CrossCircledIcon,
-  ExclamationTriangleIcon,
-  InfoCircledIcon,
-} from '@radix-ui/react-icons';
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';
 import Box from '../../Layout/Box';
 import Button from '../../Atoms/Button/Button';
 import Icon from '../../Atoms/Icon/Icon';
+import CloseIcon from '../../internal/CloseIcon';
 import {
   alertBodyCss,
   alertDescriptionCss,
@@ -24,7 +18,7 @@ type AlertTone = NonNullable<VariantProps<typeof alertVariant>['tone']>;
 export type AlertProps = VariantProps<typeof alertVariant> &
   React.ComponentPropsWithRef<'div'> & {
     /**
-     * Leading icon. Defaults to the tone's icon; pass `null` to render none.
+     * Leading icon, e.g. an SVG. None by default.
      * Always decorative: the text carries the message.
      */
     icon?: React.ReactNode;
@@ -37,13 +31,6 @@ export type AlertProps = VariantProps<typeof alertVariant> &
 export type AlertTitleProps = React.ComponentPropsWithRef<'p'>;
 
 export type AlertDescriptionProps = React.ComponentPropsWithRef<'div'>;
-
-const toneIcons: Record<AlertTone, React.ReactNode> = {
-  info: <InfoCircledIcon />,
-  success: <CheckCircledIcon />,
-  warning: <ExclamationTriangleIcon />,
-  danger: <CrossCircledIcon />,
-};
 
 const toneRoles: Record<AlertTone, 'alert' | 'status'> = {
   info: 'status',
@@ -70,7 +57,6 @@ function Alert(props: AlertProps) {
     ...restProps
   } = props;
   const resolvedTone = tone ?? 'info';
-  const leadingIcon = icon === undefined ? toneIcons[resolvedTone] : icon;
 
   return (
     <Box
@@ -79,9 +65,9 @@ function Alert(props: AlertProps) {
       className={cx(alertVariant({ tone, layout }), className)}
       {...restProps}
     >
-      {leadingIcon != null && (
+      {icon != null && (
         <Icon size="md" className={alertIconCss}>
-          {leadingIcon}
+          {icon}
         </Icon>
       )}
       <div className={alertBodyCss}>{children}</div>
@@ -94,7 +80,7 @@ function Alert(props: AlertProps) {
           onClick={onDismiss}
         >
           <Button.Icon>
-            <Cross2Icon />
+            <CloseIcon />
           </Button.Icon>
         </Button>
       )}

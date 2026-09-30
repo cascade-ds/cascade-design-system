@@ -70,12 +70,12 @@ describe('Alert', () => {
     expectClasses(screen.getByRole('status'), alertVariant({ layout: 'banner' }));
   });
 
-  it('renders a decorative tone icon, or none with icon={null}', () => {
+  it('renders no icon unless one is passed, and hides it from assistive technology', () => {
     const { container, rerender } = render(<Alert>Message</Alert>);
-    expect(container.querySelector('[aria-hidden="true"] svg')).toBeInTheDocument();
-
-    rerender(<Alert icon={null}>Message</Alert>);
     expect(container.querySelector('svg')).not.toBeInTheDocument();
+
+    rerender(<Alert icon={<svg data-testid="custom" />}>Message</Alert>);
+    expect(screen.getByTestId('custom').parentElement).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('has no dismiss button unless onDismiss is set', () => {
