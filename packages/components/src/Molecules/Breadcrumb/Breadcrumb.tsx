@@ -1,15 +1,18 @@
 import Box from '../../Layout/Box';
 import type { BoxProps } from '../../Layout/Box/Box';
 import { cx } from '@linaria/core';
+import type { VariantProps } from 'class-variance-authority';
 import {
   breadcrumbCurrentCss,
   breadcrumbItemCss,
   breadcrumbLinkCss,
   breadcrumbListCss,
   breadcrumbSeparatorCss,
+  breadcrumbVariant,
 } from './Breadcrumb.style';
 
-export type BreadcrumbProps = React.ComponentPropsWithRef<'nav'>;
+export type BreadcrumbProps = VariantProps<typeof breadcrumbVariant> &
+  Omit<React.ComponentPropsWithRef<'nav'>, 'color'>;
 
 export type BreadcrumbItemProps<TElement extends React.ElementType = 'a'> = {
   /**
@@ -27,10 +30,20 @@ export type BreadcrumbItemProps<TElement extends React.ElementType = 'a'> = {
  * `Breadcrumb.Item`s.
  */
 function Breadcrumb(props: BreadcrumbProps) {
-  const { 'aria-label': ariaLabel = 'Breadcrumb', children, ...restProps } = props;
+  const {
+    'aria-label': ariaLabel = 'Breadcrumb',
+    color,
+    className,
+    children,
+    ...restProps
+  } = props;
 
   return (
-    <nav aria-label={ariaLabel} {...restProps}>
+    <nav
+      aria-label={ariaLabel}
+      className={cx(breadcrumbVariant({ color }), className)}
+      {...restProps}
+    >
       <ol className={breadcrumbListCss}>{children}</ol>
     </nav>
   );

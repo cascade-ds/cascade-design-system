@@ -21,9 +21,41 @@ const disabledStates = {
   `,
 };
 
+const colors = {
+  primary: '',
+  secondary: css`
+    --cascade-switch-on: ${component.switch.color.tone.secondary.on};
+    --cascade-switch-on-hover: ${component.switch.color.tone.secondary.onHover};
+  `,
+  tertiary: css`
+    --cascade-switch-on: ${component.switch.color.tone.tertiary.on};
+    --cascade-switch-on-hover: ${component.switch.color.tone.tertiary.onHover};
+  `,
+  accent: css`
+    --cascade-switch-on: ${component.switch.color.tone.accent.on};
+    --cascade-switch-on-hover: ${component.switch.color.tone.accent.onHover};
+  `,
+  success: css`
+    --cascade-switch-on: ${component.switch.color.tone.success.on};
+    --cascade-switch-on-hover: ${component.switch.color.tone.success.onHover};
+  `,
+  info: css`
+    --cascade-switch-on: ${component.switch.color.tone.info.on};
+    --cascade-switch-on-hover: ${component.switch.color.tone.info.onHover};
+  `,
+  danger: css`
+    --cascade-switch-on: ${component.switch.color.tone.danger.on};
+    --cascade-switch-on-hover: ${component.switch.color.tone.danger.onHover};
+  `,
+};
+
 export const switchVariant = cva(baseSwitchCss, {
   variants: {
     disabled: disabledStates,
+    color: colors,
+  },
+  defaultVariants: {
+    color: 'primary',
   },
 });
 
@@ -62,11 +94,11 @@ export const switchControlCss = css`
   }
 
   & > input:checked {
-    background-color: ${component.switch.color.track.on};
+    background-color: var(--cascade-switch-on, ${component.switch.color.track.on});
   }
 
   & > input:checked:hover:not(:disabled) {
-    background-color: ${component.switch.color.track.onHover};
+    background-color: var(--cascade-switch-on-hover, ${component.switch.color.track.onHover});
   }
 
   & > input:focus-visible {

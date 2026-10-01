@@ -14,9 +14,20 @@ const meta = {
     },
     variant: {
       control: 'radio',
-      options: ['primary', 'secondary', 'outline', 'danger', 'ghost', 'link'],
+      options: [
+        'primary',
+        'secondary',
+        'tertiary',
+        'accent',
+        'success',
+        'info',
+        'outline',
+        'danger',
+        'ghost',
+        'link',
+      ],
       description:
-        '`primary` for the main action, `secondary` for alternatives, `outline` for neutral actions, `danger` for destructive actions, `ghost` for low-emphasis actions, `link` for inline, text-like actions.',
+        '`primary` for the main action, `secondary` for alternatives, `tertiary`, `accent`, `success` and `info` for color-coded actions, `outline` for neutral actions, `danger` for destructive actions, `ghost` for low-emphasis actions, `link` for inline, text-like actions.',
     },
     disabled: {
       control: 'boolean',
@@ -51,6 +62,32 @@ export const Large: Story = {
 export const Secondary: Story = {
   args: {
     variant: 'secondary',
+  },
+};
+
+export const Tertiary: Story = {
+  args: {
+    variant: 'tertiary',
+  },
+};
+
+export const Accent: Story = {
+  args: {
+    variant: 'accent',
+  },
+};
+
+export const Success: Story = {
+  args: {
+    variant: 'success',
+    children: 'Approve',
+  },
+};
+
+export const Info: Story = {
+  args: {
+    variant: 'info',
+    children: 'Learn more',
   },
 };
 

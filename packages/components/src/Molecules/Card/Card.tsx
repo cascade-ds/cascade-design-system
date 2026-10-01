@@ -36,13 +36,13 @@ export type CardFooterProps = React.ComponentPropsWithRef<'div'>;
 
 /** A bordered surface that groups related content, such as a chart or a list. */
 function Card(props: CardProps) {
-  const { as = 'div', interactive, className, ...restProps } = props;
+  const { as = 'div', background, interactive, hover, className, ...restProps } = props;
 
   return (
     <Box
       {...(restProps as React.ComponentPropsWithRef<'div'>)}
       as={as}
-      className={cx(cardVariant({ interactive }), className)}
+      className={cx(cardVariant({ background, interactive, hover }), className)}
     />
   );
 }

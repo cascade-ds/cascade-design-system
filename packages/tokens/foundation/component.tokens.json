@@ -74,7 +74,7 @@
         }
       },
       "color": {
-        "$description": "Color per variant and state. Primary = light orange, secondary = light purple, both with dark text.",
+        "$description": "Color per variant and state. Filled variants: primary, secondary, tertiary, accent, success, info, danger (ember/coral, rose/sky, purple/rose, gold, green, blue, red). Outline, ghost and link are neutral. Text on each fill is text.on-<variant>.",
         "primary": {
           "$type": "color",
           "background": {
@@ -101,10 +101,13 @@
           },
           "border": {
             "default": {
-              "$value": "{semantic.color.brand.primary-active}"
+              "$value": "{semantic.color.brand.primary}"
             },
             "hover": {
-              "$value": "{semantic.color.brand.primary-strong}"
+              "$value": "{semantic.color.brand.primary-hover}"
+            },
+            "active": {
+              "$value": "{semantic.color.brand.primary-active}"
             },
             "disabled": {
               "$value": "{semantic.color.border.subtle}"
@@ -137,10 +140,169 @@
           },
           "border": {
             "default": {
-              "$value": "{semantic.color.brand.secondary-active}"
+              "$value": "{semantic.color.brand.secondary}"
             },
             "hover": {
-              "$value": "{semantic.color.brand.secondary-strong}"
+              "$value": "{semantic.color.brand.secondary-hover}"
+            },
+            "active": {
+              "$value": "{semantic.color.brand.secondary-active}"
+            },
+            "disabled": {
+              "$value": "{semantic.color.border.subtle}"
+            }
+          }
+        },
+        "tertiary": {
+          "$type": "color",
+          "background": {
+            "default": {
+              "$value": "{semantic.color.brand.tertiary}"
+            },
+            "hover": {
+              "$value": "{semantic.color.brand.tertiary-hover}"
+            },
+            "active": {
+              "$value": "{semantic.color.brand.tertiary-active}"
+            },
+            "disabled": {
+              "$value": "{semantic.color.background.disabled}"
+            }
+          },
+          "text": {
+            "default": {
+              "$value": "{semantic.color.text.on-tertiary}"
+            },
+            "disabled": {
+              "$value": "{semantic.color.text.disabled}"
+            }
+          },
+          "border": {
+            "default": {
+              "$value": "{semantic.color.brand.tertiary}"
+            },
+            "hover": {
+              "$value": "{semantic.color.brand.tertiary-hover}"
+            },
+            "active": {
+              "$value": "{semantic.color.brand.tertiary-active}"
+            },
+            "disabled": {
+              "$value": "{semantic.color.border.subtle}"
+            }
+          }
+        },
+        "accent": {
+          "$type": "color",
+          "background": {
+            "default": {
+              "$value": "{semantic.color.brand.accent}"
+            },
+            "hover": {
+              "$value": "{semantic.color.brand.accent-hover}"
+            },
+            "active": {
+              "$value": "{semantic.color.brand.accent-active}"
+            },
+            "disabled": {
+              "$value": "{semantic.color.background.disabled}"
+            }
+          },
+          "text": {
+            "default": {
+              "$value": "{semantic.color.text.on-accent}"
+            },
+            "disabled": {
+              "$value": "{semantic.color.text.disabled}"
+            }
+          },
+          "border": {
+            "default": {
+              "$value": "{semantic.color.brand.accent}"
+            },
+            "hover": {
+              "$value": "{semantic.color.brand.accent-hover}"
+            },
+            "active": {
+              "$value": "{semantic.color.brand.accent-active}"
+            },
+            "disabled": {
+              "$value": "{semantic.color.border.subtle}"
+            }
+          }
+        },
+        "success": {
+          "$type": "color",
+          "background": {
+            "default": {
+              "$value": "{semantic.color.feedback.success}"
+            },
+            "hover": {
+              "$value": "{semantic.color.feedback.success-hover}"
+            },
+            "active": {
+              "$value": "{semantic.color.feedback.success-active}"
+            },
+            "disabled": {
+              "$value": "{semantic.color.background.disabled}"
+            }
+          },
+          "text": {
+            "default": {
+              "$value": "{semantic.color.text.on-success}"
+            },
+            "disabled": {
+              "$value": "{semantic.color.text.disabled}"
+            }
+          },
+          "border": {
+            "default": {
+              "$value": "{semantic.color.feedback.success}"
+            },
+            "hover": {
+              "$value": "{semantic.color.feedback.success-hover}"
+            },
+            "active": {
+              "$value": "{semantic.color.feedback.success-active}"
+            },
+            "disabled": {
+              "$value": "{semantic.color.border.subtle}"
+            }
+          }
+        },
+        "info": {
+          "$type": "color",
+          "background": {
+            "default": {
+              "$value": "{semantic.color.feedback.info}"
+            },
+            "hover": {
+              "$value": "{semantic.color.feedback.info-hover}"
+            },
+            "active": {
+              "$value": "{semantic.color.feedback.info-active}"
+            },
+            "disabled": {
+              "$value": "{semantic.color.background.disabled}"
+            }
+          },
+          "text": {
+            "default": {
+              "$value": "{semantic.color.text.on-info}"
+            },
+            "disabled": {
+              "$value": "{semantic.color.text.disabled}"
+            }
+          },
+          "border": {
+            "default": {
+              "$value": "{semantic.color.feedback.info}"
+            },
+            "hover": {
+              "$value": "{semantic.color.feedback.info-hover}"
+            },
+            "active": {
+              "$value": "{semantic.color.feedback.info-active}"
             },
             "disabled": {
               "$value": "{semantic.color.border.subtle}"
@@ -540,7 +702,7 @@
       }
     },
     "checkbox": {
-      "$description": "Atom - Checkbox. Checked fill uses brand.primary-strong (>= 3:1 on white) with a dark check mark.",
+      "$description": "Atom - Checkbox. Checked fill uses brand.primary-strong (>= 3:1 on white) with a text.on-primary check mark.",
       "size": {
         "$value": "{semantic.size.icon.sm}",
         "$type": "dimension"
@@ -722,6 +884,57 @@
           "disabled": {
             "$value": "{semantic.color.background.subtle}"
           }
+        },
+        "tone": {
+          "$description": "Color variants of the on state (primary is the default, in track.on).",
+          "secondary": {
+            "on": {
+              "$value": "{semantic.color.brand.secondary-strong}"
+            },
+            "on-hover": {
+              "$value": "{semantic.color.brand.secondary-hover}"
+            }
+          },
+          "tertiary": {
+            "on": {
+              "$value": "{semantic.color.brand.tertiary}"
+            },
+            "on-hover": {
+              "$value": "{semantic.color.brand.tertiary-hover}"
+            }
+          },
+          "accent": {
+            "on": {
+              "$value": "{semantic.color.brand.accent-strong}"
+            },
+            "on-hover": {
+              "$value": "{semantic.color.brand.accent-hover}"
+            }
+          },
+          "success": {
+            "on": {
+              "$value": "{semantic.color.feedback.success}"
+            },
+            "on-hover": {
+              "$value": "{semantic.color.feedback.success-hover}"
+            }
+          },
+          "info": {
+            "on": {
+              "$value": "{semantic.color.feedback.info}"
+            },
+            "on-hover": {
+              "$value": "{semantic.color.feedback.info-hover}"
+            }
+          },
+          "danger": {
+            "on": {
+              "$value": "{semantic.color.feedback.danger}"
+            },
+            "on-hover": {
+              "$value": "{semantic.color.feedback.danger-hover}"
+            }
+          }
         }
       }
     },
@@ -780,7 +993,7 @@
             "$value": "{semantic.color.text.secondary}"
           },
           "border": {
-            "$value": "{semantic.color.border.default}"
+            "$value": "{semantic.color.border.strong}"
           }
         },
         "primary": {
@@ -791,7 +1004,7 @@
             "$value": "{semantic.color.brand.primary-text}"
           },
           "border": {
-            "$value": "{semantic.color.border.brand}"
+            "$value": "{semantic.color.brand.primary}"
           }
         },
         "secondary": {
@@ -813,7 +1026,7 @@
             "$value": "{semantic.color.feedback.success-text}"
           },
           "border": {
-            "$value": "{semantic.color.feedback.success-border}"
+            "$value": "{semantic.color.feedback.success}"
           }
         },
         "warning": {
@@ -824,7 +1037,7 @@
             "$value": "{semantic.color.feedback.warning-text}"
           },
           "border": {
-            "$value": "{semantic.color.feedback.warning-border}"
+            "$value": "{semantic.color.feedback.warning}"
           }
         },
         "danger": {
@@ -835,7 +1048,7 @@
             "$value": "{semantic.color.feedback.danger-text}"
           },
           "border": {
-            "$value": "{semantic.color.feedback.danger-border}"
+            "$value": "{semantic.color.feedback.danger}"
           }
         },
         "info": {
@@ -846,7 +1059,7 @@
             "$value": "{semantic.color.feedback.info-text}"
           },
           "border": {
-            "$value": "{semantic.color.feedback.info-border}"
+            "$value": "{semantic.color.feedback.info}"
           }
         }
       },
@@ -870,6 +1083,39 @@
               "$value": "{semantic.color.background.pressed}"
             }
           }
+        }
+      }
+    },
+    "spinner": {
+      "$description": "Atom - Spinner. Arc color per variant; the track is shared.",
+      "color": {
+        "$type": "color",
+        "track": {
+          "$value": "{semantic.color.border.subtle}"
+        },
+        "neutral": {
+          "$value": "{semantic.color.icon.secondary}"
+        },
+        "primary": {
+          "$value": "{semantic.color.brand.primary-strong}"
+        },
+        "secondary": {
+          "$value": "{semantic.color.brand.secondary-strong}"
+        },
+        "tertiary": {
+          "$value": "{semantic.color.brand.tertiary}"
+        },
+        "accent": {
+          "$value": "{semantic.color.brand.accent-strong}"
+        },
+        "success": {
+          "$value": "{semantic.color.feedback.success}"
+        },
+        "info": {
+          "$value": "{semantic.color.feedback.info}"
+        },
+        "danger": {
+          "$value": "{semantic.color.feedback.danger}"
         }
       }
     },
@@ -1130,6 +1376,57 @@
         },
         "value": {
           "$value": "{semantic.color.text.secondary}"
+        },
+        "tone": {
+          "$description": "Color variants of the fill and thumb border (primary is the default, in fill / thumb-border).",
+          "secondary": {
+            "fill": {
+              "$value": "{semantic.color.brand.secondary-strong}"
+            },
+            "thumb-border": {
+              "$value": "{semantic.color.brand.secondary-strong}"
+            }
+          },
+          "tertiary": {
+            "fill": {
+              "$value": "{semantic.color.brand.tertiary}"
+            },
+            "thumb-border": {
+              "$value": "{semantic.color.brand.tertiary}"
+            }
+          },
+          "accent": {
+            "fill": {
+              "$value": "{semantic.color.brand.accent-strong}"
+            },
+            "thumb-border": {
+              "$value": "{semantic.color.brand.accent-strong}"
+            }
+          },
+          "success": {
+            "fill": {
+              "$value": "{semantic.color.feedback.success}"
+            },
+            "thumb-border": {
+              "$value": "{semantic.color.feedback.success}"
+            }
+          },
+          "info": {
+            "fill": {
+              "$value": "{semantic.color.feedback.info}"
+            },
+            "thumb-border": {
+              "$value": "{semantic.color.feedback.info}"
+            }
+          },
+          "danger": {
+            "fill": {
+              "$value": "{semantic.color.feedback.danger}"
+            },
+            "thumb-border": {
+              "$value": "{semantic.color.feedback.danger}"
+            }
+          }
         }
       }
     },
@@ -1157,6 +1454,46 @@
           },
           "highlight": {
             "$value": "{semantic.color.brand.secondary-subtle}"
+          }
+        },
+        "tertiary": {
+          "base": {
+            "$value": "{semantic.color.brand.tertiary-muted}"
+          },
+          "highlight": {
+            "$value": "{semantic.color.brand.tertiary-subtle}"
+          }
+        },
+        "accent": {
+          "base": {
+            "$value": "{semantic.color.brand.accent-muted}"
+          },
+          "highlight": {
+            "$value": "{semantic.color.brand.accent-subtle}"
+          }
+        },
+        "success": {
+          "base": {
+            "$value": "{semantic.color.feedback.success-muted}"
+          },
+          "highlight": {
+            "$value": "{semantic.color.feedback.success-subtle}"
+          }
+        },
+        "info": {
+          "base": {
+            "$value": "{semantic.color.feedback.info-muted}"
+          },
+          "highlight": {
+            "$value": "{semantic.color.feedback.info-subtle}"
+          }
+        },
+        "danger": {
+          "base": {
+            "$value": "{semantic.color.feedback.danger-muted}"
+          },
+          "highlight": {
+            "$value": "{semantic.color.feedback.danger-subtle}"
           }
         }
       },
@@ -1203,7 +1540,7 @@
       }
     },
     "sidebar": {
-      "$description": "Layout - Sidebar navigation (light). Active item = light-orange tint + orange indicator bar.",
+      "$description": "Layout - Sidebar navigation (light). Active item = primary tint + primary indicator bar.",
       "width": {
         "$value": "{semantic.layout.sidebar.width}",
         "$type": "dimension"
@@ -1473,6 +1810,97 @@
         },
         "subtitle": {
           "$value": "{semantic.color.text.secondary}"
+        },
+        "tone": {
+          "$description": "Background variants. Each sets the fill, the border and the border shown while an interactive card is hovered. default uses color.background / border / border-hover.",
+          "subtle": {
+            "background": {
+              "$value": "{semantic.color.background.subtle}"
+            },
+            "border": {
+              "$value": "{semantic.color.border.default}"
+            },
+            "border-hover": {
+              "$value": "{semantic.color.border.strong}"
+            }
+          },
+          "brand": {
+            "background": {
+              "$value": "{semantic.color.brand.primary-subtle}"
+            },
+            "border": {
+              "$value": "{semantic.color.brand.primary-muted}"
+            },
+            "border-hover": {
+              "$value": "{semantic.color.brand.primary-strong}"
+            }
+          },
+          "secondary": {
+            "background": {
+              "$value": "{semantic.color.brand.secondary-subtle}"
+            },
+            "border": {
+              "$value": "{semantic.color.brand.secondary-muted}"
+            },
+            "border-hover": {
+              "$value": "{semantic.color.brand.secondary-strong}"
+            }
+          },
+          "tertiary": {
+            "background": {
+              "$value": "{semantic.color.brand.tertiary-subtle}"
+            },
+            "border": {
+              "$value": "{semantic.color.brand.tertiary-muted}"
+            },
+            "border-hover": {
+              "$value": "{semantic.color.brand.tertiary}"
+            }
+          },
+          "accent": {
+            "background": {
+              "$value": "{semantic.color.brand.accent-subtle}"
+            },
+            "border": {
+              "$value": "{semantic.color.brand.accent-muted}"
+            },
+            "border-hover": {
+              "$value": "{semantic.color.brand.accent-strong}"
+            }
+          },
+          "success": {
+            "background": {
+              "$value": "{semantic.color.feedback.success-subtle}"
+            },
+            "border": {
+              "$value": "{semantic.color.feedback.success-border}"
+            },
+            "border-hover": {
+              "$value": "{semantic.color.feedback.success}"
+            }
+          },
+          "info": {
+            "background": {
+              "$value": "{semantic.color.feedback.info-subtle}"
+            },
+            "border": {
+              "$value": "{semantic.color.feedback.info-border}"
+            },
+            "border-hover": {
+              "$value": "{semantic.color.feedback.info}"
+            }
+          },
+          "danger": {
+            "background": {
+              "$value": "{semantic.color.feedback.danger-subtle}"
+            },
+            "border": {
+              "$value": "{semantic.color.feedback.danger-border}"
+            },
+            "border-hover": {
+              "$value": "{semantic.color.feedback.danger}"
+            }
+          }
         }
       }
     },
@@ -1693,6 +2121,16 @@
         "$value": "{semantic.border.width.default}",
         "$type": "dimension"
       },
+      "radius": {
+        "$value": "{semantic.round.lg}",
+        "$type": "dimension",
+        "$description": "Corner radius of the filled variants."
+      },
+      "filled-padding-inline": {
+        "$value": "{semantic.padding.md}",
+        "$type": "dimension",
+        "$description": "Trigger and panel inline padding of the filled variants, so text clears the fill edge."
+      },
       "icon-size": {
         "$value": "{semantic.size.icon.sm}",
         "$type": "dimension"
@@ -1731,8 +2169,32 @@
       },
       "color": {
         "$type": "color",
+        "background": {
+          "$description": "Fill of the whole accordion. default is transparent; the others draw a filled, bordered, rounded block.",
+          "default": {
+            "$value": "{semantic.color.background.transparent}"
+          },
+          "subtle": {
+            "$value": "{semantic.color.background.subtle}"
+          },
+          "surface": {
+            "$value": "{semantic.color.background.default}"
+          },
+          "brand": {
+            "$value": "{semantic.color.brand.primary-subtle}"
+          },
+          "secondary": {
+            "$value": "{semantic.color.brand.secondary-subtle}"
+          }
+        },
         "border": {
           "$value": "{semantic.color.border.default}"
+        },
+        "border-brand": {
+          "$value": "{semantic.color.brand.primary-muted}"
+        },
+        "border-secondary": {
+          "$value": "{semantic.color.brand.secondary-muted}"
         },
         "trigger": {
           "text": {
@@ -1747,6 +2209,10 @@
         },
         "icon": {
           "$value": "{semantic.color.icon.secondary}"
+        },
+        "icon-filled": {
+          "$value": "{semantic.color.text.secondary}",
+          "$description": "Chevron on the filled variants; icon.secondary drops under 3:1 on the brand tint."
         },
         "panel-text": {
           "$value": "{semantic.color.text.secondary}"
@@ -1780,6 +2246,30 @@
         },
         "separator": {
           "$value": "{semantic.color.icon.secondary}"
+        },
+        "tone": {
+          "$description": "Text color variants (AA on the page surfaces). Neutral is the default, in link / current.",
+          "primary": {
+            "$value": "{semantic.color.text.brand}"
+          },
+          "secondary": {
+            "$value": "{semantic.color.brand.secondary-text}"
+          },
+          "tertiary": {
+            "$value": "{semantic.color.brand.tertiary}"
+          },
+          "accent": {
+            "$value": "{semantic.color.feedback.warning-text}"
+          },
+          "success": {
+            "$value": "{semantic.color.feedback.success-text}"
+          },
+          "info": {
+            "$value": "{semantic.color.feedback.info-text}"
+          },
+          "danger": {
+            "$value": "{semantic.color.feedback.danger-text}"
+          }
         }
       }
     },
@@ -1839,7 +2329,7 @@
           "$value": "{semantic.color.text.on-primary}"
         },
         "border-current": {
-          "$value": "{semantic.color.brand.primary-active}"
+          "$value": "{semantic.color.brand.primary}"
         },
         "ellipsis": {
           "$value": "{semantic.color.text.tertiary}"

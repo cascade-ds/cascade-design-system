@@ -2,11 +2,11 @@
   "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
   "semantic": {
     "color": {
-      "$description": "Mode: light. Purpose-driven color roles aliased from primitive.color. Brand primary = light orange, brand secondary = light purple. Light brand fills always carry DARK text (text.on-primary / text.on-secondary); white text on them fails WCAG.",
+      "$description": "Mode: light. Sunset - warm cream surfaces and espresso text. Brand primary = ember (deep vermilion) with WHITE text, brand secondary = afterglow (crimson rose) with WHITE text, tertiary/links = dusk purple, accent = golden hour (decorative only, never text).",
       "background": {
         "$type": "color",
         "canvas": {
-          "$value": "{primitive.color.gray.50}",
+          "$value": "{primitive.color.sand.50}",
           "$description": "App page background behind cards."
         },
         "default": {
@@ -18,19 +18,19 @@
           "$description": "Popovers, dropdowns, modals (pair with elevation)."
         },
         "subtle": {
-          "$value": "{primitive.color.gray.100}",
+          "$value": "{primitive.color.sand.100}",
           "$description": "Table headers, hover rows, inset areas."
         },
         "muted": {
-          "$value": "{primitive.color.gray.200}",
+          "$value": "{primitive.color.sand.200}",
           "$description": "Skeletons, pressed neutral controls."
         },
         "inverse": {
-          "$value": "{primitive.color.gray.900}",
+          "$value": "{primitive.color.sand.900}",
           "$description": "Tooltips, toasts."
         },
         "disabled": {
-          "$value": "{primitive.color.gray.100}"
+          "$value": "{primitive.color.sand.100}"
         },
         "transparent": {
           "$value": {
@@ -57,7 +57,7 @@
         },
         "brand": {
           "$value": "{primitive.color.orange.50}",
-          "$description": "Light-orange tinted surface (hero/empty states)."
+          "$description": "Ember-tinted surface (hero/empty states)."
         },
         "selected": {
           "$value": "{primitive.color.orange.50}",
@@ -67,45 +67,62 @@
       "text": {
         "$type": "color",
         "primary": {
-          "$value": "{primitive.color.gray.900}",
+          "$value": "{primitive.color.sand.900}",
           "$description": "Headings, body, KPI values."
         },
         "secondary": {
-          "$value": "{primitive.color.gray.700}",
-          "$description": "Labels, metadata. 8:1+ on every surface, incl. muted."
+          "$value": "{primitive.color.sand.600}",
+          "$description": "Labels, metadata. AA on every surface."
         },
         "tertiary": {
-          "$value": "{primitive.color.gray.550}",
+          "$value": "{primitive.color.sand.550}",
           "$description": "Placeholders, captions. AA (4.9:1+) on every surface, incl. muted."
         },
         "disabled": {
-          "$value": "{primitive.color.gray.400}",
+          "$value": "{primitive.color.sand.400}",
           "$description": "Disabled text (exempt from WCAG contrast)."
         },
         "inverse": {
-          "$value": "{primitive.color.gray.50}"
+          "$value": "{primitive.color.sand.50}"
         },
         "link": {
-          "$value": "{primitive.color.purple.700}"
+          "$value": "{primitive.color.purple.600}",
+          "$description": "Dusk purple (tertiary). 6:1 on white."
         },
         "link-hover": {
-          "$value": "{primitive.color.purple.800}"
+          "$value": "{primitive.color.purple.700}"
         },
         "brand": {
           "$value": "{primitive.color.orange.700}",
-          "$description": "Orange text on white/canvas (AA)."
+          "$description": "Ember text on white/canvas (AA)."
         },
         "on-primary": {
-          "$value": "{primitive.color.gray.950}",
-          "$description": "Text/icons on brand.primary fills (light orange)."
+          "$value": "{primitive.color.white}",
+          "$description": "Text/icons on brand.primary fills (ember)."
         },
         "on-secondary": {
-          "$value": "{primitive.color.gray.950}",
-          "$description": "Text/icons on brand.secondary fills (light purple)."
+          "$value": "{primitive.color.white}",
+          "$description": "Text/icons on brand.secondary fills (afterglow)."
         },
         "on-danger": {
           "$value": "{primitive.color.white}",
           "$description": "Text/icons on feedback.danger fills."
+        },
+        "on-tertiary": {
+          "$value": "{primitive.color.white}",
+          "$description": "Text/icons on brand.tertiary fills."
+        },
+        "on-accent": {
+          "$value": "{primitive.color.sand.950}",
+          "$description": "Text/icons on brand.accent fills."
+        },
+        "on-success": {
+          "$value": "{primitive.color.white}",
+          "$description": "Text/icons on feedback.success fills."
+        },
+        "on-info": {
+          "$value": "{primitive.color.white}",
+          "$description": "Text/icons on feedback.info fills."
         },
         "on-brand": {
           "$value": "{semantic.color.text.on-primary}",
@@ -115,48 +132,48 @@
       "icon": {
         "$type": "color",
         "primary": {
-          "$value": "{primitive.color.gray.700}"
+          "$value": "{primitive.color.sand.700}"
         },
         "secondary": {
-          "$value": "{primitive.color.gray.500}",
+          "$value": "{primitive.color.sand.500}",
           "$description": ">= 3:1 on default/canvas/subtle (non-text contrast)."
         },
         "disabled": {
-          "$value": "{primitive.color.gray.400}"
+          "$value": "{primitive.color.sand.400}"
         },
         "brand": {
-          "$value": "{primitive.color.orange.600}"
+          "$value": "{primitive.color.orange.700}"
         },
         "inverse": {
-          "$value": "{primitive.color.gray.50}"
+          "$value": "{primitive.color.sand.50}"
         }
       },
       "border": {
         "$type": "color",
         "subtle": {
-          "$value": "{primitive.color.gray.100}",
+          "$value": "{primitive.color.sand.100}",
           "$description": "Decorative only (inner table rules)."
         },
         "default": {
-          "$value": "{primitive.color.gray.200}",
+          "$value": "{primitive.color.sand.200}",
           "$description": "Decorative: card, sidebar, topbar, dividers."
         },
         "strong": {
-          "$value": "{primitive.color.gray.450}"
+          "$value": "{primitive.color.sand.450}"
         },
         "input": {
-          "$value": "{primitive.color.gray.500}",
+          "$value": "{primitive.color.sand.500}",
           "$description": "Form-control boundary; >= 3:1 on default surface (WCAG 1.4.11)."
         },
         "input-hover": {
-          "$value": "{primitive.color.gray.600}"
+          "$value": "{primitive.color.sand.600}"
         },
         "focus": {
-          "$value": "{primitive.color.purple.600}",
-          "$description": "Focus ring; >= 3:1 on every surface, including the orange fills."
+          "$value": "{primitive.color.sand.900}",
+          "$description": "Focus ring; neutral so it separates from every brand and feedback fill, and >= 3:1 on every surface."
         },
         "focus-glow": {
-          "$value": "{primitive.color.alpha.purple-600.30}",
+          "$value": "{primitive.color.alpha.ink.12}",
           "$description": "Soft halo around the focus ring. Decorative: border.focus carries the contrast."
         },
         "brand": {
@@ -169,51 +186,87 @@
       "brand": {
         "$type": "color",
         "primary": {
-          "$value": "{primitive.color.orange.300}",
-          "$description": "Light orange. Fills only - pair with text.on-primary."
+          "$value": "{primitive.color.orange.700}",
+          "$description": "Ember. Fills only - pair with text.on-primary (white)."
         },
         "primary-hover": {
-          "$value": "{primitive.color.orange.400}"
+          "$value": "{primitive.color.orange.800}"
         },
         "primary-active": {
-          "$value": "{primitive.color.orange.500}"
+          "$value": "{primitive.color.orange.900}"
         },
         "primary-strong": {
-          "$value": "{primitive.color.orange.600}",
+          "$value": "{primitive.color.orange.700}",
           "$description": "Small indicators on white (checkbox, switch, progress, tab underline): >= 3:1."
         },
         "primary-subtle": {
-          "$value": "{primitive.color.orange.50}"
-        },
-        "primary-muted": {
           "$value": "{primitive.color.orange.100}"
         },
+        "primary-muted": {
+          "$value": "{primitive.color.orange.200}"
+        },
         "primary-text": {
-          "$value": "{primitive.color.orange.800}",
+          "$value": "{primitive.color.orange.900}",
           "$description": "Text on primary-subtle / primary-muted."
         },
         "secondary": {
-          "$value": "{primitive.color.purple.300}",
-          "$description": "Light purple. Fills only - pair with text.on-secondary."
+          "$value": "{primitive.color.pink.700}",
+          "$description": "Afterglow rose. Fills only - pair with text.on-secondary (white)."
         },
         "secondary-hover": {
-          "$value": "{primitive.color.purple.400}"
+          "$value": "{primitive.color.pink.800}"
         },
         "secondary-active": {
-          "$value": "{primitive.color.purple.500}"
+          "$value": "{primitive.color.pink.900}"
         },
         "secondary-strong": {
-          "$value": "{primitive.color.purple.600}"
+          "$value": "{primitive.color.pink.700}"
         },
         "secondary-subtle": {
-          "$value": "{primitive.color.purple.50}"
+          "$value": "{primitive.color.pink.50}"
         },
         "secondary-muted": {
-          "$value": "{primitive.color.purple.100}"
+          "$value": "{primitive.color.pink.100}"
         },
         "secondary-text": {
-          "$value": "{primitive.color.purple.800}",
+          "$value": "{primitive.color.pink.800}",
           "$description": "Text on secondary-subtle / secondary-muted."
+        },
+        "accent": {
+          "$value": "{primitive.color.yellow.500}",
+          "$description": "Golden hour. Decorative fills only (2.2:1 on white): use feedback.warning-text for gold-colored text."
+        },
+        "tertiary": {
+          "$value": "{primitive.color.purple.600}",
+          "$description": "Dusk purple. Links and tertiary emphasis."
+        },
+        "tertiary-hover": {
+          "$value": "{primitive.color.purple.700}"
+        },
+        "tertiary-active": {
+          "$value": "{primitive.color.purple.800}"
+        },
+        "accent-hover": {
+          "$value": "{primitive.color.yellow.600}"
+        },
+        "accent-active": {
+          "$value": "{primitive.color.yellow.700}"
+        },
+        "accent-strong": {
+          "$value": "{primitive.color.yellow.700}",
+          "$description": "Accent for small indicators (switch track, slider fill, spinner): >= 3:1 on the surface."
+        },
+        "accent-subtle": {
+          "$value": "{primitive.color.yellow.50}"
+        },
+        "accent-muted": {
+          "$value": "{primitive.color.yellow.100}"
+        },
+        "tertiary-subtle": {
+          "$value": "{primitive.color.purple.50}"
+        },
+        "tertiary-muted": {
+          "$value": "{primitive.color.purple.100}"
         }
       },
       "feedback": {
@@ -226,9 +279,18 @@
           "$value": "{primitive.color.green.800}"
         },
         "success-subtle": {
-          "$value": "{primitive.color.green.50}"
+          "$value": "{primitive.color.green.100}"
         },
         "success-border": {
+          "$value": "{primitive.color.green.300}"
+        },
+        "success-hover": {
+          "$value": "{primitive.color.green.800}"
+        },
+        "success-active": {
+          "$value": "{primitive.color.green.900}"
+        },
+        "success-muted": {
           "$value": "{primitive.color.green.200}"
         },
         "warning": {
@@ -239,7 +301,7 @@
           "$value": "{primitive.color.yellow.800}"
         },
         "warning-subtle": {
-          "$value": "{primitive.color.yellow.50}"
+          "$value": "{primitive.color.yellow.100}"
         },
         "warning-border": {
           "$value": "{primitive.color.yellow.300}"
@@ -253,26 +315,38 @@
         "danger-active": {
           "$value": "{primitive.color.red.800}"
         },
+        "danger-muted": {
+          "$value": "{primitive.color.red.200}"
+        },
         "danger-text": {
           "$value": "{primitive.color.red.700}"
         },
         "danger-subtle": {
-          "$value": "{primitive.color.red.50}"
+          "$value": "{primitive.color.red.100}"
         },
         "danger-border": {
-          "$value": "{primitive.color.red.200}"
+          "$value": "{primitive.color.red.300}"
         },
         "info": {
-          "$value": "{primitive.color.cyan.700}"
+          "$value": "{primitive.color.blue.700}"
         },
         "info-text": {
-          "$value": "{primitive.color.cyan.800}"
+          "$value": "{primitive.color.blue.800}"
         },
         "info-subtle": {
-          "$value": "{primitive.color.cyan.50}"
+          "$value": "{primitive.color.blue.100}"
         },
         "info-border": {
-          "$value": "{primitive.color.cyan.200}"
+          "$value": "{primitive.color.blue.300}"
+        },
+        "info-hover": {
+          "$value": "{primitive.color.blue.800}"
+        },
+        "info-active": {
+          "$value": "{primitive.color.blue.900}"
+        },
+        "info-muted": {
+          "$value": "{primitive.color.blue.200}"
         }
       },
       "data-viz": {
@@ -283,29 +357,29 @@
             "$value": "{primitive.color.orange.600}"
           },
           "2": {
-            "$value": "{primitive.color.purple.500}"
-          },
-          "3": {
-            "$value": "{primitive.color.teal.600}"
-          },
-          "4": {
             "$value": "{primitive.color.blue.600}"
           },
-          "5": {
+          "3": {
             "$value": "{primitive.color.pink.600}"
           },
-          "6": {
+          "4": {
             "$value": "{primitive.color.yellow.700}"
           },
+          "5": {
+            "$value": "{primitive.color.green.600}"
+          },
+          "6": {
+            "$value": "{primitive.color.purple.600}"
+          },
           "7": {
-            "$value": "{primitive.color.cyan.700}"
+            "$value": "{primitive.color.teal.600}"
           },
           "8": {
-            "$value": "{primitive.color.gray.500}"
+            "$value": "{primitive.color.sand.500}"
           }
         },
         "sequential": {
-          "$description": "Single-hue orange ramp for heatmaps/choropleths (low -> high).",
+          "$description": "Single-hue ember ramp for heatmaps/choropleths (low -> high).",
           "1": {
             "$value": "{primitive.color.orange.100}"
           },
@@ -331,7 +405,7 @@
             "$value": "{primitive.color.purple.400}"
           },
           "neutral": {
-            "$value": "{primitive.color.gray.200}"
+            "$value": "{primitive.color.sand.200}"
           },
           "positive": {
             "$value": "{primitive.color.orange.400}"
@@ -347,10 +421,10 @@
           "$value": "{semantic.color.feedback.danger}"
         },
         "grid": {
-          "$value": "{primitive.color.gray.200}"
+          "$value": "{primitive.color.sand.200}"
         },
         "axis": {
-          "$value": "{primitive.color.gray.500}"
+          "$value": "{primitive.color.sand.500}"
         },
         "label": {
           "$value": "{semantic.color.text.secondary}"
@@ -359,7 +433,7 @@
     },
     "elevation": {
       "$type": "shadow",
-      "$description": "Mode-dependent shadows: a tight contact layer plus a soft ambient layer, tinted with gray.900 so they sit naturally on the surfaces.",
+      "$description": "Mode-dependent shadows: a tight contact layer plus a soft ambient layer, tinted with warm sand.900 so they sit naturally on the surfaces.",
       "none": {
         "$value": {
           "color": "{semantic.color.background.transparent}",

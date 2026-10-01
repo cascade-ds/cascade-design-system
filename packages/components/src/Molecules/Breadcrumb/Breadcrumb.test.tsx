@@ -2,7 +2,12 @@ import '@testing-library/jest-dom/vitest';
 import { cleanup, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import Breadcrumb from './Breadcrumb';
-import { breadcrumbCurrentCss, breadcrumbLinkCss, breadcrumbListCss } from './Breadcrumb.style';
+import {
+  breadcrumbCurrentCss,
+  breadcrumbLinkCss,
+  breadcrumbListCss,
+  breadcrumbVariant,
+} from './Breadcrumb.style';
 
 afterEach(() => {
   cleanup();
@@ -82,5 +87,13 @@ describe('Breadcrumb', () => {
     const link = screen.getByRole('link', { name: 'Settings' });
     expect(link).toHaveAttribute('href', '/settings');
     expect(link).toHaveAttribute('data-router');
+  });
+});
+
+describe('Breadcrumb colors', () => {
+  it('applies the class for a color variant', () => {
+    renderBreadcrumb({ color: 'primary' });
+
+    expect(screen.getByRole('navigation')).toHaveClass(breadcrumbVariant({ color: 'primary' }));
   });
 });

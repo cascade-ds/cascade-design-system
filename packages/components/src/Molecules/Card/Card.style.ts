@@ -10,9 +10,10 @@ const baseCardCss = css`
   min-width: 0;
   margin: 0;
   padding: ${component.card.padding};
-  border: ${component.card.borderWidth} solid ${component.card.color.border};
+  border: ${component.card.borderWidth} solid
+    var(--cascade-card-border, ${component.card.color.border});
   border-radius: ${component.card.radius};
-  background-color: ${component.card.color.background};
+  background-color: var(--cascade-card-background, ${component.card.color.background});
   box-shadow: ${component.card.shadow.default};
   color: ${component.card.color.title};
 `;
@@ -23,9 +24,8 @@ const interactiveStates = {
     transition-duration: ${semantic.motion.duration.fast};
     transition-timing-function: ${semantic.motion.easing.standard};
 
-    &:hover,
     &:focus-within {
-      border-color: ${component.card.color.borderHover};
+      border-color: var(--cascade-card-border-hover, ${component.card.color.borderHover});
       box-shadow: ${component.card.shadow.hover};
     }
 
@@ -36,12 +36,69 @@ const interactiveStates = {
   false: '',
 };
 
+// Pointer hover on an interactive card; `hover={false}` leaves only the focus-within lift.
+const hoverCss = css`
+  &:hover {
+    border-color: var(--cascade-card-border-hover, ${component.card.color.borderHover});
+    box-shadow: ${component.card.shadow.hover};
+  }
+`;
+
+const backgrounds = {
+  default: '',
+  subtle: css`
+    --cascade-card-background: ${component.card.color.tone.subtle.background};
+    --cascade-card-border: ${component.card.color.tone.subtle.border};
+    --cascade-card-border-hover: ${component.card.color.tone.subtle.borderHover};
+  `,
+  brand: css`
+    --cascade-card-background: ${component.card.color.tone.brand.background};
+    --cascade-card-border: ${component.card.color.tone.brand.border};
+    --cascade-card-border-hover: ${component.card.color.tone.brand.borderHover};
+  `,
+  secondary: css`
+    --cascade-card-background: ${component.card.color.tone.secondary.background};
+    --cascade-card-border: ${component.card.color.tone.secondary.border};
+    --cascade-card-border-hover: ${component.card.color.tone.secondary.borderHover};
+  `,
+  tertiary: css`
+    --cascade-card-background: ${component.card.color.tone.tertiary.background};
+    --cascade-card-border: ${component.card.color.tone.tertiary.border};
+    --cascade-card-border-hover: ${component.card.color.tone.tertiary.borderHover};
+  `,
+  accent: css`
+    --cascade-card-background: ${component.card.color.tone.accent.background};
+    --cascade-card-border: ${component.card.color.tone.accent.border};
+    --cascade-card-border-hover: ${component.card.color.tone.accent.borderHover};
+  `,
+  success: css`
+    --cascade-card-background: ${component.card.color.tone.success.background};
+    --cascade-card-border: ${component.card.color.tone.success.border};
+    --cascade-card-border-hover: ${component.card.color.tone.success.borderHover};
+  `,
+  info: css`
+    --cascade-card-background: ${component.card.color.tone.info.background};
+    --cascade-card-border: ${component.card.color.tone.info.border};
+    --cascade-card-border-hover: ${component.card.color.tone.info.borderHover};
+  `,
+  danger: css`
+    --cascade-card-background: ${component.card.color.tone.danger.background};
+    --cascade-card-border: ${component.card.color.tone.danger.border};
+    --cascade-card-border-hover: ${component.card.color.tone.danger.borderHover};
+  `,
+};
+
 export const cardVariant = cva(baseCardCss, {
   variants: {
+    background: backgrounds,
     interactive: interactiveStates,
+    hover: { true: '', false: '' },
   },
+  compoundVariants: [{ interactive: true, hover: true, class: hoverCss }],
   defaultVariants: {
+    background: 'default',
     interactive: false,
+    hover: true,
   },
 });
 

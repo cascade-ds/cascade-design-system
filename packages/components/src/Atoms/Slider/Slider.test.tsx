@@ -97,3 +97,11 @@ describe('Slider', () => {
     expect(handleValueChange).not.toHaveBeenCalled();
   });
 });
+
+describe('Slider colors', () => {
+  it('applies the class for a color variant', () => {
+    const { container } = render(<Slider defaultValue={40} aria-label="Volume" color="success" />);
+
+    expect(container.firstChild).toHaveClass(sliderVariant({ color: 'success' }));
+  });
+});

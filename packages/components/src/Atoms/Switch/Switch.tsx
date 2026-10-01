@@ -13,7 +13,7 @@ import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';
 
 export type SwitchProps = VariantProps<typeof switchVariant> &
-  Omit<React.ComponentPropsWithRef<'input'>, 'type' | 'role' | 'children'> & {
+  Omit<React.ComponentPropsWithRef<'input'>, 'type' | 'role' | 'children' | 'color'> & {
     /**
      * Inline label text, plus optional `Switch.IconOn` / `Switch.IconOff`.
      * When there is label text, the switch is wrapped in a `<label>`.
@@ -37,8 +37,8 @@ function flattenChildren(children: React.ReactNode): React.ReactNode[] {
 }
 
 function Switch(props: SwitchProps) {
-  const { disabled, className, children, ...restProps } = props;
-  const rootClassName = cx(switchVariant({ disabled: Boolean(disabled) }), className);
+  const { disabled, color, className, children, ...restProps } = props;
+  const rootClassName = cx(switchVariant({ disabled: Boolean(disabled), color }), className);
 
   const childArray = flattenChildren(children);
   const icons = childArray.filter(isSwitchIcon);

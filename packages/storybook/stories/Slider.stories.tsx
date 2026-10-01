@@ -6,6 +6,11 @@ const meta = {
   component: Slider,
   tags: ['autodocs'],
   argTypes: {
+    color: {
+      control: 'select',
+      options: ['primary', 'secondary', 'tertiary', 'accent', 'success', 'info', 'danger'],
+      description: 'Color of the fill and thumb border. `primary` is the default.',
+    },
     showValue: {
       control: 'boolean',
       description: 'Shows the formatted value (both ends for a range) next to the label.',
@@ -22,6 +27,7 @@ const meta = {
     },
   },
   args: {
+    color: 'primary',
     label: 'Volume',
     defaultValue: 40,
     showValue: true,
@@ -69,4 +75,16 @@ export const Disabled: Story = {
   args: {
     disabled: true,
   },
+};
+
+export const Colors: Story = {
+  render: (args) => (
+    <div style={{ display: 'grid', gap: '1rem', maxWidth: '24rem' }}>
+      {(['primary', 'secondary', 'tertiary', 'accent', 'success', 'info', 'danger'] as const).map(
+        (color) => (
+          <Slider key={color} {...args} color={color} label={color} />
+        ),
+      )}
+    </div>
+  ),
 };

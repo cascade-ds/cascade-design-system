@@ -4,7 +4,12 @@ import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import Accordion from './Accordion';
-import { accordionCss, accordionItemCss, accordionTriggerCss } from './Accordion.style';
+import {
+  accordionCss,
+  accordionItemCss,
+  accordionTriggerCss,
+  accordionVariant,
+} from './Accordion.style';
 
 afterEach(() => {
   cleanup();
@@ -39,6 +44,12 @@ describe('Accordion', () => {
     expect(heading).toContainElement(trigger);
     expect(trigger).toHaveClass(accordionTriggerCss);
     expect(trigger.closest(`.${accordionItemCss}`)).not.toBeNull();
+  });
+
+  it('applies the class for a background variant', () => {
+    const { container } = renderAccordion({ background: 'brand' });
+
+    expect(container.firstChild).toHaveClass(accordionVariant({ background: 'brand' }));
   });
 
   it('uses the given heading level', () => {

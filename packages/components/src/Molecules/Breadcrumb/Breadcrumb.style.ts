@@ -1,5 +1,6 @@
 import { css } from '@linaria/core';
 import { component, semantic } from '@cascade-ds/styles';
+import { cva } from 'class-variance-authority';
 
 export const breadcrumbListCss = css`
   display: flex;
@@ -39,7 +40,7 @@ export const breadcrumbSeparatorCss = css`
 `;
 
 export const breadcrumbLinkCss = css`
-  color: ${component.breadcrumb.color.link};
+  color: var(--cascade-breadcrumb-color, ${component.breadcrumb.color.link});
   text-decoration-line: underline;
   text-decoration-color: transparent;
   text-decoration-thickness: ${semantic.border.width.default};
@@ -49,7 +50,7 @@ export const breadcrumbLinkCss = css`
   transition-timing-function: ${semantic.motion.easing.standard};
 
   &:hover {
-    color: ${component.breadcrumb.color.linkHover};
+    color: var(--cascade-breadcrumb-color, ${component.breadcrumb.color.linkHover});
     text-decoration-color: currentColor;
   }
 
@@ -66,6 +67,36 @@ export const breadcrumbLinkCss = css`
 `;
 
 export const breadcrumbCurrentCss = css`
-  color: ${component.breadcrumb.color.current};
+  color: var(--cascade-breadcrumb-color, ${component.breadcrumb.color.current});
   font-weight: ${semantic.font.weight.medium};
 `;
+
+const colors = {
+  neutral: '',
+  primary: css`
+    --cascade-breadcrumb-color: ${component.breadcrumb.color.tone.primary};
+  `,
+  secondary: css`
+    --cascade-breadcrumb-color: ${component.breadcrumb.color.tone.secondary};
+  `,
+  tertiary: css`
+    --cascade-breadcrumb-color: ${component.breadcrumb.color.tone.tertiary};
+  `,
+  accent: css`
+    --cascade-breadcrumb-color: ${component.breadcrumb.color.tone.accent};
+  `,
+  success: css`
+    --cascade-breadcrumb-color: ${component.breadcrumb.color.tone.success};
+  `,
+  info: css`
+    --cascade-breadcrumb-color: ${component.breadcrumb.color.tone.info};
+  `,
+  danger: css`
+    --cascade-breadcrumb-color: ${component.breadcrumb.color.tone.danger};
+  `,
+};
+
+export const breadcrumbVariant = cva('', {
+  variants: { color: colors },
+  defaultVariants: { color: 'neutral' },
+});

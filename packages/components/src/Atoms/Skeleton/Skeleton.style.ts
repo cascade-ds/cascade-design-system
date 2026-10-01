@@ -56,6 +56,26 @@ const colors = {
     --cascade-skeleton-base: ${component.skeleton.color.secondary.base};
     --cascade-skeleton-highlight: ${component.skeleton.color.secondary.highlight};
   `,
+  tertiary: css`
+    --cascade-skeleton-base: ${component.skeleton.color.tertiary.base};
+    --cascade-skeleton-highlight: ${component.skeleton.color.tertiary.highlight};
+  `,
+  accent: css`
+    --cascade-skeleton-base: ${component.skeleton.color.accent.base};
+    --cascade-skeleton-highlight: ${component.skeleton.color.accent.highlight};
+  `,
+  success: css`
+    --cascade-skeleton-base: ${component.skeleton.color.success.base};
+    --cascade-skeleton-highlight: ${component.skeleton.color.success.highlight};
+  `,
+  info: css`
+    --cascade-skeleton-base: ${component.skeleton.color.info.base};
+    --cascade-skeleton-highlight: ${component.skeleton.color.info.highlight};
+  `,
+  danger: css`
+    --cascade-skeleton-base: ${component.skeleton.color.danger.base};
+    --cascade-skeleton-highlight: ${component.skeleton.color.danger.highlight};
+  `,
 };
 
 const shapes = {
