@@ -154,10 +154,10 @@
               "$value": "{semantic.color.background.default}"
             },
             "hover": {
-              "$value": "{semantic.color.background.subtle}"
+              "$value": "{semantic.color.background.hover}"
             },
             "active": {
-              "$value": "{semantic.color.background.muted}"
+              "$value": "{semantic.color.background.pressed}"
             },
             "disabled": {
               "$value": "{semantic.color.background.default}"
@@ -176,7 +176,7 @@
               "$value": "{semantic.color.border.strong}"
             },
             "hover": {
-              "$value": "{semantic.color.border.input}"
+              "$value": "{semantic.color.border.input-hover}"
             },
             "disabled": {
               "$value": "{semantic.color.border.default}"
@@ -190,10 +190,10 @@
               "$value": "{semantic.color.background.transparent}"
             },
             "hover": {
-              "$value": "{semantic.color.background.subtle}"
+              "$value": "{semantic.color.background.hover}"
             },
             "active": {
-              "$value": "{semantic.color.background.muted}"
+              "$value": "{semantic.color.background.pressed}"
             },
             "disabled": {
               "$value": "{semantic.color.background.transparent}"
@@ -311,7 +311,7 @@
       },
       "shadow": {
         "$type": "shadow",
-        "$description": "Elevation of filled and outline variants: raised at rest, lifted on hover, flat when pressed or disabled.",
+        "$description": "Elevation of the filled variants (primary, secondary, danger): raised at rest, lifted on hover, flat when pressed or disabled. Outline and ghost stay flat.",
         "default": {
           "$value": "{semantic.elevation.sm}"
         },
@@ -536,9 +536,6 @@
         "$type": "dimension",
         "width": {
           "$value": "{semantic.border.width.default}"
-        },
-        "width-focus": {
-          "$value": "{semantic.border.width.strong}"
         }
       }
     },
@@ -950,7 +947,7 @@
         "$type": "dimension"
       },
       "shadow": {
-        "$value": "{semantic.elevation.md}",
+        "$value": "{semantic.elevation.sm}",
         "$type": "shadow"
       },
       "z-index": {
@@ -1468,6 +1465,9 @@
         "border": {
           "$value": "{semantic.color.border.default}"
         },
+        "border-hover": {
+          "$value": "{semantic.color.border.strong}"
+        },
         "title": {
           "$value": "{semantic.color.text.primary}"
         },
@@ -1673,7 +1673,7 @@
             "$value": "{semantic.color.text.primary}"
           },
           "active": {
-            "$value": "{semantic.color.text.primary}"
+            "$value": "{semantic.color.text.brand}"
           },
           "disabled": {
             "$value": "{semantic.color.text.disabled}"
@@ -1838,6 +1838,9 @@
         "text-current": {
           "$value": "{semantic.color.text.on-primary}"
         },
+        "border-current": {
+          "$value": "{semantic.color.brand.primary-active}"
+        },
         "ellipsis": {
           "$value": "{semantic.color.text.tertiary}"
         }
@@ -1901,7 +1904,7 @@
         "$type": "dimension"
       },
       "shadow": {
-        "$value": "{semantic.elevation.lg}",
+        "$value": "{semantic.elevation.md}",
         "$type": "shadow"
       },
       "z-index": {
@@ -1927,7 +1930,7 @@
           "$type": "typography"
         },
         "radius": {
-          "$value": "{semantic.round.sm}",
+          "$value": "{semantic.round.md}",
           "$type": "dimension"
         },
         "gap": {
@@ -1973,7 +1976,7 @@
             "$value": "{semantic.color.text.disabled}"
           },
           "background-hover": {
-            "$value": "{semantic.color.background.subtle}"
+            "$value": "{semantic.color.background.hover}"
           },
           "background-selected": {
             "$value": "{semantic.color.background.selected}"
@@ -2054,7 +2057,7 @@
         "$type": "dimension"
       },
       "radius": {
-        "$value": "{semantic.round.md}",
+        "$value": "{semantic.round.lg}",
         "$type": "dimension"
       },
       "border-width": {
@@ -2083,7 +2086,7 @@
           "$type": "dimension"
         },
         "radius": {
-          "$value": "{semantic.round.sm}",
+          "$value": "{semantic.round.md}",
           "$type": "dimension"
         },
         "typography": {
@@ -2114,10 +2117,10 @@
           "$value": "{semantic.color.border.default}"
         },
         "separator": {
-          "$value": "{semantic.color.border.subtle}"
+          "$value": "{semantic.color.border.default}"
         },
         "group-label": {
-          "$value": "{semantic.color.text.secondary}"
+          "$value": "{semantic.color.text.tertiary}"
         },
         "item": {
           "text": {
@@ -2150,7 +2153,7 @@
         "$type": "dimension"
       },
       "radius": {
-        "$value": "{semantic.round.md}",
+        "$value": "{semantic.round.lg}",
         "$type": "dimension"
       },
       "border-width": {
@@ -2187,7 +2190,7 @@
           "$type": "dimension"
         },
         "radius": {
-          "$value": "{semantic.round.sm}",
+          "$value": "{semantic.round.md}",
           "$type": "dimension"
         },
         "typography": {
@@ -2228,10 +2231,10 @@
           "$value": "{semantic.color.border.default}"
         },
         "separator": {
-          "$value": "{semantic.color.border.subtle}"
+          "$value": "{semantic.color.border.default}"
         },
         "group-label": {
-          "$value": "{semantic.color.text.secondary}"
+          "$value": "{semantic.color.text.tertiary}"
         },
         "empty": {
           "$value": "{semantic.color.text.secondary}"

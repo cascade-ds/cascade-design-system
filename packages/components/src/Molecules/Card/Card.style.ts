@@ -19,12 +19,13 @@ const baseCardCss = css`
 
 const interactiveStates = {
   true: css`
-    transition-property: box-shadow;
+    transition-property: box-shadow, border-color;
     transition-duration: ${semantic.motion.duration.fast};
     transition-timing-function: ${semantic.motion.easing.standard};
 
     &:hover,
     &:focus-within {
+      border-color: ${component.card.color.borderHover};
       box-shadow: ${component.card.shadow.hover};
     }
 

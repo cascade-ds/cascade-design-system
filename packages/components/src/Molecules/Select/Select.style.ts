@@ -16,7 +16,7 @@ const baseTriggerCss = css`
   color: ${component.input.color.text.default};
   text-align: start;
   cursor: pointer;
-  transition-property: border-color, outline-color;
+  transition-property: border-color, box-shadow;
   transition-duration: ${semantic.motion.duration.fast};
   transition-timing-function: ${semantic.motion.easing.standard};
 
@@ -28,19 +28,19 @@ const baseTriggerCss = css`
     border-color: ${component.input.color.border.invalid};
   }
 
-  /* Keyboard focus and the open state both draw the input focus ring,
-     pulled over the border so it causes no layout shift. */
+  /* Keyboard focus and the open state both draw the input focus ring. The
+     transparent outline is what forced-colors mode paints. */
   &:focus-visible,
   &[data-popup-open] {
     border-color: ${component.input.color.border.focus};
-    outline: ${component.input.border.widthFocus} solid ${component.input.color.border.focus};
-    outline-offset: calc(${component.input.border.width} * -1);
+    outline: ${semantic.focus.ring.width} solid transparent;
+    box-shadow: ${semantic.focus.shadow};
   }
 
   &[aria-invalid='true']:focus-visible,
   &[aria-invalid='true'][data-popup-open] {
     border-color: ${component.input.color.border.invalid};
-    outline-color: ${component.input.color.border.invalid};
+    box-shadow: 0 0 0 ${semantic.focus.ring.width} ${component.input.color.border.invalid};
   }
 
   &[data-readonly]:not([data-disabled]) {

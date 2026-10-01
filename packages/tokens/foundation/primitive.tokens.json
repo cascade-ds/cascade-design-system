@@ -237,6 +237,17 @@
             ]
           }
         },
+        "450": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5373,
+              0.5373,
+              0.5725
+            ]
+          },
+          "$description": "Between 400 and 500: light-theme strong border, 3.1:1+ on every light surface."
+        },
         "500": {
           "$value": {
             "colorSpace": "srgb",
@@ -246,6 +257,17 @@
               0.4784
             ]
           }
+        },
+        "550": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3765,
+              0.3765,
+              0.4118
+            ]
+          },
+          "$description": "Between 500 and 600: light-theme tertiary text, 4.9:1 on the muted surface and 5.7:1+ on the rest."
         },
         "600": {
           "$value": {
@@ -1495,6 +1517,75 @@
                 1.0
               ],
               "alpha": 0.5
+            }
+          }
+        },
+        "ink": {
+          "$description": "gray.900 at partial opacity. Tinted shadow layers on light surfaces.",
+          "6": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0941,
+                0.0941,
+                0.1059
+              ],
+              "alpha": 0.06
+            }
+          },
+          "8": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0941,
+                0.0941,
+                0.1059
+              ],
+              "alpha": 0.08
+            }
+          },
+          "10": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0941,
+                0.0941,
+                0.1059
+              ],
+              "alpha": 0.1
+            }
+          },
+          "12": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0941,
+                0.0941,
+                0.1059
+              ],
+              "alpha": 0.12
+            }
+          },
+          "16": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0941,
+                0.0941,
+                0.1059
+              ],
+              "alpha": 0.16
+            }
+          },
+          "20": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0941,
+                0.0941,
+                0.1059
+              ],
+              "alpha": 0.2
             }
           }
         },

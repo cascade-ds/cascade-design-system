@@ -177,7 +177,7 @@ const linkCss = css`
 const variants = {
   primary: [raisedCss, primaryCss],
   secondary: [raisedCss, secondaryCss],
-  outline: [raisedCss, outlineCss],
+  outline: outlineCss,
   danger: [raisedCss, dangerCss],
   ghost: ghostCss,
   link: linkCss,
@@ -188,7 +188,7 @@ const sizes = {
     min-height: ${component.button.size.sm.minHeight};
     padding-block: ${component.button.size.sm.paddingBlock};
     padding-inline: ${component.button.size.sm.paddingInline};
-    font-size: ${semantic.font.size.sm};
+    font-size: ${component.button.size.sm.typography.fontSize};
     line-height: ${component.button.size.sm.typography.lineHeight};
     letter-spacing: ${component.button.size.sm.typography.letterSpacing};
     --cascade-button-icon-size: ${component.button.size.sm.iconSize};
@@ -197,7 +197,7 @@ const sizes = {
     min-height: ${component.button.size.md.minHeight};
     padding-block: ${component.button.size.md.paddingBlock};
     padding-inline: ${component.button.size.md.paddingInline};
-    font-size: ${semantic.font.size.md};
+    font-size: ${component.button.size.md.typography.fontSize};
     line-height: ${component.button.size.md.typography.lineHeight};
     letter-spacing: ${component.button.size.md.typography.letterSpacing};
     --cascade-button-icon-size: ${component.button.size.md.iconSize};
@@ -206,7 +206,7 @@ const sizes = {
     min-height: ${component.button.size.lg.minHeight};
     padding-block: ${component.button.size.lg.paddingBlock};
     padding-inline: ${component.button.size.lg.paddingInline};
-    font-size: ${semantic.font.size.lg};
+    font-size: ${component.button.size.lg.typography.fontSize};
     line-height: ${component.button.size.lg.typography.lineHeight};
     letter-spacing: ${component.button.size.lg.typography.letterSpacing};
     --cascade-button-icon-size: ${component.button.size.lg.iconSize};

@@ -71,12 +71,12 @@
           "$description": "Headings, body, KPI values."
         },
         "secondary": {
-          "$value": "{primitive.color.gray.600}",
-          "$description": "Labels, metadata. AA on canvas, default and subtle."
+          "$value": "{primitive.color.gray.700}",
+          "$description": "Labels, metadata. 8:1+ on every surface, incl. muted."
         },
         "tertiary": {
-          "$value": "{primitive.color.gray.500}",
-          "$description": "Placeholders, captions. AA ONLY on background.default/canvas - never on subtle/muted."
+          "$value": "{primitive.color.gray.550}",
+          "$description": "Placeholders, captions. AA (4.9:1+) on every surface, incl. muted."
         },
         "disabled": {
           "$value": "{primitive.color.gray.400}",
@@ -142,7 +142,7 @@
           "$description": "Decorative: card, sidebar, topbar, dividers."
         },
         "strong": {
-          "$value": "{primitive.color.gray.400}"
+          "$value": "{primitive.color.gray.450}"
         },
         "input": {
           "$value": "{primitive.color.gray.500}",
@@ -359,114 +359,198 @@
     },
     "elevation": {
       "$type": "shadow",
-      "$description": "Mode-dependent shadows (color changes per mode).",
+      "$description": "Mode-dependent shadows: a tight contact layer plus a soft ambient layer, tinted with gray.900 so they sit naturally on the surfaces.",
       "none": {
         "$value": {
-          "color": "{primitive.color.alpha.black.4}",
+          "color": "{semantic.color.background.transparent}",
           "offsetX": {
-            "value": 0,
-            "unit": "px"
-          },
+          "value": 0,
+          "unit": "px"
+        },
           "offsetY": {
-            "value": 0,
-            "unit": "px"
-          },
+          "value": 0,
+          "unit": "px"
+        },
           "blur": {
-            "value": 0,
-            "unit": "px"
-          },
+          "value": 0,
+          "unit": "px"
+        },
           "spread": {
-            "value": 0,
-            "unit": "px"
-          }
+          "value": 0,
+          "unit": "px"
+        }
         }
       },
       "sm": {
-        "$value": {
-          "color": "{primitive.color.alpha.black.8}",
-          "offsetX": {
+        "$value": [
+          {
+            "color": "{primitive.color.alpha.ink.8}",
+            "offsetX": {
             "value": 0,
             "unit": "px"
           },
-          "offsetY": {
+            "offsetY": {
             "value": 1,
             "unit": "px"
           },
-          "blur": {
+            "blur": {
             "value": 2,
             "unit": "px"
           },
-          "spread": {
+            "spread": {
             "value": 0,
             "unit": "px"
           }
-        },
+          },
+          {
+            "color": "{primitive.color.alpha.ink.6}",
+            "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+            "offsetY": {
+            "value": 0,
+            "unit": "px"
+          },
+            "blur": {
+            "value": 1,
+            "unit": "px"
+          },
+            "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+          }
+        ],
         "$description": "Cards."
       },
       "md": {
-        "$value": {
-          "color": "{primitive.color.alpha.black.8}",
-          "offsetX": {
+        "$value": [
+          {
+            "color": "{primitive.color.alpha.ink.8}",
+            "offsetX": {
             "value": 0,
             "unit": "px"
           },
-          "offsetY": {
+            "offsetY": {
+            "value": 2,
+            "unit": "px"
+          },
+            "blur": {
             "value": 4,
             "unit": "px"
           },
-          "blur": {
+            "spread": {
+            "value": -1,
+            "unit": "px"
+          }
+          },
+          {
+            "color": "{primitive.color.alpha.ink.10}",
+            "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+            "offsetY": {
+            "value": 4,
+            "unit": "px"
+          },
+            "blur": {
             "value": 12,
             "unit": "px"
           },
-          "spread": {
+            "spread": {
             "value": -2,
             "unit": "px"
           }
-        },
+          }
+        ],
         "$description": "Hovered cards, dropdowns."
       },
       "lg": {
-        "$value": {
-          "color": "{primitive.color.alpha.black.12}",
-          "offsetX": {
+        "$value": [
+          {
+            "color": "{primitive.color.alpha.ink.8}",
+            "offsetX": {
             "value": 0,
             "unit": "px"
           },
-          "offsetY": {
+            "offsetY": {
+            "value": 4,
+            "unit": "px"
+          },
+            "blur": {
+            "value": 8,
+            "unit": "px"
+          },
+            "spread": {
+            "value": -2,
+            "unit": "px"
+          }
+          },
+          {
+            "color": "{primitive.color.alpha.ink.12}",
+            "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+            "offsetY": {
             "value": 12,
             "unit": "px"
           },
-          "blur": {
+            "blur": {
             "value": 24,
             "unit": "px"
           },
-          "spread": {
+            "spread": {
             "value": -4,
             "unit": "px"
           }
-        },
+          }
+        ],
         "$description": "Popovers, drawers."
       },
       "xl": {
-        "$value": {
-          "color": "{primitive.color.alpha.black.16}",
-          "offsetX": {
+        "$value": [
+          {
+            "color": "{primitive.color.alpha.ink.10}",
+            "offsetX": {
             "value": 0,
             "unit": "px"
           },
-          "offsetY": {
+            "offsetY": {
+            "value": 8,
+            "unit": "px"
+          },
+            "blur": {
+            "value": 16,
+            "unit": "px"
+          },
+            "spread": {
+            "value": -4,
+            "unit": "px"
+          }
+          },
+          {
+            "color": "{primitive.color.alpha.ink.20}",
+            "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+            "offsetY": {
             "value": 24,
             "unit": "px"
           },
-          "blur": {
+            "blur": {
             "value": 48,
             "unit": "px"
           },
-          "spread": {
+            "spread": {
             "value": -12,
             "unit": "px"
           }
-        },
+          }
+        ],
         "$description": "Modals."
       }
     }
