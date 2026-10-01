@@ -2,7 +2,7 @@
   "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
   "semantic": {
     "color": {
-      "$description": "Mode: dark. Same roles/keys as color-light. Surfaces step UP in lightness with elevation (canvas 950 -> default 850 -> raised 800). Brand stays light orange / light purple as fills with DARK text; small indicators and text use the 200-400 tints so they stay >= 3:1 / 4.5:1 on dark surfaces.",
+      "$description": "Mode: dark = Sunrise. Neutral gray surfaces step UP in lightness with elevation (canvas gray.950 -> default 850 -> raised 800). Primary is the first-light coral with DARK text (text.on-primary); secondary is the dawn-sky blue; tertiary rose cloud doubles as the link color; accent is the sun rim (decorative). Small indicators and text use the 300-400 tints so they stay >= 3:1 / 4.5:1 on dark surfaces.",
       "background": {
         "$type": "color",
         "canvas": {
@@ -26,7 +26,7 @@
           "$description": "Skeletons, pressed neutral controls."
         },
         "inverse": {
-          "$value": "{primitive.color.gray.100}",
+          "$value": "{primitive.color.night.100}",
           "$description": "Tooltips, toasts (light on dark)."
         },
         "disabled": {
@@ -56,56 +56,73 @@
           "$description": "Neutral pressed tint over any surface."
         },
         "brand": {
-          "$value": "{primitive.color.orange.950}",
-          "$description": "Deep orange-tinted surface (hero/empty states)."
+          "$value": "{primitive.color.pink.950}",
+          "$description": "Plum-tinted surface (hero/empty states)."
         },
         "selected": {
-          "$value": "{primitive.color.orange.950}",
+          "$value": "{primitive.color.pink.950}",
           "$description": "Selected rows, active nav item."
         }
       },
       "text": {
         "$type": "color",
         "primary": {
-          "$value": "{primitive.color.gray.50}",
+          "$value": "{primitive.color.night.50}",
           "$description": "Headings, body, KPI values."
         },
         "secondary": {
-          "$value": "{primitive.color.gray.300}",
+          "$value": "{primitive.color.night.300}",
           "$description": "Labels, metadata. AA on every background incl. muted."
         },
         "tertiary": {
-          "$value": "{primitive.color.gray.350}",
-          "$description": "Placeholders, captions. 7:1+ on canvas/default/raised/subtle - avoid on muted (6.7:1)."
+          "$value": "{primitive.color.night.400}",
+          "$description": "Placeholders, captions. 6.9:1 on canvas, 6.3:1 on default, 5.6:1 on raised/subtle, 5.0:1 on muted."
         },
         "disabled": {
-          "$value": "{primitive.color.gray.500}",
+          "$value": "{primitive.color.night.500}",
           "$description": "Disabled text: ~3:1 on the dark surfaces, faded on purpose (exempt from WCAG contrast)."
         },
         "inverse": {
-          "$value": "{primitive.color.gray.900}"
+          "$value": "{primitive.color.night.900}"
         },
         "link": {
-          "$value": "{primitive.color.purple.300}"
+          "$value": "{primitive.color.pink.400}",
+          "$description": "Rose cloud (tertiary)."
         },
         "link-hover": {
-          "$value": "{primitive.color.purple.200}"
+          "$value": "{primitive.color.pink.300}"
         },
         "brand": {
           "$value": "{primitive.color.orange.300}",
-          "$description": "Orange text on dark surfaces (AA)."
+          "$description": "Coral text on dark surfaces (AA)."
         },
         "on-primary": {
-          "$value": "{primitive.color.gray.950}",
-          "$description": "Text/icons on brand.primary fills (light orange)."
+          "$value": "{primitive.color.orange.950}",
+          "$description": "Text/icons on brand.primary fills (first-light coral, dark #1A0F0C)."
         },
         "on-secondary": {
-          "$value": "{primitive.color.gray.950}",
-          "$description": "Text/icons on brand.secondary fills (light purple)."
+          "$value": "{primitive.color.night.950}",
+          "$description": "Text/icons on brand.secondary fills (dawn-sky blue)."
         },
         "on-danger": {
-          "$value": "{primitive.color.gray.950}",
-          "$description": "Dark text on the lighter red danger fill (white fails on red.400)."
+          "$value": "{primitive.color.night.950}",
+          "$description": "Dark text on the light red danger fill (white fails on red.400)."
+        },
+        "on-tertiary": {
+          "$value": "{primitive.color.night.950}",
+          "$description": "Text/icons on brand.tertiary fills."
+        },
+        "on-accent": {
+          "$value": "{primitive.color.night.950}",
+          "$description": "Text/icons on brand.accent fills."
+        },
+        "on-success": {
+          "$value": "{primitive.color.night.950}",
+          "$description": "Text/icons on feedback.success fills."
+        },
+        "on-info": {
+          "$value": "{primitive.color.night.950}",
+          "$description": "Text/icons on feedback.info fills."
         },
         "on-brand": {
           "$value": "{semantic.color.text.on-primary}",
@@ -115,52 +132,52 @@
       "icon": {
         "$type": "color",
         "primary": {
-          "$value": "{primitive.color.gray.300}"
+          "$value": "{primitive.color.night.300}"
         },
         "secondary": {
-          "$value": "{primitive.color.gray.400}",
+          "$value": "{primitive.color.night.400}",
           "$description": ">= 3:1 on canvas/default/raised/subtle."
         },
         "disabled": {
-          "$value": "{primitive.color.gray.600}"
+          "$value": "{primitive.color.night.600}"
         },
         "brand": {
           "$value": "{primitive.color.orange.400}"
         },
         "inverse": {
-          "$value": "{primitive.color.gray.900}"
+          "$value": "{primitive.color.night.900}"
         }
       },
       "border": {
         "$type": "color",
         "subtle": {
-          "$value": "{primitive.color.gray.800}",
+          "$value": "{primitive.color.night.800}",
           "$description": "Decorative only (inner table rules)."
         },
         "default": {
-          "$value": "{primitive.color.gray.700}",
+          "$value": "{primitive.color.night.700}",
           "$description": "Decorative: card, sidebar, topbar, dividers."
         },
         "strong": {
-          "$value": "{primitive.color.gray.600}"
+          "$value": "{primitive.color.night.500}"
         },
         "input": {
-          "$value": "{primitive.color.gray.500}",
+          "$value": "{primitive.color.night.500}",
           "$description": "Form-control boundary; >= 3:1 on canvas, default and raised (WCAG 1.4.11)."
         },
         "input-hover": {
-          "$value": "{primitive.color.gray.400}"
+          "$value": "{primitive.color.night.400}"
         },
         "focus": {
-          "$value": "{primitive.color.purple.400}",
-          "$description": "Focus ring; >= 3:1 on every dark surface. The ring hugs the element (focus.shadow), so on purple fills the glow is what separates it."
+          "$value": "{primitive.color.night.50}",
+          "$description": "Focus ring; neutral so it separates from every brand and feedback fill, and >= 3:1 on every dark surface."
         },
         "focus-glow": {
-          "$value": "{primitive.color.alpha.purple-400.35}",
+          "$value": "{primitive.color.alpha.white.12}",
           "$description": "Soft halo around the focus ring. Decorative: border.focus carries the contrast."
         },
         "brand": {
-          "$value": "{primitive.color.orange.700}"
+          "$value": "{primitive.color.orange.800}"
         },
         "danger": {
           "$value": "{primitive.color.red.400}"
@@ -169,59 +186,95 @@
       "brand": {
         "$type": "color",
         "primary": {
-          "$value": "{primitive.color.orange.500}",
-          "$description": "Mid orange. Fills only - pair with text.on-primary (7:1)."
+          "$value": "{primitive.color.orange.400}",
+          "$description": "First-light coral. Fills only - pair with text.on-primary (dark)."
         },
         "primary-hover": {
-          "$value": "{primitive.color.orange.200}",
+          "$value": "{primitive.color.orange.300}",
           "$description": "Hover lightens in dark mode."
         },
         "primary-active": {
-          "$value": "{primitive.color.orange.400}"
+          "$value": "{primitive.color.orange.500}"
         },
         "primary-strong": {
           "$value": "{primitive.color.orange.400}",
           "$description": "Small indicators on dark surfaces (checkbox, switch, progress, tab underline): >= 3:1."
         },
         "primary-subtle": {
-          "$value": "{primitive.color.orange.950}"
+          "$value": "{primitive.color.pink.950}"
         },
         "primary-muted": {
-          "$value": "{primitive.color.orange.900}"
+          "$value": "{primitive.color.pink.900}"
         },
         "primary-text": {
           "$value": "{primitive.color.orange.100}",
           "$description": "Text on primary-subtle / primary-muted."
         },
         "secondary": {
-          "$value": "{primitive.color.purple.300}",
-          "$description": "Light purple. Fills only - pair with text.on-secondary."
+          "$value": "{primitive.color.blue.300}",
+          "$description": "Dawn-sky blue. Fills only - pair with text.on-secondary (dark)."
         },
         "secondary-hover": {
-          "$value": "{primitive.color.purple.200}"
+          "$value": "{primitive.color.blue.200}"
         },
         "secondary-active": {
-          "$value": "{primitive.color.purple.400}"
+          "$value": "{primitive.color.blue.400}"
         },
         "secondary-strong": {
-          "$value": "{primitive.color.purple.400}"
+          "$value": "{primitive.color.blue.300}"
         },
         "secondary-subtle": {
-          "$value": "{primitive.color.purple.950}"
+          "$value": "{primitive.color.blue.950}"
         },
         "secondary-muted": {
-          "$value": "{primitive.color.purple.900}"
+          "$value": "{primitive.color.blue.900}"
         },
         "secondary-text": {
-          "$value": "{primitive.color.purple.200}",
+          "$value": "{primitive.color.blue.200}",
           "$description": "Text on secondary-subtle / secondary-muted."
+        },
+        "accent": {
+          "$value": "{primitive.color.yellow.300}",
+          "$description": "Sun rim. Decorative fill only (dark text on it); never the sole carrier of meaning."
+        },
+        "tertiary": {
+          "$value": "{primitive.color.pink.400}",
+          "$description": "Rose cloud. Tertiary accent; also the link color (text.link)."
+        },
+        "tertiary-hover": {
+          "$value": "{primitive.color.pink.300}"
+        },
+        "tertiary-active": {
+          "$value": "{primitive.color.pink.500}"
+        },
+        "accent-hover": {
+          "$value": "{primitive.color.yellow.200}"
+        },
+        "accent-active": {
+          "$value": "{primitive.color.yellow.400}"
+        },
+        "accent-strong": {
+          "$value": "{primitive.color.yellow.300}",
+          "$description": "Accent for small indicators (switch track, slider fill, spinner): >= 3:1 on the surface."
+        },
+        "accent-subtle": {
+          "$value": "{primitive.color.yellow.950}"
+        },
+        "accent-muted": {
+          "$value": "{primitive.color.yellow.900}"
+        },
+        "tertiary-subtle": {
+          "$value": "{primitive.color.purple.950}"
+        },
+        "tertiary-muted": {
+          "$value": "{primitive.color.purple.900}"
         }
       },
       "feedback": {
         "$type": "color",
         "$description": "Solid = icons/fills, -text = AA text on dark surfaces AND on -subtle, -subtle = tinted bg, -border = tinted border.",
         "success": {
-          "$value": "{primitive.color.green.400}"
+          "$value": "{primitive.color.green.300}"
         },
         "success-text": {
           "$value": "{primitive.color.green.300}"
@@ -232,8 +285,17 @@
         "success-border": {
           "$value": "{primitive.color.green.800}"
         },
+        "success-hover": {
+          "$value": "{primitive.color.green.200}"
+        },
+        "success-active": {
+          "$value": "{primitive.color.green.400}"
+        },
+        "success-muted": {
+          "$value": "{primitive.color.green.900}"
+        },
         "warning": {
-          "$value": "{primitive.color.yellow.400}",
+          "$value": "{primitive.color.yellow.300}",
           "$description": "Fill/icon; pair with dark text when used as a fill."
         },
         "warning-text": {
@@ -255,6 +317,9 @@
         "danger-active": {
           "$value": "{primitive.color.red.500}"
         },
+        "danger-muted": {
+          "$value": "{primitive.color.red.900}"
+        },
         "danger-text": {
           "$value": "{primitive.color.red.300}"
         },
@@ -265,45 +330,54 @@
           "$value": "{primitive.color.red.800}"
         },
         "info": {
-          "$value": "{primitive.color.cyan.400}"
+          "$value": "{primitive.color.blue.300}"
         },
         "info-text": {
-          "$value": "{primitive.color.cyan.300}"
+          "$value": "{primitive.color.blue.300}"
         },
         "info-subtle": {
-          "$value": "{primitive.color.cyan.950}"
+          "$value": "{primitive.color.blue.950}"
         },
         "info-border": {
-          "$value": "{primitive.color.cyan.800}"
+          "$value": "{primitive.color.blue.800}"
+        },
+        "info-hover": {
+          "$value": "{primitive.color.blue.200}"
+        },
+        "info-active": {
+          "$value": "{primitive.color.blue.400}"
+        },
+        "info-muted": {
+          "$value": "{primitive.color.blue.900}"
         }
       },
       "data-viz": {
         "$type": "color",
-        "$description": "Chart colors. Categorical series are >= 3:1 against background.default (gray.850). Same hue order as light mode.",
+        "$description": "Chart colors. Categorical series are >= 3:1 against background.default (night.850). Same hue order as light mode.",
         "categorical": {
           "1": {
             "$value": "{primitive.color.orange.400}"
           },
           "2": {
-            "$value": "{primitive.color.purple.400}"
+            "$value": "{primitive.color.blue.300}"
           },
           "3": {
-            "$value": "{primitive.color.teal.400}"
-          },
-          "4": {
-            "$value": "{primitive.color.blue.400}"
-          },
-          "5": {
             "$value": "{primitive.color.pink.400}"
           },
+          "4": {
+            "$value": "{primitive.color.yellow.300}"
+          },
+          "5": {
+            "$value": "{primitive.color.green.300}"
+          },
           "6": {
-            "$value": "{primitive.color.yellow.400}"
+            "$value": "{primitive.color.purple.400}"
           },
           "7": {
-            "$value": "{primitive.color.cyan.400}"
+            "$value": "{primitive.color.teal.400}"
           },
           "8": {
-            "$value": "{primitive.color.gray.400}"
+            "$value": "{primitive.color.night.400}"
           }
         },
         "sequential": {
@@ -333,7 +407,7 @@
             "$value": "{primitive.color.purple.600}"
           },
           "neutral": {
-            "$value": "{primitive.color.gray.700}"
+            "$value": "{primitive.color.night.700}"
           },
           "positive": {
             "$value": "{primitive.color.orange.600}"
@@ -349,10 +423,10 @@
           "$value": "{semantic.color.feedback.danger}"
         },
         "grid": {
-          "$value": "{primitive.color.gray.800}"
+          "$value": "{primitive.color.night.800}"
         },
         "axis": {
-          "$value": "{primitive.color.gray.500}"
+          "$value": "{primitive.color.night.500}"
         },
         "label": {
           "$value": "{semantic.color.text.secondary}"
@@ -361,114 +435,259 @@
     },
     "elevation": {
       "$type": "shadow",
-      "$description": "Mode-dependent shadows. Heavier alpha than light mode; elevation is mainly carried by lighter surfaces (background.raised).",
+      "$description": "Mode-dependent shadows. Heavier alpha than light mode, plus a 1px top highlight so raised surfaces read as lit from above; elevation is mainly carried by lighter surfaces (background.raised).",
       "none": {
         "$value": {
-          "color": "{primitive.color.alpha.black.40}",
+          "color": "{semantic.color.background.transparent}",
           "offsetX": {
-            "value": 0,
-            "unit": "px"
-          },
+          "value": 0,
+          "unit": "px"
+        },
           "offsetY": {
-            "value": 0,
-            "unit": "px"
-          },
+          "value": 0,
+          "unit": "px"
+        },
           "blur": {
-            "value": 0,
-            "unit": "px"
-          },
+          "value": 0,
+          "unit": "px"
+        },
           "spread": {
-            "value": 0,
-            "unit": "px"
-          }
+          "value": 0,
+          "unit": "px"
+        }
         }
       },
       "sm": {
-        "$value": {
-          "color": "{primitive.color.alpha.black.40}",
-          "offsetX": {
+        "$value": [
+          {
+            "color": "{primitive.color.alpha.black.40}",
+            "offsetX": {
             "value": 0,
             "unit": "px"
           },
-          "offsetY": {
+            "offsetY": {
             "value": 1,
             "unit": "px"
           },
-          "blur": {
+            "blur": {
             "value": 2,
             "unit": "px"
           },
-          "spread": {
+            "spread": {
             "value": 0,
             "unit": "px"
           }
-        },
+          },
+          {
+            "color": "{primitive.color.alpha.white.8}",
+            "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+            "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+            "blur": {
+            "value": 0,
+            "unit": "px"
+          },
+            "spread": {
+            "value": 0,
+            "unit": "px"
+          },
+            "inset": true
+          }
+        ],
         "$description": "Cards."
       },
       "md": {
-        "$value": {
-          "color": "{primitive.color.alpha.black.50}",
-          "offsetX": {
+        "$value": [
+          {
+            "color": "{primitive.color.alpha.black.40}",
+            "offsetX": {
             "value": 0,
             "unit": "px"
           },
-          "offsetY": {
+            "offsetY": {
+            "value": 2,
+            "unit": "px"
+          },
+            "blur": {
             "value": 4,
             "unit": "px"
           },
-          "blur": {
+            "spread": {
+            "value": -1,
+            "unit": "px"
+          }
+          },
+          {
+            "color": "{primitive.color.alpha.black.50}",
+            "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+            "offsetY": {
+            "value": 4,
+            "unit": "px"
+          },
+            "blur": {
             "value": 12,
             "unit": "px"
           },
-          "spread": {
+            "spread": {
             "value": -2,
             "unit": "px"
           }
-        },
+          },
+          {
+            "color": "{primitive.color.alpha.white.8}",
+            "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+            "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+            "blur": {
+            "value": 0,
+            "unit": "px"
+          },
+            "spread": {
+            "value": 0,
+            "unit": "px"
+          },
+            "inset": true
+          }
+        ],
         "$description": "Hovered cards, dropdowns."
       },
       "lg": {
-        "$value": {
-          "color": "{primitive.color.alpha.black.60}",
-          "offsetX": {
+        "$value": [
+          {
+            "color": "{primitive.color.alpha.black.50}",
+            "offsetX": {
             "value": 0,
             "unit": "px"
           },
-          "offsetY": {
+            "offsetY": {
+            "value": 4,
+            "unit": "px"
+          },
+            "blur": {
+            "value": 8,
+            "unit": "px"
+          },
+            "spread": {
+            "value": -2,
+            "unit": "px"
+          }
+          },
+          {
+            "color": "{primitive.color.alpha.black.60}",
+            "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+            "offsetY": {
             "value": 12,
             "unit": "px"
           },
-          "blur": {
+            "blur": {
             "value": 24,
             "unit": "px"
           },
-          "spread": {
+            "spread": {
             "value": -4,
             "unit": "px"
           }
-        },
-        "$description": "Popovers, drawers."
-      },
-      "xl": {
-        "$value": {
-          "color": "{primitive.color.alpha.black.70}",
-          "offsetX": {
+          },
+          {
+            "color": "{primitive.color.alpha.white.8}",
+            "offsetX": {
             "value": 0,
             "unit": "px"
           },
-          "offsetY": {
+            "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+            "blur": {
+            "value": 0,
+            "unit": "px"
+          },
+            "spread": {
+            "value": 0,
+            "unit": "px"
+          },
+            "inset": true
+          }
+        ],
+        "$description": "Popovers, drawers."
+      },
+      "xl": {
+        "$value": [
+          {
+            "color": "{primitive.color.alpha.black.60}",
+            "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+            "offsetY": {
+            "value": 8,
+            "unit": "px"
+          },
+            "blur": {
+            "value": 16,
+            "unit": "px"
+          },
+            "spread": {
+            "value": -4,
+            "unit": "px"
+          }
+          },
+          {
+            "color": "{primitive.color.alpha.black.70}",
+            "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+            "offsetY": {
             "value": 24,
             "unit": "px"
           },
-          "blur": {
+            "blur": {
             "value": 48,
             "unit": "px"
           },
-          "spread": {
+            "spread": {
             "value": -12,
             "unit": "px"
           }
-        },
+          },
+          {
+            "color": "{primitive.color.alpha.white.8}",
+            "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+            "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+            "blur": {
+            "value": 0,
+            "unit": "px"
+          },
+            "spread": {
+            "value": 0,
+            "unit": "px"
+          },
+            "inset": true
+          }
+        ],
         "$description": "Modals."
       }
     }

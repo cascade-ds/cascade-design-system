@@ -21,7 +21,7 @@ const baseItemCss = css`
   height: var(--cascade-pagination-size);
   margin: 0;
   padding-inline: ${component.pagination.paddingInline};
-  border: none;
+  border: ${semantic.border.width.default} solid transparent;
   border-radius: ${component.pagination.radius};
   background-color: ${semantic.color.background.transparent};
   color: ${component.pagination.color.text};
@@ -55,6 +55,7 @@ const baseItemCss = css`
 
   &[aria-current='page'] {
     background-color: ${component.pagination.color.backgroundCurrent};
+    border-color: ${component.pagination.color.borderCurrent};
     color: ${component.pagination.color.textCurrent};
     cursor: default;
   }

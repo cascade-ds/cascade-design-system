@@ -7,6 +7,12 @@ const meta = {
   component: Switch,
   tags: ['autodocs'],
   argTypes: {
+    color: {
+      control: 'select',
+      options: ['primary', 'secondary', 'tertiary', 'accent', 'success', 'info', 'danger'],
+      description:
+        'Color of the on state. `primary` is the default; the others color-code a setting.',
+    },
     children: {
       control: 'text',
       description:
@@ -17,6 +23,7 @@ const meta = {
     },
   },
   args: {
+    color: 'primary',
     children: 'Email notifications',
     disabled: false,
   },
@@ -82,4 +89,18 @@ export const WithoutVisibleLabel: Story = {
     children: undefined,
     'aria-label': 'Dark mode',
   },
+};
+
+export const Colors: Story = {
+  render: (args) => (
+    <div style={{ display: 'grid', gap: '1rem', justifyItems: 'start' }}>
+      {(['primary', 'secondary', 'tertiary', 'accent', 'success', 'info', 'danger'] as const).map(
+        (color) => (
+          <Switch key={color} {...args} color={color} defaultChecked>
+            {color}
+          </Switch>
+        ),
+      )}
+    </div>
+  ),
 };

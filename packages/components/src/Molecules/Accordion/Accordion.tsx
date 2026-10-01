@@ -1,38 +1,37 @@
 import { Accordion as BaseAccordion } from '@base-ui/react/accordion';
 import { cx } from '@linaria/core';
+import type { VariantProps } from 'class-variance-authority';
 import {
-  accordionCss,
   accordionHeaderCss,
   accordionIconCss,
   accordionItemCss,
   accordionPanelContentCss,
   accordionPanelCss,
   accordionTriggerCss,
+  accordionVariant,
 } from './Accordion.style';
 
 type ItemValue = string | number;
 
-export type AccordionProps = Omit<
-  React.ComponentPropsWithRef<'div'>,
-  'defaultValue' | 'onChange'
-> & {
-  children: React.ReactNode;
-  /** Values of the open items when controlled. Pair with `onValueChange`. */
-  value?: ItemValue[];
-  /** Values of the items open at first when uncontrolled. */
-  defaultValue?: ItemValue[];
-  /** Called with the open items' values when one opens or closes. */
-  onValueChange?: (value: ItemValue[]) => void;
-  /** Lets several items be open at once. Otherwise opening one closes the others. */
-  multiple?: boolean;
-  /** Disables every item. */
-  disabled?: boolean;
-  /**
-   * Keeps closed panels in the DOM, hidden, so the browser's find-in-page can
-   * search them and open the matching item.
-   */
-  hiddenUntilFound?: boolean;
-};
+export type AccordionProps = VariantProps<typeof accordionVariant> &
+  Omit<React.ComponentPropsWithRef<'div'>, 'defaultValue' | 'onChange'> & {
+    children: React.ReactNode;
+    /** Values of the open items when controlled. Pair with `onValueChange`. */
+    value?: ItemValue[];
+    /** Values of the items open at first when uncontrolled. */
+    defaultValue?: ItemValue[];
+    /** Called with the open items' values when one opens or closes. */
+    onValueChange?: (value: ItemValue[]) => void;
+    /** Lets several items be open at once. Otherwise opening one closes the others. */
+    multiple?: boolean;
+    /** Disables every item. */
+    disabled?: boolean;
+    /**
+     * Keeps closed panels in the DOM, hidden, so the browser's find-in-page can
+     * search them and open the matching item.
+     */
+    hiddenUntilFound?: boolean;
+  };
 
 export type AccordionItemProps = React.ComponentPropsWithRef<'div'> & {
   /** Identifies the item in `value` / `defaultValue`. Generated when unset. */
@@ -56,7 +55,7 @@ export type AccordionPanelProps = React.ComponentPropsWithRef<'div'>;
  * `Accordion.Panel`.
  */
 function Accordion(props: AccordionProps) {
-  const { value, defaultValue, onValueChange, className, ...restProps } = props;
+  const { value, defaultValue, onValueChange, background, className, ...restProps } = props;
 
   return (
     <BaseAccordion.Root
@@ -65,7 +64,7 @@ function Accordion(props: AccordionProps) {
       onValueChange={
         onValueChange ? (nextValue) => onValueChange(nextValue as ItemValue[]) : undefined
       }
-      className={cx(accordionCss, className)}
+      className={cx(accordionVariant({ background }), className)}
       {...restProps}
     />
   );

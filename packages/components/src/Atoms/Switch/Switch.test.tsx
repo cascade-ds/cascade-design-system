@@ -224,3 +224,13 @@ describe('Switch', () => {
     expect(ref.current).toBe(screen.getByRole('switch', { name: 'Notifications' }));
   });
 });
+
+describe('Switch colors', () => {
+  it('applies the class for a color variant', () => {
+    render(<Switch color="success">Notifications</Switch>);
+
+    expect(screen.getByRole('switch').closest('label')).toHaveClass(
+      switchVariant({ disabled: false, color: 'success' }),
+    );
+  });
+});

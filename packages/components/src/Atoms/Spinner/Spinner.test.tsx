@@ -62,3 +62,11 @@ describe('Spinner', () => {
     expect(ref.current).toBe(screen.getByRole('status'));
   });
 });
+
+describe('Spinner colors', () => {
+  it('applies the class for a color variant', () => {
+    render(<Spinner color="success" />);
+
+    expect(screen.getByRole('status')).toHaveClass(spinnerVariant({ color: 'success' }));
+  });
+});

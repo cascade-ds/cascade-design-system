@@ -87,3 +87,11 @@ describe('Skeleton', () => {
     expect(ref.current).toBe(skeleton);
   });
 });
+
+describe('Skeleton colors', () => {
+  it('applies the class for a feedback color variant', () => {
+    const { container } = render(<Skeleton color="success" />);
+
+    expect(container.firstChild).toHaveClass(skeletonVariant({ color: 'success' }));
+  });
+});

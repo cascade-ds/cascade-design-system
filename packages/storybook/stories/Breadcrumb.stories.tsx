@@ -5,6 +5,23 @@ const meta = {
   title: 'CascadeDS/Components/Molecule/Breadcrumb',
   component: Breadcrumb,
   tags: ['autodocs'],
+  argTypes: {
+    color: {
+      control: 'select',
+      options: [
+        'neutral',
+        'primary',
+        'secondary',
+        'tertiary',
+        'accent',
+        'success',
+        'info',
+        'danger',
+      ],
+      description:
+        'Text color of the trail. `neutral` is the default; the others are AA on the page surfaces.',
+    },
+  },
   args: {
     'aria-label': 'Breadcrumb',
   },
@@ -34,6 +51,31 @@ export const Long: Story = {
         <Breadcrumb.Item href="#cascade">Cascade</Breadcrumb.Item>
         <Breadcrumb.Item current>Deployment settings</Breadcrumb.Item>
       </Breadcrumb>
+    </div>
+  ),
+};
+
+export const Colors: Story = {
+  render: (args) => (
+    <div style={{ display: 'grid', gap: '0.75rem' }}>
+      {(
+        [
+          'neutral',
+          'primary',
+          'secondary',
+          'tertiary',
+          'accent',
+          'success',
+          'info',
+          'danger',
+        ] as const
+      ).map((color) => (
+        <Breadcrumb key={color} {...args} color={color} aria-label={`Breadcrumb ${color}`}>
+          <Breadcrumb.Item href="#home">Home</Breadcrumb.Item>
+          <Breadcrumb.Item href="#projects">Projects</Breadcrumb.Item>
+          <Breadcrumb.Item current>{color}</Breadcrumb.Item>
+        </Breadcrumb>
+      ))}
     </div>
   ),
 };

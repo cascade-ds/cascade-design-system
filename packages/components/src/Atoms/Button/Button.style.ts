@@ -68,7 +68,7 @@ const primaryCss = css`
 
   &:active:not(:disabled) {
     background-color: ${component.button.color.primary.background.active};
-    border-color: ${component.button.color.primary.border.hover};
+    border-color: ${component.button.color.primary.border.active};
   }
 
   &:disabled {
@@ -90,13 +90,101 @@ const secondaryCss = css`
 
   &:active:not(:disabled) {
     background-color: ${component.button.color.secondary.background.active};
-    border-color: ${component.button.color.secondary.border.hover};
+    border-color: ${component.button.color.secondary.border.active};
   }
 
   &:disabled {
     background-color: ${component.button.color.secondary.background.disabled};
     border-color: ${component.button.color.secondary.border.disabled};
     color: ${component.button.color.secondary.text.disabled};
+  }
+`;
+
+const tertiaryCss = css`
+  background-color: ${component.button.color.tertiary.background.default};
+  border-color: ${component.button.color.tertiary.border.default};
+  color: ${component.button.color.tertiary.text.default};
+
+  &:hover:not(:disabled) {
+    background-color: ${component.button.color.tertiary.background.hover};
+    border-color: ${component.button.color.tertiary.border.hover};
+  }
+
+  &:active:not(:disabled) {
+    background-color: ${component.button.color.tertiary.background.active};
+    border-color: ${component.button.color.tertiary.border.active};
+  }
+
+  &:disabled {
+    background-color: ${component.button.color.tertiary.background.disabled};
+    border-color: ${component.button.color.tertiary.border.disabled};
+    color: ${component.button.color.tertiary.text.disabled};
+  }
+`;
+
+const accentCss = css`
+  background-color: ${component.button.color.accent.background.default};
+  border-color: ${component.button.color.accent.border.default};
+  color: ${component.button.color.accent.text.default};
+
+  &:hover:not(:disabled) {
+    background-color: ${component.button.color.accent.background.hover};
+    border-color: ${component.button.color.accent.border.hover};
+  }
+
+  &:active:not(:disabled) {
+    background-color: ${component.button.color.accent.background.active};
+    border-color: ${component.button.color.accent.border.active};
+  }
+
+  &:disabled {
+    background-color: ${component.button.color.accent.background.disabled};
+    border-color: ${component.button.color.accent.border.disabled};
+    color: ${component.button.color.accent.text.disabled};
+  }
+`;
+
+const successCss = css`
+  background-color: ${component.button.color.success.background.default};
+  border-color: ${component.button.color.success.border.default};
+  color: ${component.button.color.success.text.default};
+
+  &:hover:not(:disabled) {
+    background-color: ${component.button.color.success.background.hover};
+    border-color: ${component.button.color.success.border.hover};
+  }
+
+  &:active:not(:disabled) {
+    background-color: ${component.button.color.success.background.active};
+    border-color: ${component.button.color.success.border.active};
+  }
+
+  &:disabled {
+    background-color: ${component.button.color.success.background.disabled};
+    border-color: ${component.button.color.success.border.disabled};
+    color: ${component.button.color.success.text.disabled};
+  }
+`;
+
+const infoCss = css`
+  background-color: ${component.button.color.info.background.default};
+  border-color: ${component.button.color.info.border.default};
+  color: ${component.button.color.info.text.default};
+
+  &:hover:not(:disabled) {
+    background-color: ${component.button.color.info.background.hover};
+    border-color: ${component.button.color.info.border.hover};
+  }
+
+  &:active:not(:disabled) {
+    background-color: ${component.button.color.info.background.active};
+    border-color: ${component.button.color.info.border.active};
+  }
+
+  &:disabled {
+    background-color: ${component.button.color.info.background.disabled};
+    border-color: ${component.button.color.info.border.disabled};
+    color: ${component.button.color.info.text.disabled};
   }
 `;
 
@@ -177,7 +265,11 @@ const linkCss = css`
 const variants = {
   primary: [raisedCss, primaryCss],
   secondary: [raisedCss, secondaryCss],
-  outline: [raisedCss, outlineCss],
+  tertiary: [raisedCss, tertiaryCss],
+  accent: [raisedCss, accentCss],
+  success: [raisedCss, successCss],
+  info: [raisedCss, infoCss],
+  outline: outlineCss,
   danger: [raisedCss, dangerCss],
   ghost: ghostCss,
   link: linkCss,
@@ -188,7 +280,7 @@ const sizes = {
     min-height: ${component.button.size.sm.minHeight};
     padding-block: ${component.button.size.sm.paddingBlock};
     padding-inline: ${component.button.size.sm.paddingInline};
-    font-size: ${semantic.font.size.sm};
+    font-size: ${component.button.size.sm.typography.fontSize};
     line-height: ${component.button.size.sm.typography.lineHeight};
     letter-spacing: ${component.button.size.sm.typography.letterSpacing};
     --cascade-button-icon-size: ${component.button.size.sm.iconSize};
@@ -197,7 +289,7 @@ const sizes = {
     min-height: ${component.button.size.md.minHeight};
     padding-block: ${component.button.size.md.paddingBlock};
     padding-inline: ${component.button.size.md.paddingInline};
-    font-size: ${semantic.font.size.md};
+    font-size: ${component.button.size.md.typography.fontSize};
     line-height: ${component.button.size.md.typography.lineHeight};
     letter-spacing: ${component.button.size.md.typography.letterSpacing};
     --cascade-button-icon-size: ${component.button.size.md.iconSize};
@@ -206,7 +298,7 @@ const sizes = {
     min-height: ${component.button.size.lg.minHeight};
     padding-block: ${component.button.size.lg.paddingBlock};
     padding-inline: ${component.button.size.lg.paddingInline};
-    font-size: ${semantic.font.size.lg};
+    font-size: ${component.button.size.lg.typography.fontSize};
     line-height: ${component.button.size.lg.typography.lineHeight};
     letter-spacing: ${component.button.size.lg.typography.letterSpacing};
     --cascade-button-icon-size: ${component.button.size.lg.iconSize};

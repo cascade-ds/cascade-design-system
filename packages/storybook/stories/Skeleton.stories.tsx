@@ -8,9 +8,9 @@ const meta = {
   argTypes: {
     color: {
       control: 'radio',
-      options: ['gray', 'primary', 'secondary'],
+      options: ['gray', 'primary', 'secondary', 'tertiary', 'accent', 'success', 'info', 'danger'],
       description:
-        '`gray` for neutral content, `primary` / `secondary` for placeholders inside brand-tinted surfaces.',
+        '`gray` for neutral content; the others tint placeholders to match a brand or feedback surface.',
     },
     shape: {
       control: 'radio',
@@ -75,5 +75,17 @@ export const CardPlaceholder: Story = {
       <Skeleton {...args} shape="text" width="100%" />
       <Skeleton {...args} shape="text" width="80%" />
     </Stack>
+  ),
+};
+
+export const Colors: Story = {
+  render: (args) => (
+    <div style={{ display: 'grid', gap: '0.75rem' }}>
+      {(
+        ['gray', 'primary', 'secondary', 'tertiary', 'accent', 'success', 'info', 'danger'] as const
+      ).map((color) => (
+        <Skeleton key={color} {...args} color={color} />
+      ))}
+    </div>
   ),
 };

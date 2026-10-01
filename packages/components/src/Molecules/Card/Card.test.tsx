@@ -61,6 +61,27 @@ describe('Card', () => {
     expect(screen.getByRole('region', { name: 'Revenue' })).toBeInTheDocument();
   });
 
+  it('applies the class for a background variant', () => {
+    render(<Card background="success">Content</Card>);
+
+    expectClasses(screen.getByText('Content'), cardVariant({ background: 'success' }));
+  });
+
+  it('leaves out the pointer hover effect with hover={false}', () => {
+    render(
+      <>
+        <Card interactive>Hovering</Card>
+        <Card interactive hover={false}>
+          Still
+        </Card>
+      </>,
+    );
+
+    expectClasses(screen.getByText('Hovering'), cardVariant({ interactive: true }));
+    expectClasses(screen.getByText('Still'), cardVariant({ interactive: true, hover: false }));
+    expect(screen.getByText('Still').className).not.toBe(screen.getByText('Hovering').className);
+  });
+
   it('applies the interactive class', () => {
     render(<Card interactive>Content</Card>);
 

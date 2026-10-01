@@ -6,6 +6,12 @@ const meta = {
   component: Accordion,
   tags: ['autodocs'],
   argTypes: {
+    background: {
+      control: 'select',
+      options: ['default', 'subtle', 'surface', 'brand', 'secondary'],
+      description:
+        'Fill of the whole accordion. `default` is transparent with dividers; the others draw a filled, bordered, rounded block. `surface` is the page surface color, for use on a canvas.',
+    },
     multiple: {
       control: 'boolean',
       description: 'Lets several items be open at once. Otherwise opening one closes the others.',
@@ -20,6 +26,7 @@ const meta = {
     },
   },
   args: {
+    background: 'default',
     multiple: false,
     disabled: false,
     hiddenUntilFound: false,
@@ -60,6 +67,26 @@ export const Default: Story = {
       ))}
     </Accordion>
   ),
+};
+
+export const Backgrounds: Story = {
+  render: (args) => (
+    <div style={{ display: 'grid', gap: '1.5rem' }}>
+      {(['default', 'subtle', 'surface', 'brand', 'secondary'] as const).map((background) => (
+        <Accordion key={background} {...args} background={background}>
+          {faqs.slice(0, 2).map((faq) => (
+            <Accordion.Item key={faq.value} value={faq.value}>
+              <Accordion.Trigger>{`${background}: ${faq.question}`}</Accordion.Trigger>
+              <Accordion.Panel>{faq.answer}</Accordion.Panel>
+            </Accordion.Item>
+          ))}
+        </Accordion>
+      ))}
+    </div>
+  ),
+  args: {
+    defaultValue: ['plans'],
+  },
 };
 
 export const OpenByDefault: Story = {

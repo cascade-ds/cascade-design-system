@@ -9,28 +9,30 @@ import {
   sliderVariant,
 } from './Slider.style';
 import { cx } from '@linaria/core';
+import type { VariantProps } from 'class-variance-authority';
 
 type SliderValue = number | readonly number[];
 
-export type SliderProps<Value extends SliderValue = number> = Omit<
-  BaseSlider.Root.Props<Value>,
-  'className' | 'render' | 'orientation' | 'children'
-> & {
-  /** Visible label above the slider, which also names it. */
-  label?: React.ReactNode;
-  /** Shows the formatted value (both ends for a range) next to the label. */
-  showValue?: boolean;
-  /**
-   * Names each thumb of a range slider, e.g. `['Minimum price', 'Maximum price']`.
-   * For a single thumb without a visible `label`, use `aria-label` instead.
-   */
-  thumbLabels?: string[];
-  /** Name for a single-thumb slider without a visible `label`. */
-  'aria-label'?: string;
-  /** Readable value for screen readers when the number alone isn't enough, e.g. "$40". */
-  getAriaValueText?: (formattedValue: string, value: number, index: number) => string;
-  className?: string;
-};
+export type SliderProps<Value extends SliderValue = number> = VariantProps<typeof sliderVariant> &
+  Omit<
+    BaseSlider.Root.Props<Value>,
+    'className' | 'render' | 'orientation' | 'children' | 'color'
+  > & {
+    /** Visible label above the slider, which also names it. */
+    label?: React.ReactNode;
+    /** Shows the formatted value (both ends for a range) next to the label. */
+    showValue?: boolean;
+    /**
+     * Names each thumb of a range slider, e.g. `['Minimum price', 'Maximum price']`.
+     * For a single thumb without a visible `label`, use `aria-label` instead.
+     */
+    thumbLabels?: string[];
+    /** Name for a single-thumb slider without a visible `label`. */
+    'aria-label'?: string;
+    /** Readable value for screen readers when the number alone isn't enough, e.g. "$40". */
+    getAriaValueText?: (formattedValue: string, value: number, index: number) => string;
+    className?: string;
+  };
 
 /**
  * Picks a number, or a range when `value` / `defaultValue` is an array (one
@@ -40,6 +42,7 @@ export type SliderProps<Value extends SliderValue = number> = Omit<
 function Slider<Value extends SliderValue = number>(props: SliderProps<Value>) {
   const {
     label,
+    color,
     showValue = false,
     thumbLabels,
     'aria-label': ariaLabel,
@@ -51,7 +54,7 @@ function Slider<Value extends SliderValue = number>(props: SliderProps<Value>) {
   const thumbCount = Array.isArray(initialValue) ? initialValue.length : 1;
 
   return (
-    <BaseSlider.Root className={cx(sliderVariant(), className)} {...restProps}>
+    <BaseSlider.Root className={cx(sliderVariant({ color }), className)} {...restProps}>
       {label != null && <BaseSlider.Label className={sliderLabelCss}>{label}</BaseSlider.Label>}
       {showValue && (
         <BaseSlider.Value className={sliderValueCss}>

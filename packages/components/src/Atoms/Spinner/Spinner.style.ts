@@ -1,5 +1,5 @@
 import { css } from '@linaria/core';
-import { semantic } from '@cascade-ds/styles';
+import { component, semantic } from '@cascade-ds/styles';
 import { cva } from 'class-variance-authority';
 
 const baseSpinnerCss = css`
@@ -15,8 +15,8 @@ const baseSpinnerCss = css`
   vertical-align: middle;
   border-style: solid;
   border-width: ${semantic.border.width.strong};
-  border-color: ${semantic.color.border.subtle};
-  border-top-color: ${semantic.color.brand.primary};
+  border-color: ${component.spinner.color.track};
+  border-top-color: var(--cascade-spinner-arc, ${component.spinner.color.primary});
   border-radius: ${semantic.round.full};
   animation-name: spin;
   animation-duration: ${semantic.motion.duration.loop};
@@ -43,11 +43,38 @@ const sizes = {
   `,
 };
 
+const colors = {
+  primary: '',
+  neutral: css`
+    --cascade-spinner-arc: ${component.spinner.color.neutral};
+  `,
+  secondary: css`
+    --cascade-spinner-arc: ${component.spinner.color.secondary};
+  `,
+  tertiary: css`
+    --cascade-spinner-arc: ${component.spinner.color.tertiary};
+  `,
+  accent: css`
+    --cascade-spinner-arc: ${component.spinner.color.accent};
+  `,
+  success: css`
+    --cascade-spinner-arc: ${component.spinner.color.success};
+  `,
+  info: css`
+    --cascade-spinner-arc: ${component.spinner.color.info};
+  `,
+  danger: css`
+    --cascade-spinner-arc: ${component.spinner.color.danger};
+  `,
+};
+
 export const spinnerVariant = cva(baseSpinnerCss, {
   variants: {
     size: sizes,
+    color: colors,
   },
   defaultVariants: {
     size: 'md',
+    color: 'primary',
   },
 });

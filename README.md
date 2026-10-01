@@ -189,12 +189,12 @@ variable values differ per theme:
 :root,
 [data-theme='light'] {
   --component-button-color-primary-background-default: var(--semantic-color-brand-primary);
-  --semantic-color-brand-primary: var(--primitive-color-orange-300);
+  --semantic-color-brand-primary: var(--primitive-color-orange-700);
 }
 
 [data-theme='dark'] {
   --component-button-color-primary-background-default: var(--semantic-color-brand-primary);
-  --semantic-color-brand-primary: var(--primitive-color-orange-800);
+  --semantic-color-brand-primary: var(--primitive-color-orange-400);
 }
 ```
 

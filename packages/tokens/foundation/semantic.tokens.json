@@ -277,7 +277,7 @@
         "$type": "dimension",
         "width": {
           "$value": {
-            "value": 1,
+            "value": 2,
             "unit": "px"
           }
         },
@@ -324,7 +324,7 @@
               "unit": "px"
             },
             "spread": {
-              "value": 2,
+              "value": 4,
               "unit": "px"
             }
           }

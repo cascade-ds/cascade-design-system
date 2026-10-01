@@ -299,7 +299,7 @@ focus, e.g. for a skip link.
 
 | Prop      | Values                                                 | Default    |
 | --------- | ------------------------------------------------------ | ---------- |
-| `variant` | `primary` `secondary` `outline` `danger` `ghost` `link` | `primary` |
+| `variant` | `primary` `secondary` `tertiary` `accent` `success` `info` `outline` `danger` `ghost` `link` | `primary` |
 | `size`    | `sm` `md` `lg`                                         | `md`       |
 | `type`    | native                                                 | `'button'` |
 
@@ -503,7 +503,7 @@ A native `<input type="checkbox" role="switch">`: use `checked` /
 `defaultChecked` / `onChange`. It follows the same `children` / `className`
 rules as Checkbox. Put `Switch.IconOn` / `Switch.IconOff` (SVG as `children`)
 among the children to show an icon in the thumb; they're pulled out of the
-label automatically.
+label automatically. `color`: `primary` `secondary` `tertiary` `accent` `success` `info` `danger` (default `primary`) sets the on-state color.
 
 ```tsx
 <Switch checked={on} onChange={(e) => setOn(e.target.checked)}>
@@ -526,6 +526,7 @@ Picks a number by dragging or with the arrow keys (Page Up/Down move by
 | `label`            | `ReactNode`                               | visible label, which names the slider                    |
 | `aria-label`       | `string`                                  | names a single-thumb slider without `label`              |
 | `thumbLabels`      | `string[]`                                | names each thumb of a range, e.g. `['Minimum price', 'Maximum price']` |
+| `color`            | `primary` `secondary` `tertiary` `accent` `success` `info` `danger` | fill and thumb border, default `primary`    |
 | `showValue`        | `boolean`, default `false`                | shows the formatted value (`20 – 80` for a range)        |
 | `getAriaValueText` | `(formatted, value, index) => string`     | spoken value when the number isn't enough, e.g. `"$40"`  |
 
@@ -596,7 +597,9 @@ A bordered surface. All parts are optional.
 | Prop / part     | Notes                                                                                    |
 | --------------- | ---------------------------------------------------------------------------------------- |
 | `as`            | `div` (default) `article` `section` `li`                                                 |
+| `background`    | `default` `subtle` `brand` `secondary` `tertiary` `accent` `success` `info` `danger` (default `default`); each sets the fill and its own border (and the hover border of an `interactive` card) |
 | `interactive`   | `boolean`, default `false`; lifts on hover and on focus inside. Use it for a card with one main link or button |
+| `hover`         | `boolean`, default `true`; on an `interactive` card, `false` removes the pointer hover lift and border change (the focus lift stays) |
 | `Card.Header`   | stacks the title and subtitle                                                            |
 | `Card.Title`    | `as`: `h2` `h3` (default) `h4` `h5` `h6`; match it to the page outline                   |
 | `Card.Subtitle` | `<p>`                                                                                    |
@@ -621,7 +624,7 @@ a heading, and Enter/Space toggle it.
 
 | Part / prop         | Notes                                                                                   |
 | ------------------- | --------------------------------------------------------------------------------------- |
-| `Accordion`         | `value` + `onValueChange(values)` (controlled) or `defaultValue` (the open items' values); `multiple` lets several stay open (default `false`); `disabled`; `hiddenUntilFound` lets find-in-page open matching panels |
+| `Accordion`         | `value` + `onValueChange(values)` (controlled) or `defaultValue` (the open items' values); `background`: `default` `subtle` `surface` `brand` `secondary` (default `default`: transparent with dividers; the others are a filled, bordered, rounded block); `multiple` lets several stay open (default `false`); `disabled`; `hiddenUntilFound` lets find-in-page open matching panels |
 | `Accordion.Item`    | `value` (`string \| number`, generated when unset), `disabled`                           |
 | `Accordion.Trigger` | the section title; `headingLevel`: `2`–`6` (default `3`), to fit the page outline       |
 | `Accordion.Panel`   | the section content                                                                     |
@@ -648,12 +651,12 @@ A progress bar (`role="progressbar"`). Name it with `label` or `aria-label`.
 | `format`           | `Intl.NumberFormatOptions`         | percent   |                                                       |
 | `getAriaValueText` | `(formatted, value) => string`     | none      | e.g. `"3 of 8 files"`                                 |
 | `size`             | `sm` `md`                          | `md`      | track height                                          |
-| `tone`             | `default` `success` `danger`       | `default` | fill color                                            |
+| `tone`             | `default` `secondary` `tertiary` `accent` `success` `info` `danger` | `default` | fill color                       |
 
 ### Spinner
 
 A loading indicator with `role="status"`. `size`: `sm` `md` `lg` (default
-`md`); `label` is the announced text (default `"Loading"`).
+`md`); `color`: `primary` `neutral` `secondary` `tertiary` `accent` `success` `info` `danger` (default `primary`); `label` is the announced text (default `"Loading"`).
 
 ### Skeleton
 
@@ -663,7 +666,7 @@ the loading state elsewhere (`aria-busy` on the region, or a `Spinner`).
 | Prop     | Values                        | Default                                        |
 | -------- | ----------------------------- | ---------------------------------------------- |
 | `shape`  | `rect` `text` `circle`        | `rect`                                         |
-| `color`  | `gray` `primary` `secondary`  | `gray`                                         |
+| `color`  | `gray` `primary` `secondary` `tertiary` `accent` `success` `info` `danger` | `gray`                  |
 | `width`  | `number` (px) or CSS length   | full width (`circle`: token size)              |
 | `height` | `number` (px) or CSS length   | token height; a `circle` needs only one of the two |
 
@@ -846,6 +849,8 @@ the first/last tab.
 The path from the site root to the current page: a `nav` named "Breadcrumb"
 (override with `aria-label`) around an ordered list, with a chevron between
 items.
+
+`color`: `neutral` `primary` `secondary` `tertiary` `accent` `success` `info` `danger` (default `neutral`) sets the text color of the whole trail.
 
 `Breadcrumb.Item` is a link (`href`, and `as` for your router's link, like
 [Link](#link)). Mark the last item `current`: it renders as text with

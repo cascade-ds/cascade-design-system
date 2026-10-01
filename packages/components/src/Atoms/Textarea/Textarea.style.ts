@@ -12,7 +12,7 @@ const baseTextareaCss = css`
   background-color: ${component.input.color.background.default};
   color: ${component.input.color.text.default};
   resize: vertical;
-  transition-property: border-color, outline-color;
+  transition-property: border-color, box-shadow;
   transition-duration: ${semantic.motion.duration.fast};
   transition-timing-function: ${semantic.motion.easing.standard};
 
@@ -29,18 +29,17 @@ const baseTextareaCss = css`
     border-color: ${component.input.color.border.invalid};
   }
 
-  /* Text fields show focus for pointer and keyboard alike. The outline is
-     pulled inward over the border so the thicker focus border causes no
-     layout shift. */
+  /* Text fields show focus for pointer and keyboard alike. The transparent
+     outline is what forced-colors mode paints, since it drops box-shadow. */
   &:focus {
     border-color: ${component.input.color.border.focus};
-    outline: ${component.input.border.widthFocus} solid ${component.input.color.border.focus};
-    outline-offset: calc(${component.input.border.width} * -1);
+    outline: ${semantic.focus.ring.width} solid transparent;
+    box-shadow: ${semantic.focus.shadow};
   }
 
   &[aria-invalid='true']:focus {
     border-color: ${component.input.color.border.invalid};
-    outline-color: ${component.input.color.border.invalid};
+    box-shadow: 0 0 0 ${semantic.focus.ring.width} ${component.input.color.border.invalid};
   }
 
   &:read-only:not(:disabled) {
