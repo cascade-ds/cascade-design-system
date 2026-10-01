@@ -207,11 +207,11 @@ importers:
         specifier: workspace:*
         version: link:../styles
       '@cds/components':
-        specifier: npm:@cascade-ds/components@0.4.0
-        version: '@cascade-ds/components@0.4.0(@types/react@19.3.0)(motion@13.4.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@7.2.0)'
+        specifier: npm:@cascade-ds/components@0.4.1
+        version: '@cascade-ds/components@0.4.1(@types/react@19.3.0)(motion@13.4.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@7.2.0)'
       '@cds/styles':
-        specifier: npm:@cascade-ds/styles@0.4.0
-        version: '@cascade-ds/styles@0.4.0'
+        specifier: npm:@cascade-ds/styles@0.4.1
+        version: '@cascade-ds/styles@0.4.1'
       '@fontsource/inter':
         specifier: ^5.3.0
         version: 5.3.0
@@ -411,8 +411,8 @@ packages:
   '@bundled-es-modules/memfs@4.17.0':
     resolution: {integrity: sha512-ykdrkEmQr9BV804yd37ikXfNnvxrwYfY9Z2/EtMHFEFadEjsQXJ1zL9bVZrKNLDtm91UdUOEHso6Aweg93K6xQ==}
 
-  '@cascade-ds/components@0.4.0':
-    resolution: {integrity: sha512-qpR8SzGOQFusCEWznuUUdoZHCVbfwktnMF9Bxo8/y8SXxqSXpzx6wlOHgIx47ep4277q5nfQhOp3QQEUIJo7lw==}
+  '@cascade-ds/components@0.4.1':
+    resolution: {integrity: sha512-K7yjgwQIK391VCVqfIeyRH/i/j/HZcqbopklOjcDpPoFttt4YC+DdrEfAYxJlwWg81XAWwekU9sCkpI+08RHZg==}
     peerDependencies:
       motion: '>=12.0.0'
       react: '>=18.0.0'
@@ -421,8 +421,8 @@ packages:
       motion:
         optional: true
 
-  '@cascade-ds/styles@0.4.0':
-    resolution: {integrity: sha512-o0J2iHUvqgqN1XWPTISwYes8Y31i3qrWRztmssrnfN0Dirv3oGAcaFSHSW3kKdS7E4H8QjbbgfcsXktvPFBWAg==}
+  '@cascade-ds/styles@0.4.1':
+    resolution: {integrity: sha512-Ol7VP1wQdBEzzT0FXpBJhQk7vKFh5e+pGGHWS3EBQpizmVHTSsrWw0JYyjhxvLQIQvmaiUDoJzsh+q9Ks2Iv6A==}
 
   '@changesets/apply-release-plan@8.1.1':
     resolution: {integrity: sha512-nk2Hbq3M9NeHMdaIRBDvawKrQJzXB9sGyBUE5yWnIKtvdcNCPj75zBekJYr0gTT2ecJH3eFeTrc8eisPImcv0Q==}
@@ -4694,10 +4694,10 @@ snapshots:
       stream: 0.0.3
       util: 0.12.5
 
-  '@cascade-ds/components@0.4.0(@types/react@19.3.0)(motion@13.4.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@7.2.0)':
+  '@cascade-ds/components@0.4.1(@types/react@19.3.0)(motion@13.4.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(supports-color@7.2.0)':
     dependencies:
       '@base-ui/react': 1.8.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@cascade-ds/styles': 0.4.0
+      '@cascade-ds/styles': 0.4.1
       '@linaria/core': 8.2.0(supports-color@7.2.0)
       class-variance-authority: 0.7.1
       react: 19.3.0
@@ -4710,7 +4710,7 @@ snapshots:
       - date-fns
       - supports-color
 
-  '@cascade-ds/styles@0.4.0': {}
+  '@cascade-ds/styles@0.4.1': {}
 
   '@changesets/apply-release-plan@8.1.1':
     dependencies:
