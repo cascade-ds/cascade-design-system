@@ -33,6 +33,10 @@ const meta = {
       control: 'boolean',
       description: 'Lets children wrap onto new lines when they overflow.',
     },
+    grow: {
+      control: 'boolean',
+      description: 'Sets `flex: 1` so the Stack fills free space in a flex parent.',
+    },
     as: {
       control: 'select',
       options: layoutElements,
@@ -46,6 +50,7 @@ const meta = {
     align: 'stretch',
     justify: 'start',
     wrap: false,
+    grow: false,
   },
 } satisfies Meta<typeof Stack>;
 
