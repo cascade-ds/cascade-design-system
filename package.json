@@ -20,6 +20,7 @@
     "test:coverage": "vitest --coverage",
     "storybook": "pnpm --filter storybook run storybook",
     "storybook:package": "pnpm --filter storybook run storybook:package",
+    "sync:storybook": "node scripts/sync-storybook-versions.ts",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "pnpm build && changeset publish"
@@ -27,7 +28,7 @@
   "devDependencies": {
     "@changesets/cli": "^3.0.2",
     "@eslint/js": "^10.0.1",
-    "@types/node": "^26.1.0",
+    "@types/node": "^26.5.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitest/coverage-istanbul": "4.1.11",
