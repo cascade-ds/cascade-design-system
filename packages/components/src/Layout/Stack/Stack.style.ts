@@ -79,6 +79,13 @@ const wraps = {
   `,
 };
 
+const grows = {
+  true: css`
+    flex: 1;
+  `,
+  false: '',
+};
+
 export const stackVariant = cva(baseStackCss, {
   variants: {
     direction: directions,
@@ -86,6 +93,7 @@ export const stackVariant = cva(baseStackCss, {
     align: aligns,
     justify: justifies,
     wrap: wraps,
+    grow: grows,
   },
   defaultVariants: {
     direction: 'column',
@@ -93,5 +101,6 @@ export const stackVariant = cva(baseStackCss, {
     align: 'stretch',
     justify: 'start',
     wrap: false,
+    grow: false,
   },
 });

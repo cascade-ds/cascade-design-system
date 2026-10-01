@@ -183,6 +183,10 @@ A flexbox that lays out children in one direction.
 | `align`     | `start` `center` `end` `stretch` (cross axis)            | `stretch`  |
 | `justify`   | `start` `center` `end` `between` (main axis)             | `start`    |
 | `wrap`      | `boolean`                                                | `false`    |
+| `grow`      | `boolean` (`flex: 1`: fills free space in a flex parent) | `false`    |
+
+`justify` only has an effect when the Stack has free space on its main axis.
+Set `grow` (or a size) so a Stack inside a flex parent can fill it.
 
 ```tsx
 <Stack direction="row" gap="sm" justify="end">
