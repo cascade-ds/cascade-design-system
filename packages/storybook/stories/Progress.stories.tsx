@@ -17,7 +17,7 @@ const meta = {
     },
     tone: {
       control: 'radio',
-      options: ['default', 'success', 'danger'],
+      options: ['default', 'secondary', 'tertiary', 'accent', 'success', 'info', 'danger'],
       description:
         'Fill color: `success` for a finished or healthy value, `danger` for one over a limit.',
     },
@@ -53,7 +53,11 @@ export const Tones: Story = {
   render: (args) => (
     <Stack gap="lg">
       <Progress {...args} tone="default" label="Storage used" value={40} />
+      <Progress {...args} tone="secondary" label="Profile completed" value={70} />
+      <Progress {...args} tone="tertiary" label="Onboarding" value={55} />
+      <Progress {...args} tone="accent" label="Goal" value={80} />
       <Progress {...args} tone="success" label="Backup complete" value={100} />
+      <Progress {...args} tone="info" label="Syncing" value={30} />
       <Progress {...args} tone="danger" label="Quota" value={96} />
     </Stack>
   ),

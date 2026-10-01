@@ -88,7 +88,7 @@ describe('Progress', () => {
     );
   });
 
-  it.each(['default', 'success', 'danger'] as const)(
+  it.each(['default', 'secondary', 'tertiary', 'accent', 'success', 'info', 'danger'] as const)(
     'applies the class for the %s tone',
     (tone) => {
       render(<Progress value={40} label="Uploading" tone={tone} />);

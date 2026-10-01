@@ -651,7 +651,7 @@ A progress bar (`role="progressbar"`). Name it with `label` or `aria-label`.
 | `format`           | `Intl.NumberFormatOptions`         | percent   |                                                       |
 | `getAriaValueText` | `(formatted, value) => string`     | none      | e.g. `"3 of 8 files"`                                 |
 | `size`             | `sm` `md`                          | `md`      | track height                                          |
-| `tone`             | `default` `success` `danger`       | `default` | fill color                                            |
+| `tone`             | `default` `secondary` `tertiary` `accent` `success` `info` `danger` | `default` | fill color                       |
 
 ### Spinner
 

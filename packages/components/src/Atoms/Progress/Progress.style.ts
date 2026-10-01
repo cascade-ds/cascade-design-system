@@ -29,8 +29,20 @@ const tones = {
   default: css`
     --cascade-progress-fill: ${component.progress.color.fill};
   `,
+  secondary: css`
+    --cascade-progress-fill: ${component.progress.color.fillSecondary};
+  `,
+  tertiary: css`
+    --cascade-progress-fill: ${component.progress.color.fillTertiary};
+  `,
+  accent: css`
+    --cascade-progress-fill: ${component.progress.color.fillAccent};
+  `,
   success: css`
     --cascade-progress-fill: ${component.progress.color.fillSuccess};
+  `,
+  info: css`
+    --cascade-progress-fill: ${component.progress.color.fillInfo};
   `,
   danger: css`
     --cascade-progress-fill: ${component.progress.color.fillDanger};
