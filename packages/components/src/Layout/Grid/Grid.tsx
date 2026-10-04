@@ -7,14 +7,34 @@ import { cx } from '@linaria/core';
 
 export type GridProps<TElement extends LayoutElement = 'div'> = VariantProps<typeof gridVariant> & {
   as?: TElement;
+  /** Minimum column width for `columns="auto"`, any CSS length. Defaults to `16rem`. */
+  minChildWidth?: string;
 } & Omit<React.ComponentPropsWithRef<TElement>, 'as'>;
 
 function Grid<TElement extends LayoutElement = 'div'>(props: GridProps<TElement>) {
-  const { as, columns, gap, align, className, children, ...restProps } = props;
-  const gridClassName = cx(gridVariant({ columns, gap, align }), className);
+  const {
+    as,
+    columns,
+    gap,
+    align,
+    justify,
+    padding,
+    minChildWidth,
+    className,
+    style,
+    children,
+    ...restProps
+  } = props;
+  const gridClassName = cx(gridVariant({ columns, gap, align, justify, padding }), className);
+
+  const gridStyle = minChildWidth
+    ? ({ ...style, '--cascade-grid-min-child-width': minChildWidth } as React.CSSProperties)
+    : style;
 
   return (
-    <Box {...({ ...restProps, as, className: gridClassName } as BoxProps<TElement>)}>
+    <Box
+      {...({ ...restProps, as, className: gridClassName, style: gridStyle } as BoxProps<TElement>)}
+    >
       {children}
     </Box>
   );

@@ -4,7 +4,7 @@ import { FormField, Autocomplete, type AutocompleteProps } from '@cds/components
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Autocomplete',
-  component: Autocomplete,
+  component: Autocomplete.Root,
   tags: ['autodocs'],
   parameters: {
     a11y: { context: 'body' },
@@ -23,7 +23,7 @@ const meta = {
   args: {
     disabled: false,
   },
-} satisfies Meta<typeof Autocomplete>;
+} satisfies Meta<typeof Autocomplete.Root>;
 
 export default meta;
 
@@ -43,9 +43,9 @@ function TagAutocomplete(
   const { search, ...autocompleteProps } = props;
 
   return (
-    <FormField>
+    <FormField.Root>
       <FormField.Label>Label</FormField.Label>
-      <Autocomplete items={tags} {...autocompleteProps}>
+      <Autocomplete.Root items={tags} {...autocompleteProps}>
         <Autocomplete.Input
           placeholder="e.g. feature"
           start={search ? <MagnifyingGlassIcon /> : undefined}
@@ -57,9 +57,9 @@ function TagAutocomplete(
             </Autocomplete.Item>
           )}
         </Autocomplete.Content>
-      </Autocomplete>
+      </Autocomplete.Root>
       <FormField.Hint>Pick a suggestion or type a new label.</FormField.Hint>
-    </FormField>
+    </FormField.Root>
   );
 }
 

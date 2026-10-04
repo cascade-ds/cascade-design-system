@@ -3,7 +3,7 @@ import { Text, Stack, ThemeProvider, Tooltip, type TooltipContentProps } from '@
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Tooltip',
-  component: Tooltip,
+  component: Tooltip.Root,
   tags: ['autodocs'],
   parameters: {
     a11y: { context: 'body' },
@@ -25,7 +25,7 @@ const meta = {
   args: {
     children: null,
   },
-} satisfies Meta<typeof Tooltip>;
+} satisfies Meta<typeof Tooltip.Root>;
 
 export default meta;
 
@@ -39,10 +39,10 @@ function SaveTooltip(props: {
   const { defaultOpen, side, label = 'Save' } = props;
 
   return (
-    <Tooltip defaultOpen={defaultOpen}>
+    <Tooltip.Root defaultOpen={defaultOpen}>
       <Tooltip.Trigger variant="secondary">{label}</Tooltip.Trigger>
       <Tooltip.Content side={side}>Save changes (Ctrl+S)</Tooltip.Content>
-    </Tooltip>
+    </Tooltip.Root>
   );
 }
 
@@ -70,10 +70,10 @@ export const Group: Story = {
     <Tooltip.Provider>
       <Stack direction="row" gap="sm">
         {['Bold', 'Italic', 'Underline'].map((label) => (
-          <Tooltip key={label}>
+          <Tooltip.Root key={label}>
             <Tooltip.Trigger variant="ghost">{label}</Tooltip.Trigger>
             <Tooltip.Content>{`Format as ${label.toLowerCase()}`}</Tooltip.Content>
-          </Tooltip>
+          </Tooltip.Root>
         ))}
       </Stack>
     </Tooltip.Provider>

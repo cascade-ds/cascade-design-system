@@ -3,7 +3,7 @@ import { Button, Text, Grid, Card } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Card',
-  component: Card,
+  component: Card.Root,
   tags: ['autodocs'],
   argTypes: {
     as: {
@@ -45,7 +45,7 @@ const meta = {
     interactive: false,
     hover: true,
   },
-} satisfies Meta<typeof Card>;
+} satisfies Meta<typeof Card.Root>;
 
 export default meta;
 
@@ -53,7 +53,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => (
-    <Card {...args}>
+    <Card.Root {...args}>
       <Card.Header>
         <Card.Title>Monthly revenue</Card.Title>
         <Card.Subtitle>Last 30 days, all regions</Card.Subtitle>
@@ -62,12 +62,12 @@ export const Default: Story = {
         <Text>Revenue grew 12% over the previous period, led by subscription renewals.</Text>
       </Card.Body>
       <Card.Footer>
-        <Button variant="ghost" size="sm">
+        <Button.Root variant="ghost" size="sm">
           Export
-        </Button>
-        <Button size="sm">View report</Button>
+        </Button.Root>
+        <Button.Root size="sm">View report</Button.Root>
       </Card.Footer>
-    </Card>
+    </Card.Root>
   ),
 };
 
@@ -87,12 +87,12 @@ export const Backgrounds: Story = {
           'danger',
         ] as const
       ).map((background) => (
-        <Card key={background} {...args} background={background}>
+        <Card.Root key={background} {...args} background={background}>
           <Card.Header>
             <Card.Title>{background}</Card.Title>
             <Card.Subtitle>Fill and border change together</Card.Subtitle>
           </Card.Header>
-        </Card>
+        </Card.Root>
       ))}
     </Grid>
   ),
@@ -100,9 +100,9 @@ export const Backgrounds: Story = {
 
 export const BodyOnly: Story = {
   render: (args) => (
-    <Card {...args}>
+    <Card.Root {...args}>
       <Text>A card needs no header or footer.</Text>
-    </Card>
+    </Card.Root>
   ),
 };
 
@@ -112,17 +112,17 @@ export const Interactive: Story = {
     interactive: true,
   },
   render: (args) => (
-    <Card {...args}>
+    <Card.Root {...args}>
       <Card.Header>
         <Card.Title>Onboarding checklist</Card.Title>
         <Card.Subtitle>4 of 6 steps done</Card.Subtitle>
       </Card.Header>
       <Card.Footer>
-        <Button variant="link" size="sm">
+        <Button.Root variant="link" size="sm">
           Continue setup
-        </Button>
+        </Button.Root>
       </Card.Footer>
-    </Card>
+    </Card.Root>
   ),
 };
 
@@ -130,12 +130,12 @@ export const InAGrid: Story = {
   render: () => (
     <Grid as="ul" columns={3} gap="md" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
       {['Active users', 'Sessions', 'Conversion'].map((title) => (
-        <Card key={title} as="li">
+        <Card.Root key={title} as="li">
           <Card.Header>
             <Card.Title>{title}</Card.Title>
             <Card.Subtitle>This week</Card.Subtitle>
           </Card.Header>
-        </Card>
+        </Card.Root>
       ))}
     </Grid>
   ),

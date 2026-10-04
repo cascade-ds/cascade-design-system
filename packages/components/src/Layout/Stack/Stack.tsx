@@ -12,10 +12,21 @@ export type StackProps<TElement extends LayoutElement = 'div'> = VariantProps<
 } & Omit<React.ComponentPropsWithRef<TElement>, 'as'>;
 
 function Stack<TElement extends LayoutElement = 'div'>(props: StackProps<TElement>) {
-  const { as, direction, gap, align, justify, wrap, grow, className, children, ...restProps } =
-    props;
+  const {
+    as,
+    direction,
+    gap,
+    align,
+    justify,
+    wrap,
+    grow,
+    padding,
+    className,
+    children,
+    ...restProps
+  } = props;
   const stackClassName = cx(
-    stackVariant({ direction, gap, align, justify, wrap, grow }),
+    stackVariant({ direction, gap, align, justify, wrap, grow, padding }),
     className,
   );
 

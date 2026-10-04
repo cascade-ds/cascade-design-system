@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ThemeProvider } from '../../ThemeProvider';
 import { buttonVariant } from '../../Atoms/Button/Button.style';
-import DropdownMenu from './DropdownMenu';
+import * as DropdownMenu from './DropdownMenu';
 import { dropdownMenuItemVariant, dropdownMenuPopupCss } from './DropdownMenu.style';
 
 afterEach(() => {
@@ -26,7 +26,7 @@ function renderMenu(
   handlers: { onRename?: () => void; onDelete?: () => void } = {},
 ) {
   return render(
-    <DropdownMenu {...props}>
+    <DropdownMenu.Root {...props}>
       <DropdownMenu.Trigger variant="secondary">Actions</DropdownMenu.Trigger>
       <DropdownMenu.Content>
         <DropdownMenu.Group>
@@ -39,7 +39,7 @@ function renderMenu(
           Delete
         </DropdownMenu.Item>
       </DropdownMenu.Content>
-    </DropdownMenu>,
+    </DropdownMenu.Root>,
   );
 }
 
@@ -127,7 +127,7 @@ describe('DropdownMenu', () => {
     function Controlled() {
       const [open, setOpen] = useState(false);
       return (
-        <DropdownMenu
+        <DropdownMenu.Root
           open={open}
           onOpenChange={(nextOpen) => {
             handleOpenChange(nextOpen);
@@ -138,7 +138,7 @@ describe('DropdownMenu', () => {
           <DropdownMenu.Content>
             <DropdownMenu.Item>Rename</DropdownMenu.Item>
           </DropdownMenu.Content>
-        </DropdownMenu>
+        </DropdownMenu.Root>
       );
     }
 
@@ -154,12 +154,12 @@ describe('DropdownMenu', () => {
       const { container } = render(
         <ThemeProvider initialMode="light">
           <ThemeProvider initialMode="dark">
-            <DropdownMenu defaultOpen>
+            <DropdownMenu.Root defaultOpen>
               <DropdownMenu.Trigger>Actions</DropdownMenu.Trigger>
               <DropdownMenu.Content>
                 <DropdownMenu.Item>Rename</DropdownMenu.Item>
               </DropdownMenu.Content>
-            </DropdownMenu>
+            </DropdownMenu.Root>
           </ThemeProvider>
         </ThemeProvider>,
       );

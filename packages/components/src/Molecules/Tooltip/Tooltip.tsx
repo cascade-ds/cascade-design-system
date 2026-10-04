@@ -1,6 +1,6 @@
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip';
 import { cx } from '@linaria/core';
-import Button from '../../Atoms/Button/Button';
+import { Button } from '../../Atoms/Button';
 import type { ButtonProps } from '../../Atoms/Button/Button';
 import { useThemedPortalProps } from '../../ThemeProvider/ThemedPortal';
 import { tooltipPopupCss, tooltipPositionerCss } from './Tooltip.style';
@@ -76,7 +76,7 @@ function TooltipTrigger(props: TooltipTriggerProps) {
     <BaseTooltip.Trigger
       delay={delay}
       closeDelay={closeDelay}
-      render={<Button {...buttonProps} />}
+      render={<Button.Root {...buttonProps} />}
     />
   );
 }
@@ -99,8 +99,9 @@ function TooltipContent(props: TooltipContentProps) {
   );
 }
 
-Tooltip.Provider = TooltipProvider;
-Tooltip.Trigger = TooltipTrigger;
-Tooltip.Content = TooltipContent;
-
-export default Tooltip;
+export {
+  Tooltip as Root,
+  TooltipProvider as Provider,
+  TooltipTrigger as Trigger,
+  TooltipContent as Content,
+};

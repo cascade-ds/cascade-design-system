@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ThemeProvider } from '../../ThemeProvider';
 import { buttonVariant } from '../../Atoms/Button/Button.style';
-import Tooltip from './Tooltip';
+import * as Tooltip from './Tooltip';
 import { tooltipPopupCss } from './Tooltip.style';
 
 afterEach(() => {
@@ -24,12 +24,12 @@ function expectClasses(element: HTMLElement, className: string) {
 // Base UI's tooltip is visual-only (no role or aria-describedby), so the popup is found by its text.
 function renderTooltip(props: Partial<React.ComponentProps<typeof Tooltip>> = {}) {
   return render(
-    <Tooltip {...props}>
+    <Tooltip.Root {...props}>
       <Tooltip.Trigger variant="ghost" aria-label="Save" delay={0} closeDelay={0}>
         S
       </Tooltip.Trigger>
       <Tooltip.Content>Save changes</Tooltip.Content>
-    </Tooltip>,
+    </Tooltip.Root>,
   );
 }
 
@@ -83,7 +83,7 @@ describe('Tooltip', () => {
     function Controlled() {
       const [open, setOpen] = useState(false);
       return (
-        <Tooltip
+        <Tooltip.Root
           open={open}
           onOpenChange={(nextOpen) => {
             handleOpenChange(nextOpen);
@@ -94,7 +94,7 @@ describe('Tooltip', () => {
             S
           </Tooltip.Trigger>
           <Tooltip.Content>Save changes</Tooltip.Content>
-        </Tooltip>
+        </Tooltip.Root>
       );
     }
 
@@ -110,10 +110,10 @@ describe('Tooltip', () => {
       const { container } = render(
         <ThemeProvider initialMode="light">
           <ThemeProvider initialMode="dark">
-            <Tooltip defaultOpen>
+            <Tooltip.Root defaultOpen>
               <Tooltip.Trigger aria-label="Save">S</Tooltip.Trigger>
               <Tooltip.Content>Save changes</Tooltip.Content>
-            </Tooltip>
+            </Tooltip.Root>
           </ThemeProvider>
         </ThemeProvider>,
       );

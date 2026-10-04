@@ -67,7 +67,11 @@ export const buttonVariant = cva(baseButtonCss, {
 
 ### `<ComponentName>.tsx`
 
-- A single default-exported function component.
+- A single default-exported function component. A compound component has no
+  default export: keep `function Card` and `function CardTitle`, then end the
+  file with `export { Card as Root, CardTitle as Title }`. Never attach parts
+  as properties (`Card.Title = CardTitle`); that breaks SSR and server/client
+  boundaries.
 - Derive the props type from the `cva()` return via
   `VariantProps<typeof xVariant>`, intersected with the relevant native
   HTML attributes.
@@ -144,6 +148,8 @@ export { default as Button } from './Button';
 export type { ButtonProps } from './Button';
 ```
 
+- A compound component re-exports its file as a namespace instead:
+  `export * as Card from './Card';`, so consumers write `<Card.Root>`.
 - Add the same re-export to `packages/components/src/index.ts` so the
   component is part of the package's public surface.
 - Document it in [`packages/components/API.md`](./packages/components/API.md):

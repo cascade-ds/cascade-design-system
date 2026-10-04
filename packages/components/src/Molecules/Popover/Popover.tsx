@@ -1,6 +1,6 @@
 import { Popover as BasePopover } from '@base-ui/react/popover';
 import { cx } from '@linaria/core';
-import Button from '../../Atoms/Button/Button';
+import { Button } from '../../Atoms/Button';
 import type { ButtonProps } from '../../Atoms/Button/Button';
 import { useThemedPortalProps } from '../../ThemeProvider/ThemedPortal';
 import {
@@ -57,7 +57,7 @@ function Popover(props: PopoverProps) {
 
 /** Opens the popover. Renders a Cascade `Button` and takes its props. */
 function PopoverTrigger(props: PopoverTriggerProps) {
-  return <BasePopover.Trigger render={<Button {...props} />} />;
+  return <BasePopover.Trigger render={<Button.Root {...props} />} />;
 }
 
 /**
@@ -96,13 +96,14 @@ function PopoverDescription(props: PopoverDescriptionProps) {
 
 /** Closes the popover. Renders a Cascade `Button` and takes its props. */
 function PopoverClose(props: PopoverCloseProps) {
-  return <BasePopover.Close render={<Button {...props} />} />;
+  return <BasePopover.Close render={<Button.Root {...props} />} />;
 }
 
-Popover.Trigger = PopoverTrigger;
-Popover.Content = PopoverContent;
-Popover.Title = PopoverTitle;
-Popover.Description = PopoverDescription;
-Popover.Close = PopoverClose;
-
-export default Popover;
+export {
+  Popover as Root,
+  PopoverTrigger as Trigger,
+  PopoverContent as Content,
+  PopoverTitle as Title,
+  PopoverDescription as Description,
+  PopoverClose as Close,
+};

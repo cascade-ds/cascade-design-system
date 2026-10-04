@@ -3,7 +3,7 @@ import { Breadcrumb } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Breadcrumb',
-  component: Breadcrumb,
+  component: Breadcrumb.Root,
   tags: ['autodocs'],
   argTypes: {
     color: {
@@ -25,7 +25,7 @@ const meta = {
   args: {
     'aria-label': 'Breadcrumb',
   },
-} satisfies Meta<typeof Breadcrumb>;
+} satisfies Meta<typeof Breadcrumb.Root>;
 
 export default meta;
 
@@ -33,24 +33,24 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => (
-    <Breadcrumb {...args}>
+    <Breadcrumb.Root {...args}>
       <Breadcrumb.Item href="#home">Home</Breadcrumb.Item>
       <Breadcrumb.Item href="#projects">Projects</Breadcrumb.Item>
       <Breadcrumb.Item current>Cascade</Breadcrumb.Item>
-    </Breadcrumb>
+    </Breadcrumb.Root>
   ),
 };
 
 export const Long: Story = {
   render: (args) => (
     <div style={{ maxWidth: '20rem' }}>
-      <Breadcrumb {...args}>
+      <Breadcrumb.Root {...args}>
         <Breadcrumb.Item href="#home">Home</Breadcrumb.Item>
         <Breadcrumb.Item href="#workspace">Acme workspace</Breadcrumb.Item>
         <Breadcrumb.Item href="#projects">Projects</Breadcrumb.Item>
         <Breadcrumb.Item href="#cascade">Cascade</Breadcrumb.Item>
         <Breadcrumb.Item current>Deployment settings</Breadcrumb.Item>
-      </Breadcrumb>
+      </Breadcrumb.Root>
     </div>
   ),
 };
@@ -70,11 +70,11 @@ export const Colors: Story = {
           'danger',
         ] as const
       ).map((color) => (
-        <Breadcrumb key={color} {...args} color={color} aria-label={`Breadcrumb ${color}`}>
+        <Breadcrumb.Root key={color} {...args} color={color} aria-label={`Breadcrumb ${color}`}>
           <Breadcrumb.Item href="#home">Home</Breadcrumb.Item>
           <Breadcrumb.Item href="#projects">Projects</Breadcrumb.Item>
           <Breadcrumb.Item current>{color}</Breadcrumb.Item>
-        </Breadcrumb>
+        </Breadcrumb.Root>
       ))}
     </div>
   ),

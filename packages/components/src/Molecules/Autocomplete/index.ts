@@ -1,4 +1,4 @@
-export { default as Autocomplete } from './Autocomplete';
+export * as Autocomplete from './Autocomplete';
 export type {
   AutocompleteProps,
   AutocompleteInputProps,

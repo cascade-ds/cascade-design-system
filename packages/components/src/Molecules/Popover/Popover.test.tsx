@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ThemeProvider } from '../../ThemeProvider';
 import { buttonVariant } from '../../Atoms/Button/Button.style';
-import Popover from './Popover';
+import * as Popover from './Popover';
 import { popoverPopupCss, popoverTitleCss } from './Popover.style';
 
 afterEach(() => {
@@ -23,7 +23,7 @@ function expectClasses(element: HTMLElement, className: string) {
 
 function renderPopover(props: Partial<React.ComponentProps<typeof Popover>> = {}) {
   return render(
-    <Popover {...props}>
+    <Popover.Root {...props}>
       <Popover.Trigger variant="secondary">Filters</Popover.Trigger>
       <Popover.Content>
         <Popover.Title>Filter results</Popover.Title>
@@ -32,7 +32,7 @@ function renderPopover(props: Partial<React.ComponentProps<typeof Popover>> = {}
           Done
         </Popover.Close>
       </Popover.Content>
-    </Popover>,
+    </Popover.Root>,
   );
 }
 
@@ -100,7 +100,7 @@ describe('Popover', () => {
     function Controlled() {
       const [open, setOpen] = useState(false);
       return (
-        <Popover
+        <Popover.Root
           open={open}
           onOpenChange={(nextOpen) => {
             handleOpenChange(nextOpen);
@@ -111,7 +111,7 @@ describe('Popover', () => {
           <Popover.Content>
             <Popover.Title>Filter results</Popover.Title>
           </Popover.Content>
-        </Popover>
+        </Popover.Root>
       );
     }
 
@@ -132,12 +132,12 @@ describe('Popover', () => {
     it('portals to document.body, outside the provider element', () => {
       const { container } = render(
         <ThemeProvider initialMode="dark">
-          <Popover defaultOpen>
+          <Popover.Root defaultOpen>
             <Popover.Trigger>Filters</Popover.Trigger>
             <Popover.Content>
               <Popover.Title>Filter results</Popover.Title>
             </Popover.Content>
-          </Popover>
+          </Popover.Root>
         </ThemeProvider>,
       );
 
@@ -149,12 +149,12 @@ describe('Popover', () => {
       render(
         <ThemeProvider initialMode="light">
           <ThemeProvider initialMode="dark">
-            <Popover defaultOpen>
+            <Popover.Root defaultOpen>
               <Popover.Trigger>Filters</Popover.Trigger>
               <Popover.Content>
                 <Popover.Title>Filter results</Popover.Title>
               </Popover.Content>
-            </Popover>
+            </Popover.Root>
           </ThemeProvider>
         </ThemeProvider>,
       );

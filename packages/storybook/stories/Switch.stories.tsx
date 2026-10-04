@@ -4,7 +4,7 @@ import { Switch } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Switch',
-  component: Switch,
+  component: Switch.Root,
   tags: ['autodocs'],
   argTypes: {
     color: {
@@ -27,7 +27,7 @@ const meta = {
     children: 'Email notifications',
     disabled: false,
   },
-} satisfies Meta<typeof Switch>;
+} satisfies Meta<typeof Switch.Root>;
 
 export default meta;
 
@@ -96,9 +96,9 @@ export const Colors: Story = {
     <div style={{ display: 'grid', gap: '1rem', justifyItems: 'start' }}>
       {(['primary', 'secondary', 'tertiary', 'accent', 'success', 'info', 'danger'] as const).map(
         (color) => (
-          <Switch key={color} {...args} color={color} defaultChecked>
+          <Switch.Root key={color} {...args} color={color} defaultChecked>
             {color}
-          </Switch>
+          </Switch.Root>
         ),
       )}
     </div>

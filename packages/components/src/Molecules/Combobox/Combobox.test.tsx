@@ -3,9 +3,9 @@ import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { inputVariant, inputWrapperVariant } from '../../Atoms/Input/Input.style';
-import FormField from '../FormField/FormField';
+import { FormField } from '../FormField';
 import { ThemeProvider } from '../../ThemeProvider';
-import Combobox from './Combobox';
+import * as Combobox from './Combobox';
 import type { ComboboxProps } from './Combobox';
 import { comboboxItemCss, comboboxPopupCss } from './Combobox.style';
 
@@ -29,7 +29,7 @@ function renderCombobox(
   inputProps: Partial<React.ComponentProps<typeof Combobox.Input>> = {},
 ) {
   return render(
-    <Combobox items={fruits} {...props}>
+    <Combobox.Root items={fruits} {...props}>
       <Combobox.Input aria-label="Fruit" placeholder="Search fruits" {...inputProps} />
       <Combobox.Content emptyMessage="No fruits found.">
         {(fruit: string) => (
@@ -38,7 +38,7 @@ function renderCombobox(
           </Combobox.Item>
         )}
       </Combobox.Content>
-    </Combobox>,
+    </Combobox.Root>,
   );
 }
 
@@ -122,7 +122,7 @@ describe('Combobox', () => {
     ];
 
     render(
-      <Combobox items={regions}>
+      <Combobox.Root items={regions}>
         <Combobox.Input aria-label="Office" />
         <Combobox.Content>
           {(group: (typeof regions)[number]) => (
@@ -138,7 +138,7 @@ describe('Combobox', () => {
             </Combobox.Group>
           )}
         </Combobox.Content>
-      </Combobox>,
+      </Combobox.Root>,
     );
 
     await user.type(screen.getByRole('combobox', { name: 'Office' }), 'l');
@@ -170,9 +170,9 @@ describe('Combobox', () => {
   describe('inside a FormField', () => {
     it('is named by the field label and described by its hint and error', () => {
       render(
-        <FormField invalid>
+        <FormField.Root invalid>
           <FormField.Label>Fruit</FormField.Label>
-          <Combobox items={fruits}>
+          <Combobox.Root items={fruits}>
             <Combobox.Input />
             <Combobox.Content>
               {(fruit: string) => (
@@ -181,10 +181,10 @@ describe('Combobox', () => {
                 </Combobox.Item>
               )}
             </Combobox.Content>
-          </Combobox>
+          </Combobox.Root>
           <FormField.Hint>Used for the smoothie.</FormField.Hint>
           <FormField.Error>Pick a fruit.</FormField.Error>
-        </FormField>,
+        </FormField.Root>,
       );
 
       const input = screen.getByRole('combobox', { name: 'Fruit' });
@@ -195,9 +195,9 @@ describe('Combobox', () => {
 
     it("takes the field's disabled state", () => {
       render(
-        <FormField disabled>
+        <FormField.Root disabled>
           <FormField.Label>Fruit</FormField.Label>
-          <Combobox items={fruits}>
+          <Combobox.Root items={fruits}>
             <Combobox.Input />
             <Combobox.Content>
               {(fruit: string) => (
@@ -206,8 +206,8 @@ describe('Combobox', () => {
                 </Combobox.Item>
               )}
             </Combobox.Content>
-          </Combobox>
-        </FormField>,
+          </Combobox.Root>
+        </FormField.Root>,
       );
 
       expect(screen.getByRole('combobox', { name: 'Fruit' })).toBeDisabled();
@@ -219,7 +219,7 @@ describe('Combobox', () => {
       render(
         <ThemeProvider initialMode="light">
           <ThemeProvider initialMode="dark">
-            <Combobox items={fruits} defaultOpen>
+            <Combobox.Root items={fruits} defaultOpen>
               <Combobox.Input aria-label="Fruit" />
               <Combobox.Content>
                 {(fruit: string) => (
@@ -228,7 +228,7 @@ describe('Combobox', () => {
                   </Combobox.Item>
                 )}
               </Combobox.Content>
-            </Combobox>
+            </Combobox.Root>
           </ThemeProvider>
         </ThemeProvider>,
       );

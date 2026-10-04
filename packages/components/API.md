@@ -17,7 +17,7 @@ import '@fontsource/jetbrains-mono/400.css'; // code font
 import { ThemeProvider, Toast } from '@cascade-ds/components';
 
 <ThemeProvider>
-  <Toast>{/* app */}</Toast>
+  <Toast.Root>{/* app */}</Toast.Root>
 </ThemeProvider>;
 ```
 
@@ -41,9 +41,11 @@ import { ThemeProvider, Toast } from '@cascade-ds/components';
 - **Native props.** Unless a component says otherwise, it renders one DOM
   element and forwards the rest of its props (`id`, `aria-*`, event handlers,
   `ref`, …) to that element.
-- **Compound components.** Parts hang off the root: `Card.Title`,
-  `Dialog.Content`, `Select.Item`. Each part is a separate component with its
-  own props, and you nest the parts inside their root.
+- **Compound components.** Each compound is a namespace of parts, as in Radix:
+  `Card.Root`, `Card.Title`, `Dialog.Root`, `Dialog.Content`, `Select.Item`.
+  The root is always `<Name.Root>`; there is no bare `<Card>`. Each part is a
+  separate component with its own props, and you nest the parts inside their
+  root.
 - **Triggers are Buttons.** `Dialog.Trigger`, `Dialog.Close`,
   `Popover.Trigger`, `Popover.Close`, `DropdownMenu.Trigger` and
   `Tooltip.Trigger` render a Cascade `Button` and take all of
@@ -90,9 +92,9 @@ import { ThemeProvider, Toast } from '@cascade-ds/components';
 
 ```tsx
 const { theme, setTheme } = useTheme();
-<Switch checked={theme === 'dark'} onChange={(e) => setTheme(e.target.checked ? 'dark' : 'light')}>
+<Switch.Root checked={theme === 'dark'} onChange={(e) => setTheme(e.target.checked ? 'dark' : 'light')}>
   Dark mode
-</Switch>;
+</Switch.Root>;
 ```
 
 ### MotionProvider
@@ -180,8 +182,9 @@ A flexbox that lays out children in one direction.
 | ----------- | -------------------------------------------------------- | ---------- |
 | `direction` | `column` `row`                                           | `column`   |
 | `gap`       | `none` `xs` `sm` `md` `lg` `xl` `2xl`                    | `md`       |
-| `align`     | `start` `center` `end` `stretch` (cross axis)            | `stretch`  |
-| `justify`   | `start` `center` `end` `between` (main axis)             | `start`    |
+| `align`     | `start` `center` `end` `stretch` `baseline` (cross axis) | `stretch`  |
+| `justify`   | `start` `center` `end` `between` `around` `evenly` (main axis) | `start` |
+| `padding`   | `none` `xs` `sm` `md` `lg` `xl`                          | `none`     |
 | `wrap`      | `boolean`                                                | `false`    |
 | `grow`      | `boolean` (`flex: 1`: fills free space in a flex parent) | `false`    |
 
@@ -190,8 +193,8 @@ Set `grow` (or a size) so a Stack inside a flex parent can fill it.
 
 ```tsx
 <Stack direction="row" gap="sm" justify="end">
-  <Button variant="ghost">Cancel</Button>
-  <Button>Save</Button>
+  <Button.Root variant="ghost">Cancel</Button.Root>
+  <Button.Root>Save</Button.Root>
 </Stack>
 ```
 
@@ -202,9 +205,15 @@ columns, give that child a `className` that sets `grid-column`.
 
 | Prop      | Values                                        | Default   |
 | --------- | --------------------------------------------- | --------- |
-| `columns` | `1` `2` `3` `4` `6` `12`                      | `12`      |
+| `columns` | `1` `2` `3` `4` `6` `12` `auto`               | `12`      |
 | `gap`     | `none` `xs` `sm` `md` `lg` `xl` `gutter`      | `gutter`  |
-| `align`   | `start` `center` `end` `stretch`              | `stretch` |
+| `align`   | `start` `center` `end` `stretch` (items, block axis)  | `stretch` |
+| `justify` | `start` `center` `end` `stretch` (items, inline axis) | `stretch` |
+| `padding` | `none` `xs` `sm` `md` `lg` `xl`               | `none`    |
+| `minChildWidth` | CSS length, only for `columns="auto"`   | `16rem`   |
+
+`columns="auto"` fits as many columns of at least `minChildWidth` as the width
+allows, so a card grid reflows with no media queries.
 
 ### Container
 
@@ -311,9 +320,9 @@ match the Button. It takes the SVG as `children` and is always decorative. An
 icon-only Button needs `aria-label`:
 
 ```tsx
-<Button variant="ghost" aria-label="Close">
+<Button.Root variant="ghost" aria-label="Close">
   <Button.Icon><Cross2Icon /></Button.Icon>
-</Button>
+</Button.Root>
 ```
 
 ---
@@ -355,12 +364,12 @@ Render the parts as direct children of `FormField` (fragments and
 conditionals are fine) so they are wired on the first render.
 
 ```tsx
-<FormField required invalid={!!errors.email}>
+<FormField.Root required invalid={!!errors.email}>
   <FormField.Label>Email</FormField.Label>
   <FormField.Input type="email" {...register('email')} />
   <FormField.Hint>We never share it.</FormField.Hint>
   {errors.email && <FormField.Error>{errors.email.message}</FormField.Error>}
-</FormField>
+</FormField.Root>
 ```
 
 ### Input
@@ -408,15 +417,15 @@ Inside a `FormField`, the field's label, hint, error, `disabled` and
 ```tsx
 const fruits = [{ value: 'apple', label: 'Apple' }, { value: 'pear', label: 'Pear' }];
 
-<FormField>
+<FormField.Root>
   <FormField.Label>Fruit</FormField.Label>
-  <Select items={fruits} value={fruit} onValueChange={setFruit}>
+  <Select.Root items={fruits} value={fruit} onValueChange={setFruit}>
     <Select.Trigger placeholder="Pick one" />
     <Select.Content>
       {fruits.map((f) => <Select.Item key={f.value} value={f.value}>{f.label}</Select.Item>)}
     </Select.Content>
-  </Select>
-</FormField>
+  </Select.Root>
+</FormField.Root>
 ```
 
 ### Combobox
@@ -444,15 +453,15 @@ Name the input with a `FormField` (its label, hint, error, `disabled` and
 `required` apply automatically), a `<label htmlFor>`, or `aria-label`.
 
 ```tsx
-<FormField>
+<FormField.Root>
   <FormField.Label>Time zone</FormField.Label>
-  <Combobox items={timezones} value={timezone} onValueChange={setTimezone}>
+  <Combobox.Root items={timezones} value={timezone} onValueChange={setTimezone}>
     <Combobox.Input placeholder="Search time zones" />
     <Combobox.Content emptyMessage="No time zones found.">
       {(tz: string) => <Combobox.Item key={tz} value={tz}>{tz}</Combobox.Item>}
     </Combobox.Content>
-  </Combobox>
-</FormField>
+  </Combobox.Root>
+</FormField.Root>
 ```
 
 ### Autocomplete
@@ -470,15 +479,15 @@ Parts match [Combobox](#combobox)'s: `Autocomplete.Content`,
 icon before the text, as on [Input](#input)) instead of a chevron.
 
 ```tsx
-<FormField>
+<FormField.Root>
   <FormField.Label>Label</FormField.Label>
-  <Autocomplete items={tags}>
+  <Autocomplete.Root items={tags}>
     <Autocomplete.Input start={<MagnifyingGlassIcon />} />
     <Autocomplete.Content emptyMessage="No matching labels.">
       {(tag: string) => <Autocomplete.Item key={tag} value={tag}>{tag}</Autocomplete.Item>}
     </Autocomplete.Content>
-  </Autocomplete>
-</FormField>
+  </Autocomplete.Root>
+</FormField.Root>
 ```
 
 ### Checkbox
@@ -506,10 +515,10 @@ among the children to show an icon in the thumb; they're pulled out of the
 label automatically. `color`: `primary` `secondary` `tertiary` `accent` `success` `info` `danger` (default `primary`) sets the on-state color.
 
 ```tsx
-<Switch checked={on} onChange={(e) => setOn(e.target.checked)}>
+<Switch.Root checked={on} onChange={(e) => setOn(e.target.checked)}>
   <Switch.IconOn><CheckIcon /></Switch.IconOn>
   Notifications
-</Switch>
+</Switch.Root>
 ```
 
 ### Slider
@@ -607,14 +616,14 @@ A bordered surface. All parts are optional.
 | `Card.Footer`   | a row of actions aligned to the end                                                      |
 
 ```tsx
-<Card as="article">
+<Card.Root as="article">
   <Card.Header>
     <Card.Title>Revenue</Card.Title>
     <Card.Subtitle>Last 30 days</Card.Subtitle>
   </Card.Header>
   <Card.Body>…</Card.Body>
-  <Card.Footer><Button variant="secondary">Details</Button></Card.Footer>
-</Card>
+  <Card.Footer><Button.Root variant="secondary">Details</Button.Root></Card.Footer>
+</Card.Root>
 ```
 
 ### Accordion
@@ -630,12 +639,12 @@ a heading, and Enter/Space toggle it.
 | `Accordion.Panel`   | the section content                                                                     |
 
 ```tsx
-<Accordion defaultValue={['billing']}>
+<Accordion.Root defaultValue={['billing']}>
   <Accordion.Item value="billing">
     <Accordion.Trigger>Billing</Accordion.Trigger>
     <Accordion.Panel>…</Accordion.Panel>
   </Accordion.Item>
-</Accordion>
+</Accordion.Root>
 ```
 
 ### Progress
@@ -694,7 +703,7 @@ An inline message that stays on the page. For a temporary notification, use
 
 ### Toast
 
-Mount `<Toast>` **once** near the root, inside `ThemeProvider`. It renders its
+Mount `<Toast.Root>` **once** near the root, inside `ThemeProvider`. It renders its
 children plus the toast viewport.
 
 | `Toast` prop   | Type             | Notes                                                    |
@@ -705,7 +714,7 @@ children plus the toast viewport.
 | `dismissLabel` | `string`         | default `"Dismiss"`                                      |
 
 Show toasts from a component with `Toast.useToast()`, or from outside React
-with `Toast.createManager()` (pass the manager to `<Toast manager>`). Both
+with `Toast.createManager()` (pass the manager to `<Toast.Root manager>`). Both
 return `{ add(options) => id, close(id?) }`.
 
 `ToastOptions`: `title`, `description`, `icon`, `tone` (`neutral` (default) `info`
@@ -742,21 +751,21 @@ backdrop click, or `Dialog.Close`, and returns focus to the trigger.
 | `Dialog.Close`       | a Button that closes the dialog                                            |
 
 ```tsx
-<Dialog>
+<Dialog.Root>
   <Dialog.Trigger variant="danger">Delete</Dialog.Trigger>
   <Dialog.Content>
     <Dialog.Title>Delete project?</Dialog.Title>
     <Dialog.Description>This can't be undone.</Dialog.Description>
     <Dialog.Actions>
       <Dialog.Close variant="ghost">Cancel</Dialog.Close>
-      <Button variant="danger" onClick={remove}>Delete</Button>
+      <Button.Root variant="danger" onClick={remove}>Delete</Button.Root>
     </Dialog.Actions>
   </Dialog.Content>
-</Dialog>
+</Dialog.Root>
 ```
 
 To open a Dialog without `Dialog.Trigger` (e.g. from a menu item), control
-it: `<Dialog open={open} onOpenChange={setOpen}>`.
+it: `<Dialog.Root open={open} onOpenChange={setOpen}>`.
 
 ### Popover
 
@@ -783,7 +792,7 @@ typeahead. Use it for actions; to choose a value, use [Select](#select).
 | `DropdownMenu.Separator`  | a line between groups                                                                       |
 
 ```tsx
-<DropdownMenu>
+<DropdownMenu.Root>
   <DropdownMenu.Trigger variant="ghost" aria-label="More actions">
     <Button.Icon><DotsHorizontalIcon /></Button.Icon>
   </DropdownMenu.Trigger>
@@ -792,7 +801,7 @@ typeahead. Use it for actions; to choose a value, use [Select](#select).
     <DropdownMenu.Separator />
     <DropdownMenu.Item variant="danger" onClick={() => setConfirmOpen(true)}>Delete</DropdownMenu.Item>
   </DropdownMenu.Content>
-</DropdownMenu>
+</DropdownMenu.Root>
 ```
 
 ### Tooltip
@@ -809,12 +818,12 @@ and anything essential belongs in a Popover or visible text instead.
 | `Tooltip.Content`  | `side` (default `top`), `align` (default `center`), `className`           |
 
 ```tsx
-<Tooltip>
+<Tooltip.Root>
   <Tooltip.Trigger variant="ghost" aria-label="Copy">
     <Button.Icon><CopyIcon /></Button.Icon>
   </Tooltip.Trigger>
   <Tooltip.Content>Copy to clipboard</Tooltip.Content>
-</Tooltip>
+</Tooltip.Root>
 ```
 
 ---
@@ -834,14 +843,14 @@ the first/last tab.
 | `Tabs.Panel` | `value` (required, matches a Tab's `value`); `keepMounted` keeps it in the DOM while hidden            |
 
 ```tsx
-<Tabs defaultValue="overview">
+<Tabs.Root defaultValue="overview">
   <Tabs.List aria-label="Project">
     <Tabs.Tab value="overview">Overview</Tabs.Tab>
     <Tabs.Tab value="settings">Settings</Tabs.Tab>
   </Tabs.List>
   <Tabs.Panel value="overview">…</Tabs.Panel>
   <Tabs.Panel value="settings">…</Tabs.Panel>
-</Tabs>
+</Tabs.Root>
 ```
 
 ### Breadcrumb
@@ -857,11 +866,11 @@ items.
 `aria-current="page"`.
 
 ```tsx
-<Breadcrumb>
+<Breadcrumb.Root>
   <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
   <Breadcrumb.Item href="/projects">Projects</Breadcrumb.Item>
   <Breadcrumb.Item current>Cascade</Breadcrumb.Item>
-</Breadcrumb>
+</Breadcrumb.Root>
 ```
 
 ### Pagination
@@ -919,5 +928,6 @@ state: pass `page` and update it in `onPageChange`.
 | Loading content with a known shape                | `Skeleton`                                |
 | Loading of unknown shape, or an action in progress | `Spinner`                                |
 | Spacing between siblings                          | `Stack` / `Grid` `gap`, not margins       |
+| Responsive card grid with no media queries        | `Grid` `columns="auto"` + `minChildWidth` |
 | Rearrange layout at a breakpoint                  | `className` with `@media ${media.md}`     |
 | Render a different subtree at a breakpoint        | `useBreakpoint`                           |

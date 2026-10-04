@@ -3,10 +3,10 @@ import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { inputVariant, inputWrapperVariant } from '../../Atoms/Input/Input.style';
-import FormField from '../FormField/FormField';
+import { FormField } from '../FormField';
 import { comboboxOptionCss, comboboxPopupCss } from '../Combobox/Combobox.style';
 import { ThemeProvider } from '../../ThemeProvider';
-import Autocomplete from './Autocomplete';
+import * as Autocomplete from './Autocomplete';
 import type { AutocompleteProps } from './Autocomplete';
 import { autocompleteItemCss } from './Autocomplete.style';
 
@@ -30,7 +30,7 @@ function renderAutocomplete(
   inputProps: Partial<React.ComponentProps<typeof Autocomplete.Input>> = {},
 ) {
   return render(
-    <Autocomplete items={tags} {...props}>
+    <Autocomplete.Root items={tags} {...props}>
       <Autocomplete.Input aria-label="Tag" placeholder="e.g. feature" {...inputProps} />
       <Autocomplete.Content emptyMessage="No tags found.">
         {(tag: string) => (
@@ -39,7 +39,7 @@ function renderAutocomplete(
           </Autocomplete.Item>
         )}
       </Autocomplete.Content>
-    </Autocomplete>,
+    </Autocomplete.Root>,
   );
 }
 
@@ -108,9 +108,9 @@ describe('Autocomplete', () => {
   describe('inside a FormField', () => {
     it('is named by the field label and described by its hint', () => {
       render(
-        <FormField>
+        <FormField.Root>
           <FormField.Label>Tag</FormField.Label>
-          <Autocomplete items={tags}>
+          <Autocomplete.Root items={tags}>
             <Autocomplete.Input />
             <Autocomplete.Content>
               {(tag: string) => (
@@ -119,9 +119,9 @@ describe('Autocomplete', () => {
                 </Autocomplete.Item>
               )}
             </Autocomplete.Content>
-          </Autocomplete>
+          </Autocomplete.Root>
           <FormField.Hint>Any label works.</FormField.Hint>
-        </FormField>,
+        </FormField.Root>,
       );
 
       const input = screen.getByRole('combobox', { name: 'Tag' });
@@ -130,9 +130,9 @@ describe('Autocomplete', () => {
 
     it("takes the field's disabled state", () => {
       render(
-        <FormField disabled>
+        <FormField.Root disabled>
           <FormField.Label>Tag</FormField.Label>
-          <Autocomplete items={tags}>
+          <Autocomplete.Root items={tags}>
             <Autocomplete.Input />
             <Autocomplete.Content>
               {(tag: string) => (
@@ -141,8 +141,8 @@ describe('Autocomplete', () => {
                 </Autocomplete.Item>
               )}
             </Autocomplete.Content>
-          </Autocomplete>
-        </FormField>,
+          </Autocomplete.Root>
+        </FormField.Root>,
       );
 
       expect(screen.getByRole('combobox', { name: 'Tag' })).toBeDisabled();
@@ -154,7 +154,7 @@ describe('Autocomplete', () => {
       render(
         <ThemeProvider initialMode="light">
           <ThemeProvider initialMode="dark">
-            <Autocomplete items={tags} defaultOpen>
+            <Autocomplete.Root items={tags} defaultOpen>
               <Autocomplete.Input aria-label="Tag" />
               <Autocomplete.Content>
                 {(tag: string) => (
@@ -163,7 +163,7 @@ describe('Autocomplete', () => {
                   </Autocomplete.Item>
                 )}
               </Autocomplete.Content>
-            </Autocomplete>
+            </Autocomplete.Root>
           </ThemeProvider>
         </ThemeProvider>,
       );

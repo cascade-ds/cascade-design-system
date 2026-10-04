@@ -66,6 +66,29 @@ describe('Grid', () => {
     );
   });
 
+  it('applies the classes for the given justify and padding', () => {
+    render(<Grid as="ul" aria-label="Items" justify="center" padding="lg" />);
+
+    expectClasses(
+      screen.getByRole('list', { name: 'Items' }),
+      gridVariant({ justify: 'center', padding: 'lg' }),
+    );
+  });
+
+  it('sizes auto columns from minChildWidth', () => {
+    render(<Grid as="ul" aria-label="Items" columns="auto" minChildWidth="12rem" />);
+
+    const list = screen.getByRole('list', { name: 'Items' });
+    expectClasses(list, gridVariant({ columns: 'auto' }));
+    expect(list.style.getPropertyValue('--cascade-grid-min-child-width')).toBe('12rem');
+  });
+
+  it('keeps a consumer style next to minChildWidth', () => {
+    render(<Grid as="ul" aria-label="Items" minChildWidth="8rem" style={{ color: 'red' }} />);
+
+    expect(screen.getByRole('list', { name: 'Items' })).toHaveStyle({ color: 'rgb(255, 0, 0)' });
+  });
+
   it('merges a consumer className with the variant classes', () => {
     render(<Grid as="ul" aria-label="Items" className="custom" />);
 

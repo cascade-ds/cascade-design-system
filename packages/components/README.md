@@ -61,9 +61,9 @@ import { buttonVariant } from './Button.style';
 
 it('applies the class for the given size and variant', () => {
   render(
-    <Button size="medium" variant="secondary">
+    <Button.Root size="medium" variant="secondary">
       Submit
-    </Button>,
+    </Button.Root>,
   );
 
   const button = screen.getByRole('button', { name: 'Submit' });

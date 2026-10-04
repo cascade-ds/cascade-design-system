@@ -11,7 +11,7 @@ import {
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Select',
-  component: Select,
+  component: Select.Root,
   tags: ['autodocs'],
   parameters: {
     a11y: { context: 'body' },
@@ -33,7 +33,7 @@ const meta = {
     disabled: false,
     readOnly: false,
   },
-} satisfies Meta<typeof Select>;
+} satisfies Meta<typeof Select.Root>;
 
 export default meta;
 
@@ -53,7 +53,7 @@ function PlanSelect(
 
   return (
     <Stack gap="xs">
-      <Select items={plans} {...selectProps}>
+      <Select.Root items={plans} {...selectProps}>
         <Select.Label>Plan</Select.Label>
         <Select.Trigger size={size} placeholder="Choose a plan" />
         <Select.Content>
@@ -63,7 +63,7 @@ function PlanSelect(
             </Select.Item>
           ))}
         </Select.Content>
-      </Select>
+      </Select.Root>
     </Stack>
   );
 }
@@ -109,7 +109,7 @@ export const ReadOnly: Story = {
 export const GroupsAndDisabledOptions: Story = {
   render: (args) => (
     <Stack gap="xs">
-      <Select {...args} defaultOpen>
+      <Select.Root {...args} defaultOpen>
         <Select.Label>Region</Select.Label>
         <Select.Trigger placeholder="Choose a region" />
         <Select.Content alignItemWithTrigger={false}>
@@ -127,7 +127,7 @@ export const GroupsAndDisabledOptions: Story = {
             </Select.Item>
           </Select.Group>
         </Select.Content>
-      </Select>
+      </Select.Root>
     </Stack>
   ),
 };

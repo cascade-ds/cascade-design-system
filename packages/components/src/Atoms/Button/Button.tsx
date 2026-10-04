@@ -32,6 +32,4 @@ function ButtonIcon(props: ButtonIconProps) {
   return <Icon size={null} className={cx(buttonIconCss, className)} {...restProps} />;
 }
 
-Button.Icon = ButtonIcon;
-
-export default Button;
+export { Button as Root, ButtonIcon as Icon };

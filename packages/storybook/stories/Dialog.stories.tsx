@@ -11,7 +11,7 @@ import {
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Dialog',
-  component: Dialog,
+  component: Dialog.Root,
   tags: ['autodocs'],
   parameters: {
     a11y: { context: 'body' },
@@ -29,7 +29,7 @@ const meta = {
   args: {
     children: null,
   },
-} satisfies Meta<typeof Dialog>;
+} satisfies Meta<typeof Dialog.Root>;
 
 export default meta;
 
@@ -39,9 +39,9 @@ type DeleteDialogProps = { defaultOpen?: boolean; size?: DialogContentProps['siz
 
 function DeleteDialog(props: DeleteDialogProps) {
   return (
-    <Toast>
+    <Toast.Root>
       <DeleteDialogWindow {...props} />
-    </Toast>
+    </Toast.Root>
   );
 }
 
@@ -51,7 +51,7 @@ function DeleteDialogWindow(props: DeleteDialogProps) {
   const toast = Toast.useToast();
 
   return (
-    <Dialog defaultOpen={defaultOpen}>
+    <Dialog.Root defaultOpen={defaultOpen}>
       <Dialog.Trigger variant="secondary">Delete project</Dialog.Trigger>
       <Dialog.Content size={size}>
         <Dialog.Title>Delete project?</Dialog.Title>
@@ -75,7 +75,7 @@ function DeleteDialogWindow(props: DeleteDialogProps) {
           </Dialog.Close>
         </Dialog.Actions>
       </Dialog.Content>
-    </Dialog>
+    </Dialog.Root>
   );
 }
 
@@ -110,7 +110,7 @@ export const Controlled: Story = {
     return (
       <Stack gap="md" align="start">
         <Text>The dialog is {open ? 'open' : 'closed'}.</Text>
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog.Root open={open} onOpenChange={setOpen}>
           <Dialog.Trigger>Edit profile</Dialog.Trigger>
           <Dialog.Content>
             <Dialog.Title>Edit profile</Dialog.Title>
@@ -119,7 +119,7 @@ export const Controlled: Story = {
               <Dialog.Close>Done</Dialog.Close>
             </Dialog.Actions>
           </Dialog.Content>
-        </Dialog>
+        </Dialog.Root>
       </Stack>
     );
   },

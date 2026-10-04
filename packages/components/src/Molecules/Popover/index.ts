@@ -1,4 +1,4 @@
-export { default as Popover } from './Popover';
+export * as Popover from './Popover';
 export type {
   PopoverProps,
   PopoverTriggerProps,

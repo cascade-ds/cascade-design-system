@@ -111,8 +111,9 @@ function AccordionPanel(props: AccordionPanelProps) {
   );
 }
 
-Accordion.Item = AccordionItem;
-Accordion.Trigger = AccordionTrigger;
-Accordion.Panel = AccordionPanel;
-
-export default Accordion;
+export {
+  Accordion as Root,
+  AccordionItem as Item,
+  AccordionTrigger as Trigger,
+  AccordionPanel as Panel,
+};

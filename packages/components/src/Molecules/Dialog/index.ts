@@ -1,4 +1,4 @@
-export { default as Dialog } from './Dialog';
+export * as Dialog from './Dialog';
 export type {
   DialogProps,
   DialogTriggerProps,

@@ -186,12 +186,13 @@ function ComboboxSeparator(props: ComboboxSeparatorProps) {
   return <BaseCombobox.Separator className={cx(comboboxSeparatorCss, className)} />;
 }
 
-Combobox.Input = ComboboxInput;
-Combobox.Content = ComboboxContent;
-Combobox.Item = ComboboxItem;
-Combobox.Group = ComboboxGroup;
-Combobox.GroupLabel = ComboboxGroupLabel;
-Combobox.Separator = ComboboxSeparator;
-Combobox.Collection = ComboboxCollection;
-
-export default Combobox;
+export {
+  Combobox as Root,
+  ComboboxInput as Input,
+  ComboboxContent as Content,
+  ComboboxItem as Item,
+  ComboboxGroup as Group,
+  ComboboxGroupLabel as GroupLabel,
+  ComboboxSeparator as Separator,
+  ComboboxCollection as Collection,
+};

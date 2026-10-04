@@ -303,11 +303,12 @@ function FormFieldError(props: FormFieldErrorProps) {
   );
 }
 
-FormField.Label = FormFieldLabel;
-FormField.Input = FormFieldInput;
-FormField.Textarea = FormFieldTextarea;
-FormField.Control = FormFieldControl;
-FormField.Hint = FormFieldHint;
-FormField.Error = FormFieldError;
-
-export default FormField;
+export {
+  FormField as Root,
+  FormFieldLabel as Label,
+  FormFieldInput as Input,
+  FormFieldTextarea as Textarea,
+  FormFieldControl as Control,
+  FormFieldHint as Hint,
+  FormFieldError as Error,
+};

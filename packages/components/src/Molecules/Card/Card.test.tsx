@@ -3,7 +3,7 @@ import { createRef } from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import Card from './Card';
+import * as Card from './Card';
 import {
   cardBodyCss,
   cardFooterCss,
@@ -28,7 +28,7 @@ function expectClasses(element: HTMLElement, className: string) {
 
 describe('Card', () => {
   it('renders a div with the default variant classes', () => {
-    render(<Card>Content</Card>);
+    render(<Card.Root>Content</Card.Root>);
 
     const card = screen.getByText('Content');
     expect(card.tagName).toBe('DIV');
@@ -39,10 +39,10 @@ describe('Card', () => {
     render(
       as === 'li' ? (
         <ul>
-          <Card as={as}>Content</Card>
+          <Card.Root as={as}>Content</Card.Root>
         </ul>
       ) : (
-        <Card as={as}>Content</Card>
+        <Card.Root as={as}>Content</Card.Root>
       ),
     );
 
@@ -51,18 +51,18 @@ describe('Card', () => {
 
   it('exposes a section named by its title as a region', () => {
     render(
-      <Card as="section" aria-labelledby="revenue-title">
+      <Card.Root as="section" aria-labelledby="revenue-title">
         <Card.Header>
           <Card.Title id="revenue-title">Revenue</Card.Title>
         </Card.Header>
-      </Card>,
+      </Card.Root>,
     );
 
     expect(screen.getByRole('region', { name: 'Revenue' })).toBeInTheDocument();
   });
 
   it('applies the class for a background variant', () => {
-    render(<Card background="success">Content</Card>);
+    render(<Card.Root background="success">Content</Card.Root>);
 
     expectClasses(screen.getByText('Content'), cardVariant({ background: 'success' }));
   });
@@ -70,10 +70,10 @@ describe('Card', () => {
   it('leaves out the pointer hover effect with hover={false}', () => {
     render(
       <>
-        <Card interactive>Hovering</Card>
-        <Card interactive hover={false}>
+        <Card.Root interactive>Hovering</Card.Root>
+        <Card.Root interactive hover={false}>
           Still
-        </Card>
+        </Card.Root>
       </>,
     );
 
@@ -83,7 +83,7 @@ describe('Card', () => {
   });
 
   it('applies the interactive class', () => {
-    render(<Card interactive>Content</Card>);
+    render(<Card.Root interactive>Content</Card.Root>);
 
     expectClasses(screen.getByText('Content'), cardVariant({ interactive: true }));
   });
@@ -91,9 +91,9 @@ describe('Card', () => {
   it('merges a consumer className and forwards its ref', () => {
     const ref = createRef<HTMLDivElement>();
     render(
-      <Card ref={ref} className="custom">
+      <Card.Root ref={ref} className="custom">
         Content
-      </Card>,
+      </Card.Root>,
     );
 
     const card = screen.getByText('Content');
@@ -104,14 +104,14 @@ describe('Card', () => {
 
   it('renders its parts with their styles and semantics', () => {
     render(
-      <Card>
+      <Card.Root>
         <Card.Header>
           <Card.Title>Revenue</Card.Title>
           <Card.Subtitle>Last 30 days</Card.Subtitle>
         </Card.Header>
         <Card.Body>Chart</Card.Body>
         <Card.Footer>Actions</Card.Footer>
-      </Card>,
+      </Card.Root>,
     );
 
     const title = screen.getByRole('heading', { name: 'Revenue', level: 3 });
@@ -136,13 +136,13 @@ describe('Card', () => {
     const handleClick = vi.fn();
 
     render(
-      <Card>
+      <Card.Root>
         <Card.Footer>
           <button type="button" onClick={handleClick}>
             View report
           </button>
         </Card.Footer>
-      </Card>,
+      </Card.Root>,
     );
 
     await user.click(screen.getByRole('button', { name: 'View report' }));

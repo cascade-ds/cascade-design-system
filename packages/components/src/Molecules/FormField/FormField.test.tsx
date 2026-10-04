@@ -6,7 +6,8 @@ import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { labelVariant } from '../../Atoms/Label/Label.style';
 import { textareaVariant } from '../../Atoms/Textarea/Textarea.style';
-import FormField, { useFormFieldControl } from './FormField';
+import * as FormField from './FormField';
+import { useFormFieldControl } from './FormField';
 import { inputVariant } from '../../Atoms/Input/Input.style';
 import { formFieldErrorCss, formFieldHintCss } from './FormField.style';
 
@@ -28,12 +29,12 @@ function EmailField({
   ...props
 }: Partial<React.ComponentProps<typeof FormField>> & { error?: string }) {
   return (
-    <FormField {...props}>
+    <FormField.Root {...props}>
       <FormField.Label>Email</FormField.Label>
       <FormField.Input type="email" />
       <FormField.Hint>We never share it.</FormField.Hint>
       {error && <FormField.Error>{error}</FormField.Error>}
-    </FormField>
+    </FormField.Root>
   );
 }
 
@@ -119,10 +120,10 @@ describe('FormField', () => {
 
   it.each(['sm', 'md', 'lg'] as const)('applies the class for the %s input size', (size) => {
     render(
-      <FormField>
+      <FormField.Root>
         <FormField.Label>Name</FormField.Label>
         <FormField.Input size={size} />
-      </FormField>,
+      </FormField.Root>,
     );
 
     expectClasses(screen.getByRole('textbox', { name: 'Name' }), inputVariant({ size }));
@@ -145,10 +146,10 @@ describe('FormField', () => {
       const handleBlur = vi.fn();
 
       render(
-        <FormField>
+        <FormField.Root>
           <FormField.Label>Email</FormField.Label>
           <FormField.Input ref={ref} name="email" onChange={handleChange} onBlur={handleBlur} />
-        </FormField>,
+        </FormField.Root>,
       );
 
       const input = screen.getByRole('textbox', { name: 'Email' });
@@ -166,13 +167,13 @@ describe('FormField', () => {
       function Controlled() {
         const [value, setValue] = useState('');
         return (
-          <FormField>
+          <FormField.Root>
             <FormField.Label>Code</FormField.Label>
             <FormField.Input
               value={value}
               onChange={(event) => setValue(event.target.value.toUpperCase())}
             />
-          </FormField>
+          </FormField.Root>
         );
       }
 
@@ -186,10 +187,10 @@ describe('FormField', () => {
 
       render(
         <form noValidate onSubmit={(event) => event.preventDefault()}>
-          <FormField required>
+          <FormField.Root required>
             <FormField.Label>Email</FormField.Label>
             <FormField.Input />
-          </FormField>
+          </FormField.Root>
           <button type="submit">Send</button>
         </form>,
       );
@@ -205,14 +206,14 @@ describe('FormField', () => {
   describe('FormField.Control', () => {
     it('wires any control to the label, hint, error and field state', () => {
       render(
-        <FormField required>
+        <FormField.Root required>
           <FormField.Label>Due date</FormField.Label>
           <FormField.Control>
             {(controlProps) => <input type="date" {...controlProps} />}
           </FormField.Control>
           <FormField.Hint>Pick a weekday.</FormField.Hint>
           <FormField.Error>Pick a date.</FormField.Error>
-        </FormField>,
+        </FormField.Root>,
       );
 
       const input = screen.getByLabelText(/Due date/);
@@ -231,11 +232,11 @@ describe('FormField', () => {
       }
 
       render(
-        <FormField disabled>
+        <FormField.Root disabled>
           <Custom />
           <FormField.Hint>Hint.</FormField.Hint>
           <span id="extra">Extra.</span>
-        </FormField>,
+        </FormField.Root>,
       );
 
       const input = screen.getByRole('textbox');
@@ -260,12 +261,12 @@ describe('FormField', () => {
   describe('FormField.Textarea', () => {
     it('renders a Cascade Textarea wired to the label, hint and error', () => {
       render(
-        <FormField required>
+        <FormField.Root required>
           <FormField.Label>Bio</FormField.Label>
           <FormField.Textarea size="sm" />
           <FormField.Hint>A short intro.</FormField.Hint>
           <FormField.Error>Bio is too long.</FormField.Error>
-        </FormField>,
+        </FormField.Root>,
       );
 
       const textarea = screen.getByRole('textbox', { name: /Bio/ });
@@ -280,7 +281,7 @@ describe('FormField', () => {
   describe('several hints and errors', () => {
     function PasswordField({ errors }: { errors: string[] }) {
       return (
-        <FormField>
+        <FormField.Root>
           <FormField.Label>Password</FormField.Label>
           <FormField.Input type="text" />
           <FormField.Hint>At least 8 characters.</FormField.Hint>
@@ -288,7 +289,7 @@ describe('FormField', () => {
           {errors.map((error) => (
             <FormField.Error key={error}>{error}</FormField.Error>
           ))}
-        </FormField>
+        </FormField.Root>
       );
     }
 
@@ -349,11 +350,11 @@ describe('FormField', () => {
     }
 
     render(
-      <FormField>
+      <FormField.Root>
         <FormField.Label>City</FormField.Label>
         <FormField.Input />
         <FieldMessages />
-      </FormField>,
+      </FormField.Root>,
     );
 
     const input = screen.getByRole('textbox', { name: 'City' });
@@ -364,7 +365,7 @@ describe('FormField', () => {
   describe('naming custom controls', () => {
     it('names a control that <label for> cannot reach', () => {
       render(
-        <FormField>
+        <FormField.Root>
           <FormField.Label>Assignee</FormField.Label>
           <FormField.Control>
             {(controlProps) => (
@@ -377,7 +378,7 @@ describe('FormField', () => {
               />
             )}
           </FormField.Control>
-        </FormField>,
+        </FormField.Root>,
       );
 
       expect(screen.getByRole('combobox', { name: 'Assignee' })).toBeInTheDocument();
@@ -389,10 +390,10 @@ describe('FormField', () => {
       }
 
       render(
-        <FormField>
+        <FormField.Root>
           <FormField.Label>Filters</FormField.Label>
           <Custom />
-        </FormField>,
+        </FormField.Root>,
       );
 
       const input = screen.getByRole('textbox', { name: 'Search' });

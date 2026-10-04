@@ -120,7 +120,7 @@ import { ThemeProvider, Button } from '@cascade-ds/components';
 
 <ThemeProvider>
   {/* follows the OS preference until setTheme() is called */}
-  <Button>Save</Button>
+  <Button.Root>Save</Button.Root>
 </ThemeProvider>;
 
 <ThemeProvider initialMode="dark">{/* forces dark for this subtree */}</ThemeProvider>;

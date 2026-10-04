@@ -53,6 +53,9 @@ const aligns = {
   stretch: css`
     align-items: stretch;
   `,
+  baseline: css`
+    align-items: baseline;
+  `,
 };
 
 const justifies = {
@@ -67,6 +70,33 @@ const justifies = {
   `,
   between: css`
     justify-content: space-between;
+  `,
+  around: css`
+    justify-content: space-around;
+  `,
+  evenly: css`
+    justify-content: space-evenly;
+  `,
+};
+
+const paddings = {
+  none: css`
+    padding: 0;
+  `,
+  xs: css`
+    padding: ${semantic.padding.xs};
+  `,
+  sm: css`
+    padding: ${semantic.padding.sm};
+  `,
+  md: css`
+    padding: ${semantic.padding.md};
+  `,
+  lg: css`
+    padding: ${semantic.padding.lg};
+  `,
+  xl: css`
+    padding: ${semantic.padding.xl};
   `,
 };
 
@@ -94,6 +124,7 @@ export const stackVariant = cva(baseStackCss, {
     justify: justifies,
     wrap: wraps,
     grow: grows,
+    padding: paddings,
   },
   defaultVariants: {
     direction: 'column',
@@ -102,5 +133,6 @@ export const stackVariant = cva(baseStackCss, {
     justify: 'start',
     wrap: false,
     grow: false,
+    padding: 'none',
   },
 });

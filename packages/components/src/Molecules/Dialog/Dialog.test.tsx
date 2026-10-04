@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ThemeProvider } from '../../ThemeProvider';
 import { buttonVariant } from '../../Atoms/Button/Button.style';
-import Dialog from './Dialog';
+import * as Dialog from './Dialog';
 import { dialogPopupVariant, dialogTitleCss } from './Dialog.style';
 
 afterEach(() => {
@@ -26,7 +26,7 @@ function renderDialog(
   contentProps: Partial<React.ComponentProps<typeof Dialog.Content>> = {},
 ) {
   return render(
-    <Dialog {...props}>
+    <Dialog.Root {...props}>
       <Dialog.Trigger variant="secondary">Delete project</Dialog.Trigger>
       <Dialog.Content {...contentProps}>
         <Dialog.Title>Delete project?</Dialog.Title>
@@ -35,7 +35,7 @@ function renderDialog(
           <Dialog.Close variant="ghost">Cancel</Dialog.Close>
         </Dialog.Actions>
       </Dialog.Content>
-    </Dialog>,
+    </Dialog.Root>,
   );
 }
 
@@ -107,7 +107,7 @@ describe('Dialog', () => {
     function Controlled() {
       const [open, setOpen] = useState(false);
       return (
-        <Dialog
+        <Dialog.Root
           open={open}
           onOpenChange={(nextOpen) => {
             handleOpenChange(nextOpen);
@@ -119,7 +119,7 @@ describe('Dialog', () => {
             <Dialog.Title>Settings</Dialog.Title>
             <Dialog.Close>Close</Dialog.Close>
           </Dialog.Content>
-        </Dialog>
+        </Dialog.Root>
       );
     }
 
@@ -138,12 +138,12 @@ describe('Dialog', () => {
       const { container } = render(
         <ThemeProvider initialMode="light">
           <ThemeProvider initialMode="dark">
-            <Dialog defaultOpen>
+            <Dialog.Root defaultOpen>
               <Dialog.Trigger>Open</Dialog.Trigger>
               <Dialog.Content>
                 <Dialog.Title>Settings</Dialog.Title>
               </Dialog.Content>
-            </Dialog>
+            </Dialog.Root>
           </ThemeProvider>
         </ThemeProvider>,
       );
