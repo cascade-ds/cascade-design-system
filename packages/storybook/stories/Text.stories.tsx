@@ -67,9 +67,9 @@ function TextReveal({ text, by, ...textProps }: TextRevealProps) {
           )}
         </span>
       </Text>
-      <Button variant="secondary" size="sm" onClick={() => setPlayCount((count) => count + 1)}>
+      <Button.Root variant="secondary" size="sm" onClick={() => setPlayCount((count) => count + 1)}>
         Replay
-      </Button>
+      </Button.Root>
     </Stack>
   );
 }

@@ -4,8 +4,8 @@ import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ThemeProvider } from '../../ThemeProvider';
-import FormField from '../FormField/FormField';
-import Select from './Select';
+import { FormField } from '../FormField';
+import * as Select from './Select';
 import type { SelectProps } from './Select';
 import {
   selectItemCss,
@@ -38,7 +38,7 @@ function renderSelect(
   triggerProps: Partial<React.ComponentProps<typeof Select.Trigger>> = {},
 ) {
   return render(
-    <Select items={fruits} {...props}>
+    <Select.Root items={fruits} {...props}>
       <Select.Label>Fruit</Select.Label>
       <Select.Trigger placeholder="Pick a fruit" {...triggerProps} />
       <Select.Content>
@@ -48,7 +48,7 @@ function renderSelect(
           </Select.Item>
         ))}
       </Select.Content>
-    </Select>,
+    </Select.Root>,
   );
 }
 
@@ -132,7 +132,7 @@ describe('Select', () => {
       const [value, setValue] = useState<string | null>('apple');
       return (
         <>
-          <Select items={fruits} value={value} onValueChange={setValue}>
+          <Select.Root items={fruits} value={value} onValueChange={setValue}>
             <Select.Trigger aria-label="Fruit" />
             <Select.Content>
               {fruits.map((fruit) => (
@@ -141,7 +141,7 @@ describe('Select', () => {
                 </Select.Item>
               ))}
             </Select.Content>
-          </Select>
+          </Select.Root>
           <output>{value}</output>
         </>
       );
@@ -167,7 +167,7 @@ describe('Select', () => {
 
   it('renders groups named by their label, and separators', async () => {
     render(
-      <Select defaultOpen>
+      <Select.Root defaultOpen>
         <Select.Trigger aria-label="Food" />
         <Select.Content>
           <Select.Group>
@@ -180,7 +180,7 @@ describe('Select', () => {
             <Select.Item value="kale">Kale</Select.Item>
           </Select.Group>
         </Select.Content>
-      </Select>,
+      </Select.Root>,
     );
 
     await screen.findByRole('listbox');
@@ -195,9 +195,9 @@ describe('Select', () => {
   describe('inside a FormField', () => {
     it('is named by the field label and described by its hint and error', () => {
       render(
-        <FormField invalid>
+        <FormField.Root invalid>
           <FormField.Label>Fruit</FormField.Label>
-          <Select items={fruits}>
+          <Select.Root items={fruits}>
             <Select.Trigger placeholder="Pick a fruit" />
             <Select.Content>
               {fruits.map((fruit) => (
@@ -206,10 +206,10 @@ describe('Select', () => {
                 </Select.Item>
               ))}
             </Select.Content>
-          </Select>
+          </Select.Root>
           <FormField.Hint>Used for the smoothie.</FormField.Hint>
           <FormField.Error>Pick a fruit.</FormField.Error>
-        </FormField>,
+        </FormField.Root>,
       );
 
       const trigger = screen.getByRole('combobox', { name: 'Fruit' });
@@ -222,15 +222,15 @@ describe('Select', () => {
 
     it("takes the field's disabled state", () => {
       render(
-        <FormField disabled>
+        <FormField.Root disabled>
           <FormField.Label>Fruit</FormField.Label>
-          <Select items={fruits}>
+          <Select.Root items={fruits}>
             <Select.Trigger placeholder="Pick a fruit" />
             <Select.Content>
               <Select.Item value="apple">Apple</Select.Item>
             </Select.Content>
-          </Select>
-        </FormField>,
+          </Select.Root>
+        </FormField.Root>,
       );
 
       expect(screen.getByRole('combobox', { name: 'Fruit' })).toHaveAttribute('data-disabled');
@@ -242,12 +242,12 @@ describe('Select', () => {
       render(
         <ThemeProvider initialMode="light">
           <ThemeProvider initialMode="dark">
-            <Select items={fruits} defaultOpen>
+            <Select.Root items={fruits} defaultOpen>
               <Select.Trigger aria-label="Fruit" />
               <Select.Content>
                 <Select.Item value="apple">Apple</Select.Item>
               </Select.Content>
-            </Select>
+            </Select.Root>
           </ThemeProvider>
         </ThemeProvider>,
       );

@@ -85,6 +85,4 @@ function BreadcrumbItem<TElement extends React.ElementType = 'a'>(
   );
 }
 
-Breadcrumb.Item = BreadcrumbItem;
-
-export default Breadcrumb;
+export { Breadcrumb as Root, BreadcrumbItem as Item };

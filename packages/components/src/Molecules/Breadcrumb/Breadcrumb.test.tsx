@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
-import Breadcrumb from './Breadcrumb';
+import * as Breadcrumb from './Breadcrumb';
 import {
   breadcrumbCurrentCss,
   breadcrumbLinkCss,
@@ -15,11 +15,11 @@ afterEach(() => {
 
 function renderBreadcrumb(props: Partial<React.ComponentProps<typeof Breadcrumb>> = {}) {
   return render(
-    <Breadcrumb {...props}>
+    <Breadcrumb.Root {...props}>
       <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
       <Breadcrumb.Item href="/projects">Projects</Breadcrumb.Item>
       <Breadcrumb.Item current>Cascade</Breadcrumb.Item>
-    </Breadcrumb>,
+    </Breadcrumb.Root>,
   );
 }
 
@@ -77,11 +77,11 @@ describe('Breadcrumb', () => {
     }
 
     render(
-      <Breadcrumb>
+      <Breadcrumb.Root>
         <Breadcrumb.Item as={RouterLink} to="/settings">
           Settings
         </Breadcrumb.Item>
-      </Breadcrumb>,
+      </Breadcrumb.Root>,
     );
 
     const link = screen.getByRole('link', { name: 'Settings' });

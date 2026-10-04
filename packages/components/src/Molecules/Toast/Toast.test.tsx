@@ -3,7 +3,7 @@ import { act, cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ThemeProvider } from '../../ThemeProvider';
-import Toast from './Toast';
+import * as Toast from './Toast';
 import type { ToastOptions } from './Toast';
 import { toastVariant } from './Toast.style';
 
@@ -35,9 +35,9 @@ function renderToast(
   toastProps: Partial<React.ComponentProps<typeof Toast>> = {},
 ) {
   return render(
-    <Toast {...toastProps}>
+    <Toast.Root {...toastProps}>
       <ShowToast options={options} />
-    </Toast>,
+    </Toast.Root>,
   );
 }
 
@@ -111,9 +111,9 @@ describe('Toast', () => {
   it('shows toasts from a manager created outside React', async () => {
     const manager = Toast.createManager();
     render(
-      <Toast manager={manager}>
+      <Toast.Root manager={manager}>
         <p>App</p>
-      </Toast>,
+      </Toast.Root>,
     );
 
     act(() => {
@@ -134,9 +134,9 @@ describe('Toast', () => {
       render(
         <ThemeProvider initialMode="light">
           <ThemeProvider initialMode="dark">
-            <Toast>
+            <Toast.Root>
               <ShowToast options={{ title: 'Saved' }} />
-            </Toast>
+            </Toast.Root>
           </ThemeProvider>
         </ThemeProvider>,
       );

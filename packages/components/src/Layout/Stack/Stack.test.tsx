@@ -76,6 +76,15 @@ describe('Stack', () => {
     );
   });
 
+  it('applies the classes for baseline, evenly and padding', () => {
+    render(<Stack as="ul" aria-label="Items" align="baseline" justify="evenly" padding="md" />);
+
+    expectClasses(
+      screen.getByRole('list', { name: 'Items' }),
+      stackVariant({ align: 'baseline', justify: 'evenly', padding: 'md' }),
+    );
+  });
+
   it('merges a consumer className with the variant classes', () => {
     render(<Stack as="ul" aria-label="Items" className="custom" />);
 

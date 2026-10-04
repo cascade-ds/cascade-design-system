@@ -1,7 +1,7 @@
 import type { VariantProps } from 'class-variance-authority';
 import { cx } from '@linaria/core';
 import Box from '../../Layout/Box';
-import Button from '../../Atoms/Button/Button';
+import { Button } from '../../Atoms/Button';
 import Icon from '../../Atoms/Icon/Icon';
 import CloseIcon from '../../internal/CloseIcon';
 import {
@@ -72,7 +72,7 @@ function Alert(props: AlertProps) {
       )}
       <div className={alertBodyCss}>{children}</div>
       {onDismiss && (
-        <Button
+        <Button.Root
           variant="ghost"
           size="sm"
           aria-label={dismissLabel}
@@ -82,7 +82,7 @@ function Alert(props: AlertProps) {
           <Button.Icon>
             <CloseIcon />
           </Button.Icon>
-        </Button>
+        </Button.Root>
       )}
     </Box>
   );
@@ -102,7 +102,4 @@ function AlertDescription(props: AlertDescriptionProps) {
   return <div className={cx(alertDescriptionCss, className)} {...restProps} />;
 }
 
-Alert.Title = AlertTitle;
-Alert.Description = AlertDescription;
-
-export default Alert;
+export { Alert as Root, AlertTitle as Title, AlertDescription as Description };

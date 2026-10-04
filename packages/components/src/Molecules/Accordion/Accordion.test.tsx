@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import Accordion from './Accordion';
+import * as Accordion from './Accordion';
 import {
   accordionCss,
   accordionItemCss,
@@ -17,7 +17,7 @@ afterEach(() => {
 
 function renderAccordion(props: Partial<React.ComponentProps<typeof Accordion>> = {}) {
   return render(
-    <Accordion {...props}>
+    <Accordion.Root {...props}>
       <Accordion.Item value="billing">
         <Accordion.Trigger>Billing</Accordion.Trigger>
         <Accordion.Panel>Billing content</Accordion.Panel>
@@ -30,7 +30,7 @@ function renderAccordion(props: Partial<React.ComponentProps<typeof Accordion>> 
         <Accordion.Trigger>Legacy</Accordion.Trigger>
         <Accordion.Panel>Legacy content</Accordion.Panel>
       </Accordion.Item>
-    </Accordion>,
+    </Accordion.Root>,
   );
 }
 
@@ -54,12 +54,12 @@ describe('Accordion', () => {
 
   it('uses the given heading level', () => {
     render(
-      <Accordion>
+      <Accordion.Root>
         <Accordion.Item>
           <Accordion.Trigger headingLevel={2}>Billing</Accordion.Trigger>
           <Accordion.Panel>Billing content</Accordion.Panel>
         </Accordion.Item>
-      </Accordion>,
+      </Accordion.Root>,
     );
 
     expect(screen.getByRole('heading', { level: 2, name: 'Billing' })).toBeInTheDocument();
@@ -144,7 +144,7 @@ describe('Accordion', () => {
     function Controlled() {
       const [value, setValue] = useState<(string | number)[]>([]);
       return (
-        <Accordion
+        <Accordion.Root
           value={value}
           onValueChange={(nextValue) => {
             handleValueChange(nextValue);
@@ -155,7 +155,7 @@ describe('Accordion', () => {
             <Accordion.Trigger>Billing</Accordion.Trigger>
             <Accordion.Panel>Billing content</Accordion.Panel>
           </Accordion.Item>
-        </Accordion>
+        </Accordion.Root>
       );
     }
 

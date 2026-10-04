@@ -17,7 +17,7 @@ const toneIcons = {
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Toast',
-  component: Toast,
+  component: Toast.Root,
   tags: ['autodocs'],
   parameters: {
     a11y: { context: 'body' },
@@ -41,7 +41,7 @@ const meta = {
     limit: 3,
     children: null,
   },
-} satisfies Meta<typeof Toast>;
+} satisfies Meta<typeof Toast.Root>;
 
 export default meta;
 
@@ -52,30 +52,30 @@ function ShowToastButton(props: { label: string; options: ToastOptions }) {
   const toast = Toast.useToast();
 
   return (
-    <Button
+    <Button.Root
       variant="secondary"
       onClick={() => toast.add({ icon: toneIcons[options.tone ?? 'neutral'], ...options })}
     >
       {label}
-    </Button>
+    </Button.Root>
   );
 }
 
 export const Default: Story = {
   render: (args) => (
-    <Toast {...args}>
+    <Toast.Root {...args}>
       <ShowToastButton
         label="Save changes"
         options={{ title: 'Changes saved', description: 'Your profile is up to date.' }}
       />
-    </Toast>
+    </Toast.Root>
   ),
 };
 
 export const Open: Story = {
   args: { timeout: 0 },
   render: (args) => (
-    <Toast {...args}>
+    <Toast.Root {...args}>
       <Stack direction="row" gap="sm" wrap>
         <ShowToastButton
           label="Show success"
@@ -95,7 +95,7 @@ export const Open: Story = {
           }}
         />
       </Stack>
-    </Toast>
+    </Toast.Root>
   ),
   play: async ({ canvas, userEvent }) => {
     await userEvent.click(canvas.getByRole('button', { name: 'Show success' }));
@@ -105,7 +105,7 @@ export const Open: Story = {
 
 export const Tones: Story = {
   render: (args) => (
-    <Toast {...args}>
+    <Toast.Root {...args}>
       <Stack direction="row" gap="sm" wrap>
         <ShowToastButton label="Neutral" options={{ title: 'Link copied' }} />
         <ShowToastButton
@@ -129,13 +129,13 @@ export const Tones: Story = {
           }}
         />
       </Stack>
-    </Toast>
+    </Toast.Root>
   ),
 };
 
 export const WithAction: Story = {
   render: (args) => (
-    <Toast {...args}>
+    <Toast.Root {...args}>
       <ShowToastButton
         label="Delete file"
         options={{
@@ -144,18 +144,18 @@ export const WithAction: Story = {
           action: { label: 'Undo', onClick: () => {} },
         }}
       />
-    </Toast>
+    </Toast.Root>
   ),
 };
 
 export const Persistent: Story = {
   render: (args) => (
-    <Toast {...args}>
+    <Toast.Root {...args}>
       <ShowToastButton
         label="Show persistent toast"
         options={{ tone: 'warning', title: 'You are offline', timeout: 0 }}
       />
-    </Toast>
+    </Toast.Root>
   ),
 };
 
@@ -163,16 +163,16 @@ const manager = Toast.createManager();
 
 export const WithManager: Story = {
   render: (args) => (
-    <Toast {...args} manager={manager}>
-      <Button
+    <Toast.Root {...args} manager={manager}>
+      <Button.Root
         variant="secondary"
         onClick={() =>
           manager.add({ tone: 'success', icon: toneIcons.success, title: 'Shown by a manager' })
         }
       >
         Show from manager
-      </Button>
-    </Toast>
+      </Button.Root>
+    </Toast.Root>
   ),
 };
 
@@ -184,9 +184,9 @@ export const InsideDarkSection: Story = {
         <ThemeProvider initialMode="dark">
           <Stack gap="md" align="start">
             <Text>Dark section</Text>
-            <Toast {...args}>
+            <Toast.Root {...args}>
               <ShowToastButton label="Show dark toast" options={{ title: 'Themed toast' }} />
-            </Toast>
+            </Toast.Root>
           </Stack>
         </ThemeProvider>
       </Stack>

@@ -9,7 +9,7 @@ import {
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Combobox',
-  component: Combobox,
+  component: Combobox.Root,
   tags: ['autodocs'],
   parameters: {
     a11y: { context: 'body' },
@@ -31,7 +31,7 @@ const meta = {
     disabled: false,
     readOnly: false,
   },
-} satisfies Meta<typeof Combobox>;
+} satisfies Meta<typeof Combobox.Root>;
 
 export default meta;
 
@@ -66,9 +66,9 @@ function TimezoneCombobox(
   const { size, ...comboboxProps } = props;
 
   return (
-    <FormField>
+    <FormField.Root>
       <FormField.Label>Time zone</FormField.Label>
-      <Combobox items={timezones} {...comboboxProps}>
+      <Combobox.Root items={timezones} {...comboboxProps}>
         <Combobox.Input size={size} placeholder="Search time zones" />
         <Combobox.Content emptyMessage="No time zones found.">
           {(timezone: string) => (
@@ -77,8 +77,8 @@ function TimezoneCombobox(
             </Combobox.Item>
           )}
         </Combobox.Content>
-      </Combobox>
-    </FormField>
+      </Combobox.Root>
+    </FormField.Root>
   );
 }
 
@@ -116,9 +116,9 @@ const regions = [
 
 export const Groups: Story = {
   render: (args) => (
-    <FormField>
+    <FormField.Root>
       <FormField.Label>Office</FormField.Label>
-      <Combobox {...controls(args)} items={regions} defaultOpen>
+      <Combobox.Root {...controls(args)} items={regions} defaultOpen>
         <Combobox.Input placeholder="Search offices" />
         <Combobox.Content emptyMessage="No offices found.">
           {(group: (typeof regions)[number]) => (
@@ -134,16 +134,16 @@ export const Groups: Story = {
             </Combobox.Group>
           )}
         </Combobox.Content>
-      </Combobox>
-    </FormField>
+      </Combobox.Root>
+    </FormField.Root>
   ),
 };
 
 export const Invalid: Story = {
   render: (args) => (
-    <FormField>
+    <FormField.Root>
       <FormField.Label>Time zone</FormField.Label>
-      <Combobox {...controls(args)} items={timezones}>
+      <Combobox.Root {...controls(args)} items={timezones}>
         <Combobox.Input placeholder="Search time zones" />
         <Combobox.Content emptyMessage="No time zones found.">
           {(timezone: string) => (
@@ -152,8 +152,8 @@ export const Invalid: Story = {
             </Combobox.Item>
           )}
         </Combobox.Content>
-      </Combobox>
+      </Combobox.Root>
       <FormField.Error>Choose a time zone.</FormField.Error>
-    </FormField>
+    </FormField.Root>
   ),
 };

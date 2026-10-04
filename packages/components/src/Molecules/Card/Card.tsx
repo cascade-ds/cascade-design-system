@@ -79,10 +79,11 @@ function CardFooter(props: CardFooterProps) {
   return <Box as="div" className={cx(cardFooterCss, className)} {...restProps} />;
 }
 
-Card.Header = CardHeader;
-Card.Title = CardTitle;
-Card.Subtitle = CardSubtitle;
-Card.Body = CardBody;
-Card.Footer = CardFooter;
-
-export default Card;
+export {
+  Card as Root,
+  CardHeader as Header,
+  CardTitle as Title,
+  CardSubtitle as Subtitle,
+  CardBody as Body,
+  CardFooter as Footer,
+};

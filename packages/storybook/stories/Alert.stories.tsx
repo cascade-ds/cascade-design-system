@@ -18,7 +18,7 @@ const toneIcons = {
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Alert',
-  component: Alert,
+  component: Alert.Root,
   tags: ['autodocs'],
   argTypes: {
     tone: {
@@ -50,9 +50,12 @@ const meta = {
     ),
   },
   render: (args) => (
-    <Alert {...args} icon={args.icon === undefined ? toneIcons[args.tone ?? 'info'] : args.icon} />
+    <Alert.Root
+      {...args}
+      icon={args.icon === undefined ? toneIcons[args.tone ?? 'info'] : args.icon}
+    />
   ),
-} satisfies Meta<typeof Alert>;
+} satisfies Meta<typeof Alert.Root>;
 
 export default meta;
 
@@ -64,10 +67,10 @@ export const Tones: Story = {
   render: (args) => (
     <Stack gap="md">
       {tones.map((tone) => (
-        <Alert key={tone} {...args} tone={tone} icon={toneIcons[tone]}>
+        <Alert.Root key={tone} {...args} tone={tone} icon={toneIcons[tone]}>
           <Alert.Title>{tone.charAt(0).toUpperCase() + tone.slice(1)}</Alert.Title>
           <Alert.Description>This is a {tone} message.</Alert.Description>
-        </Alert>
+        </Alert.Root>
       ))}
     </Stack>
   ),

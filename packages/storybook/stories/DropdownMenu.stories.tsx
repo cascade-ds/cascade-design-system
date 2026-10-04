@@ -10,7 +10,7 @@ import {
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/DropdownMenu',
-  component: DropdownMenu,
+  component: DropdownMenu.Root,
   tags: ['autodocs'],
   parameters: {
     a11y: { context: 'body' },
@@ -28,7 +28,7 @@ const meta = {
   args: {
     children: null,
   },
-} satisfies Meta<typeof DropdownMenu>;
+} satisfies Meta<typeof DropdownMenu.Root>;
 
 export default meta;
 
@@ -42,7 +42,7 @@ function ProjectMenu(props: {
   const { defaultOpen, side, label = 'Actions' } = props;
 
   return (
-    <DropdownMenu defaultOpen={defaultOpen}>
+    <DropdownMenu.Root defaultOpen={defaultOpen}>
       <DropdownMenu.Trigger variant="secondary">{label}</DropdownMenu.Trigger>
       <DropdownMenu.Content side={side}>
         <DropdownMenu.Item>Rename</DropdownMenu.Item>
@@ -51,7 +51,7 @@ function ProjectMenu(props: {
         <DropdownMenu.Separator />
         <DropdownMenu.Item variant="danger">Delete</DropdownMenu.Item>
       </DropdownMenu.Content>
-    </DropdownMenu>
+    </DropdownMenu.Root>
   );
 }
 
@@ -65,7 +65,7 @@ export const Open: Story = {
 
 export const Groups: Story = {
   render: () => (
-    <DropdownMenu defaultOpen>
+    <DropdownMenu.Root defaultOpen>
       <DropdownMenu.Trigger variant="secondary">View</DropdownMenu.Trigger>
       <DropdownMenu.Content>
         <DropdownMenu.Group>
@@ -80,7 +80,7 @@ export const Groups: Story = {
           <DropdownMenu.Item>List</DropdownMenu.Item>
         </DropdownMenu.Group>
       </DropdownMenu.Content>
-    </DropdownMenu>
+    </DropdownMenu.Root>
   ),
 };
 
@@ -118,7 +118,7 @@ export const Controlled: Story = {
     return (
       <Stack gap="md" align="start">
         <Text>Last action: {lastAction}.</Text>
-        <DropdownMenu>
+        <DropdownMenu.Root>
           <DropdownMenu.Trigger>Actions</DropdownMenu.Trigger>
           <DropdownMenu.Content>
             <DropdownMenu.Item onClick={() => setLastAction('rename')}>Rename</DropdownMenu.Item>
@@ -126,7 +126,7 @@ export const Controlled: Story = {
               Duplicate
             </DropdownMenu.Item>
           </DropdownMenu.Content>
-        </DropdownMenu>
+        </DropdownMenu.Root>
       </Stack>
     );
   },

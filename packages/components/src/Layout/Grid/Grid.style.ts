@@ -23,6 +23,12 @@ const columns = {
   6: css`
     grid-template-columns: repeat(6, minmax(0, 1fr));
   `,
+  auto: css`
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(var(--cascade-grid-min-child-width, 16rem), 100%), 1fr)
+    );
+  `,
   12: css`
     grid-template-columns: repeat(${semantic.layout.columns}, minmax(0, 1fr));
   `,
@@ -67,15 +73,55 @@ const aligns = {
   `,
 };
 
+const justifies = {
+  start: css`
+    justify-items: start;
+  `,
+  center: css`
+    justify-items: center;
+  `,
+  end: css`
+    justify-items: end;
+  `,
+  stretch: css`
+    justify-items: stretch;
+  `,
+};
+
+const paddings = {
+  none: css`
+    padding: 0;
+  `,
+  xs: css`
+    padding: ${semantic.padding.xs};
+  `,
+  sm: css`
+    padding: ${semantic.padding.sm};
+  `,
+  md: css`
+    padding: ${semantic.padding.md};
+  `,
+  lg: css`
+    padding: ${semantic.padding.lg};
+  `,
+  xl: css`
+    padding: ${semantic.padding.xl};
+  `,
+};
+
 export const gridVariant = cva(baseGridCss, {
   variants: {
     columns,
     gap: gaps,
     align: aligns,
+    justify: justifies,
+    padding: paddings,
   },
   defaultVariants: {
     columns: 12,
     gap: 'gutter',
     align: 'stretch',
+    justify: 'stretch',
+    padding: 'none',
   },
 });

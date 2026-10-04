@@ -79,7 +79,4 @@ function SwitchIconOff(props: SwitchIconProps) {
   );
 }
 
-Switch.IconOn = SwitchIconOn;
-Switch.IconOff = SwitchIconOff;
-
-export default Switch;
+export { Switch as Root, SwitchIconOn as IconOn, SwitchIconOff as IconOff };

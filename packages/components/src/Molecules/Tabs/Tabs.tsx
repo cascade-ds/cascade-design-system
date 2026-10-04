@@ -77,8 +77,4 @@ function TabsPanel(props: TabsPanelProps) {
   return <BaseTabs.Panel className={cx(tabsPanelCss, className)} {...restProps} />;
 }
 
-Tabs.List = TabsList;
-Tabs.Tab = TabsTab;
-Tabs.Panel = TabsPanel;
-
-export default Tabs;
+export { Tabs as Root, TabsList as List, TabsTab as Tab, TabsPanel as Panel };

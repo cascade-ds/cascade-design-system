@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import Tabs from './Tabs';
+import * as Tabs from './Tabs';
 import { tabsListCss, tabsPanelCss, tabsTabCss } from './Tabs.style';
 
 afterEach(() => {
@@ -12,7 +12,7 @@ afterEach(() => {
 
 function renderTabs(props: Partial<React.ComponentProps<typeof Tabs>> = {}) {
   return render(
-    <Tabs defaultValue="overview" {...props}>
+    <Tabs.Root defaultValue="overview" {...props}>
       <Tabs.List aria-label="Project">
         <Tabs.Tab value="overview">Overview</Tabs.Tab>
         <Tabs.Tab value="activity">Activity</Tabs.Tab>
@@ -23,7 +23,7 @@ function renderTabs(props: Partial<React.ComponentProps<typeof Tabs>> = {}) {
       <Tabs.Panel value="overview">Overview content</Tabs.Panel>
       <Tabs.Panel value="activity">Activity content</Tabs.Panel>
       <Tabs.Panel value="settings">Settings content</Tabs.Panel>
-    </Tabs>,
+    </Tabs.Root>,
   );
 }
 
@@ -88,7 +88,7 @@ describe('Tabs', () => {
     function Controlled() {
       const [value, setValue] = useState<string | number>('overview');
       return (
-        <Tabs
+        <Tabs.Root
           value={value}
           onValueChange={(nextValue) => {
             handleValueChange(nextValue);
@@ -101,7 +101,7 @@ describe('Tabs', () => {
           </Tabs.List>
           <Tabs.Panel value="overview">Overview content</Tabs.Panel>
           <Tabs.Panel value="activity">Activity content</Tabs.Panel>
-        </Tabs>
+        </Tabs.Root>
       );
     }
 

@@ -3,7 +3,7 @@ import { Accordion } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Accordion',
-  component: Accordion,
+  component: Accordion.Root,
   tags: ['autodocs'],
   argTypes: {
     background: {
@@ -32,7 +32,7 @@ const meta = {
     hiddenUntilFound: false,
     children: null,
   },
-} satisfies Meta<typeof Accordion>;
+} satisfies Meta<typeof Accordion.Root>;
 
 export default meta;
 
@@ -58,14 +58,14 @@ const faqs = [
 
 export const Default: Story = {
   render: (args) => (
-    <Accordion {...args}>
+    <Accordion.Root {...args}>
       {faqs.map((faq) => (
         <Accordion.Item key={faq.value} value={faq.value}>
           <Accordion.Trigger>{faq.question}</Accordion.Trigger>
           <Accordion.Panel>{faq.answer}</Accordion.Panel>
         </Accordion.Item>
       ))}
-    </Accordion>
+    </Accordion.Root>
   ),
 };
 
@@ -73,14 +73,14 @@ export const Backgrounds: Story = {
   render: (args) => (
     <div style={{ display: 'grid', gap: '1.5rem' }}>
       {(['default', 'subtle', 'surface', 'brand', 'secondary'] as const).map((background) => (
-        <Accordion key={background} {...args} background={background}>
+        <Accordion.Root key={background} {...args} background={background}>
           {faqs.slice(0, 2).map((faq) => (
             <Accordion.Item key={faq.value} value={faq.value}>
               <Accordion.Trigger>{`${background}: ${faq.question}`}</Accordion.Trigger>
               <Accordion.Panel>{faq.answer}</Accordion.Panel>
             </Accordion.Item>
           ))}
-        </Accordion>
+        </Accordion.Root>
       ))}
     </div>
   ),
@@ -106,7 +106,7 @@ export const Multiple: Story = {
 
 export const DisabledItem: Story = {
   render: (args) => (
-    <Accordion {...args}>
+    <Accordion.Root {...args}>
       <Accordion.Item value="general">
         <Accordion.Trigger>General</Accordion.Trigger>
         <Accordion.Panel>Workspace name, URL and time zone.</Accordion.Panel>
@@ -115,6 +115,6 @@ export const DisabledItem: Story = {
         <Accordion.Trigger>Single sign-on (Enterprise plan)</Accordion.Trigger>
         <Accordion.Panel>SAML and SCIM settings.</Accordion.Panel>
       </Accordion.Item>
-    </Accordion>
+    </Accordion.Root>
   ),
 };

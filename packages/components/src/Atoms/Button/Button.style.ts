@@ -236,10 +236,12 @@ const ghostCss = css`
 
   &:hover:not(:disabled) {
     background-color: ${component.button.color.ghost.background.hover};
+    color: ${component.button.color.ghost.text.hover};
   }
 
   &:active:not(:disabled) {
     background-color: ${component.button.color.ghost.background.active};
+    color: ${component.button.color.ghost.text.active};
   }
 
   &:disabled {

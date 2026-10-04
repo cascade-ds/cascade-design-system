@@ -352,10 +352,10 @@
               "$value": "{semantic.color.background.transparent}"
             },
             "hover": {
-              "$value": "{semantic.color.background.hover}"
+              "$value": "{semantic.color.brand.primary}"
             },
             "active": {
-              "$value": "{semantic.color.background.pressed}"
+              "$value": "{semantic.color.brand.primary-active}"
             },
             "disabled": {
               "$value": "{semantic.color.background.transparent}"
@@ -364,6 +364,12 @@
           "text": {
             "default": {
               "$value": "{semantic.color.text.primary}"
+            },
+            "hover": {
+              "$value": "{semantic.color.text.on-primary}"
+            },
+            "active": {
+              "$value": "{semantic.color.text.on-primary}"
             },
             "disabled": {
               "$value": "{semantic.color.text.disabled}"
@@ -1812,7 +1818,7 @@
           "$value": "{semantic.color.background.default}"
         },
         "border": {
-          "$value": "{semantic.color.border.default}"
+          "$value": "{semantic.color.border.card}"
         },
         "border-hover": {
           "$value": "{semantic.color.border.strong}"
@@ -1849,10 +1855,10 @@
           },
           "secondary": {
             "background": {
-              "$value": "{semantic.color.brand.secondary-subtle}"
+              "$value": "{semantic.color.brand.secondary-surface}"
             },
             "border": {
-              "$value": "{semantic.color.brand.secondary-muted}"
+              "$value": "{semantic.color.brand.secondary-border}"
             },
             "border-hover": {
               "$value": "{semantic.color.brand.secondary-strong}"
@@ -1860,10 +1866,10 @@
           },
           "tertiary": {
             "background": {
-              "$value": "{semantic.color.brand.tertiary-subtle}"
+              "$value": "{semantic.color.brand.tertiary-surface}"
             },
             "border": {
-              "$value": "{semantic.color.brand.tertiary-muted}"
+              "$value": "{semantic.color.brand.tertiary-border}"
             },
             "border-hover": {
               "$value": "{semantic.color.brand.tertiary}"
@@ -1871,10 +1877,10 @@
           },
           "accent": {
             "background": {
-              "$value": "{semantic.color.brand.accent-subtle}"
+              "$value": "{semantic.color.brand.accent-surface}"
             },
             "border": {
-              "$value": "{semantic.color.brand.accent-muted}"
+              "$value": "{semantic.color.brand.accent-border}"
             },
             "border-hover": {
               "$value": "{semantic.color.brand.accent-strong}"

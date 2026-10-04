@@ -21,12 +21,12 @@ const meta = {
     },
     align: {
       control: 'select',
-      options: ['start', 'center', 'end', 'stretch'],
+      options: ['start', 'center', 'end', 'stretch', 'baseline'],
       description: 'Alignment of children on the cross axis.',
     },
     justify: {
       control: 'select',
-      options: ['start', 'center', 'end', 'between'],
+      options: ['start', 'center', 'end', 'between', 'around', 'evenly'],
       description: 'Distribution of children along the main axis.',
     },
     wrap: {
@@ -36,6 +36,11 @@ const meta = {
     grow: {
       control: 'boolean',
       description: 'Sets `flex: 1` so the Stack fills free space in a flex parent.',
+    },
+    padding: {
+      control: 'select',
+      options: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
+      description: 'Padding around the children, from the `semantic.padding` scale.',
     },
     as: {
       control: 'select',
@@ -51,6 +56,7 @@ const meta = {
     justify: 'start',
     wrap: false,
     grow: false,
+    padding: 'none',
   },
 } satisfies Meta<typeof Stack>;
 

@@ -1,7 +1,7 @@
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { cx } from '@linaria/core';
 import type { VariantProps } from 'class-variance-authority';
-import Button from '../../Atoms/Button/Button';
+import { Button } from '../../Atoms/Button';
 import type { ButtonProps } from '../../Atoms/Button/Button';
 import { useThemedPortalProps } from '../../ThemeProvider/ThemedPortal';
 import {
@@ -71,7 +71,7 @@ function DropdownMenu(props: DropdownMenuProps) {
 
 /** Opens the menu. Renders a Cascade `Button` and takes its props. */
 function DropdownMenuTrigger(props: DropdownMenuTriggerProps) {
-  return <BaseMenu.Trigger render={<Button {...props} />} />;
+  return <BaseMenu.Trigger render={<Button.Root {...props} />} />;
 }
 
 /**
@@ -122,11 +122,12 @@ function DropdownMenuGroupLabel(props: DropdownMenuGroupLabelProps) {
   );
 }
 
-DropdownMenu.Trigger = DropdownMenuTrigger;
-DropdownMenu.Content = DropdownMenuContent;
-DropdownMenu.Item = DropdownMenuItem;
-DropdownMenu.Separator = DropdownMenuSeparator;
-DropdownMenu.Group = DropdownMenuGroup;
-DropdownMenu.GroupLabel = DropdownMenuGroupLabel;
-
-export default DropdownMenu;
+export {
+  DropdownMenu as Root,
+  DropdownMenuTrigger as Trigger,
+  DropdownMenuContent as Content,
+  DropdownMenuItem as Item,
+  DropdownMenuSeparator as Separator,
+  DropdownMenuGroup as Group,
+  DropdownMenuGroupLabel as GroupLabel,
+};

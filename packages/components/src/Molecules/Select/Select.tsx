@@ -188,12 +188,13 @@ function SelectSeparator(props: SelectSeparatorProps) {
   return <BaseSelect.Separator className={cx(selectSeparatorCss, className)} />;
 }
 
-Select.Label = SelectLabel;
-Select.Trigger = SelectTrigger;
-Select.Content = SelectContent;
-Select.Item = SelectItem;
-Select.Group = SelectGroup;
-Select.GroupLabel = SelectGroupLabel;
-Select.Separator = SelectSeparator;
-
-export default Select;
+export {
+  Select as Root,
+  SelectLabel as Label,
+  SelectTrigger as Trigger,
+  SelectContent as Content,
+  SelectItem as Item,
+  SelectGroup as Group,
+  SelectGroupLabel as GroupLabel,
+  SelectSeparator as Separator,
+};

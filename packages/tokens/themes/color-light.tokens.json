@@ -158,6 +158,10 @@
           "$value": "{primitive.color.sand.200}",
           "$description": "Decorative: card, sidebar, topbar, dividers."
         },
+        "card": {
+          "$value": "{primitive.color.sand.350}",
+          "$description": "Default card outline: stronger than border.default so cards stand out from the page."
+        },
         "strong": {
           "$value": "{primitive.color.sand.450}"
         },
@@ -228,6 +232,14 @@
         "secondary-muted": {
           "$value": "{primitive.color.pink.100}"
         },
+        "secondary-surface": {
+          "$value": "{primitive.color.pink.100}",
+          "$description": "Card fill for this tone."
+        },
+        "secondary-border": {
+          "$value": "{primitive.color.pink.300}",
+          "$description": "Card border for this tone."
+        },
         "secondary-text": {
           "$value": "{primitive.color.pink.800}",
           "$description": "Text on secondary-subtle / secondary-muted."
@@ -262,11 +274,27 @@
         "accent-muted": {
           "$value": "{primitive.color.yellow.100}"
         },
+        "accent-surface": {
+          "$value": "{primitive.color.yellow.100}",
+          "$description": "Card fill for this tone."
+        },
+        "accent-border": {
+          "$value": "{primitive.color.yellow.300}",
+          "$description": "Card border for this tone."
+        },
         "tertiary-subtle": {
           "$value": "{primitive.color.purple.50}"
         },
         "tertiary-muted": {
           "$value": "{primitive.color.purple.100}"
+        },
+        "tertiary-surface": {
+          "$value": "{primitive.color.purple.100}",
+          "$description": "Card fill for this tone."
+        },
+        "tertiary-border": {
+          "$value": "{primitive.color.purple.300}",
+          "$description": "Card border for this tone."
         }
       },
       "feedback": {

@@ -169,12 +169,13 @@ function AutocompleteSeparator(props: AutocompleteSeparatorProps) {
   return <BaseAutocomplete.Separator className={cx(comboboxSeparatorCss, className)} />;
 }
 
-Autocomplete.Input = AutocompleteInput;
-Autocomplete.Content = AutocompleteContent;
-Autocomplete.Item = AutocompleteItem;
-Autocomplete.Group = AutocompleteGroup;
-Autocomplete.GroupLabel = AutocompleteGroupLabel;
-Autocomplete.Separator = AutocompleteSeparator;
-Autocomplete.Collection = AutocompleteCollection;
-
-export default Autocomplete;
+export {
+  Autocomplete as Root,
+  AutocompleteInput as Input,
+  AutocompleteContent as Content,
+  AutocompleteItem as Item,
+  AutocompleteGroup as Group,
+  AutocompleteGroupLabel as GroupLabel,
+  AutocompleteSeparator as Separator,
+  AutocompleteCollection as Collection,
+};

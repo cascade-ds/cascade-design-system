@@ -6,7 +6,7 @@ import { Button, Select, Stack, FormField } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/FormField',
-  component: FormField,
+  component: FormField.Root,
   tags: ['autodocs'],
   argTypes: {
     invalid: {
@@ -30,16 +30,16 @@ const meta = {
     children: null,
   },
   render: (args) => (
-    <FormField {...args}>
+    <FormField.Root {...args}>
       <FormField.Label>Email</FormField.Label>
       <FormField.Input type="email" placeholder="you@example.com" />
       <FormField.Hint>We only use it for sign-in links.</FormField.Hint>
       {args.invalid && (
         <FormField.Error>Enter an email address like name@example.com.</FormField.Error>
       )}
-    </FormField>
+    </FormField.Root>
   ),
-} satisfies Meta<typeof FormField>;
+} satisfies Meta<typeof FormField.Root>;
 
 export default meta;
 
@@ -69,10 +69,10 @@ export const InputSizes: Story = {
   render: () => (
     <Stack gap="lg">
       {(['sm', 'md', 'lg'] as const).map((size) => (
-        <FormField key={size}>
+        <FormField.Root key={size}>
           <FormField.Label>Name ({size})</FormField.Label>
           <FormField.Input size={size} />
-        </FormField>
+        </FormField.Root>
       ))}
     </Stack>
   ),
@@ -80,12 +80,12 @@ export const InputSizes: Story = {
 
 export const WithTextarea: Story = {
   render: (args) => (
-    <FormField {...args}>
+    <FormField.Root {...args}>
       <FormField.Label>Bio</FormField.Label>
       <FormField.Textarea placeholder="Tell us about yourself…" />
       <FormField.Hint>Up to 280 characters.</FormField.Hint>
       {args.invalid && <FormField.Error>Keep it under 280 characters.</FormField.Error>}
-    </FormField>
+    </FormField.Root>
   ),
 };
 
@@ -97,9 +97,9 @@ const countries = [
 
 export const WithSelect: Story = {
   render: (args) => (
-    <FormField {...args}>
+    <FormField.Root {...args}>
       <FormField.Label>Country</FormField.Label>
-      <Select items={countries}>
+      <Select.Root items={countries}>
         <Select.Trigger placeholder="Choose a country" />
         <Select.Content>
           {countries.map((country) => (
@@ -108,23 +108,23 @@ export const WithSelect: Story = {
             </Select.Item>
           ))}
         </Select.Content>
-      </Select>
+      </Select.Root>
       <FormField.Hint>Used for tax and shipping.</FormField.Hint>
       {args.invalid && <FormField.Error>Choose a country.</FormField.Error>}
-    </FormField>
+    </FormField.Root>
   ),
 };
 
 export const WithCustomControl: Story = {
   render: (args) => (
-    <FormField {...args}>
+    <FormField.Root {...args}>
       <FormField.Label>Due date</FormField.Label>
       <FormField.Control>
         {(controlProps) => <input type="date" {...controlProps} />}
       </FormField.Control>
       <FormField.Hint>Pick a weekday.</FormField.Hint>
       {args.invalid && <FormField.Error>Pick a date.</FormField.Error>}
-    </FormField>
+    </FormField.Root>
   ),
 };
 
@@ -148,7 +148,7 @@ function SignUpForm() {
   return (
     <form noValidate onSubmit={handleSubmit(setSubmitted)}>
       <Stack gap="md">
-        <FormField required>
+        <FormField.Root required>
           <FormField.Label>Email</FormField.Label>
           <FormField.Input
             type="email"
@@ -162,16 +162,16 @@ function SignUpForm() {
           />
           <FormField.Hint>Validated when you leave the field and on submit.</FormField.Hint>
           {errors.email && <FormField.Error>{errors.email.message}</FormField.Error>}
-        </FormField>
+        </FormField.Root>
 
-        <FormField required>
+        <FormField.Root required>
           <FormField.Label>Country</FormField.Label>
           <Controller
             name="country"
             control={control}
             rules={{ required: 'Choose a country.' }}
             render={({ field }) => (
-              <Select
+              <Select.Root
                 items={countries}
                 value={field.value}
                 onValueChange={field.onChange}
@@ -189,13 +189,13 @@ function SignUpForm() {
                     </Select.Item>
                   ))}
                 </Select.Content>
-              </Select>
+              </Select.Root>
             )}
           />
           {errors.country && <FormField.Error>{errors.country.message}</FormField.Error>}
-        </FormField>
+        </FormField.Root>
 
-        <Button type="submit">Sign up</Button>
+        <Button.Root type="submit">Sign up</Button.Root>
         {submitted && <p role="status">Signed up as {submitted.email}.</p>}
       </Stack>
     </form>

@@ -1,4 +1,5 @@
-export { default as FormField, useFormFieldControl } from './FormField';
+export * as FormField from './FormField';
+export { useFormFieldControl } from './FormField';
 export type {
   FormFieldProps,
   FormFieldLabelProps,

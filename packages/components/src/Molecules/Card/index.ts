@@ -1,4 +1,4 @@
-export { default as Card } from './Card';
+export * as Card from './Card';
 export type {
   CardProps,
   CardElement,

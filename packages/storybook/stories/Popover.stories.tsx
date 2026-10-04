@@ -4,7 +4,7 @@ import { Text, Stack, ThemeProvider, Popover, type PopoverContentProps } from '@
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Popover',
-  component: Popover,
+  component: Popover.Root,
   tags: ['autodocs'],
   parameters: {
     a11y: { context: 'body' },
@@ -22,21 +22,17 @@ const meta = {
   args: {
     children: null,
   },
-} satisfies Meta<typeof Popover>;
+} satisfies Meta<typeof Popover.Root>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-function FiltersPopover(props: {
-  defaultOpen?: boolean;
-  side?: PopoverContentProps['side'];
-  label?: string;
-}) {
-  const { defaultOpen, side, label = 'Filters' } = props;
+function FiltersPopover(props: { side?: PopoverContentProps['side']; label?: string }) {
+  const { side, label = 'Filters' } = props;
 
   return (
-    <Popover defaultOpen={defaultOpen}>
+    <Popover.Root>
       <Popover.Trigger variant="secondary">{label}</Popover.Trigger>
       <Popover.Content side={side}>
         <Popover.Title>Filter results</Popover.Title>
@@ -45,16 +41,12 @@ function FiltersPopover(props: {
           Done
         </Popover.Close>
       </Popover.Content>
-    </Popover>
+    </Popover.Root>
   );
 }
 
 export const Default: Story = {
   render: () => <FiltersPopover />,
-};
-
-export const Open: Story = {
-  render: () => <FiltersPopover defaultOpen />,
 };
 
 export const Sides: Story = {
@@ -76,7 +68,7 @@ export const InsideDarkSection: Story = {
         <ThemeProvider initialMode="dark">
           <Stack gap="md" align="start">
             <Text>Dark section</Text>
-            <FiltersPopover defaultOpen />
+            <FiltersPopover />
           </Stack>
         </ThemeProvider>
       </Stack>
@@ -91,7 +83,7 @@ export const Controlled: Story = {
     return (
       <Stack gap="md" align="start">
         <Text>The popover is {open ? 'open' : 'closed'}.</Text>
-        <Popover open={open} onOpenChange={setOpen}>
+        <Popover.Root open={open} onOpenChange={setOpen}>
           <Popover.Trigger>Settings</Popover.Trigger>
           <Popover.Content>
             <Popover.Title>Settings</Popover.Title>
@@ -100,7 +92,7 @@ export const Controlled: Story = {
               Close
             </Popover.Close>
           </Popover.Content>
-        </Popover>
+        </Popover.Root>
       </Stack>
     );
   },

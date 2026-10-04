@@ -1,7 +1,7 @@
 import { Dialog as BaseDialog } from '@base-ui/react/dialog';
 import { cx } from '@linaria/core';
 import type { VariantProps } from 'class-variance-authority';
-import Button from '../../Atoms/Button/Button';
+import { Button } from '../../Atoms/Button';
 import type { ButtonProps } from '../../Atoms/Button/Button';
 import { useThemedPortalProps } from '../../ThemeProvider/ThemedPortal';
 import {
@@ -58,7 +58,7 @@ function Dialog(props: DialogProps) {
 
 /** Opens the dialog. Renders a Cascade `Button` and takes its props. */
 function DialogTrigger(props: DialogTriggerProps) {
-  return <BaseDialog.Trigger render={<Button {...props} />} />;
+  return <BaseDialog.Trigger render={<Button.Root {...props} />} />;
 }
 
 /**
@@ -103,14 +103,15 @@ function DialogActions(props: DialogActionsProps) {
 
 /** Closes the dialog. Renders a Cascade `Button` and takes its props. */
 function DialogClose(props: DialogCloseProps) {
-  return <BaseDialog.Close render={<Button {...props} />} />;
+  return <BaseDialog.Close render={<Button.Root {...props} />} />;
 }
 
-Dialog.Trigger = DialogTrigger;
-Dialog.Content = DialogContent;
-Dialog.Title = DialogTitle;
-Dialog.Description = DialogDescription;
-Dialog.Actions = DialogActions;
-Dialog.Close = DialogClose;
-
-export default Dialog;
+export {
+  Dialog as Root,
+  DialogTrigger as Trigger,
+  DialogContent as Content,
+  DialogTitle as Title,
+  DialogDescription as Description,
+  DialogActions as Actions,
+  DialogClose as Close,
+};

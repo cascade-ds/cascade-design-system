@@ -4,7 +4,7 @@ import { Text, Stack, Tabs } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Molecule/Tabs',
-  component: Tabs,
+  component: Tabs.Root,
   tags: ['autodocs'],
   argTypes: {
     value: {
@@ -20,7 +20,7 @@ const meta = {
     defaultValue: 'overview',
     children: null,
   },
-} satisfies Meta<typeof Tabs>;
+} satisfies Meta<typeof Tabs.Root>;
 
 export default meta;
 
@@ -30,7 +30,7 @@ function ProjectTabs(props: { defaultValue?: string; disableSettings?: boolean }
   const { defaultValue, disableSettings } = props;
 
   return (
-    <Tabs defaultValue={defaultValue}>
+    <Tabs.Root defaultValue={defaultValue}>
       <Tabs.List aria-label="Project">
         <Tabs.Tab value="overview">Overview</Tabs.Tab>
         <Tabs.Tab value="activity">Activity</Tabs.Tab>
@@ -47,7 +47,7 @@ function ProjectTabs(props: { defaultValue?: string; disableSettings?: boolean }
       <Tabs.Panel value="settings">
         <Text>Project name, visibility and members.</Text>
       </Tabs.Panel>
-    </Tabs>
+    </Tabs.Root>
   );
 }
 
@@ -66,7 +66,7 @@ export const Controlled: Story = {
     return (
       <Stack gap="md">
         <Text>Active tab: {value}</Text>
-        <Tabs value={value} onValueChange={setValue}>
+        <Tabs.Root value={value} onValueChange={setValue}>
           <Tabs.List aria-label="Account">
             <Tabs.Tab value="profile">Profile</Tabs.Tab>
             <Tabs.Tab value="activity">Activity</Tabs.Tab>
@@ -81,7 +81,7 @@ export const Controlled: Story = {
           <Tabs.Panel value="billing">
             <Text>Plan and invoices.</Text>
           </Tabs.Panel>
-        </Tabs>
+        </Tabs.Root>
       </Stack>
     );
   },

@@ -28,8 +28,13 @@ The library has to fit how the system already works:
 - **Motion is optional.** `motion` is an optional peer, isolated in the
   `@cascade-ds/components/motion` entry. Core components can't depend on it,
   including for exit animations.
-- **Compound API convention.** `function Dialog` with parts attached as
-  `Dialog.Trigger = DialogTrigger`, never renamed to `DialogRoot`.
+- **Compound API convention.** Radix-style namespaces. `Dialog.tsx` keeps
+  `function Dialog` and `function DialogTrigger` and ends with
+  `export { Dialog as Root, DialogTrigger as Trigger }`; `index.ts` does
+  `export * as Dialog from './Dialog'`, so consumers write `<Dialog.Root>`.
+  Attaching parts as properties (`Dialog.Trigger = DialogTrigger`) is not
+  used: the assignment is a side effect that breaks on server/client module
+  boundaries (SSR, React Server Components).
 - **Tokens reach elements through DOM inheritance.** Overlays render
   through portals at the end of `<body>`, outside the ThemeProvider's
   `data-theme` element, so they would resolve tokens against `:root` and

@@ -1,4 +1,4 @@
-export { default as Accordion } from './Accordion';
+export * as Accordion from './Accordion';
 export type {
   AccordionProps,
   AccordionItemProps,

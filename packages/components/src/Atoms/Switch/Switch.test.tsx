@@ -4,7 +4,7 @@ import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import Switch from './Switch';
+import * as Switch from './Switch';
 import { switchIconCss, switchIconOffCss, switchIconOnCss, switchVariant } from './Switch.style';
 
 afterEach(() => {
@@ -22,7 +22,7 @@ function expectClasses(element: HTMLElement, className: string) {
 
 describe('Switch', () => {
   it('renders a native checkbox exposed as a switch, named by its children', () => {
-    render(<Switch>Notifications</Switch>);
+    render(<Switch.Root>Notifications</Switch.Root>);
 
     const toggle = screen.getByRole('switch', { name: 'Notifications' });
     expect(toggle.tagName).toBe('INPUT');
@@ -31,15 +31,15 @@ describe('Switch', () => {
   });
 
   it('wraps itself in a label only when it has children', () => {
-    const { container, rerender } = render(<Switch>Notifications</Switch>);
+    const { container, rerender } = render(<Switch.Root>Notifications</Switch.Root>);
     expect(container.firstElementChild?.tagName).toBe('LABEL');
 
-    rerender(<Switch aria-label="Notifications" />);
+    rerender(<Switch.Root aria-label="Notifications" />);
     expect(container.firstElementChild?.tagName).toBe('SPAN');
   });
 
   it('can be named with aria-label', () => {
-    render(<Switch aria-label="Dark mode" />);
+    render(<Switch.Root aria-label="Dark mode" />);
 
     expect(screen.getByRole('switch', { name: 'Dark mode' })).toBeInTheDocument();
   });
@@ -48,7 +48,7 @@ describe('Switch', () => {
     render(
       <>
         <label htmlFor="wifi">Wi-Fi</label>
-        <Switch id="wifi" />
+        <Switch.Root id="wifi" />
       </>,
     );
 
@@ -56,19 +56,19 @@ describe('Switch', () => {
   });
 
   it('applies the default variant classes to the root', () => {
-    const { container } = render(<Switch>Notifications</Switch>);
+    const { container } = render(<Switch.Root>Notifications</Switch.Root>);
 
     expectClasses(container.firstElementChild as HTMLElement, switchVariant({ disabled: false }));
   });
 
   it('applies the disabled variant class to the root when disabled', () => {
-    const { container } = render(<Switch disabled>Notifications</Switch>);
+    const { container } = render(<Switch.Root disabled>Notifications</Switch.Root>);
 
     expectClasses(container.firstElementChild as HTMLElement, switchVariant({ disabled: true }));
   });
 
   it('merges a consumer className onto the root', () => {
-    const { container } = render(<Switch className="custom">Notifications</Switch>);
+    const { container } = render(<Switch.Root className="custom">Notifications</Switch.Root>);
 
     expect(container.firstElementChild).toHaveClass('custom');
   });
@@ -77,7 +77,7 @@ describe('Switch', () => {
     const user = userEvent.setup();
     const handleChange = vi.fn();
 
-    render(<Switch onChange={handleChange}>Notifications</Switch>);
+    render(<Switch.Root onChange={handleChange}>Notifications</Switch.Root>);
     const toggle = screen.getByRole('switch', { name: 'Notifications' });
 
     await user.click(toggle);
@@ -92,14 +92,14 @@ describe('Switch', () => {
   it('toggles when its label text is clicked', async () => {
     const user = userEvent.setup();
 
-    render(<Switch>Notifications</Switch>);
+    render(<Switch.Root>Notifications</Switch.Root>);
 
     await user.click(screen.getByText('Notifications'));
     expect(screen.getByRole('switch', { name: 'Notifications' })).toBeChecked();
   });
 
   it('respects defaultChecked', () => {
-    render(<Switch defaultChecked>Notifications</Switch>);
+    render(<Switch.Root defaultChecked>Notifications</Switch.Root>);
 
     expect(screen.getByRole('switch', { name: 'Notifications' })).toBeChecked();
   });
@@ -111,9 +111,9 @@ describe('Switch', () => {
       const [checked, setChecked] = useState(false);
       return (
         <>
-          <Switch checked={checked} onChange={(event) => setChecked(event.target.checked)}>
+          <Switch.Root checked={checked} onChange={(event) => setChecked(event.target.checked)}>
             Notifications
-          </Switch>
+          </Switch.Root>
           <output>{checked ? 'on' : 'off'}</output>
         </>
       );
@@ -131,9 +131,9 @@ describe('Switch', () => {
     const handleChange = vi.fn();
 
     render(
-      <Switch disabled onChange={handleChange}>
+      <Switch.Root disabled onChange={handleChange}>
         Notifications
-      </Switch>,
+      </Switch.Root>,
     );
     const toggle = screen.getByRole('switch', { name: 'Notifications' });
 
@@ -146,7 +146,7 @@ describe('Switch', () => {
   it('is reachable by keyboard and toggles with Space', async () => {
     const user = userEvent.setup();
 
-    render(<Switch>Notifications</Switch>);
+    render(<Switch.Root>Notifications</Switch.Root>);
 
     await user.tab();
     const toggle = screen.getByRole('switch', { name: 'Notifications' });
@@ -157,7 +157,7 @@ describe('Switch', () => {
   });
 
   it('renders no icon by default', () => {
-    render(<Switch>Dark mode</Switch>);
+    render(<Switch.Root>Dark mode</Switch.Root>);
 
     const thumb = screen.getByRole('switch', { name: 'Dark mode' }).nextElementSibling!;
     expect(thumb).toBeEmptyDOMElement();
@@ -165,7 +165,7 @@ describe('Switch', () => {
 
   it('renders Switch.IconOn and Switch.IconOff inside the thumb, not in the label', () => {
     render(
-      <Switch>
+      <Switch.Root>
         <Switch.IconOn>
           <MoonIcon />
         </Switch.IconOn>
@@ -173,7 +173,7 @@ describe('Switch', () => {
           <SunIcon />
         </Switch.IconOff>
         Dark mode
-      </Switch>,
+      </Switch.Root>,
     );
 
     const thumb = screen.getByRole('switch', { name: 'Dark mode' }).nextElementSibling!;
@@ -186,7 +186,7 @@ describe('Switch', () => {
 
   it('finds icons passed inside a fragment', () => {
     const { container } = render(
-      <Switch aria-label="Dark mode">
+      <Switch.Root aria-label="Dark mode">
         <>
           <Switch.IconOn>
             <MoonIcon />
@@ -195,7 +195,7 @@ describe('Switch', () => {
             <SunIcon />
           </Switch.IconOff>
         </>
-      </Switch>,
+      </Switch.Root>,
     );
 
     const thumb = screen.getByRole('switch', { name: 'Dark mode' }).nextElementSibling!;
@@ -205,11 +205,11 @@ describe('Switch', () => {
 
   it('does not wrap itself in a label when its only children are icons', () => {
     const { container } = render(
-      <Switch aria-label="Dark mode">
+      <Switch.Root aria-label="Dark mode">
         <Switch.IconOn>
           <MoonIcon />
         </Switch.IconOn>
-      </Switch>,
+      </Switch.Root>,
     );
 
     expect(container.firstElementChild?.tagName).toBe('SPAN');
@@ -219,7 +219,7 @@ describe('Switch', () => {
   it('forwards its ref to the input element', () => {
     const ref = createRef<HTMLInputElement>();
 
-    render(<Switch ref={ref}>Notifications</Switch>);
+    render(<Switch.Root ref={ref}>Notifications</Switch.Root>);
 
     expect(ref.current).toBe(screen.getByRole('switch', { name: 'Notifications' }));
   });
@@ -227,7 +227,7 @@ describe('Switch', () => {
 
 describe('Switch colors', () => {
   it('applies the class for a color variant', () => {
-    render(<Switch color="success">Notifications</Switch>);
+    render(<Switch.Root color="success">Notifications</Switch.Root>);
 
     expect(screen.getByRole('switch').closest('label')).toHaveClass(
       switchVariant({ disabled: false, color: 'success' }),

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Toast as BaseToast } from '@base-ui/react/toast';
 import type { VariantProps } from 'class-variance-authority';
-import Button from '../../Atoms/Button/Button';
+import { Button } from '../../Atoms/Button';
 import Icon from '../../Atoms/Icon/Icon';
 import CloseIcon from '../../internal/CloseIcon';
 import { useThemedPortalProps } from '../../ThemeProvider/ThemedPortal';
@@ -129,9 +129,12 @@ function ToastList(props: { dismissLabel: string }) {
         </BaseToast.Content>
         <div className={toastActionsCss}>
           {toast.actionProps && (
-            <BaseToast.Action render={<Button variant="secondary" size="sm" />} />
+            <BaseToast.Action render={<Button.Root variant="secondary" size="sm" />} />
           )}
-          <BaseToast.Close render={<Button variant="ghost" size="sm" />} aria-label={dismissLabel}>
+          <BaseToast.Close
+            render={<Button.Root variant="ghost" size="sm" />}
+            aria-label={dismissLabel}
+          >
             <Button.Icon>
               <CloseIcon />
             </Button.Icon>
@@ -169,7 +172,4 @@ function createManager(): ToastManager {
   };
 }
 
-Toast.useToast = useToast;
-Toast.createManager = createManager;
-
-export default Toast;
+export { Toast as Root, useToast, createManager };

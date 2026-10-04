@@ -4,7 +4,7 @@ import { Button } from '@cds/components';
 
 const meta = {
   title: 'CascadeDS/Components/Atom/Button',
-  component: Button,
+  component: Button.Root,
   tags: ['autodocs'],
   argTypes: {
     size: {
@@ -39,7 +39,7 @@ const meta = {
     variant: 'primary',
     disabled: false,
   },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof Button.Root>;
 
 export default meta;
 
